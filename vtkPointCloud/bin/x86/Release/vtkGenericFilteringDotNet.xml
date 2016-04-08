@@ -1,0 +1,1447 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "vtkGenericFilteringDotNet"
+    </assembly>
+    <members>
+        <member name="M:vtk.vtkGenericOutlineFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericOutlineFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericOutlineFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericOutlineFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetInputNormalsSelection">
+            <summary>
+                <para>If you want to use an arbitrary normals array, then set its name here. By default this in NULL and the filter will use the active normal array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SelectInputVectors(System.String)">
+            <summary>
+                <para>If you want to use an arbitrary normals array, then set its name here. By default this in NULL and the filter will use the active normal array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetInputVectorsSelection">
+            <summary>
+                <para>If you want to use an arbitrary vectors array, then set its name here. By default this in NULL and the filter will use the active vector array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SelectInputScalars(System.String)">
+            <summary>
+                <para>If you want to use an arbitrary vectors array, then set its name here. By default this in NULL and the filter will use the active vector array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetInputScalarsSelection">
+            <summary>
+                <para>If you want to use an arbitrary scalars array, then set its name here. By default this in NULL and the filter will use the active scalar array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetPointIdsName">
+            <summary>
+                <para>Set/Get the name of the PointIds array if generated. By default the Ids are named "InputPointIds", but this can be changed with this function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetPointIdsName(System.String)">
+            <summary>
+                <para>Set/Get the name of the PointIds array if generated. By default the Ids are named "InputPointIds", but this can be changed with this function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GeneratePointIdsOff">
+            <summary>
+                <para>Enable/disable the generation of point ids as part of the output. The point ids are the id of the input generating point. The point ids are stored in the output point field data and named "InputPointIds". Point generation is useful for debugging and pick operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GeneratePointIdsOn">
+            <summary>
+                <para>Enable/disable the generation of point ids as part of the output. The point ids are the id of the input generating point. The point ids are stored in the output point field data and named "InputPointIds". Point generation is useful for debugging and pick operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetGeneratePointIds">
+            <summary>
+                <para>Enable/disable the generation of point ids as part of the output. The point ids are the id of the input generating point. The point ids are stored in the output point field data and named "InputPointIds". Point generation is useful for debugging and pick operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetGeneratePointIds(System.Int32)">
+            <summary>
+                <para>Enable/disable the generation of point ids as part of the output. The point ids are the id of the input generating point. The point ids are stored in the output point field data and named "InputPointIds". Point generation is useful for debugging and pick operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetIndexModeAsString">
+            <summary>
+                <para>Index into table of sources by scalar, by vector/normal magnitude, or no indexing. If indexing is turned off, then the first source glyph in the table of glyphs is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetIndexModeToOff">
+            <summary>
+                <para>Index into table of sources by scalar, by vector/normal magnitude, or no indexing. If indexing is turned off, then the first source glyph in the table of glyphs is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetIndexModeToVector">
+            <summary>
+                <para>Index into table of sources by scalar, by vector/normal magnitude, or no indexing. If indexing is turned off, then the first source glyph in the table of glyphs is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetIndexModeToScalar">
+            <summary>
+                <para>Index into table of sources by scalar, by vector/normal magnitude, or no indexing. If indexing is turned off, then the first source glyph in the table of glyphs is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetIndexMode">
+            <summary>
+                <para>Index into table of sources by scalar, by vector/normal magnitude, or no indexing. If indexing is turned off, then the first source glyph in the table of glyphs is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetIndexMode(System.Int32)">
+            <summary>
+                <para>Index into table of sources by scalar, by vector/normal magnitude, or no indexing. If indexing is turned off, then the first source glyph in the table of glyphs is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetVectorModeAsString">
+            <summary>
+                <para>Specify whether to use vector or normal to perform vector operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetVectorModeToVectorRotationOff">
+            <summary>
+                <para>Specify whether to use vector or normal to perform vector operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetVectorModeToUseNormal">
+            <summary>
+                <para>Specify whether to use vector or normal to perform vector operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetVectorModeToUseVector">
+            <summary>
+                <para>Specify whether to use vector or normal to perform vector operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetVectorMode">
+            <summary>
+                <para>Specify whether to use vector or normal to perform vector operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetVectorMode(System.Int32)">
+            <summary>
+                <para>Specify whether to use vector or normal to perform vector operations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetClamping">
+            <summary>
+                <para>Turn on/off clamping of "scalar" values to range. (Scalar value may be   vector magnitude if ScaleByVector() is enabled.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.ClampingOff">
+            <summary>
+                <para>Turn on/off clamping of "scalar" values to range. (Scalar value may be   vector magnitude if ScaleByVector() is enabled.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.ClampingOn">
+            <summary>
+                <para>Turn on/off clamping of "scalar" values to range. (Scalar value may be   vector magnitude if ScaleByVector() is enabled.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetClamping(System.Int32)">
+            <summary>
+                <para>Turn on/off clamping of "scalar" values to range. (Scalar value may be   vector magnitude if ScaleByVector() is enabled.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetOrient">
+            <summary>
+                <para>Turn on/off orienting of input geometry along vector/normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.OrientOff">
+            <summary>
+                <para>Turn on/off orienting of input geometry along vector/normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.OrientOn">
+            <summary>
+                <para>Turn on/off orienting of input geometry along vector/normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetOrient(System.Int32)">
+            <summary>
+                <para>Turn on/off orienting of input geometry along vector/normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetRange">
+            <summary>
+                <para>Specify range to map scalar values into.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetRange(System.Double[])">
+            <summary>
+                <para>Specify range to map scalar values into.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetRange(System.Double,System.Double)">
+            <summary>
+                <para>Specify range to map scalar values into.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetScaleFactor">
+            <summary>
+                <para>Specify scale factor to scale object by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaleFactor(System.Double)">
+            <summary>
+                <para>Specify scale factor to scale object by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetColorModeAsString">
+            <summary>
+                <para>Either color by scale, scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetColorModeToColorByVector">
+            <summary>
+                <para>Either color by scale, scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetColorModeToColorByScalar">
+            <summary>
+                <para>Either color by scale, scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetColorModeToColorByScale">
+            <summary>
+                <para>Either color by scale, scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetColorMode">
+            <summary>
+                <para>Either color by scale, scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetColorMode(System.Int32)">
+            <summary>
+                <para>Either color by scale, scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetScaleModeAsString">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaleModeToDataScalingOff">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaleModeToScaleByVectorComponents">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaleModeToScaleByVector">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaleModeToScaleByScalar">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetScaleMode">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaleMode(System.Int32)">
+            <summary>
+                <para>Either scale by scalar or by vector/normal magnitude.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetScaling">
+            <summary>
+                <para>Turn on/off scaling of source geometry.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.ScalingOff">
+            <summary>
+                <para>Turn on/off scaling of source geometry.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.ScalingOn">
+            <summary>
+                <para>Turn on/off scaling of source geometry.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetScaling(System.Int32)">
+            <summary>
+                <para>Turn on/off scaling of source geometry.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.GetSource(System.Int32)">
+            <summary>
+                <para>Get a pointer to a source object at a specified table location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetSource(System.Int32,vtk.vtkPolyData)">
+            <summary>
+                <para>Specify a source object at a specified table location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGlyph3DFilter.SetSource(vtk.vtkPolyData)">
+            <summary>
+                <para>Set the source to use for he glyph.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.GetValidPoints">
+            <summary>
+                <para>Get the list of point ids in the output that contain attribute data interpolated from the source.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.GetSource">
+            <summary>
+                <para>Specify the point locations used to probe input. A generic dataset type is assumed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericProbeFilter.SetSource(vtk.vtkGenericDataSet)">
+            <summary>
+                <para>Specify the point locations used to probe input. A generic dataset type is assumed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.CreateDefaultLocator">
+            <summary>
+                <para>Create default locator. Used to create one when none is specified. The  locator is used to merge coincident points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GetLocator">
+            <summary>
+                <para>Specify a spatial locator for merging points. By default,  an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.SetLocator(vtk.vtkPointLocator)">
+            <summary>
+                <para>Specify a spatial locator for merging points. By default,  an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GenerateCutScalarsOff">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be interpolated from the implicit function values, and not the input scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GenerateCutScalarsOn">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be interpolated from the implicit function values, and not the input scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GetGenerateCutScalars">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be interpolated from the implicit function values, and not the input scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.SetGenerateCutScalars(System.Int32)">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be interpolated from the implicit function values, and not the input scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GetMTime">
+            <summary>
+                <para>Override GetMTime because we delegate to vtkContourValues and refer to vtkImplicitFunction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GenerateValues(System.Int32,System.Double,System.Double)">
+            <summary>
+                <para>Generate numContours equally spaced contour values between specified range. Contour values will include min/max range values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GenerateValues(System.Int32,System.Double[])">
+            <summary>
+                <para>Generate numContours equally spaced contour values between specified range. Contour values will include min/max range values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GetNumberOfContours">
+            <summary>
+                <para>Get the number of contours in the list of contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.SetNumberOfContours(System.Int32)">
+            <summary>
+                <para>Set the number of contours to place into the list. You only really need to use this method to reduce list size. The method SetValue() will automatically increase list size as needed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GetValues(System.Double[])">
+            <summary>
+                <para>Fill a supplied list with contour values. There will be GetNumberOfContours() values in the list. Make sure you allocate enough memory to hold the list.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.GetValue(System.Int32)">
+            <summary>
+                <para>Get the ith contour value.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericCutter.SetValue(System.Int32,System.Double)">
+            <summary>
+                <para>Set a particular contour value at contour number i. The index i ranges  between 0&lt;=i&lt;NumberOfContours.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetMTime">
+            <summary>
+                <para>Return the MTime also considering the locator.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.CreateDefaultLocator">
+            <summary>
+                <para>Create default locator. Used to create one when none is specified.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetLocator">
+            <summary>
+                <para>Set / get a spatial locator for merging points. By default an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetLocator(vtk.vtkPointLocator)">
+            <summary>
+                <para>Set / get a spatial locator for merging points. By default an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.MergingOff">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.MergingOn">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetMerging">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetMerging(System.Int32)">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetExtent(System.Double[])">
+            <summary>
+                <para>Set / get a (xmin,xmax, ymin,ymax, zmin,zmax) bounding box to clip data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetExtent(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Specify a (xmin,xmax, ymin,ymax, zmin,zmax) bounding box to clip data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellMaximum">
+            <summary>
+                <para>Specify the maximum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellMaximumMaxValue">
+            <summary>
+                <para>Specify the maximum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellMaximumMinValue">
+            <summary>
+                <para>Specify the maximum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetCellMaximum(System.Int32)">
+            <summary>
+                <para>Specify the maximum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellMinimum">
+            <summary>
+                <para>Specify the minimum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellMinimumMaxValue">
+            <summary>
+                <para>Specify the minimum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellMinimumMinValue">
+            <summary>
+                <para>Specify the minimum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetCellMinimum(System.Int32)">
+            <summary>
+                <para>Specify the minimum cell id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointMaximum">
+            <summary>
+                <para>Specify the maximum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointMaximumMaxValue">
+            <summary>
+                <para>Specify the maximum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointMaximumMinValue">
+            <summary>
+                <para>Specify the maximum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetPointMaximum(System.Int32)">
+            <summary>
+                <para>Specify the maximum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointMinimum">
+            <summary>
+                <para>Specify the minimum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointMinimumMaxValue">
+            <summary>
+                <para>Specify the minimum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointMinimumMinValue">
+            <summary>
+                <para>Specify the minimum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetPointMinimum(System.Int32)">
+            <summary>
+                <para>Specify the minimum point id for point id selection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.ExtentClippingOff">
+            <summary>
+                <para>Turn on/off selection of geometry via bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.ExtentClippingOn">
+            <summary>
+                <para>Turn on/off selection of geometry via bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetExtentClipping">
+            <summary>
+                <para>Turn on/off selection of geometry via bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetExtentClipping(System.Int32)">
+            <summary>
+                <para>Turn on/off selection of geometry via bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.CellClippingOff">
+            <summary>
+                <para>Turn on/off selection of geometry by cell id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.CellClippingOn">
+            <summary>
+                <para>Turn on/off selection of geometry by cell id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetCellClipping">
+            <summary>
+                <para>Turn on/off selection of geometry by cell id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetCellClipping(System.Int32)">
+            <summary>
+                <para>Turn on/off selection of geometry by cell id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.PointClippingOff">
+            <summary>
+                <para>Turn on/off selection of geometry by point id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.PointClippingOn">
+            <summary>
+                <para>Turn on/off selection of geometry by point id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.GetPointClipping">
+            <summary>
+                <para>Turn on/off selection of geometry by point id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericGeometryFilter.SetPointClipping(System.Int32)">
+            <summary>
+                <para>Turn on/off selection of geometry by point id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericClip.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetInputScalarsSelection">
+            <summary>
+                <para>If you want to clip by an arbitrary array, then set its name here. By default this in NULL and the filter will use the active scalar array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetMTime">
+            <summary>
+                <para>Return the mtime also considering the locator and clip function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.CreateDefaultLocator">
+            <summary>
+                <para>Create default locator. Used to create one when none is specified. The  locator is used to merge coincident points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetLocator">
+            <summary>
+                <para>Specify a spatial locator for merging points. By default, an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.SetLocator(vtk.vtkPointLocator)">
+            <summary>
+                <para>Specify a spatial locator for merging points. By default, an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetNumberOfOutputs">
+            <summary>
+                <para>Return the Clipped output.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetClippedOutput">
+            <summary>
+                <para>Return the Clipped output.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetMergeTolerance">
+            <summary>
+                <para>Set the tolerance for merging clip intersection points that are near the vertices of cells. This tolerance is used to prevent the generation of degenerate primitives. Note that only 3D cells actually use this instance variable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetMergeToleranceMaxValue">
+            <summary>
+                <para>Set the tolerance for merging clip intersection points that are near the vertices of cells. This tolerance is used to prevent the generation of degenerate primitives. Note that only 3D cells actually use this instance variable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetMergeToleranceMinValue">
+            <summary>
+                <para>Set the tolerance for merging clip intersection points that are near the vertices of cells. This tolerance is used to prevent the generation of degenerate primitives. Note that only 3D cells actually use this instance variable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.SetMergeTolerance(System.Double)">
+            <summary>
+                <para>Set the tolerance for merging clip intersection points that are near the vertices of cells. This tolerance is used to prevent the generation of degenerate primitives. Note that only 3D cells actually use this instance variable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GenerateClippedOutputOff">
+            <summary>
+                <para>Control whether a second output is generated. The second output contains the polygonal data that's been clipped away.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GenerateClippedOutputOn">
+            <summary>
+                <para>Control whether a second output is generated. The second output contains the polygonal data that's been clipped away.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetGenerateClippedOutput">
+            <summary>
+                <para>Control whether a second output is generated. The second output contains the polygonal data that's been clipped away.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.SetGenerateClippedOutput(System.Int32)">
+            <summary>
+                <para>Control whether a second output is generated. The second output contains the polygonal data that's been clipped away.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GenerateClipScalarsOff">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be  interpolated from the implicit function values, and not the  input scalar data. If you enable this flag but do not provide an implicit function an error will be reported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GenerateClipScalarsOn">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be  interpolated from the implicit function values, and not the  input scalar data. If you enable this flag but do not provide an implicit function an error will be reported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetGenerateClipScalars">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be  interpolated from the implicit function values, and not the  input scalar data. If you enable this flag but do not provide an implicit function an error will be reported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.SetGenerateClipScalars(System.Int32)">
+            <summary>
+                <para>If this flag is enabled, then the output scalar values will be  interpolated from the implicit function values, and not the  input scalar data. If you enable this flag but do not provide an implicit function an error will be reported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.InsideOutOff">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, a vertex is considered inside the implicit function if its value is greater than the Value ivar. When InsideOutside is turned on, a vertex is considered inside the implicit function if its implicit function value is less than or equal to the Value ivar.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.InsideOutOn">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, a vertex is considered inside the implicit function if its value is greater than the Value ivar. When InsideOutside is turned on, a vertex is considered inside the implicit function if its implicit function value is less than or equal to the Value ivar.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetInsideOut">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, a vertex is considered inside the implicit function if its value is greater than the Value ivar. When InsideOutside is turned on, a vertex is considered inside the implicit function if its implicit function value is less than or equal to the Value ivar.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.SetInsideOut(System.Int32)">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, a vertex is considered inside the implicit function if its value is greater than the Value ivar. When InsideOutside is turned on, a vertex is considered inside the implicit function if its implicit function value is less than or equal to the Value ivar.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.GetValue">
+            <summary>
+                <para>Set the clipping value of the implicit function (if clipping with implicit function) or scalar value (if clipping with scalars). The default value is 0.0. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericClip.SetValue(System.Double)">
+            <summary>
+                <para>Set the clipping value of the implicit function (if clipping with implicit function) or scalar value (if clipping with scalars). The default value is 0.0. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SelectInputScalars(System.String)">
+            <summary>
+                <para>If you want to contour by an arbitrary scalar attribute, then set its name here. By default this in NULL and the filter will use the active scalar array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetInputScalarsSelection">
+            <summary>
+                <para>If you want to contour by an arbitrary scalar attribute, then set its name here. By default this in NULL and the filter will use the active scalar array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.CreateDefaultLocator">
+            <summary>
+                <para>Create default locator. Used to create one when none is specified. The locator is used to merge coincident points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetLocator">
+            <summary>
+                <para>Set / get a spatial locator for merging points. By default,  an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SetLocator(vtk.vtkPointLocator)">
+            <summary>
+                <para>Set / get a spatial locator for merging points. By default,  an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ComputeScalarsOff">
+            <summary>
+                <para>Set/Get the computation of scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ComputeScalarsOn">
+            <summary>
+                <para>Set/Get the computation of scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetComputeScalars">
+            <summary>
+                <para>Set/Get the computation of scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SetComputeScalars(System.Int32)">
+            <summary>
+                <para>Set/Get the computation of scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ComputeGradientsOff">
+            <summary>
+                <para>Set/Get the computation of gradients. Gradient computation is fairly expensive in both time and storage. Note that if ComputeNormals is on, gradients will have to be calculated, but will not be stored in the output dataset.  If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ComputeGradientsOn">
+            <summary>
+                <para>Set/Get the computation of gradients. Gradient computation is fairly expensive in both time and storage. Note that if ComputeNormals is on, gradients will have to be calculated, but will not be stored in the output dataset.  If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetComputeGradients">
+            <summary>
+                <para>Set/Get the computation of gradients. Gradient computation is fairly expensive in both time and storage. Note that if ComputeNormals is on, gradients will have to be calculated, but will not be stored in the output dataset.  If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SetComputeGradients(System.Int32)">
+            <summary>
+                <para>Set/Get the computation of gradients. Gradient computation is fairly expensive in both time and storage. Note that if ComputeNormals is on, gradients will have to be calculated, but will not be stored in the output dataset.  If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ComputeNormalsOff">
+            <summary>
+                <para>Set/Get the computation of normals. Normal computation is fairly expensive in both time and storage. If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.ComputeNormalsOn">
+            <summary>
+                <para>Set/Get the computation of normals. Normal computation is fairly expensive in both time and storage. If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetComputeNormals">
+            <summary>
+                <para>Set/Get the computation of normals. Normal computation is fairly expensive in both time and storage. If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SetComputeNormals(System.Int32)">
+            <summary>
+                <para>Set/Get the computation of normals. Normal computation is fairly expensive in both time and storage. If the output data will be processed by filters that modify topology or geometry, it may be wise to turn Normals and Gradients off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetMTime">
+            <summary>
+                <para>Modified GetMTime Because we delegate to vtkContourValues</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GenerateValues(System.Int32,System.Double,System.Double)">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GenerateValues(System.Int32,System.Double[])">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetNumberOfContours">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SetNumberOfContours(System.Int32)">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetValues(System.Double[])">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.GetValue(System.Int32)">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericContourFilter.SetValue(System.Int32,System.Single)">
+            <summary>
+                <para>Methods to set / get contour values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.GetMTime">
+            <summary>
+                <para>Return the MTime also considering the locator.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.CreateDefaultLocator">
+            <summary>
+                <para>Create default locator. Used to create one when none is specified.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.GetLocator">
+            <summary>
+                <para>Set / get a spatial locator for merging points. By default an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.SetLocator(vtk.vtkPointLocator)">
+            <summary>
+                <para>Set / get a spatial locator for merging points. By default an instance of vtkMergePoints is used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.MergingOff">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.MergingOn">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.GetMerging">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.SetMerging(System.Int32)">
+            <summary>
+                <para>Turn on/off merging of coincident points. Note that is merging is on, points with different point attributes (e.g., normals) are merged, which may cause rendering artifacts.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.SafeDownCast(vtk.vtkObject)">
+            <summary>
+                <para>Standard VTK methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.NewInstance">
+            <summary>
+                <para>Standard VTK methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.IsA(System.String)">
+            <summary>
+                <para>Standard VTK methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericDataSetTessellator.GetClassName">
+            <summary>
+                <para>Standard VTK methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInterpolatorPrototype(vtk.vtkGenericInterpolatedVelocityField)">
+            <summary />
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.AddInput(vtk.vtkGenericDataSet)">
+            <summary>
+                <para>Add a dataset to the list inputs</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SelectInputVectors(System.String)">
+            <summary>
+                <para>Add a dataset to the list inputs</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetInputVectorsSelection">
+            <summary>
+                <para>If you want to generate traces using an arbitrary vector array,  then set its name here. By default this in NULL and the filter will  use the active vector array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegrationDirectionToBoth">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegrationDirectionToBackward">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegrationDirectionToForward">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetIntegrationDirection">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetIntegrationDirectionMaxValue">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetIntegrationDirectionMinValue">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegrationDirection(System.Int32)">
+            <summary>
+                <para>Specify whether the streamtrace will be generated in the upstream or downstream direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInitialIntegrationStepUnitToCellLengthUnit">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInitialIntegrationStepUnitToLengthUnit">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInitialIntegrationStepUnitToTimeUnit">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetInitialIntegrationStep">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetInitialIntegrationStepUnit">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInitialIntegrationStep(System.Double)">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInitialIntegrationStepUnit(System.Int32)">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetInitialIntegrationStep(System.Int32,System.Double)">
+            <summary>
+                <para>Specify the initial step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 If the integrator is not adaptive, this is the actual step used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumIntegrationStepUnitToCellLengthUnit">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumIntegrationStepUnitToLengthUnit">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumIntegrationStepUnitToTimeUnit">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetMaximumIntegrationStep">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetMaximumIntegrationStepUnit">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumIntegrationStep(System.Double)">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumIntegrationStepUnit(System.Int32)">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumIntegrationStep(System.Int32,System.Double)">
+            <summary>
+                <para>Specify the maximum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMinimumIntegrationStepUnitToCellLengthUnit">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMinimumIntegrationStepUnitToLengthUnit">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMinimumIntegrationStepUnitToTimeUnit">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetMinimumIntegrationStep">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetMinimumIntegrationStepUnit">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMinimumIntegrationStep(System.Double)">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMinimumIntegrationStepUnit(System.Int32)">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMinimumIntegrationStep(System.Int32,System.Double)">
+            <summary>
+                <para>Specify the minimum step used in the integration expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2 Only valid when using adaptive integrators.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumPropagationUnitToCellLengthUnit">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumPropagationUnitToLengthUnit">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumPropagationUnitToTimeUnit">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetMaximumPropagation">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetMaximumPropagationUnit">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumPropagationUnit(System.Int32)">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumPropagation(System.Double)">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetMaximumPropagation(System.Int32,System.Double)">
+            <summary>
+                <para>Specify the maximum length of the streamlines expressed in  one of the:  TIME_UNIT        = 0 LENGTH_UNIT      = 1 CELL_LENGTH_UNIT = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegratorTypeToRungeKutta45">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegratorTypeToRungeKutta4">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegratorTypeToRungeKutta2">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetIntegratorType">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegratorType(System.Int32)">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetIntegrator">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetIntegrator(vtk.vtkInitialValueProblemSolver)">
+            <summary>
+                <para>Set/get the integrator type to be used in the stream line calculation. The object passed is not actually used but is cloned with NewInstance in the process of integration  (prototype pattern). The default is 2nd order Runge Kutta. The integrator can also be changed using SetIntegratorType. The recognized solvers are: RUNGE_KUTTA2  = 0 RUNGE_KUTTA4  = 1 RUNGE_KUTTA45 = 2</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetSource">
+            <summary>
+                <para>Specify the source object used to generate starting points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetSource(vtk.vtkDataSet)">
+            <summary>
+                <para>Specify the source object used to generate starting points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.GetStartPosition">
+            <summary>
+                <para>Specify the start of the streamline in the global coordinate system. Search must be performed to find initial cell to start integration from.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetStartPosition(System.Double[])">
+            <summary>
+                <para>Specify the start of the streamline in the global coordinate system. Search must be performed to find initial cell to start integration from.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkGenericStreamTracer.SetStartPosition(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Specify the start of the streamline in the global coordinate system. Search must be performed to find initial cell to start integration from.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,6 @@
+E:\资料\专业东西\TGuo\Vtk资料\VTK2\control\ControlSample\obj\Release\ResolveAssemblyReference.cache
+E:\资料\专业东西\TGuo\Vtk资料\VTK2\control\ControlSample\obj\Release\ControlSample.Properties.Resources.resources
+E:\资料\专业东西\TGuo\Vtk资料\VTK2\control\ControlSample\obj\Release\ControlSample.csproj.GenerateResource.Cache
+D:\VTK5.0相关文件\control\ControlSample\obj\Release\ResolveAssemblyReference.cache
+D:\VTK5.0相关文件\control\ControlSample\obj\Release\ControlSample.Properties.Resources.resources
+D:\VTK5.0相关文件\control\ControlSample\obj\Release\ControlSample.csproj.GenerateResource.Cache

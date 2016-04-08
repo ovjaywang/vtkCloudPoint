@@ -1,0 +1,3331 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "vtkParallelDotNet"
+    </assembly>
+    <members>
+        <member name="M:vtk.vtkPipelineSize.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.GetNumberOfSubPieces(System.UInt32!System.Runtime.CompilerServices.IsLong,vtk.vtkPolyDataMapper)">
+            <summary>
+                <para>Determine how many subpieces a mapper should use to fit a target memory  limit. This takes into account the mapper's Piece and NumberOfPieces.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.GetEstimatedSize(vtk.vtkAlgorithm,System.Int32,System.Int32)">
+            <summary>
+                <para>Compute an estimate of how much memory a pipline will require in  kilobytes (1024 bytes not 1000) This is only an estimate and the  calculations in here do not take into account the specifics of many sources and filters.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPipelineSize.SafeDownCast(vtk.vtkObject)">
+            <summary />
+        </member>
+        <member name="M:vtk.vtkPipelineSize.NewInstance">
+            <summary />
+        </member>
+        <member name="M:vtk.vtkPipelineSize.IsA(System.String)">
+            <summary />
+        </member>
+        <member name="M:vtk.vtkPipelineSize.GetClassName">
+            <summary />
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.PieceInvariantOff">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.PieceInvariantOn">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.GetPieceInvariant">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPCellDataToPointData.SetPieceInvariant(System.Int32)">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.GetController">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.SetScalarModeToPointData">
+            <summary>
+                <para>Option to centerate cell scalars of poi9nts scalars.  Default is point scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProcessIdScalars.SetScalarModeToCellData">
+            <summary>
+                <para>Option to centerate cell scalars of poi9nts scalars.  Default is point scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.UseRelativeFileNamesOff">
+            <summary>
+                <para>This flag determines whether to use absolute paths for the piece files. By default the pieces are put in the main directory, and the piece file names in the meta data pvtk file are relative to this directory. This should make moving the whole lot to another directory, an easier task.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.UseRelativeFileNamesOn">
+            <summary>
+                <para>This flag determines whether to use absolute paths for the piece files. By default the pieces are put in the main directory, and the piece file names in the meta data pvtk file are relative to this directory. This should make moving the whole lot to another directory, an easier task.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.GetUseRelativeFileNames">
+            <summary>
+                <para>This flag determines whether to use absolute paths for the piece files. By default the pieces are put in the main directory, and the piece file names in the meta data pvtk file are relative to this directory. This should make moving the whole lot to another directory, an easier task.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.SetUseRelativeFileNames(System.Int32)">
+            <summary>
+                <para>This flag determines whether to use absolute paths for the piece files. By default the pieces are put in the main directory, and the piece file names in the meta data pvtk file are relative to this directory. This should make moving the whole lot to another directory, an easier task.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.GetFilePattern">
+            <summary>
+                <para>This file pattern uses the file name and piece number to contruct a file name for the piece file.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.SetFilePattern(System.String)">
+            <summary>
+                <para>This file pattern uses the file name and piece number to contruct a file name for the piece file.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.GetEndPiece">
+            <summary>
+                <para>This is the range of pieces that that this writer is  responsible for writing.  All pieces must be written by some process.  The process that writes piece 0 also writes the pvtk file that lists all the piece file names.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.SetEndPiece(System.Int32)">
+            <summary>
+                <para>This is the range of pieces that that this writer is  responsible for writing.  All pieces must be written by some process.  The process that writes piece 0 also writes the pvtk file that lists all the piece file names.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.GetStartPiece">
+            <summary>
+                <para>This is the range of pieces that that this writer is  responsible for writing.  All pieces must be written by some process.  The process that writes piece 0 also writes the pvtk file that lists all the piece file names.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.SetStartPiece(System.Int32)">
+            <summary>
+                <para>This is the range of pieces that that this writer is  responsible for writing.  All pieces must be written by some process.  The process that writes piece 0 also writes the pvtk file that lists all the piece file names.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.GetGhostLevel">
+            <summary>
+                <para>Extra ghost cells will be written out to each piece file if this value is larger than 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.SetGhostLevel(System.Int32)">
+            <summary>
+                <para>Extra ghost cells will be written out to each piece file if this value is larger than 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.GetNumberOfPieces">
+            <summary>
+                <para>This is how many pieces the whole data set will be divided into.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.SetNumberOfPieces(System.Int32)">
+            <summary>
+                <para>This is how many pieces the whole data set will be divided into.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetWriter.Write">
+            <summary>
+                <para>Write the pvtk file and cooresponding vtk files.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPChacoReader.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPChacoReader.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPChacoReader.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPChacoReader.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPChacoReader.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPChacoReader.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.CreateGhostCellsOff">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.CreateGhostCellsOn">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.GetCreateGhostCells">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.SetCreateGhostCells(System.Int32)">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.GetController">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitPolyDataPiece.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.SetScalarModeToPointData">
+            <summary>
+                <para>Option to centerate cell scalars of poi9nts scalars.  Default is point scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPieceScalars.SetScalarModeToCellData">
+            <summary>
+                <para>Option to centerate cell scalars of poi9nts scalars.  Default is point scalars.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.PieceInvariantOff">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.PieceInvariantOn">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.GetPieceInvariant">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPPolyDataNormals.SetPieceInvariant(System.Int32)">
+            <summary>
+                <para>To get piece invariance, this filter has to request an  extra ghost level.  By default piece invariance is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSubGroup.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSubGroup.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSubGroup.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkSubGroup.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkSubGroup.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSubGroup.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRectilinearGridOutlineFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRectilinearGridOutlineFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRectilinearGridOutlineFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkRectilinearGridOutlineFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkRectilinearGridOutlineFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRectilinearGridOutlineFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.CreateGhostCellsOff">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.CreateGhostCellsOn">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.GetCreateGhostCells">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractPolyDataPiece.SetCreateGhostCells(System.Int32)">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.GetController">
+            <summary>
+                <para>Set and get the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineFilter.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set and get the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.GetMemorySize">
+            <summary>
+                <para>This returns to size of the output (on this process). This method is not really used.  It is needed to have the same API as vtkCollectPolyData.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.GetClientFlag">
+            <summary>
+                <para>This duplicate filter works in client server mode when this controller is set.  We have a client flag to diferentiate the client and server because the socket controller is odd: Proth processes think their id is 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.SetClientFlag(System.Int32)">
+            <summary>
+                <para>This duplicate filter works in client server mode when this controller is set.  We have a client flag to diferentiate the client and server because the socket controller is odd: Proth processes think their id is 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.SetSocketController(vtk.vtkSocketController)">
+            <summary>
+                <para>This duplicate filter works in client server mode when this controller is set.  We have a client flag to diferentiate the client and server because the socket controller is odd: Proth processes think their id is 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.GetSocketController">
+            <summary>
+                <para>This duplicate filter works in client server mode when this controller is set.  We have a client flag to diferentiate the client and server because the socket controller is odd: Proth processes think their id is 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.SynchronousOff">
+            <summary>
+                <para>This flag causes sends and receives to be matched. When this flag is off, two sends occur then two receives. I want to see if it makes a difference in performance. The flag is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.SynchronousOn">
+            <summary>
+                <para>This flag causes sends and receives to be matched. When this flag is off, two sends occur then two receives. I want to see if it makes a difference in performance. The flag is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.GetSynchronous">
+            <summary>
+                <para>This flag causes sends and receives to be matched. When this flag is off, two sends occur then two receives. I want to see if it makes a difference in performance. The flag is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.SetSynchronous(System.Int32)">
+            <summary>
+                <para>This flag causes sends and receives to be matched. When this flag is off, two sends occur then two receives. I want to see if it makes a difference in performance. The flag is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.GetController">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDuplicatePolyData.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.GetMTime">
+            <summary>
+                <para>Consider the MTime of the KdTree.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.GetBoundaryMode">
+            <summary>
+                <para>Handling of ClipCells and IncludeAllIntersectingCells.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.SetBoundaryModeToSplitBoundaryCells">
+            <summary>
+                <para>Handling of ClipCells and IncludeAllIntersectingCells.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.SetBoundaryModeToAssignToAllIntersectingRegions">
+            <summary>
+                <para>Handling of ClipCells and IncludeAllIntersectingCells.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.SetBoundaryModeToAssignToOneRegion">
+            <summary>
+                <para>Handling of ClipCells and IncludeAllIntersectingCells.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.SetBoundaryMode(System.Int32)">
+            <summary>
+                <para>Handling of ClipCells and IncludeAllIntersectingCells.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.GetController">
+            <summary>
+                <para>Set/Get the communicator object</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedDataFilter.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set/Get the communicator object</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetZFreq">
+            <summary>
+                <para>Set the natural frequencies in x,y and z</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetZFreq(System.Double)">
+            <summary>
+                <para>Set the natural frequencies in x,y and z</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetYFreq">
+            <summary>
+                <para>Set the natural frequencies in x,y and z</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetYFreq(System.Double)">
+            <summary>
+                <para>Set the natural frequencies in x,y and z</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetXFreq">
+            <summary>
+                <para>Set the natural frequencies in x,y and z</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetXFreq(System.Double)">
+            <summary>
+                <para>Set the natural frequencies in x,y and z</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetStandardDeviation">
+            <summary>
+                <para>Set/Get the standard deviation of the function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetStandardDeviation(System.Double)">
+            <summary>
+                <para>Set/Get the standard deviation of the function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetMaximum">
+            <summary>
+                <para>Set/Get the Maximum value of the function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetMaximum(System.Double)">
+            <summary>
+                <para>Set/Get the Maximum value of the function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetCenter">
+            <summary>
+                <para>Set/Get the center of function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetCenter(System.Double[])">
+            <summary>
+                <para>Set/Get the center of function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetCenter(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the center of function.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.GetWholeExtent">
+            <summary>
+                <para>Set/Get the extent of the whole output image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRTAnalyticSource.SetWholeExtent(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Set/Get the extent of the whole output image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.CreateGhostCellsOff">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.CreateGhostCellsOn">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.GetCreateGhostCells">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.SetCreateGhostCells(System.Int32)">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.GetController">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTransmitUnstructuredGridPiece.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPOPReader.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetNumberOfGhostLevels">
+            <summary>
+                <para>Set the number of ghost levels to include in the data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.SetNumberOfGhostLevels(System.Int32)">
+            <summary>
+                <para>Set the number of ghost levels to include in the data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetClipExtent">
+            <summary>
+                <para>Because the data can be so large, here is an option to clip while reading.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.SetClipExtent(System.Int32[])">
+            <summary>
+                <para>Because the data can be so large, here is an option to clip while reading.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.SetClipExtent(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Because the data can be so large, here is an option to clip while reading.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetRadius">
+            <summary>
+                <para>Radius of the earth.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.SetRadius(System.Double)">
+            <summary>
+                <para>Radius of the earth.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetFileName">
+            <summary>
+                <para>This file contains information about all the files.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.SetFileName(System.String)">
+            <summary>
+                <para>This file contains information about all the files.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetVFlowFileName">
+            <summary>
+                <para>These files contains the u and v components of the flow.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetUFlowFileName">
+            <summary>
+                <para>These files contains the u and v components of the flow.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetGridFileName">
+            <summary>
+                <para>This file contains the latitude and longitude of the grid.   It must be double with no header.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOPReader.GetDimensions">
+            <summary>
+                <para>This is the longitude and latitude dimensions of the structured grid.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompressCompositer.Compress(vtk.vtkFloatArray,vtk.vtkDataArray,vtk.vtkFloatArray,vtk.vtkDataArray)">
+            <summary>
+                <para>I am granting access to these methods and making them static So I can create a TileDisplayCompositer which uses compression.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedStreamTracer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedStreamTracer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedStreamTracer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkDistributedStreamTracer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkDistributedStreamTracer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDistributedStreamTracer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.GetController">
+            <summary>
+                <para>Set/Get the controller use in compositing (set to the global controller by default) If not using the default, this must be called before any other methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPStreamTracer.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set/Get the controller use in compositing (set to the global controller by default) If not using the default, this must be called before any other methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPKdTree.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPKdTree.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPKdTree.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPKdTree.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPKdTree.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPKdTree.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.GetAssignedNumberOfPieces">
+            <summary>
+                <para>This unstructured extent/piece is store here for the users convenience. It is not used internally.  The intent was to let an "assignment" be made when the translator/first source is created.  The translator/assignment can be used for any new filter that uses the original source as output. Branches will then have the same assignment.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.SetAssignedNumberOfPieces(System.Int32)">
+            <summary>
+                <para>This unstructured extent/piece is store here for the users convenience. It is not used internally.  The intent was to let an "assignment" be made when the translator/first source is created.  The translator/assignment can be used for any new filter that uses the original source as output. Branches will then have the same assignment.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.GetAssignedPiece">
+            <summary>
+                <para>This unstructured extent/piece is store here for the users convenience. It is not used internally.  The intent was to let an "assignment" be made when the translator/first source is created.  The translator/assignment can be used for any new filter that uses the original source as output. Branches will then have the same assignment.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.SetAssignedPiece(System.Int32)">
+            <summary>
+                <para>This unstructured extent/piece is store here for the users convenience. It is not used internally.  The intent was to let an "assignment" be made when the translator/first source is created.  The translator/assignment can be used for any new filter that uses the original source as output. Branches will then have the same assignment.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.PieceToExtent">
+            <summary>
+                <para>Generates the extent from the pieces.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.GetOriginalSource">
+            <summary>
+                <para>This is the original upstream image source.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBranchExtentTranslator.SetOriginalSource(vtk.vtkImageData)">
+            <summary>
+                <para>This is the original upstream image source.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPassThroughFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPassThroughFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPassThroughFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPassThroughFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPassThroughFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPassThroughFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.GetMemoryLimit">
+            <summary>
+                <para>Set / Get the memory limit in kilobytes. The writer will stream to attempt to keep the pipeline size within this limit</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPImageWriter.SetMemoryLimit(System.UInt32!System.Runtime.CompilerServices.IsLong)">
+            <summary>
+                <para>Set / Get the memory limit in kilobytes. The writer will stream to attempt to keep the pipeline size within this limit</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetReportErrors">
+            <summary>
+                <para>If ReportErrors if false, all vtkErrorMacros are suppressed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.SetReportErrors(System.Int32)">
+            <summary>
+                <para>If ReportErrors if false, all vtkErrorMacros are suppressed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.LogToFile(System.String,System.Int32)">
+            <summary>
+                <para>Log messages to the given file.  The file is truncated unless the second argument is non-zero (default is to truncate).  If the file name is empty or NULL, logging is disabled.  Returns 0 if the file failed to open, and 1 otherwise.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.LogToFile(System.String)">
+            <summary>
+                <para>Log messages to the given file.  The file is truncated unless the second argument is non-zero (default is to truncate).  If the file name is empty or NULL, logging is disabled.  Returns 0 if the file failed to open, and 1 otherwise.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetPerformHandshake">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.PerformHandshakeOff">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.PerformHandshakeOn">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetPerformHandshakeMaxValue">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetPerformHandshakeMinValue">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.SetPerformHandshake(System.Int32)">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(vtk.vtkDataArray,System.Int32,System.Int32)">
+            <summary>
+                <para>Set or get the PerformHandshake ivar. If it is on, the communicator will try to perform a handshake when connected. It is on by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(vtk.vtkDataObject,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(System.Double[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(System.UInt32!System.Runtime.CompilerServices.IsLong[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Receive(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(vtk.vtkDataArray,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(vtk.vtkDataObject,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(System.Double[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(System.UInt32!System.Runtime.CompilerServices.IsLong[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.Send(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetIsConnected">
+            <summary>
+                <para>Is the communicator connected?.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetSwapBytesInReceivedData">
+            <summary>
+                <para>Returns 1 if bytes must be swapped in received ints, floats, etc</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.ConnectTo(System.String,System.Int32)">
+            <summary>
+                <para>Open a connection to host.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.CloseConnection">
+            <summary>
+                <para>Close a connection.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.WaitForConnection(System.Int32)">
+            <summary>
+                <para>Wait for connection on a given port.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.WaitForConnectionOnSocket(System.Int32,System.UInt32!System.Runtime.CompilerServices.IsLong)">
+            <summary>
+                <para>Wait for a connection on an already bound port created by a call to BindPort. If the timeout is specified, then the call will fail after timeout expiers with resulting code of -1.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.GetPort(System.Int32)">
+            <summary>
+                <para>Return the port used by an open socket.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketCommunicator.OpenSocket(System.Int32,System.String)">
+            <summary>
+                <para>Create a socket on the given port, if port is 0, then create a random port.  If network is specified, then use the given network.  The socket number is returned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.CanReadFile(System.String)">
+            <summary>
+                <para>Called to determine if the file can be read by the reader.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.GetDataType">
+            <summary>
+                <para>This is set when UpdateInformation is called.  It shows the type of the output.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.GetFileName">
+            <summary>
+                <para>This file to open and read.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPDataSetReader.SetFileName(System.String)">
+            <summary>
+                <para>This file to open and read.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUserDefinedPiece.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUserDefinedPiece.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUserDefinedPiece.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkExtractUserDefinedPiece.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUserDefinedPiece.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUserDefinedPiece.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.CreateGhostCellsOff">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.CreateGhostCellsOn">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.GetCreateGhostCells">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractUnstructuredGridPiece.SetCreateGhostCells(System.Int32)">
+            <summary>
+                <para>Turn on/off creating ghost cells (on by default).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPLinearExtrusionFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPLinearExtrusionFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPLinearExtrusionFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPLinearExtrusionFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPLinearExtrusionFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPLinearExtrusionFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkDummyController.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.Barrier">
+            <summary>
+                <para>Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.MultipleMethodExecute">
+            <summary>
+                <para>Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.SingleMethodExecute">
+            <summary>
+                <para>Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.GetLocalProcessId">
+            <summary>
+                <para>Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.FinalizeWrap(System.Int32)">
+            <summary>
+                <para>This method always returns 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDummyController.FinalizeWrap">
+            <summary>
+                <para>This method is for setting up the processes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPSphereSource.GetEstimatedMemorySize">
+            <summary>
+                <para>Get the estimated memory size in 1024 bytes</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelFactory.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelFactory.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelFactory.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkParallelFactory.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkParallelFactory.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelFactory.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExodusIIWriter.GetOrCreateModelMetadata">
+            <summary>
+                <para>By default, ModelMetadata is NULL until the Write() method is called, at which point the vtkExodusIIWriter will create a default metadata object. If you would like to obtain the metadata and modify it, rather than creating it yourself, you may call this function. If the metadata already exists (because it has been set by a call to SetModelMetadata or because it has been packed into the FieldData of the input mesh), that metadata will be returned. Otherwise, the vtkExodusIIWriter will create metadata using the input mesh as needed, set the metadata to that object, and return it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.GetImageProcessingTime">
+            <summary>
+                <para>Get rendering metrics.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.GetCompositer">
+            <summary>
+                <para>Set/Get the composite algorithm.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositeRenderManager.SetCompositer(vtk.vtkCompositer)">
+            <summary>
+                <para>Set/Get the composite algorithm.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.StartService">
+            <summary>
+                <para>@deprecated Replaced by vtkParallelRenderManager::StartServices() as of VTK 5.0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetUseRGBA">
+            <summary>
+                <para>Get/Set if all Images must use RGBA instead of RGB. By default, this flag is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetUseRGBA(System.Int32)">
+            <summary>
+                <para>Get/Set if all Images must use RGBA instead of RGB. By default, this flag is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.TileWindows(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Given the x and y size of the render windows, reposition them in a tile of n columns.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetReducedImageSize">
+            <summary>
+                <para>Returns the reduced image size calculated at the last render.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetFullImageSize">
+            <summary>
+                <para>Returns the full image size calculated at the last render.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetReducedPixelData(System.Int32,System.Int32,System.Int32,System.Int32,vtk.vtkUnsignedCharArray)">
+            <summary>
+                <para>The most appropriate way to retrieve reduced size image data after a render.  Will work regardless of whether WriteBackImages or MagnifyImage is on or off.  The data returned may be a shallow copy of an internal array.  Therefore, the data may be invalid after the next render or if the ParallelRenderManager is destroyed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetReducedPixelData(vtk.vtkUnsignedCharArray)">
+            <summary>
+                <para>The most appropriate way to retrieve reduced size image data after a render.  Will work regardless of whether WriteBackImages or MagnifyImage is on or off.  The data returned may be a shallow copy of an internal array.  Therefore, the data may be invalid after the next render or if the ParallelRenderManager is destroyed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetPixelData(System.Int32,System.Int32,System.Int32,System.Int32,vtk.vtkUnsignedCharArray)">
+            <summary>
+                <para>The most appropriate way to retrieve full size image data after a render.  Will work regardless of whether WriteBackImages or MagnifyImage is on or off.  The data returned may be a shallow copy of an internal array.  Therefore, the data may be invalid after the next render or if the ParallelRenderManager is destroyed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetPixelData(vtk.vtkUnsignedCharArray)">
+            <summary>
+                <para>The most appropriate way to retrieve full size image data after a render.  Will work regardless of whether WriteBackImages or MagnifyImage is on or off.  The data returned may be a shallow copy of an internal array.  Therefore, the data may be invalid after the next render or if the ParallelRenderManager is destroyed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetMagnifyImageMethodToLinear">
+            <summary>
+                <para>The most appropriate way to retrieve full size image data after a render.  Will work regardless of whether WriteBackImages or MagnifyImage is on or off.  The data returned may be a shallow copy of an internal array.  Therefore, the data may be invalid after the next render or if the ParallelRenderManager is destroyed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetMagnifyImageMethodToNearest">
+            <summary>
+                <para>Sets the method used to magnify images.  Nearest simply replicates each pixel enough times to fill the image.  Linear performs linear interpolation between the pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetMagnifyImageMethod">
+            <summary>
+                <para>Sets the method used to magnify images.  Nearest simply replicates each pixel enough times to fill the image.  Linear performs linear interpolation between the pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetMagnifyImageMethod(System.Int32)">
+            <summary>
+                <para>Sets the method used to magnify images.  Nearest simply replicates each pixel enough times to fill the image.  Linear performs linear interpolation between the pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.MagnifyImagesOff">
+            <summary>
+                <para>If on (the default), when the ImageReductionFactor is greater than 1 and WriteBackImages is on, the image will be magnified to fill the entire render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.MagnifyImagesOn">
+            <summary>
+                <para>If on (the default), when the ImageReductionFactor is greater than 1 and WriteBackImages is on, the image will be magnified to fill the entire render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetMagnifyImages">
+            <summary>
+                <para>If on (the default), when the ImageReductionFactor is greater than 1 and WriteBackImages is on, the image will be magnified to fill the entire render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetMagnifyImages(System.Int32)">
+            <summary>
+                <para>If on (the default), when the ImageReductionFactor is greater than 1 and WriteBackImages is on, the image will be magnified to fill the entire render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.WriteBackImagesOff">
+            <summary>
+                <para>If on (the default), the result of any image space manipulations are written back to the render window frame buffer.  If off, the image stored in the frame buffer may not be correct.  Either way, the correct frame buffer images may be read with vtkParallelRenderManager::GetPixelData.  Turning WriteBackImages off may result in a speedup if the render window is not visible to the user and images are read back for further processing or transit.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.WriteBackImagesOn">
+            <summary>
+                <para>If on (the default), the result of any image space manipulations are written back to the render window frame buffer.  If off, the image stored in the frame buffer may not be correct.  Either way, the correct frame buffer images may be read with vtkParallelRenderManager::GetPixelData.  Turning WriteBackImages off may result in a speedup if the render window is not visible to the user and images are read back for further processing or transit.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetWriteBackImages">
+            <summary>
+                <para>If on (the default), the result of any image space manipulations are written back to the render window frame buffer.  If off, the image stored in the frame buffer may not be correct.  Either way, the correct frame buffer images may be read with vtkParallelRenderManager::GetPixelData.  Turning WriteBackImages off may result in a speedup if the render window is not visible to the user and images are read back for further processing or transit.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetWriteBackImages(System.Int32)">
+            <summary>
+                <para>If on (the default), the result of any image space manipulations are written back to the render window frame buffer.  If off, the image stored in the frame buffer may not be correct.  Either way, the correct frame buffer images may be read with vtkParallelRenderManager::GetPixelData.  Turning WriteBackImages off may result in a speedup if the render window is not visible to the user and images are read back for further processing or transit.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetImageProcessingTime">
+            <summary>
+                <para>Get rendering metrics.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetRenderTime">
+            <summary>
+                <para>Get rendering metrics.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.AutoImageReductionFactorOff">
+            <summary>
+                <para>If on, the ReductionFactor is automatically adjusted to best meet the the DesiredUpdateRate in the current RenderWindow based on metrics from the last render.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.AutoImageReductionFactorOn">
+            <summary>
+                <para>If on, the ReductionFactor is automatically adjusted to best meet the the DesiredUpdateRate in the current RenderWindow based on metrics from the last render.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetAutoImageReductionFactor">
+            <summary>
+                <para>If on, the ReductionFactor is automatically adjusted to best meet the the DesiredUpdateRate in the current RenderWindow based on metrics from the last render.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetAutoImageReductionFactor(System.Int32)">
+            <summary>
+                <para>If on, the ReductionFactor is automatically adjusted to best meet the the DesiredUpdateRate in the current RenderWindow based on metrics from the last render.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetImageReductionFactorForUpdateRate(System.Double)">
+            <summary>
+                <para>Sets the ReductionFactor based on the given desired update rate and the rendering metrics taken from the last time UpdateServerInfo was called.  Note that if AutoReductionFactor is on, this function is called with the desired update rate of the render window automatically.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetImageReductionFactor">
+            <summary>
+                <para>Set/Get the reduction factor (for sort-last based parallel renderers). The size of rendered image is divided by the reduction factor and then is blown up to the size of the current vtkRenderWindow.  Setting higher reduction factors enables shorter image transfer times (which is often the bottleneck) but will greatly reduce image quality.  A reduction factor of 2 or greater should only be used for intermediate images in interactive applications.  A reduction factor of 1 (or less) will result in no change in image quality.  A parallel render manager may ignore the image reduction factor if it will result in little or no performance enhancements (eg. it does not do image space manipulations).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetImageReductionFactor(System.Double)">
+            <summary>
+                <para>Set/Get the reduction factor (for sort-last based parallel renderers). The size of rendered image is divided by the reduction factor and then is blown up to the size of the current vtkRenderWindow.  Setting higher reduction factors enables shorter image transfer times (which is often the bottleneck) but will greatly reduce image quality.  A reduction factor of 2 or greater should only be used for intermediate images in interactive applications.  A reduction factor of 1 (or less) will result in no change in image quality.  A parallel render manager may ignore the image reduction factor if it will result in little or no performance enhancements (eg. it does not do image space manipulations).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.UseCompositingOff">
+            <summary>
+                <para>This is used for tiled display rendering.  When data has been duplicated on all processes, then we do not need to compositing. Cameras and renders are still propagated though.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.UseCompositingOn">
+            <summary>
+                <para>This is used for tiled display rendering.  When data has been duplicated on all processes, then we do not need to compositing. Cameras and renders are still propagated though.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetUseCompositing">
+            <summary>
+                <para>This is used for tiled display rendering.  When data has been duplicated on all processes, then we do not need to compositing. Cameras and renders are still propagated though.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetUseCompositing(System.Int32)">
+            <summary>
+                <para>This is used for tiled display rendering.  When data has been duplicated on all processes, then we do not need to compositing. Cameras and renders are still propagated though.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.RenderEventPropagationOff">
+            <summary>
+                <para>Turns on/off render event propagation.  When on (the default) and ParallelRendering is on, process 0 will send an RMI call to all remote processes to perform a synchronized render.  When off, render must be manually called on each process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.RenderEventPropagationOn">
+            <summary>
+                <para>Turns on/off render event propagation.  When on (the default) and ParallelRendering is on, process 0 will send an RMI call to all remote processes to perform a synchronized render.  When off, render must be manually called on each process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetRenderEventPropagation">
+            <summary>
+                <para>Turns on/off render event propagation.  When on (the default) and ParallelRendering is on, process 0 will send an RMI call to all remote processes to perform a synchronized render.  When off, render must be manually called on each process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetRenderEventPropagation(System.Int32)">
+            <summary>
+                <para>Turns on/off render event propagation.  When on (the default) and ParallelRendering is on, process 0 will send an RMI call to all remote processes to perform a synchronized render.  When off, render must be manually called on each process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ParallelRenderingOff">
+            <summary>
+                <para>Turns on/off parallel rendering.  When on (the default) the object responds to render events of the attached window, propagates the render event to other processors, and otherwise enables the parallel rendering process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ParallelRenderingOn">
+            <summary>
+                <para>Turns on/off parallel rendering.  When on (the default) the object responds to render events of the attached window, propagates the render event to other processors, and otherwise enables the parallel rendering process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetParallelRendering">
+            <summary>
+                <para>Turns on/off parallel rendering.  When on (the default) the object responds to render events of the attached window, propagates the render event to other processors, and otherwise enables the parallel rendering process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetParallelRendering(System.Int32)">
+            <summary>
+                <para>Turns on/off parallel rendering.  When on (the default) the object responds to render events of the attached window, propagates the render event to other processors, and otherwise enables the parallel rendering process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ComputeVisiblePropBounds(vtk.vtkRenderer,System.Double[])">
+            <summary>
+                <para>Calculates the bounds by gathering information from all processes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ResetAllCameras">
+            <summary>
+                <para>Resets the camera of each renderer contained in the RenderWindow. Should only be called in the "root" process, and all remote processes must be processing RMIs for this method to complete.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ComputeVisiblePropBoundsRMI">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ResetCameraClippingRange(vtk.vtkRenderer)">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.ResetCamera(vtk.vtkRenderer)">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.RenderRMI">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SatelliteEndRender">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SatelliteStartRender">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.EndRender">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.StartRender">
+            <summary>
+                <para>Callbacks that initialize and finish rendering and other tasks.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.StopServices">
+            <summary>
+                <para>If on root node, stops the RMI processing on all service nodes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.StartServices">
+            <summary>
+                <para>If on node other than root, starts serving RMI requests for parallel renders.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.StartInteractor">
+            <summary>
+                <para>Initializes the RMIs and then, if on root node, starts the interactor on the attached render window.  Otherwise, starts processing RMIs. When the interactor returns, it breaks the RMI listening on all other processors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.InitializeOffScreen">
+            <summary>
+                <para>Make all rendering windows not viewable set as off screen rendering. To make all renderwindows on screen rendering again, call OffScreenRenderingOff on all the render windows.  This class assumes the window on root node is the only one viewable.  Subclasses should change this as necessary.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.InitializePieces">
+            <summary>
+                <para>This method sets the piece and number of pieces for each actor with a polydata mapper.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set/Get the vtkMultiProcessController which will handle communications for the parallel rendering.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetController">
+            <summary>
+                <para>Set/Get the vtkMultiProcessController which will handle communications for the parallel rendering.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.SetRenderWindow(vtk.vtkRenderWindow)">
+            <summary>
+                <para>Set/Get the RenderWindow to use for compositing. We add a start and end observer to the window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.GetRenderWindow">
+            <summary>
+                <para>Set/Get the RenderWindow to use for compositing. We add a start and end observer to the window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.MakeRenderer">
+            <summary>
+                <para>Builds a vtkRenderer compatible with this render manager.  (Should we also register it?)  The user program is responsible for calling Delete.  It is not advisable to use a parallel render manager with a renderer that was not built with this method.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkParallelRenderManager.MakeRenderWindow">
+            <summary>
+                <para>Builds a vtkRenderWindow compatible with this render manager.  The user program is responsible for registering the render window with the SetRenderWindow method and calling Delete.  It is not advisable to use a parallel render manager with a render window that was not built with this method.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetNormal">
+            <summary>
+                <para>Accesses to the values computed during the execute method.  They could be used to get a good camera view for the resulting plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetCenterPoint">
+            <summary>
+                <para>Accesses to the values computed during the execute method.  They could be used to get a good camera view for the resulting plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetMaximumPoint">
+            <summary>
+                <para>Accesses to the values computed during the execute method.  They could be used to get a good camera view for the resulting plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetUpVector">
+            <summary>
+                <para>The last piece of information that specifies the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.SetUpVector(System.Double[])">
+            <summary>
+                <para>The last piece of information that specifies the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.SetUpVector(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>The last piece of information that specifies the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetArrayName">
+            <summary>
+                <para>For now, we just use the cell values. The array name to cut.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.SetArrayName(System.String)">
+            <summary>
+                <para>For now, we just use the cell values. The array name to cut.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetMaterial">
+            <summary>
+                <para>Material to probe.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.SetMaterial(System.Int32)">
+            <summary>
+                <para>Material to probe.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.GetMaterialArrayName">
+            <summary>
+                <para>Cell array that contains the material values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCutMaterial.SetMaterialArrayName(System.String)">
+            <summary>
+                <para>Cell array that contains the material values.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkSocketController.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.SetCommunicator(vtk.vtkSocketCommunicator)">
+            <summary>
+                <para>Set the communicator used in normal and rmi communications.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.ConnectTo(System.String,System.Int32)">
+            <summary>
+                <para>Open a connection to a give machine, forwarded to the communicator</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.CloseConnection">
+            <summary>
+                <para>Close a connection, forwarded to the communicator</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.WaitForConnection(System.Int32)">
+            <summary>
+                <para>Wait for connection on a given port, forwarded to the communicator</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.SetNumberOfProcesses(System.Int32)">
+            <summary>
+                <para>Set the number of processes you will be using.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.Barrier">
+            <summary>
+                <para>Does not apply to sockets. Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.CreateOutputWindow">
+            <summary>
+                <para>Does not apply to sockets. Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.MultipleMethodExecute">
+            <summary>
+                <para>Does not apply to sockets.  Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.SingleMethodExecute">
+            <summary>
+                <para>Does not apply to sockets. Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.FinalizeWrap(System.Int32)">
+            <summary>
+                <para>Does not apply to sockets. Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.FinalizeWrap">
+            <summary>
+                <para>Does not apply to sockets. Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSocketController.Initialize">
+            <summary>
+                <para>Does not apply to sockets. Does nothing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.PassThroughOff">
+            <summary>
+                <para>To collect or just copy input to output. Off (collect) by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.PassThroughOn">
+            <summary>
+                <para>To collect or just copy input to output. Off (collect) by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.GetPassThrough">
+            <summary>
+                <para>To collect or just copy input to output. Off (collect) by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.SetPassThrough(System.Int32)">
+            <summary>
+                <para>To collect or just copy input to output. Off (collect) by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.GetSocketController">
+            <summary>
+                <para>When this filter is being used in client-server mode, this is the controller used to communicate between client and server.  Client should not set the other controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.SetSocketController(vtk.vtkSocketController)">
+            <summary>
+                <para>When this filter is being used in client-server mode, this is the controller used to communicate between client and server.  Client should not set the other controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.GetController">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCollectPolyData.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>By defualt this filter uses the global controller, but this method can be used to set another instead.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.GetMemoryLimit">
+            <summary>
+                <para>Set / Get the memory limit in kilobytes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMemoryLimitImageDataStreamer.SetMemoryLimit(System.UInt32!System.Runtime.CompilerServices.IsLong)">
+            <summary>
+                <para>Set / Get the memory limit in kilobytes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.GetController">
+            <summary>
+                <para>Set and get the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set and get the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.GetCornerFactor">
+            <summary>
+                <para>Set/Get the factor that controls the relative size of the corners to the length of the corresponding bounds</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.GetCornerFactorMaxValue">
+            <summary>
+                <para>Set/Get the factor that controls the relative size of the corners to the length of the corresponding bounds</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.GetCornerFactorMinValue">
+            <summary>
+                <para>Set/Get the factor that controls the relative size of the corners to the length of the corresponding bounds</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPOutlineCornerFilter.SetCornerFactor(System.Double)">
+            <summary>
+                <para>Set/Get the factor that controls the relative size of the corners to the length of the corresponding bounds</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkTreeCompositer.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTreeCompositer.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTreeCompositer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkTreeCompositer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkTreeCompositer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkTreeCompositer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkCompositer.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.ResizeUnsignedCharArray(vtk.vtkUnsignedCharArray,System.Int32,System.Int32)">
+            <summary>
+                <para>Methods that allocate and delete memory with special MPIPro calls.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.ResizeFloatArray(vtk.vtkFloatArray,System.Int32,System.Int32)">
+            <summary>
+                <para>Methods that allocate and delete memory with special MPIPro calls.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.DeleteArray(vtk.vtkDataArray)">
+            <summary>
+                <para>Methods that allocate and delete memory with special MPIPro calls.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.GetNumberOfProcesses">
+            <summary>
+                <para>A hack to get a sub world until I can get communicators working.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.SetNumberOfProcesses(System.Int32)">
+            <summary>
+                <para>A hack to get a sub world until I can get communicators working.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.GetController">
+            <summary>
+                <para>Access to the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Access to the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCompositer.CompositeBuffer(vtk.vtkDataArray,vtk.vtkFloatArray,vtk.vtkDataArray,vtk.vtkFloatArray)">
+            <summary>
+                <para>This method gets called on every process.  The final image gets put into pBuf and zBuf.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.GetInput">
+            <summary>
+                <para>Specify the input data or filter.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.SetInput(vtk.vtkUnstructuredGrid)">
+            <summary>
+                <para>Specify the input data or filter.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.GetFileName">
+            <summary>
+                <para>Specify the path and base name of the output files.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.SetFileName(System.String)">
+            <summary>
+                <para>Specify the path and base name of the output files.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.GetBaseName">
+            <summary>
+                <para>Specify base name of EnSight data files to write.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.SetBaseName(System.String)">
+            <summary>
+                <para>Specify base name of EnSight data files to write.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.GetPath">
+            <summary>
+                <para>Specify path of EnSight data files to write.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEnSightWriter.SetPath(System.String)">
+            <summary>
+                <para>Specify path of EnSight data files to write.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.GetController">
+            <summary>
+                <para>Set and get the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPProbeFilter.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set and get the controller.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkCommunicator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(System.Double[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to receive various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to receive various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to receive various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to receive various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(System.UInt32!System.Runtime.CompilerServices.IsLong[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to receive various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to receive various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(vtk.vtkDataArray,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives a data array from a corresponding send. It blocks until the receive is finished. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Receive(vtk.vtkDataObject,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives a data object from a corresponding send. It blocks until the receive is finished. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(System.Double[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to send various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to send various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to send various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to send various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(System.UInt32!System.Runtime.CompilerServices.IsLong[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to send various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Subclass have to supply these methods to send various arrays of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(vtk.vtkDataArray,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends a data array to a destination.   Tag eliminates ambiguity and is used to match sends to receives.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkCommunicator.Send(vtk.vtkDataObject,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends a data object to a destination.   Tag eliminates ambiguity and is used to match sends to receives.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(vtk.vtkDataArray,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(vtk.vtkDataObject,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(System.Double[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(System.UInt32!System.Runtime.CompilerServices.IsLong[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Receive(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method receives data from a corresponding send. It blocks until the receive is finished.  It calls methods in "data" to communicate the sending data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(vtk.vtkDataArray,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(vtk.vtkDataObject,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(System.Double[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(System.UInt32!System.Runtime.CompilerServices.IsLong[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Send(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>This method sends data to another process.  Tag eliminates ambiguity when multiple sends or receives exist in the same process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.Barrier">
+            <summary>
+                <para>This method can be used to synchronize processes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.GetCommunicator">
+            <summary />
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.GetBreakFlag">
+            <summary>
+                <para>Setting this flag to 1 will cause the ProcessRMIs loop to return. This also causes vtkUpStreamPorts to return from their WaitForUpdate loops.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.SetBreakFlag(System.Int32)">
+            <summary>
+                <para>Setting this flag to 1 will cause the ProcessRMIs loop to return. This also causes vtkUpStreamPorts to return from their WaitForUpdate loops.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.ProcessRMIs">
+            <summary>
+                <para>Calling this method gives control to the controller to start processing RMIs. Possible return values are: RMI_NO_ERROR, RMI_TAG_ERROR : rmi tag could not be received, RMI_ARG_ERROR : rmi arg could not be received. If reportErrors is false, no vtkErrorMacro is called. ProcessRMIs() calls ProcessRMIs(int) with reportErrors = 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.ProcessRMIs(System.Int32)">
+            <summary>
+                <para>Calling this method gives control to the controller to start processing RMIs. Possible return values are: RMI_NO_ERROR, RMI_TAG_ERROR : rmi tag could not be received, RMI_ARG_ERROR : rmi arg could not be received. If reportErrors is false, no vtkErrorMacro is called. ProcessRMIs() calls ProcessRMIs(int) with reportErrors = 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.TriggerRMI(System.Int32,System.Int32)">
+            <summary>
+                <para>Calling this method gives control to the controller to start processing RMIs. Possible return values are: RMI_NO_ERROR, RMI_TAG_ERROR : rmi tag could not be received, RMI_ARG_ERROR : rmi arg could not be received. If reportErrors is false, no vtkErrorMacro is called. ProcessRMIs() calls ProcessRMIs(int) with reportErrors = 0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.TriggerRMI(System.Int32,System.String,System.Int32)">
+            <summary>
+                <para>Convenience method when there is no argument.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.TriggerBreakRMIs">
+            <summary>
+                <para>A conveniance method.  Called on process 0 to break "ProcessRMIs" loop on all other processes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.TriggerRMI(System.Int32,System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+                <para>A method to trigger a method invocation in another process.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.CreateOutputWindow">
+            <summary>
+                <para>This method can be used to tell the controller to create a special output window in which all messages are preceded by the process id.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.GetGlobalController">
+            <summary>
+                <para>This convenience method returns the controller associated with the  local process.  It returns NULL until the processes are spawned. It is better if you hang on to the controller passed as an argument to the SingleMethod or MultipleMethod functions.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.GetLocalProcessId">
+            <summary>
+                <para>Tells you which process [0, NumProcess) you are in.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.MultipleMethodExecute">
+            <summary>
+                <para>Execute the MultipleMethods (as define by calling SetMultipleMethod for each of the required this-&gt;NumberOfProcesses methods) using this-&gt;NumberOfProcesses processes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.SingleMethodExecute">
+            <summary>
+                <para>Execute the SingleMethod (as define by SetSingleMethod) using this-&gt;NumberOfProcesses processes.  This will only return when all the processes finish executing their methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.GetNumberOfProcesses">
+            <summary>
+                <para>Set the number of processes you will be using.  This defaults to the maximum number available.  If you set this to a value higher than the default, you will get an error.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.SetNumberOfProcesses(System.Int32)">
+            <summary>
+                <para>Set the number of processes you will be using.  This defaults to the maximum number available.  If you set this to a value higher than the default, you will get an error.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.FinalizeWrap(System.Int32)">
+            <summary>
+                <para>This method is for cleaning up. If a subclass needs to clean up process communication (i.e. MPI) it would over ride this method.  Provided for finalization outside vtk.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkMultiProcessController.FinalizeWrap">
+            <summary>
+                <para>This method is for cleaning up. If a subclass needs to clean up process communication (i.e. MPI) it would over ride this method.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.SetController(vtk.vtkMultiProcessController)">
+            <summary>
+                <para>Set the controller used to coordinate parallel processing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.GetMTime">
+            <summary>
+                <para>Look at clip plane to compute MTime.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.GetClipPlane">
+            <summary>
+                <para>Set, get or maninpulate the implicit clipping plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.SetClipPlane(vtk.vtkPlane)">
+            <summary>
+                <para>Set, get or maninpulate the implicit clipping plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.GetVolumeArrayName(System.Int32)">
+            <summary>
+                <para>Names of cell volume fraction arrays to extract.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.GetNumberOfVolumeArrayNames">
+            <summary>
+                <para>Names of cell volume fraction arrays to extract.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.AddVolumeArrayName(System.String)">
+            <summary>
+                <para>Names of cell volume fraction arrays to extract.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.RemoveAllVolumeArrayNames">
+            <summary>
+                <para>Names of cell volume fraction arrays to extract.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkExtractCTHPart.BOUNDS">
+            <summary>
+                <para>key to record the bounds of the hierarchical dataset.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

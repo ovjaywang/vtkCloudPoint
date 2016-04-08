@@ -1,0 +1,3212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "vtkVolumeRenderingDotNet"
+    </assembly>
+    <members>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.ReleaseGraphicsResources(vtk.vtkWindow)">
+            <summary>
+                <para>Release any graphics resources that are being consumed by this texture. The parameter window could be used to determine which graphic resources to release.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper3D.IsRenderSupported(vtk.vtkVolumeProperty)">
+            <summary>
+                <para>Is hardware rendering supported? No if the input data is more than one independent component, or if the hardware does not support the required extensions</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.IntermixIntersectingGeometryOff">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.IntermixIntersectingGeometryOn">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetIntermixIntersectingGeometry">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetIntermixIntersectingGeometryMaxValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetIntermixIntersectingGeometryMinValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetIntermixIntersectingGeometry(System.Int32)">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetNumberOfThreads">
+            <summary>
+                <para>Set/Get the number of threads to use. This by default is equal to the number of available processors detected.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetNumberOfThreads(System.Int32)">
+            <summary>
+                <para>Set/Get the number of threads to use. This by default is equal to the number of available processors detected.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.AutoAdjustSampleDistancesOff">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.AutoAdjustSampleDistancesOn">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetAutoAdjustSampleDistances">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetAutoAdjustSampleDistancesMaxValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetAutoAdjustSampleDistancesMinValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetAutoAdjustSampleDistances(System.Int32)">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetMaximumImageSampleDistance">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetMaximumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetMaximumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetMaximumImageSampleDistance(System.Double)">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetMinimumImageSampleDistance">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetMinimumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetMinimumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetMinimumImageSampleDistance(System.Double)">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetImageSampleDistance">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetImageSampleDistanceMaxValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetImageSampleDistanceMinValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetImageSampleDistance(System.Double)">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetGradientShader">
+            <summary>
+                <para>Get the gradient shader.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetGradientEstimator">
+            <summary>
+                <para>Set / Get the gradient estimator used to estimate normals</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetGradientEstimator(vtk.vtkEncodedGradientEstimator)">
+            <summary>
+                <para>Set / Get the gradient estimator used to estimate normals</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetVolumeRayCastFunction">
+            <summary>
+                <para>Get / Set the volume ray cast function. This is used to process values found along the ray to compute a final pixel value.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetVolumeRayCastFunction(vtk.vtkVolumeRayCastFunction)">
+            <summary>
+                <para>Get / Set the volume ray cast function. This is used to process values found along the ray to compute a final pixel value.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.GetSampleDistance">
+            <summary>
+                <para>Set/Get the distance between samples.  This variable is only used for sampling ray casting methods.  Methods that compute a ray value by stepping cell-by-cell are not affected by this value. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMapper.SetSampleDistance(System.Double)">
+            <summary>
+                <para>Set/Get the distance between samples.  This variable is only used for sampling ray casting methods.  Methods that compute a ray value by stepping cell-by-cell are not affected by this value. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.GetSampleSpacingInVoxels">
+            <summary>
+                <para>Set/Get the spacing between samples for the finite differences method used to compute the normal. This spacing is in voxel units.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFiniteDifferenceGradientEstimator.SetSampleSpacingInVoxels(System.Int32)">
+            <summary>
+                <para>Set/Get the spacing between samples for the finite differences method used to compute the normal. This spacing is in voxel units.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.SetPreferredMethodToFragmentProgram">
+            <summary>
+                <para>Set the preferred render method. If it is supported, this one will be used. Don't allow ATI_METHOD - it is not actually supported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetPreferredRenderMethodMaxValue">
+            <summary>
+                <para>Set the preferred render method. If it is supported, this one will be used. Don't allow ATI_METHOD - it is not actually supported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetPreferredRenderMethodMinValue">
+            <summary>
+                <para>Set the preferred render method. If it is supported, this one will be used. Don't allow ATI_METHOD - it is not actually supported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.SetPreferredRenderMethod(System.Int32)">
+            <summary>
+                <para>Set the preferred render method. If it is supported, this one will be used. Don't allow ATI_METHOD - it is not actually supported.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetActualSampleDistance">
+            <summary>
+                <para>Allow access to the actual sample distance used to render the image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetNumberOfPolygons">
+            <summary>
+                <para>Allow access to the number of polygons used for the rendering.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.IsRenderSupported(vtk.vtkVolumeProperty)">
+            <summary>
+                <para>Based on hardware and properties, we may or may not be able to render using 3D texture mapping. This indicates if 3D texture mapping is supported by the hardware, and if the other extensions necessary to support the specific properties are available.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetVolumeSpacing">
+            <summary>
+                <para>This is the spacing of the 3D texture</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetVolumeDimensions">
+            <summary>
+                <para>These are the dimensions of the 3D texture</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.GetSampleDistance">
+            <summary>
+                <para>The distance at which to space sampling planes. This may not be honored for interactive renders. An interactive render is defined as one that has less than 1 second of allocated render time.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper3D.SetSampleDistance(System.Single)">
+            <summary>
+                <para>The distance at which to space sampling planes. This may not be honored for interactive renders. An interactive render is defined as one that has less than 1 second of allocated render time.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.Psi(System.Single,System.Single)">
+            <summary>
+                <para>Looks up Psi (as defined by Moreland and Angel, "A Fast High Accuracy Volume Renderer for Unstructured Data") in a table.  The table must be created first, which happens on the first instantiation of this class or when BuildPsiTable is first called.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.IntegrateRay(System.Double,System.Double[],System.Double,System.Double[],System.Double,System.Single[])">
+            <summary>
+                <para>Integrates a single ray segment.  \c color is blended with the result (with \c color in front).  The result is written back into \c color.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPartialPreIntegration.IntegrateRay(System.Double,System.Double,System.Double,System.Double,System.Double,System.Single[])">
+            <summary>
+                <para>Integrates a single ray segment.  \c color is blended with the result (with \c color in front).  The result is written back into \c color.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMIPHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMIPHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.Psi(System.Single,System.Single,System.Single)">
+            <summary>
+                <para>Computes Psi (as defined by Moreland and Angel, "A Fast High Accuracy Volume Renderer for Unstructured Data").</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.IntegrateRay(System.Double,System.Double[],System.Double,System.Double[],System.Double,System.Single[])">
+            <summary>
+                <para>Integrates a single ray segment.  \c color is blended with the result (with \c color in front).  The result is written back into \c color.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridLinearRayIntegrator.IntegrateRay(System.Double,System.Double,System.Double,System.Double,System.Double,System.Single[])">
+            <summary>
+                <para>Integrates a single ray segment.  \c color is blended with the result (with \c color in front).  The result is written back into \c color.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetRayIntegrator">
+            <summary>
+                <para>Set/Get the helper class for integrating rays.  If set to NULL, a default integrator will be assigned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetRayIntegrator(vtk.vtkUnstructuredGridVolumeRayIntegrator)">
+            <summary>
+                <para>Set/Get the helper class for integrating rays.  If set to NULL, a default integrator will be assigned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetRayCastFunction">
+            <summary>
+                <para>Set/Get the helper class for casting rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetRayCastFunction(vtk.vtkUnstructuredGridVolumeRayCastFunction)">
+            <summary>
+                <para>Set/Get the helper class for casting rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.IntermixIntersectingGeometryOff">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.IntermixIntersectingGeometryOn">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetIntermixIntersectingGeometry">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetIntermixIntersectingGeometryMaxValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetIntermixIntersectingGeometryMinValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetIntermixIntersectingGeometry(System.Int32)">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetNumberOfThreads">
+            <summary>
+                <para>Set/Get the number of threads to use. This by default is equal to the number of available processors detected.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetNumberOfThreads(System.Int32)">
+            <summary>
+                <para>Set/Get the number of threads to use. This by default is equal to the number of available processors detected.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.AutoAdjustSampleDistancesOff">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.AutoAdjustSampleDistancesOn">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetAutoAdjustSampleDistances">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetAutoAdjustSampleDistancesMaxValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetAutoAdjustSampleDistancesMinValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetAutoAdjustSampleDistances(System.Int32)">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetMaximumImageSampleDistance">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetMaximumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetMaximumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetMaximumImageSampleDistance(System.Single)">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetMinimumImageSampleDistance">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetMinimumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetMinimumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetMinimumImageSampleDistance(System.Single)">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetImageSampleDistance">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetImageSampleDistanceMaxValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetImageSampleDistanceMinValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetImageSampleDistance(System.Single)">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetScalarModeAsString">
+            <summary>
+                <para>Return the method for obtaining scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetArrayAccessMode">
+            <summary>
+                <para>Return the method for obtaining scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetArrayId">
+            <summary>
+                <para>Get the array name or number and component to color by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetArrayName">
+            <summary>
+                <para>Get the array name or number and component to color by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SelectScalarArray(System.String)">
+            <summary>
+                <para>When ScalarMode is set to UsePointFileData or UseCellFieldData, you can specify which array to use for coloring using these methods. The transfer function in the vtkVolumeProperty (attached to the calling vtkVolume) will decide how to convert vectors to colors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SelectScalarArray(System.Int32)">
+            <summary>
+                <para>When ScalarMode is set to UsePointFileData or UseCellFieldData, you can specify which array to use for coloring using these methods. The transfer function in the vtkVolumeProperty (attached to the calling vtkVolume) will decide how to convert vectors to colors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetScalarModeToUseCellFieldData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetScalarModeToUsePointFieldData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetScalarModeToUseCellData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetScalarModeToUsePointData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetScalarModeToDefault">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.GetScalarMode">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastMapper.SetScalarMode(System.Int32)">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetRayIntegrator">
+            <summary>
+                <para>Set/Get the helper class for integrating rays.  If set to NULL, a default integrator will be assigned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetRayIntegrator(vtk.vtkUnstructuredGridVolumeRayIntegrator)">
+            <summary>
+                <para>Set/Get the helper class for integrating rays.  If set to NULL, a default integrator will be assigned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetMaxPixelListSize(System.Int32)">
+            <summary>
+                <para>Change the maximum size allowed for a pixel list. It is an advanced parameter. \pre positive_size: size&gt;0</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMaxPixelListSize">
+            <summary>
+                <para>Maximum size allowed for a pixel list. Default is 32. During the rendering, if a list of pixel is full, incremental compositing is performed. Even if it is a user setting, it is an advanced parameter. You have to understand how the algorithm works to change this value.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.IntermixIntersectingGeometryOff">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.IntermixIntersectingGeometryOn">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetIntermixIntersectingGeometry">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetIntermixIntersectingGeometryMaxValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetIntermixIntersectingGeometryMinValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetIntermixIntersectingGeometry(System.Int32)">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.AutoAdjustSampleDistancesOff">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.AutoAdjustSampleDistancesOn">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetAutoAdjustSampleDistances">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetAutoAdjustSampleDistancesMaxValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetAutoAdjustSampleDistancesMinValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetAutoAdjustSampleDistances(System.Int32)">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance will be varied to achieve the allocated render time of this  prop (controlled by the desired update rate and any culling in use). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMaximumImageSampleDistance">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMaximumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMaximumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetMaximumImageSampleDistance(System.Single)">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMinimumImageSampleDistance">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMinimumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetMinimumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetMinimumImageSampleDistance(System.Single)">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetImageSampleDistance">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetImageSampleDistanceMaxValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetImageSampleDistanceMinValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetImageSampleDistance(System.Single)">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetScalarModeAsString">
+            <summary>
+                <para>Return the method for obtaining scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetArrayAccessMode">
+            <summary>
+                <para>Return the method for obtaining scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetArrayId">
+            <summary>
+                <para>Get the array name or number and component to color by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetArrayName">
+            <summary>
+                <para>Get the array name or number and component to color by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SelectScalarArray(System.String)">
+            <summary>
+                <para>When ScalarMode is set to UsePointFileData or UseCellFieldData, you can specify which array to use for coloring using these methods. The transfer function in the vtkVolumeProperty (attached to the calling vtkVolume) will decide how to convert vectors to colors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SelectScalarArray(System.Int32)">
+            <summary>
+                <para>When ScalarMode is set to UsePointFileData or UseCellFieldData, you can specify which array to use for coloring using these methods. The transfer function in the vtkVolumeProperty (attached to the calling vtkVolume) will decide how to convert vectors to colors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetScalarModeToUseCellFieldData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetScalarModeToUsePointFieldData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetScalarModeToUseCellData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetScalarModeToUsePointData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetScalarModeToDefault">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.GetScalarMode">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeZSweepMapper.SetScalarMode(System.Int32)">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetActiveComponent">
+            <summary>
+                <para>Set the active component for shading. This component's  ambient / diffuse / specular / specular power values will be used to create the shading table. The default is 1.0</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetActiveComponentMaxValue">
+            <summary>
+                <para>Set the active component for shading. This component's  ambient / diffuse / specular / specular power values will be used to create the shading table. The default is 1.0</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetActiveComponentMinValue">
+            <summary>
+                <para>Set the active component for shading. This component's  ambient / diffuse / specular / specular power values will be used to create the shading table. The default is 1.0</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.SetActiveComponent(System.Int32)">
+            <summary>
+                <para>Set the active component for shading. This component's  ambient / diffuse / specular / specular power values will be used to create the shading table. The default is 1.0</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.UpdateShadingTable(vtk.vtkRenderer,vtk.vtkVolume,vtk.vtkEncodedGradientEstimator)">
+            <summary>
+                <para>Cause the shading table to be updated</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetZeroNormalSpecularIntensity">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetZeroNormalSpecularIntensityMaxValue">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetZeroNormalSpecularIntensityMinValue">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.SetZeroNormalSpecularIntensity(System.Single)">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetZeroNormalDiffuseIntensity">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetZeroNormalDiffuseIntensityMaxValue">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.GetZeroNormalDiffuseIntensityMinValue">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientShader.SetZeroNormalDiffuseIntensity(System.Single)">
+            <summary>
+                <para>Set / Get the intensity diffuse / specular light used for the zero normals. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtkRecursiveSphereDirectionEncoder.GetDecodedGradient(System.Int32)">
+Given an encoded value, return a pointer to the normal vector
+</member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.GetRecursionDepth">
+            <summary>
+                <para>Set / Get the recursion depth for the subdivision. This indicates how many time one triangle on the initial 8-sided sphere model is replaced by four triangles formed by connecting triangle edge midpoints. A recursion level of 0 yields 8 triangles with 6 unique vertices. The normals are the vectors from the sphere center through the vertices. The number of directions will be 11 since the four normals with 0 z values will be duplicated in the table - once with +0 values and the other time with -0 values, and an addition index will be used to represent the (0,0,0) normal. If we instead choose a recursion  level of 6 (the maximum that can fit within 2 bytes) the number of directions is 16643, with 16386 unique directions and a  zero normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.GetRecursionDepthMaxValue">
+            <summary>
+                <para>Set / Get the recursion depth for the subdivision. This indicates how many time one triangle on the initial 8-sided sphere model is replaced by four triangles formed by connecting triangle edge midpoints. A recursion level of 0 yields 8 triangles with 6 unique vertices. The normals are the vectors from the sphere center through the vertices. The number of directions will be 11 since the four normals with 0 z values will be duplicated in the table - once with +0 values and the other time with -0 values, and an addition index will be used to represent the (0,0,0) normal. If we instead choose a recursion  level of 6 (the maximum that can fit within 2 bytes) the number of directions is 16643, with 16386 unique directions and a  zero normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.GetRecursionDepthMinValue">
+            <summary>
+                <para>Set / Get the recursion depth for the subdivision. This indicates how many time one triangle on the initial 8-sided sphere model is replaced by four triangles formed by connecting triangle edge midpoints. A recursion level of 0 yields 8 triangles with 6 unique vertices. The normals are the vectors from the sphere center through the vertices. The number of directions will be 11 since the four normals with 0 z values will be duplicated in the table - once with +0 values and the other time with -0 values, and an addition index will be used to represent the (0,0,0) normal. If we instead choose a recursion  level of 6 (the maximum that can fit within 2 bytes) the number of directions is 16643, with 16386 unique directions and a  zero normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.SetRecursionDepth(System.Int32)">
+            <summary>
+                <para>Set / Get the recursion depth for the subdivision. This indicates how many time one triangle on the initial 8-sided sphere model is replaced by four triangles formed by connecting triangle edge midpoints. A recursion level of 0 yields 8 triangles with 6 unique vertices. The normals are the vectors from the sphere center through the vertices. The number of directions will be 11 since the four normals with 0 z values will be duplicated in the table - once with +0 values and the other time with -0 values, and an addition index will be used to represent the (0,0,0) normal. If we instead choose a recursion  level of 6 (the maximum that can fit within 2 bytes) the number of directions is 16643, with 16386 unique directions and a  zero normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.GetNumberOfEncodedDirections">
+            <summary>
+                <para>Return the number of encoded directions</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.GetDecodedGradient(System.Int32)">
+            <summary>
+                <para>/ Given an encoded value, return a pointer to the normal vector</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRecursiveSphereDirectionEncoder.GetEncodedDirection(System.Single[])">
+            <summary>
+                <para>Given a normal vector n, return the encoded direction  </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtkSphericalDirectionEncoder.GetDecodedGradient(System.Int32)">
+Given an encoded value, return a pointer to the normal vector
+</member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.GetNumberOfEncodedDirections">
+            <summary>
+                <para>Get the decoded gradient table. There are  this-&gt;GetNumberOfEncodedDirections() entries in the table, each containing a normal (direction) vector. This is a flat structure -  3 times the number of directions floats in an array.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphericalDirectionEncoder.GetEncodedDirection(System.Single[])">
+            <summary>
+                <para>Given a normal vector n, return the encoded direction  </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.GetIsoValue">
+            <summary>
+                <para>Set/Get the value of IsoValue.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.SetIsoValue(System.Double)">
+            <summary>
+                <para>Set/Get the value of IsoValue.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastIsosurfaceFunction.GetZeroOpacityThreshold(vtk.vtkVolume)">
+            <summary>
+                <para>Get the scalar value below which all scalar values have 0 opacity</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.GetTransferFunctionTableSize">
+            <summary>
+                <para>For quick lookup, the transfer function is sampled into a table. This parameter sets how big of a table to use.  By default, 1024 entries are used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridHomogeneousRayIntegrator.SetTransferFunctionTableSize(System.Int32)">
+            <summary>
+                <para>For quick lookup, the transfer function is sampled into a table. This parameter sets how big of a table to use.  By default, 1024 entries are used.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.GetBounds">
+            <summary>
+                <para>Set/get the bounds of the cast ray (in viewing coordinates).  By default the range is [0,1].</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.SetBounds(System.Double[])">
+            <summary>
+                <para>Set/get the bounds of the cast ray (in viewing coordinates).  By default the range is [0,1].</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.SetBounds(System.Double,System.Double)">
+            <summary>
+                <para>Set/get the bounds of the cast ray (in viewing coordinates).  By default the range is [0,1].</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.GetNextIntersections(vtk.vtkIdList,vtk.vtkDoubleArray,vtk.vtkDataArray,vtk.vtkDataArray,vtk.vtkDataArray)">
+            <summary>
+                <para>Get the intersections of the next several cells.  The cell ids are stored in \c intersectedCells and the length of each ray segment within the cell is stored in \c intersectionLengths.  The point scalars \c scalars are interpolated and stored in \c nearIntersections and \c farIntersections.  \c intersectedCells, \c intersectionLengths, or \c scalars may be \c NULL to supress passing the associated information.  The number of intersections actually encountered is returned.  0 is returned if and only if no more intersections are to be found.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastIterator.Initialize(System.Int32,System.Int32)">
+            <summary>
+                <para>Initializes the iteration to the start of the ray at the given screen coordinates.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridBunykRayCastFunction.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridBunykRayCastFunction.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridBunykRayCastFunction.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridBunykRayCastFunction.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridBunykRayCastFunction.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridBunykRayCastFunction.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper2D.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper2D.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper2D.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper2D.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper2D.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLVolumeTextureMapper2D.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtkDirectionEncoder.GetDecodedGradient(System.Int32)">
+Given an encoded value, return a pointer to the normal vector
+</member>
+        <member name="M:vtk.vtkDirectionEncoder.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.GetNumberOfEncodedDirections">
+            <summary>
+                <para>Return the number of encoded directions</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.GetEncodedDirection(System.Single[])">
+            <summary>
+                <para>Given a normal vector n, return the encoded direction</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.NewInstance">
+            <summary>
+                <para>Get the name of this class</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.IsA(System.String)">
+            <summary>
+                <para>Get the name of this class</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkDirectionEncoder.GetClassName">
+            <summary>
+                <para>Get the name of this class</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.ZeroPadOff">
+            <summary>
+                <para>Assume that the data value outside the volume is zero when computing normals.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.ZeroPadOn">
+            <summary>
+                <para>Assume that the data value outside the volume is zero when computing normals.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetZeroPad">
+            <summary>
+                <para>Assume that the data value outside the volume is zero when computing normals.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetZeroPadMaxValue">
+            <summary>
+                <para>Assume that the data value outside the volume is zero when computing normals.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetZeroPadMinValue">
+            <summary>
+                <para>Assume that the data value outside the volume is zero when computing normals.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetZeroPad(System.Int32)">
+            <summary>
+                <para>Assume that the data value outside the volume is zero when computing normals.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetZeroNormalThreshold">
+            <summary>
+                <para>Set / Get the ZeroNormalThreshold - this defines the minimum magnitude  of a gradient that is considered sufficient to define a  direction. Gradients with magnitudes at or less than this value are given a "zero normal" index. These are handled specially in the shader,  and you can set the intensity of light for these zero normals in the gradient shader.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetZeroNormalThreshold(System.Single)">
+            <summary>
+                <para>Set / Get the ZeroNormalThreshold - this defines the minimum magnitude  of a gradient that is considered sufficient to define a  direction. Gradients with magnitudes at or less than this value are given a "zero normal" index. These are handled specially in the shader,  and you can set the intensity of light for these zero normals in the gradient shader.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetLastUpdateTimeInCPUSeconds">
+            <summary>
+                <para>Get the time required for the last update in seconds or cpu seconds</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetLastUpdateTimeInSeconds">
+            <summary>
+                <para>Get the time required for the last update in seconds or cpu seconds</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.CylinderClipOff">
+            <summary>
+                <para>If the data in each slice is only contained within a circle circumscribed within the slice, and the slice is square, then don't compute anything outside the circle. This circle through the slices forms a cylinder.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.CylinderClipOn">
+            <summary>
+                <para>If the data in each slice is only contained within a circle circumscribed within the slice, and the slice is square, then don't compute anything outside the circle. This circle through the slices forms a cylinder.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetCylinderClip">
+            <summary>
+                <para>If the data in each slice is only contained within a circle circumscribed within the slice, and the slice is square, then don't compute anything outside the circle. This circle through the slices forms a cylinder.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetCylinderClip(System.Int32)">
+            <summary>
+                <para>If the data in each slice is only contained within a circle circumscribed within the slice, and the slice is square, then don't compute anything outside the circle. This circle through the slices forms a cylinder.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.ComputeGradientMagnitudesOff">
+            <summary>
+                <para>If you don't want to compute gradient magnitudes (but you do want normals for shading) this can be used. Be careful - if if you a non-constant gradient magnitude transfer function and you turn this on, it may crash</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.ComputeGradientMagnitudesOn">
+            <summary>
+                <para>If you don't want to compute gradient magnitudes (but you do want normals for shading) this can be used. Be careful - if if you a non-constant gradient magnitude transfer function and you turn this on, it may crash</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetComputeGradientMagnitudes">
+            <summary>
+                <para>If you don't want to compute gradient magnitudes (but you do want normals for shading) this can be used. Be careful - if if you a non-constant gradient magnitude transfer function and you turn this on, it may crash</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetComputeGradientMagnitudes(System.Int32)">
+            <summary>
+                <para>If you don't want to compute gradient magnitudes (but you do want normals for shading) this can be used. Be careful - if if you a non-constant gradient magnitude transfer function and you turn this on, it may crash</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetDirectionEncoder">
+            <summary>
+                <para>Set / Get the direction encoder used to encode normal directions to fit within two bytes</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetDirectionEncoder(vtk.vtkDirectionEncoder)">
+            <summary>
+                <para>Set / Get the direction encoder used to encode normal directions to fit within two bytes</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetNumberOfThreads">
+            <summary>
+                <para>Get/Set the number of threads to create when encoding normals This defaults to the number of available processors on the machine</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetNumberOfThreadsMaxValue">
+            <summary>
+                <para>Get/Set the number of threads to create when encoding normals This defaults to the number of available processors on the machine</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetNumberOfThreadsMinValue">
+            <summary>
+                <para>Get/Set the number of threads to create when encoding normals This defaults to the number of available processors on the machine</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetNumberOfThreads(System.Int32)">
+            <summary>
+                <para>Get/Set the number of threads to create when encoding normals This defaults to the number of available processors on the machine</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetEncodedNormalIndex(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Get the encoded normal at an x,y,z location in the volume</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetEncodedNormalIndex(System.Int32)">
+            <summary>
+                <para>Get the encoded normal at an x,y,z location in the volume</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.Update">
+            <summary>
+                <para>Recompute the encoded normals and gradient magnitudes.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetBounds">
+            <summary>
+                <para>Set / Get the bounds of the computation (used if  this-&gt;ComputationBounds is 1.) The bounds are specified xmin, xmax, ymin, ymax, zmin, zmax.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetBounds(System.Int32[])">
+            <summary>
+                <para>Set / Get the bounds of the computation (used if  this-&gt;ComputationBounds is 1.) The bounds are specified xmin, xmax, ymin, ymax, zmin, zmax.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the bounds of the computation (used if  this-&gt;ComputationBounds is 1.) The bounds are specified xmin, xmax, ymin, ymax, zmin, zmax.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.BoundsClipOff">
+            <summary>
+                <para>Turn on / off the bounding of the normal computation by the this-&gt;Bounds bounding box</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.BoundsClipOn">
+            <summary>
+                <para>Turn on / off the bounding of the normal computation by the this-&gt;Bounds bounding box</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetBoundsClip">
+            <summary>
+                <para>Turn on / off the bounding of the normal computation by the this-&gt;Bounds bounding box</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetBoundsClipMaxValue">
+            <summary>
+                <para>Turn on / off the bounding of the normal computation by the this-&gt;Bounds bounding box</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetBoundsClipMinValue">
+            <summary>
+                <para>Turn on / off the bounding of the normal computation by the this-&gt;Bounds bounding box</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetBoundsClip(System.Int32)">
+            <summary>
+                <para>Turn on / off the bounding of the normal computation by the this-&gt;Bounds bounding box</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetGradientMagnitudeBias">
+            <summary>
+                <para>Set/Get the scale and bias for the gradient magnitude</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetGradientMagnitudeBias(System.Single)">
+            <summary>
+                <para>Set/Get the scale and bias for the gradient magnitude</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetGradientMagnitudeScale">
+            <summary>
+                <para>Set/Get the scale and bias for the gradient magnitude</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetGradientMagnitudeScale(System.Single)">
+            <summary>
+                <para>Set/Get the scale and bias for the gradient magnitude</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.GetInput">
+            <summary>
+                <para>Set/Get the scalar input for which the normals will be  calculated</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkEncodedGradientEstimator.SetInput(vtk.vtkImageData)">
+            <summary>
+                <para>Set/Get the scalar input for which the normals will be  calculated</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOShadeHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOShadeHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeShadeHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeShadeHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.GetMaximizeMethodAsString">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.SetMaximizeMethodToOpacity">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.SetMaximizeMethodToScalarValue">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.GetMaximizeMethod">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.GetMaximizeMethodMaxValue">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.GetMaximizeMethodMinValue">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.SetMaximizeMethod(System.Int32)">
+            <summary>
+                <para>Set the MaximizeMethod to either ScalarValue or Opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastMIPFunction.GetZeroOpacityThreshold(vtk.vtkVolume)">
+            <summary>
+                <para>Get the scalar value below which all scalar values have zero opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.GetCompositeMethodAsString">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.SetCompositeMethodToClassifyFirst">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.SetCompositeMethodToInterpolateFirst">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.GetCompositeMethod">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.GetCompositeMethodMaxValue">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.GetCompositeMethodMinValue">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastCompositeFunction.SetCompositeMethod(System.Int32)">
+            <summary>
+                <para>Set the CompositeMethod to either Classify First or Interpolate First</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRayCastFunction.GetZeroOpacityThreshold(vtk.vtkVolume)">
+            <summary>
+                <para>Get the value below which all scalar values are considered to have 0 opacity.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeRenderingFactory.CreateInstance(System.String)">
+            <summary>
+                <para>Create and return an instance of the named vtk object. This method first checks the vtkObjectFactory to support dynamic loading. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.GetScalarModeAsString">
+            <summary>
+                <para>Return the method for obtaining scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.GetArrayAccessMode">
+            <summary>
+                <para>Return the method for obtaining scalar data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.GetArrayId">
+            <summary>
+                <para>Get the array name or number and component to color by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.GetArrayName">
+            <summary>
+                <para>Get the array name or number and component to color by.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SelectScalarArray(System.String)">
+            <summary>
+                <para>When ScalarMode is set to UsePointFileData or UseCellFieldData, you can specify which array to use for coloring using these methods. The transfer function in the vtkVolumeProperty (attached to the calling vtkVolume) will decide how to convert vectors to colors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SelectScalarArray(System.Int32)">
+            <summary>
+                <para>When ScalarMode is set to UsePointFileData or UseCellFieldData, you can specify which array to use for coloring using these methods. The transfer function in the vtkVolumeProperty (attached to the calling vtkVolume) will decide how to convert vectors to colors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SetScalarModeToUseCellFieldData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SetScalarModeToUsePointFieldData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SetScalarModeToUseCellData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SetScalarModeToUsePointData">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SetScalarModeToDefault">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.GetScalarMode">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkProjectedTetrahedraMapper.SetScalarMode(System.Int32)">
+            <summary>
+                <para>Control how the filter works with scalar point data and cell attribute data.  By default (ScalarModeToDefault), the filter will use point data, and if no point data is available, then cell data is used. Alternatively you can explicitly set the filter to use point data (ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData). You can also choose to get the scalars from an array in point field data (ScalarModeToUsePointFieldData) or cell field data (ScalarModeToUseCellFieldData).  If scalars are coming from a field data array, you must call SelectColorArray before you call GetColors.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMIPHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMIPHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMIPHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMIPHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeShadeHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeShadeHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeShadeHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeShadeHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOShadeHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOShadeHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOShadeHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOShadeHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastCompositeGOHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetRayCastImage">
+            <summary>
+                <para>Set / Get the underlying image object. One will be automatically created - only need to set it when using from an AMR mapper which renders multiple times into the same image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetRayCastImage(vtk.vtkFixedPointRayCastImage)">
+            <summary>
+                <para>Set / Get the underlying image object. One will be automatically created - only need to set it when using from an AMR mapper which renders multiple times into the same image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.ComputeRequiredImageSampleDistance(System.Single,vtk.vtkRenderer,vtk.vtkVolume)">
+            <summary>
+                <para>What is the image sample distance required to achieve the desired time? A version of this method is provided that does not require the volume argument since if you are using an LODProp3D you may not know this information. If you use this version you must be certain that the ray cast mapper is only used for one volume (and not shared among multiple volumes)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.ComputeRequiredImageSampleDistance(System.Single,vtk.vtkRenderer)">
+            <summary>
+                <para>What is the image sample distance required to achieve the desired time? A version of this method is provided that does not require the volume argument since if you are using an LODProp3D you may not know this information. If you use this version you must be certain that the ray cast mapper is only used for one volume (and not shared among multiple volumes)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.IntermixIntersectingGeometryOff">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.IntermixIntersectingGeometryOn">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetIntermixIntersectingGeometry">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetIntermixIntersectingGeometryMaxValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetIntermixIntersectingGeometryMinValue">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetIntermixIntersectingGeometry(System.Int32)">
+            <summary>
+                <para>If IntermixIntersectingGeometry is turned on, the zbuffer will be captured and used to limit the traversal of the rays.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetNumberOfThreads">
+            <summary>
+                <para>Set/Get the number of threads to use. This by default is equal to the number of available processors detected.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetNumberOfThreads(System.Int32)">
+            <summary>
+                <para>Set/Get the number of threads to use. This by default is equal to the number of available processors detected.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.AutoAdjustSampleDistancesOff">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance and the SampleDistance will be varied to achieve the allocated  render time of this prop (controlled by the desired update rate  and any culling in use). If this is an interactive render (more  than 1 frame per second) the SampleDistance will be increased,  otherwise it will not be altered (a binary decision, as opposed to the ImageSampleDistance which will vary continuously).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.AutoAdjustSampleDistancesOn">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance and the SampleDistance will be varied to achieve the allocated  render time of this prop (controlled by the desired update rate  and any culling in use). If this is an interactive render (more  than 1 frame per second) the SampleDistance will be increased,  otherwise it will not be altered (a binary decision, as opposed to the ImageSampleDistance which will vary continuously).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetAutoAdjustSampleDistances">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance and the SampleDistance will be varied to achieve the allocated  render time of this prop (controlled by the desired update rate  and any culling in use). If this is an interactive render (more  than 1 frame per second) the SampleDistance will be increased,  otherwise it will not be altered (a binary decision, as opposed to the ImageSampleDistance which will vary continuously).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetAutoAdjustSampleDistancesMaxValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance and the SampleDistance will be varied to achieve the allocated  render time of this prop (controlled by the desired update rate  and any culling in use). If this is an interactive render (more  than 1 frame per second) the SampleDistance will be increased,  otherwise it will not be altered (a binary decision, as opposed to the ImageSampleDistance which will vary continuously).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetAutoAdjustSampleDistancesMinValue">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance and the SampleDistance will be varied to achieve the allocated  render time of this prop (controlled by the desired update rate  and any culling in use). If this is an interactive render (more  than 1 frame per second) the SampleDistance will be increased,  otherwise it will not be altered (a binary decision, as opposed to the ImageSampleDistance which will vary continuously).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetAutoAdjustSampleDistances(System.Int32)">
+            <summary>
+                <para>If AutoAdjustSampleDistances is on, the the ImageSampleDistance and the SampleDistance will be varied to achieve the allocated  render time of this prop (controlled by the desired update rate  and any culling in use). If this is an interactive render (more  than 1 frame per second) the SampleDistance will be increased,  otherwise it will not be altered (a binary decision, as opposed to the ImageSampleDistance which will vary continuously).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetMaximumImageSampleDistance">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetMaximumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetMaximumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetMaximumImageSampleDistance(System.Single)">
+            <summary>
+                <para>This is the maximum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetMinimumImageSampleDistance">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetMinimumImageSampleDistanceMaxValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetMinimumImageSampleDistanceMinValue">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetMinimumImageSampleDistance(System.Single)">
+            <summary>
+                <para>This is the minimum image sample distance allow when the image sample distance is being automatically adjusted.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetImageSampleDistance">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels. This value will be adjusted to meet a desired frame rate when AutoAdjustSampleDistances is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetImageSampleDistanceMaxValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels. This value will be adjusted to meet a desired frame rate when AutoAdjustSampleDistances is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetImageSampleDistanceMinValue">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels. This value will be adjusted to meet a desired frame rate when AutoAdjustSampleDistances is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetImageSampleDistance(System.Single)">
+            <summary>
+                <para>Sampling distance in the XY image dimensions. Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels. This value will be adjusted to meet a desired frame rate when AutoAdjustSampleDistances is on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetInteractiveSampleDistance">
+            <summary>
+                <para>Set/Get the distance between samples when interactive rendering is happening. In this case, interactive is defined as this volume mapper having less than 1 second allocated for rendering. When AutoAdjustSampleDistance is On, and the allocated render time is less than 1 second, then this InteractiveSampleDistance will be used instead of the SampleDistance above.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetInteractiveSampleDistance(System.Single)">
+            <summary>
+                <para>Set/Get the distance between samples when interactive rendering is happening. In this case, interactive is defined as this volume mapper having less than 1 second allocated for rendering. When AutoAdjustSampleDistance is On, and the allocated render time is less than 1 second, then this InteractiveSampleDistance will be used instead of the SampleDistance above.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.GetSampleDistance">
+            <summary>
+                <para>Set/Get the distance between samples used for rendering  when AutoAdjustSampleDistances is off, or when this mapper has more than 1 second allocated to it for rendering.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointVolumeRayCastMapper.SetSampleDistance(System.Single)">
+            <summary>
+                <para>Set/Get the distance between samples used for rendering  when AutoAdjustSampleDistances is off, or when this mapper has more than 1 second allocated to it for rendering.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.GetInput">
+            <summary>
+                <para>Set/Get the input data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.SetInput(vtk.vtkDataSet)">
+            <summary>
+                <para>Set/Get the input data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeMapper.SetInput(vtk.vtkUnstructuredGrid)">
+            <summary>
+                <para>Set/Get the input data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.GetMaximumStorageSize">
+            <summary>
+                <para>This is the maximum size of saved textures in bytes. If this size is large enough to hold the RGBA textures for all three directions (XxYxZx3x4 is the approximate value - it is actually a bit larger due to wasted space in the textures) then the textures will be saved.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.SetMaximumStorageSize(System.Int32)">
+            <summary>
+                <para>This is the maximum size of saved textures in bytes. If this size is large enough to hold the RGBA textures for all three directions (XxYxZx3x4 is the approximate value - it is actually a bit larger due to wasted space in the textures) then the textures will be saved.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.GetMaximumNumberOfPlanes">
+            <summary>
+                <para>This is the maximum number of planes that will be created for texture mapping the volume. If the volume has more voxels than this along the viewing direction, then planes of the volume will be skipped to ensure that this maximum is not violated. A skip factor is used, and is incremented until the maximum condition is satisfied.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.SetMaximumNumberOfPlanes(System.Int32)">
+            <summary>
+                <para>This is the maximum number of planes that will be created for texture mapping the volume. If the volume has more voxels than this along the viewing direction, then planes of the volume will be skipped to ensure that this maximum is not violated. A skip factor is used, and is incremented until the maximum condition is satisfied.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.GetTargetTextureSize">
+            <summary>
+                <para>Target size in pixels of each size of the texture for downloading. Default is 512x512 - so a 512x512 texture will be tiled with as many slices of the volume as possible, then all the quads will be rendered. This can be set to optimize for a particular architecture. This must be set with numbers that are a power of two.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.SetTargetTextureSize(System.Int32[])">
+            <summary>
+                <para>Target size in pixels of each size of the texture for downloading. Default is 512x512 - so a 512x512 texture will be tiled with as many slices of the volume as possible, then all the quads will be rendered. This can be set to optimize for a particular architecture. This must be set with numbers that are a power of two.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper2D.SetTargetTextureSize(System.Int32,System.Int32)">
+            <summary>
+                <para>Target size in pixels of each size of the texture for downloading. Default is 512x512 - so a 512x512 texture will be tiled with as many slices of the volume as possible, then all the quads will be rendered. This can be set to optimize for a particular architecture. This must be set with numbers that are a power of two.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.GetGradientShader">
+            <summary>
+                <para>Get the gradient shader.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.GetGradientEstimator">
+            <summary>
+                <para>Set / Get the gradient estimator used to estimate normals</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.SetGradientEstimator(vtk.vtkEncodedGradientEstimator)">
+            <summary>
+                <para>Set / Get the gradient estimator used to estimate normals</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeTextureMapper.Update">
+            <summary>
+                <para>Update the volume rendering pipeline by updating the scalar input</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionFlagsToInvertedCross">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionFlagsToCross">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionFlagsToInvertedFence">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionFlagsToFence">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionFlagsToSubVolume">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCroppingRegionFlags">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCroppingRegionFlagsMaxValue">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCroppingRegionFlagsMinValue">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionFlags(System.Int32)">
+            <summary>
+                <para>Set the flags for the cropping regions. The clipping planes divide the volume into 27 regions - there is one bit for each region. The regions  start from the one containing voxel (0,0,0), moving along the x axis  fastest, the y axis next, and the z axis slowest. These are represented  from the lowest bit to bit number 27 in the integer containing the  flags. There are several convenience functions to set some common  configurations - subvolume (the default), fence (between any of the  clip plane pairs), inverted fence, cross (between any two of the  clip plane pairs) and inverted cross.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetVoxelCroppingRegionPlanes">
+            <summary>
+                <para>Get the cropping region planes in voxels. Only valid during the  rendering process</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCroppingRegionPlanes">
+            <summary>
+                <para>Set/Get the Cropping Region Planes ( xmin, xmax, ymin, ymax, zmin, zmax ) These planes are defined in volume coordinates - spacing and origin are considered.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionPlanes(System.Double[])">
+            <summary>
+                <para>Set/Get the Cropping Region Planes ( xmin, xmax, ymin, ymax, zmin, zmax ) These planes are defined in volume coordinates - spacing and origin are considered.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCroppingRegionPlanes(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the Cropping Region Planes ( xmin, xmax, ymin, ymax, zmin, zmax ) These planes are defined in volume coordinates - spacing and origin are considered.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.CroppingOff">
+            <summary>
+                <para>Turn On/Off orthogonal cropping. (Clipping planes are perpendicular to the coordinate axes.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.CroppingOn">
+            <summary>
+                <para>Turn On/Off orthogonal cropping. (Clipping planes are perpendicular to the coordinate axes.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCropping">
+            <summary>
+                <para>Turn On/Off orthogonal cropping. (Clipping planes are perpendicular to the coordinate axes.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCroppingMaxValue">
+            <summary>
+                <para>Turn On/Off orthogonal cropping. (Clipping planes are perpendicular to the coordinate axes.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetCroppingMinValue">
+            <summary>
+                <para>Turn On/Off orthogonal cropping. (Clipping planes are perpendicular to the coordinate axes.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetCropping(System.Int32)">
+            <summary>
+                <para>Turn On/Off orthogonal cropping. (Clipping planes are perpendicular to the coordinate axes.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetBlendMode">
+            <summary>
+                <para>Set/Get the blend mode. Currently this is only supported by the vtkFixedPointVolumeRayCastMapper - other mappers have different ways to set this (supplying a function to a vtkVolumeRayCastMapper) or don't have any options (vtkVolumeTextureMapper2D supports only compositing)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetBlendModeToMaximumIntensity">
+            <summary>
+                <para>Set/Get the blend mode. Currently this is only supported by the vtkFixedPointVolumeRayCastMapper - other mappers have different ways to set this (supplying a function to a vtkVolumeRayCastMapper) or don't have any options (vtkVolumeTextureMapper2D supports only compositing)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetBlendModeToComposite">
+            <summary>
+                <para>Set/Get the blend mode. Currently this is only supported by the vtkFixedPointVolumeRayCastMapper - other mappers have different ways to set this (supplying a function to a vtkVolumeRayCastMapper) or don't have any options (vtkVolumeTextureMapper2D supports only compositing)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetBlendMode(System.Int32)">
+            <summary>
+                <para>Set/Get the blend mode. Currently this is only supported by the vtkFixedPointVolumeRayCastMapper - other mappers have different ways to set this (supplying a function to a vtkVolumeRayCastMapper) or don't have any options (vtkVolumeTextureMapper2D supports only compositing)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.GetInput">
+            <summary>
+                <para>Set/Get the input data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetInput(vtk.vtkDataSet)">
+            <summary>
+                <para>Set/Get the input data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkVolumeMapper.SetInput(vtk.vtkImageData)">
+            <summary>
+                <para>Set/Get the input data</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastFunction.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastFunction.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastFunction.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastFunction.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastFunction.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayCastFunction.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLRayCastImageDisplayHelper.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLRayCastImageDisplayHelper.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetZBufferValue(System.Int32,System.Int32)">
+            <summary>
+                <para>Get the ZBuffer value corresponding to location (x,y) where (x,y) are indexing into the ImageInUse image. This must be converted to the zbuffer image coordinates. Nearest neighbor value is returned. If UseZBuffer is off, then 1.0 is always returned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.UseZBufferOff">
+            <summary>
+                <para>The UseZBuffer flag indicates whether the ZBuffer is in use. The ZBuffer is captured and used when IntermixIntersectingGeometry is on in the mapper, and when there are props that have been rendered before the current volume. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.UseZBufferOn">
+            <summary>
+                <para>The UseZBuffer flag indicates whether the ZBuffer is in use. The ZBuffer is captured and used when IntermixIntersectingGeometry is on in the mapper, and when there are props that have been rendered before the current volume. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetUseZBuffer">
+            <summary>
+                <para>The UseZBuffer flag indicates whether the ZBuffer is in use. The ZBuffer is captured and used when IntermixIntersectingGeometry is on in the mapper, and when there are props that have been rendered before the current volume. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetUseZBufferMaxValue">
+            <summary>
+                <para>The UseZBuffer flag indicates whether the ZBuffer is in use. The ZBuffer is captured and used when IntermixIntersectingGeometry is on in the mapper, and when there are props that have been rendered before the current volume. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetUseZBufferMinValue">
+            <summary>
+                <para>The UseZBuffer flag indicates whether the ZBuffer is in use. The ZBuffer is captured and used when IntermixIntersectingGeometry is on in the mapper, and when there are props that have been rendered before the current volume. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetUseZBuffer(System.Int32)">
+            <summary>
+                <para>The UseZBuffer flag indicates whether the ZBuffer is in use. The ZBuffer is captured and used when IntermixIntersectingGeometry is on in the mapper, and when there are props that have been rendered before the current volume. </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetZBufferOrigin">
+            <summary>
+                <para>Set / Get the origin of the ZBuffer. This is the distance from the lower left corner of the viewport where the ZBuffer started (multiply the ImageOrigin by the ImageSampleDistance) This is the pixel location on the full resolution viewport where the ZBuffer capture will start. These values are used  to convert the (x,y) pixel location within the ImageInUseSize  image into a ZBuffer location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetZBufferOrigin(System.Int32[])">
+            <summary>
+                <para>Set / Get the origin of the ZBuffer. This is the distance from the lower left corner of the viewport where the ZBuffer started (multiply the ImageOrigin by the ImageSampleDistance) This is the pixel location on the full resolution viewport where the ZBuffer capture will start. These values are used  to convert the (x,y) pixel location within the ImageInUseSize  image into a ZBuffer location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetZBufferOrigin(System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the origin of the ZBuffer. This is the distance from the lower left corner of the viewport where the ZBuffer started (multiply the ImageOrigin by the ImageSampleDistance) This is the pixel location on the full resolution viewport where the ZBuffer capture will start. These values are used  to convert the (x,y) pixel location within the ImageInUseSize  image into a ZBuffer location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetZBufferSize">
+            <summary>
+                <para>Set / Get the size of the ZBuffer in pixels. The zbuffer will be captured for the region of the screen covered by the ImageInUseSize image. However, due to subsampling, the size of the ImageInUseSize image may be smaller than this ZBuffer image which will be captured at screen resolution.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetZBufferSize(System.Int32[])">
+            <summary>
+                <para>Set / Get the size of the ZBuffer in pixels. The zbuffer will be captured for the region of the screen covered by the ImageInUseSize image. However, due to subsampling, the size of the ImageInUseSize image may be smaller than this ZBuffer image which will be captured at screen resolution.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetZBufferSize(System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the size of the ZBuffer in pixels. The zbuffer will be captured for the region of the screen covered by the ImageInUseSize image. However, due to subsampling, the size of the ImageInUseSize image may be smaller than this ZBuffer image which will be captured at screen resolution.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.ClearImage">
+            <summary>
+                <para>Clear the image to (0,0,0,0) for each pixel.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.AllocateImage">
+            <summary>
+                <para>Call this method once the ImageMemorySize has been set the allocate the image. If an image already exists, it will be deleted first.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetImageSampleDistance">
+            <summary>
+                <para>Set / Get the ImageSampleDistance that will be used for  rendering. This is a copy of the value stored in the mapper. It is stored here for sharing between all mappers that are participating in the creation of this image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageSampleDistance(System.Single)">
+            <summary>
+                <para>Set / Get the ImageSampleDistance that will be used for  rendering. This is a copy of the value stored in the mapper. It is stored here for sharing between all mappers that are participating in the creation of this image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetImageOrigin">
+            <summary>
+                <para>Set / Get the origin of the image. This is the starting  pixel within the whole viewport that our Image starts on. That is, we could be generating just a subregion of the whole viewport due to the fact that our volume occupies  only a portion of the viewport. The Image pixels will start from this location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageOrigin(System.Int32[])">
+            <summary>
+                <para>Set / Get the origin of the image. This is the starting  pixel within the whole viewport that our Image starts on. That is, we could be generating just a subregion of the whole viewport due to the fact that our volume occupies  only a portion of the viewport. The Image pixels will start from this location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageOrigin(System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the origin of the image. This is the starting  pixel within the whole viewport that our Image starts on. That is, we could be generating just a subregion of the whole viewport due to the fact that our volume occupies  only a portion of the viewport. The Image pixels will start from this location.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetImageInUseSize">
+            <summary>
+                <para>Set / Get the size of the image we are actually using. As long as the memory size is big enough, but not too big, we won't bother deleting and re-allocated, we'll just  continue to use the memory size we have. This size will always be equal to or less than the ImageMemorySize.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageInUseSize(System.Int32[])">
+            <summary>
+                <para>Set / Get the size of the image we are actually using. As long as the memory size is big enough, but not too big, we won't bother deleting and re-allocated, we'll just  continue to use the memory size we have. This size will always be equal to or less than the ImageMemorySize.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageInUseSize(System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the size of the image we are actually using. As long as the memory size is big enough, but not too big, we won't bother deleting and re-allocated, we'll just  continue to use the memory size we have. This size will always be equal to or less than the ImageMemorySize.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetImageMemorySize">
+            <summary>
+                <para>Set / Get the ImageMemorySize. This is the size in pixels of the Image ivar. This will be a power of two in order to ensure that the texture can be rendered by graphics hardware that requires power of two textures.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageMemorySize(System.Int32[])">
+            <summary>
+                <para>Set / Get the ImageMemorySize. This is the size in pixels of the Image ivar. This will be a power of two in order to ensure that the texture can be rendered by graphics hardware that requires power of two textures.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageMemorySize(System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the ImageMemorySize. This is the size in pixels of the Image ivar. This will be a power of two in order to ensure that the texture can be rendered by graphics hardware that requires power of two textures.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.GetImageViewportSize">
+            <summary>
+                <para>Set / Get the ImageViewportSize. This is the size of the whole viewport in pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageViewportSize(System.Int32[])">
+            <summary>
+                <para>Set / Get the ImageViewportSize. This is the size of the whole viewport in pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkFixedPointRayCastImage.SetImageViewportSize(System.Int32,System.Int32)">
+            <summary>
+                <para>Set / Get the ImageViewportSize. This is the size of the whole viewport in pixels.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLRayCastImageDisplayHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkOpenGLRayCastImageDisplayHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLRayCastImageDisplayHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOpenGLRayCastImageDisplayHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.GetPixelScale">
+            <summary>
+                <para>Set / Get the pixel scale to be applied to the image before display. Can be set to scale the incoming pixel values - for example the fixed point mapper uses the unsigned short API but with 15 bit values so needs a scale of 2.0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkRayCastImageDisplayHelper.SetPixelScale(System.Single)">
+            <summary>
+                <para>Set / Get the pixel scale to be applied to the image before display. Can be set to scale the incoming pixel values - for example the fixed point mapper uses the unsigned short API but with 15 bit values so needs a scale of 2.0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.IncrementalPreIntegrationOff">
+            <summary>
+                <para>Get/set whether to use incremental pre-integration (by default it's on).  Incremental pre-integration is much faster but can introduce error due to numerical imprecision.  Under most circumstances, the error is not noticable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.IncrementalPreIntegrationOn">
+            <summary>
+                <para>Get/set whether to use incremental pre-integration (by default it's on).  Incremental pre-integration is much faster but can introduce error due to numerical imprecision.  Under most circumstances, the error is not noticable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.SetIncrementalPreIntegration(System.Int32)">
+            <summary>
+                <para>Get/set whether to use incremental pre-integration (by default it's on).  Incremental pre-integration is much faster but can introduce error due to numerical imprecision.  Under most circumstances, the error is not noticable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIncrementalPreIntegration">
+            <summary>
+                <para>Get/set whether to use incremental pre-integration (by default it's on).  Incremental pre-integration is much faster but can introduce error due to numerical imprecision.  Under most circumstances, the error is not noticable.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIntegrationTableLengthScale">
+            <summary>
+                <para>Get how an integration table is indexed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIntegrationTableScalarScale(System.Int32)">
+            <summary>
+                <para>Get how an integration table is indexed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIntegrationTableScalarShift(System.Int32)">
+            <summary>
+                <para>Get how an integration table is indexed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIntegrationTableLengthResolution">
+            <summary>
+                <para>Set/Get the size of the integration table built.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.SetIntegrationTableLengthResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the size of the integration table built.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIntegrationTableScalarResolution">
+            <summary>
+                <para>Set/Get the size of the integration table built.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.SetIntegrationTableScalarResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the size of the integration table built.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.SetIntegrator(vtk.vtkUnstructuredGridVolumeRayIntegrator)">
+            <summary>
+                <para>The class used to fill the pre integration table.  By default, a vtkUnstructuredGridPartialPreIntegration is built.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridPreIntegration.GetIntegrator">
+            <summary>
+                <para>The class used to fill the pre integration table.  By default, a vtkUnstructuredGridPartialPreIntegration is built.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.Integrate(vtk.vtkDoubleArray,vtk.vtkDataArray,vtk.vtkDataArray,System.Single[])">
+            <summary>
+                <para>Given a set of intersections (defined by the three arrays), compute the peicewise integration of the array in front to back order. /c intersectionLengths holds the lengths of each peicewise segment. /c nearIntersections and /c farIntersections hold the scalar values at the front and back of each segment.  /c color should contain the RGBA value of the volume in front of the segments passed in, and the result will be placed back into /c color.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkUnstructuredGridVolumeRayIntegrator.Initialize(vtk.vtkVolume,vtk.vtkDataArray)">
+            <summary>
+                <para>Set up the integrator with the given properties and scalars.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

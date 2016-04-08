@@ -1,0 +1,3004 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "vtkWidgetsDotNet"
+    </assembly>
+    <members>
+        <member name="M:vtk.vtkPlaneWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetSelectedPlaneProperty">
+            <summary>
+                <para>Get the plane properties. The properties of the plane when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPlaneProperty">
+            <summary>
+                <para>Get the plane properties. The properties of the plane when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetPlaneProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Get the plane properties. The properties of the plane when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetSelectedHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.UpdatePlacement">
+            <summary>
+                <para>Satisfies superclass API.  This will change the state of the widget to match changes that have been made to the underlying PolyDataSource</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPolyDataAlgorithm">
+            <summary>
+                <para>Satisfies superclass API.  This returns a pointer to the underlying PolyData.  Make changes to this before calling the initial PlaceWidget() to have the initial placement follow suit.  Or, make changes after the widget has been initialised and call UpdatePlacement() to realise.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPlane(vtk.vtkPlane)">
+            <summary>
+                <para>Get the planes describing the implicit function defined by the plane widget. The user must provide the instance of the class vtkPlane. Note that vtkPlane is a subclass of vtkImplicitFunction, meaning that it can be used by a variety of filters to perform clipping, cutting, and selection of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the plane.  The polydata consists of (res+1)*(res+1) points, and res*res quadrilateral polygons, where res is the resolution of the plane. These point values are guaranteed to be up-to-date when either the InteractionEvent or EndInteraction events are invoked. The user provides the vtkPolyData and the points and polyplane are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.NormalToZAxisOff">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.NormalToZAxisOn">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetNormalToZAxis">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetNormalToZAxis(System.Int32)">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.NormalToYAxisOff">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.NormalToYAxisOn">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetNormalToYAxis">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetNormalToYAxis(System.Int32)">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.NormalToXAxisOff">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.NormalToXAxisOn">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetNormalToXAxis">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetNormalToXAxis(System.Int32)">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetRepresentationToSurface">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetRepresentationToWireframe">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetRepresentationToOutline">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetRepresentationToOff">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetRepresentation">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetRepresentationMaxValue">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetRepresentationMinValue">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetRepresentation(System.Int32)">
+            <summary>
+                <para>Control how the plane appears when GetPolyData() is invoked. If the mode is "outline", then just the outline of the plane is shown. If the mode is "wireframe" then the plane is drawn with the outline plus the interior mesh (corresponding to the resolution specified). If the mode is "surface" then the plane is drawn as a surface.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetNormal(System.Double[])">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetNormal">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetNormal(System.Double[])">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetNormal(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetCenter(System.Double[])">
+            <summary>
+                <para>Get the center of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetCenter">
+            <summary>
+                <para>Get the center of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetCenter(System.Double[])">
+            <summary>
+                <para>Get the center of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetCenter(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Get the center of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPoint2(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPoint2">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetPoint2(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetPoint2(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPoint1(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetPoint1">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetPoint1(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetPoint1(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetOrigin(System.Double[])">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetOrigin">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetOrigin(System.Double[])">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetOrigin(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.GetResolution">
+            <summary>
+                <para>Set/Get the resolution (number of subdivisions) of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the resolution (number of subdivisions) of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the resolution (number of subdivisions) of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPlaneWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.InitializeHandles(vtk.vtkPoints)">
+            <summary>
+                <para>Convenience method to allocate and set the handles from a vtkPoints instance.  If the first and last points are the same, the spline sets Closed to the on state and disregards the last point, otherwise Closed remains unchanged.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetSummedLength">
+            <summary>
+                <para>Get the approximate vs. the true arc length of the spline. Calculated as the summed lengths of the individual straight line segments. Use SetResolution to control the accuracy.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.IsClosed">
+            <summary>
+                <para>Convenience method to determine whether the spline is closed in a geometric sense.  The widget may be set "closed" but still be geometrically open (e.g., a straight line).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.ClosedOff">
+            <summary>
+                <para>Control whether the spline is open or closed. A closed spline forms a continuous loop: the first and last points are the same, and derivatives are continuous.  A minimum of 3 handles are required to form a closed loop.  This method enforces consistency with user supplied subclasses of vtkSpline.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.ClosedOn">
+            <summary>
+                <para>Control whether the spline is open or closed. A closed spline forms a continuous loop: the first and last points are the same, and derivatives are continuous.  A minimum of 3 handles are required to form a closed loop.  This method enforces consistency with user supplied subclasses of vtkSpline.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetClosed">
+            <summary>
+                <para>Control whether the spline is open or closed. A closed spline forms a continuous loop: the first and last points are the same, and derivatives are continuous.  A minimum of 3 handles are required to form a closed loop.  This method enforces consistency with user supplied subclasses of vtkSpline.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetClosed(System.Int32)">
+            <summary>
+                <para>Control whether the spline is open or closed. A closed spline forms a continuous loop: the first and last points are the same, and derivatives are continuous.  A minimum of 3 handles are required to form a closed loop.  This method enforces consistency with user supplied subclasses of vtkSpline.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetHandlePosition(System.Int32)">
+            <summary>
+                <para>Set/Get the position of the spline handles. Call GetNumberOfHandles to determine the valid range of handle indices.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetHandlePosition(System.Int32,System.Double[])">
+            <summary>
+                <para>Set/Get the position of the spline handles. Call GetNumberOfHandles to determine the valid range of handle indices.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetHandlePosition(System.Int32,System.Double[])">
+            <summary>
+                <para>Set/Get the position of the spline handles. Call GetNumberOfHandles to determine the valid range of handle indices.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetHandlePosition(System.Int32,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of the spline handles. Call GetNumberOfHandles to determine the valid range of handle indices.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetParametricSpline">
+            <summary>
+                <para>Set the parametric spline object. Through vtkParametricSpline's API, the user can supply and configure one of currently two types of spline: vtkCardinalSpline, vtkKochanekSpline. The widget controls the open or closed configuration of the spline. WARNING: The widget does not enforce internal consistency so that all three are of the same type.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetParametricSpline(vtk.vtkParametricSpline)">
+            <summary>
+                <para>Set the parametric spline object. Through vtkParametricSpline's API, the user can supply and configure one of currently two types of spline: vtkCardinalSpline, vtkKochanekSpline. The widget controls the open or closed configuration of the spline. WARNING: The widget does not enforce internal consistency so that all three are of the same type.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetResolution">
+            <summary>
+                <para>Set/Get the number of line segments representing the spline for this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the number of line segments representing the spline for this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetNumberOfHandles">
+            <summary>
+                <para>Set/Get the number of handles for this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetNumberOfHandles(System.Int32)">
+            <summary>
+                <para>Set/Get the number of handles for this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetSelectedLineProperty">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetSelectedLineProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetLineProperty">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetLineProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetSelectedHandleProperty">
+            <summary>
+                <para>Set/Get the handle properties (the spheres are the handles). The properties of the handles when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetSelectedHandleProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the handle properties (the spheres are the handles). The properties of the handles when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetHandleProperty">
+            <summary>
+                <para>Set/Get the handle properties (the spheres are the handles). The properties of the handles when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetHandleProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the handle properties (the spheres are the handles). The properties of the handles when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the spline.  The polydata consists of points and line segments numbering Resolution + 1 and Resoltuion, respectively. Points are guaranteed to be up-to-date when either the InteractionEvent or  EndInteraction events are invoked. The user provides the vtkPolyData and the points and polyline are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetProjectionPosition">
+            <summary>
+                <para>Set the position of spline handles and points in terms of a plane's position. i.e., if ProjectionNormal is 0, all of the x-coordinate values of the points are set to position. Any value can be passed (and is ignored) to update the spline points when Projection normal is set to 3 for arbritrary plane orientations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetProjectionPosition(System.Double)">
+            <summary>
+                <para>Set the position of spline handles and points in terms of a plane's position. i.e., if ProjectionNormal is 0, all of the x-coordinate values of the points are set to position. Any value can be passed (and is ignored) to update the spline points when Projection normal is set to 3 for arbritrary plane orientations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetProjectionNormalToOblique">
+            <summary>
+                <para>Set the position of spline handles and points in terms of a plane's position. i.e., if ProjectionNormal is 0, all of the x-coordinate values of the points are set to position. Any value can be passed (and is ignored) to update the spline points when Projection normal is set to 3 for arbritrary plane orientations.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetPlaneSource(vtk.vtkPlaneSource)">
+            <summary>
+                <para>Set up a reference to a vtkPlaneSource that could be from another widget object, e.g. a vtkPolyDataSourceWidget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.ProjectToPlaneOff">
+            <summary>
+                <para>Force the spline widget to be projected onto one of the orthogonal planes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the spline to the plane if it is orginally not aligned.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively and 3 for arbitrary oblique planes when the widget is tied to a vtkPlaneSource.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.ProjectToPlaneOn">
+            <summary>
+                <para>Force the spline widget to be projected onto one of the orthogonal planes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the spline to the plane if it is orginally not aligned.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively and 3 for arbitrary oblique planes when the widget is tied to a vtkPlaneSource.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.GetProjectToPlane">
+            <summary>
+                <para>Force the spline widget to be projected onto one of the orthogonal planes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the spline to the plane if it is orginally not aligned.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively and 3 for arbitrary oblique planes when the widget is tied to a vtkPlaneSource.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetProjectToPlane(System.Int32)">
+            <summary>
+                <para>Force the spline widget to be projected onto one of the orthogonal planes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the spline to the plane if it is orginally not aligned.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively and 3 for arbitrary oblique planes when the widget is tied to a vtkPlaneSource.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Force the spline widget to be projected onto one of the orthogonal planes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the spline to the plane if it is orginally not aligned.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively and 3 for arbitrary oblique planes when the widget is tied to a vtkPlaneSource.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSplineWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkLineWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetSelectedLineProperty">
+            <summary>
+                <para>Get the line properties. The properties of the line when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetLineProperty">
+            <summary>
+                <para>Get the line properties. The properties of the line when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetSelectedHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the line.  The polydata consists of n+1 points, where n is the resolution of the line. These point values are guaranteed to be up-to-date when either the InteractionEvent or EndInteraction events are invoked. The user provides the vtkPolyData and the points and polyline are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.ClampToBoundsOff">
+            <summary>
+                <para>Enable/disable clamping of the point end points to the bounding box of the data. The bounding box is defined from the last PlaceWidget() invocation, and includes the effect of the PlaceFactor which is used to gram/shrink the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.ClampToBoundsOn">
+            <summary>
+                <para>Enable/disable clamping of the point end points to the bounding box of the data. The bounding box is defined from the last PlaceWidget() invocation, and includes the effect of the PlaceFactor which is used to gram/shrink the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetClampToBounds">
+            <summary>
+                <para>Enable/disable clamping of the point end points to the bounding box of the data. The bounding box is defined from the last PlaceWidget() invocation, and includes the effect of the PlaceFactor which is used to gram/shrink the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetClampToBounds(System.Int32)">
+            <summary>
+                <para>Enable/disable clamping of the point end points to the bounding box of the data. The bounding box is defined from the last PlaceWidget() invocation, and includes the effect of the PlaceFactor which is used to gram/shrink the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetAlignToNone">
+            <summary>
+                <para>Enable/disable clamping of the point end points to the bounding box of the data. The bounding box is defined from the last PlaceWidget() invocation, and includes the effect of the PlaceFactor which is used to gram/shrink the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetAlignToZAxis">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetAlignToYAxis">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetAlignToXAxis">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetAlign">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetAlignMaxValue">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetAlignMinValue">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetAlign(System.Int32)">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetPoint2(System.Double[])">
+            <summary>
+                <para>Force the line widget to be aligned with one of the x-y-z axes. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the line to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetPoint2">
+            <summary>
+                <para>Set position of other end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetPoint2(System.Double[])">
+            <summary>
+                <para>Set position of other end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetPoint2(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set position of other end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetPoint1(System.Double[])">
+            <summary>
+                <para>Set position of other end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetPoint1">
+            <summary>
+                <para>Set/Get the position of first end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetPoint1(System.Double[])">
+            <summary>
+                <para>Set/Get the position of first end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetPoint1(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of first end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.GetResolution">
+            <summary>
+                <para>Set/Get the position of first end point.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the resolution (number of subdivisions) of the line.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the resolution (number of subdivisions) of the line.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkLineWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetSelectedHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little ball on the sphere is the handle). The properties of the handle when selected and unselected can be  manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little ball on the sphere is the handle). The properties of the handle when selected and unselected can be  manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetSelectedSphereProperty">
+            <summary>
+                <para>Get the sphere properties. The properties of the sphere when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetSphereProperty">
+            <summary>
+                <para>Get the sphere properties. The properties of the sphere when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetSphere(vtk.vtkSphere)">
+            <summary>
+                <para>Get the spherical implicit function defined by this widget.  Note that vtkPlanes is a subclass of vtkImplicitFunction, meaning that it can be used by a variety of filters to perform clipping, cutting, and selection of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the sphere.  The polydata consists of n+1 points, where n is the resolution of the sphere. These point values are guaranteed to be up-to-date when either the InteractionEvent or EndInteraction events are invoked. The user provides the vtkPolyData and the points and polysphere are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetHandlePosition">
+            <summary>
+                <para>Get the position of the handle.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetHandleDirection">
+            <summary>
+                <para>Set/Get the direction vector of the handle relative to the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetHandleDirection(System.Double[])">
+            <summary>
+                <para>Set/Get the direction vector of the handle relative to the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetHandleDirection(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the direction vector of the handle relative to the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.HandleVisibilityOff">
+            <summary>
+                <para>The handle sits on the surface of the sphere and may be moved around the surface by picking (left mouse) and then moving. The position of the handle can be retrieved, this is useful for positioning cameras and lights. By default, the handle is turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.HandleVisibilityOn">
+            <summary>
+                <para>The handle sits on the surface of the sphere and may be moved around the surface by picking (left mouse) and then moving. The position of the handle can be retrieved, this is useful for positioning cameras and lights. By default, the handle is turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetHandleVisibility">
+            <summary>
+                <para>The handle sits on the surface of the sphere and may be moved around the surface by picking (left mouse) and then moving. The position of the handle can be retrieved, this is useful for positioning cameras and lights. By default, the handle is turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetHandleVisibility(System.Int32)">
+            <summary>
+                <para>The handle sits on the surface of the sphere and may be moved around the surface by picking (left mouse) and then moving. The position of the handle can be retrieved, this is useful for positioning cameras and lights. By default, the handle is turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.ScaleOff">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.ScaleOn">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetScale">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetScale(System.Int32)">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.TranslationOff">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.TranslationOn">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetTranslation">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetTranslation(System.Int32)">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetCenter(System.Double[])">
+            <summary>
+                <para>Enable translation and scaling of the widget. By default, the widget can be translated and rotated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetCenter">
+            <summary>
+                <para>Set/Get the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetCenter(System.Double[])">
+            <summary>
+                <para>Set/Get the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetCenter(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetRadius">
+            <summary>
+                <para>Set/Get the center of the sphere.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetRadius(System.Double)">
+            <summary>
+                <para>Set/Get the radius of sphere. Default is .5.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetPhiResolution">
+            <summary>
+                <para>Set/Get the radius of sphere. Default is .5.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetPhiResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the resolution of the sphere in the Phi direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetThetaResolution">
+            <summary>
+                <para>Set/Get the resolution of the sphere in the Phi direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetThetaResolution(System.Int32)">
+            <summary>
+                <para>Set/Get the resolution of the sphere in the Theta direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetRepresentationToSurface">
+            <summary>
+                <para>Set/Get the resolution of the sphere in the Theta direction.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetRepresentationToWireframe">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetRepresentationToOff">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetRepresentation">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetRepresentationMaxValue">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.GetRepresentationMinValue">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetRepresentation(System.Int32)">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set the representation of the sphere. Different representations are useful depending on the application.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkSphereWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.RotationEnabledOff">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.RotationEnabledOn">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetRotationEnabled">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetRotationEnabled(System.Int32)">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.ScalingEnabledOff">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.ScalingEnabledOn">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetScalingEnabled">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetScalingEnabled(System.Int32)">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.TranslationEnabledOff">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.TranslationEnabledOn">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetTranslationEnabled">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetTranslationEnabled(System.Int32)">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.OutlineCursorWiresOff">
+            <summary>
+                <para>Control the behavior of the widget. Translation, rotation, and scaling can all be enabled and disabled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.OutlineCursorWiresOn">
+            <summary>
+                <para>Control the representation of the outline. This flag enables the cursor lines running between the handles. By default cursor wires are on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetOutlineCursorWires">
+            <summary>
+                <para>Control the representation of the outline. This flag enables the cursor lines running between the handles. By default cursor wires are on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetOutlineCursorWires(System.Int32)">
+            <summary>
+                <para>Control the representation of the outline. This flag enables the cursor lines running between the handles. By default cursor wires are on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.OutlineFaceWiresOff">
+            <summary>
+                <para>Control the representation of the outline. This flag enables the cursor lines running between the handles. By default cursor wires are on.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.OutlineFaceWiresOn">
+            <summary>
+                <para>Control the representation of the outline. This flag enables face wires. By default face wires are off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetOutlineFaceWires">
+            <summary>
+                <para>Control the representation of the outline. This flag enables face wires. By default face wires are off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetOutlineFaceWires(System.Int32)">
+            <summary>
+                <para>Control the representation of the outline. This flag enables face wires. By default face wires are off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetSelectedOutlineProperty">
+            <summary>
+                <para>Get the outline properties (the outline of the box). The  properties of the outline when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetOutlineProperty">
+            <summary>
+                <para>Get the outline properties (the outline of the box). The  properties of the outline when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetSelectedFaceProperty">
+            <summary>
+                <para>Get the face properties (the faces of the box). The  properties of the face when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetFaceProperty">
+            <summary>
+                <para>Get the face properties (the faces of the box). The  properties of the face when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.HandlesOff">
+            <summary>
+                <para>Switches handles (the spheres) on or off by manipulating the actor visibility.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.HandlesOn">
+            <summary>
+                <para>Switches handles (the spheres) on or off by manipulating the actor visibility.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetSelectedHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetHandleProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that define the box widget. The polydata consists of 6 quadrilateral faces and 15 points. The first eight points define the eight corner vertices; the next six define the -x,+x, -y,+y, -z,+z face points; and the final point (the 15th out of 15 points) defines the center of the hexahedron. These point values are guaranteed to be up-to-date when either the InteractionEvent or EndInteractionEvent events are invoked. The user provides the vtkPolyData and the points and cells are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetTransform(vtk.vtkTransform)">
+            <summary>
+                <para>Set the position, scale and orientation of the box widget using the transform specified. Note that the transformation is relative to  where PlaceWidget was initially called (i.e., the original bounding box). </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetTransform(vtk.vtkTransform)">
+            <summary>
+                <para>Retrieve a linear transform characterizing the transformation of the box. Note that the transformation is relative to where PlaceWidget was initially called. This method modifies the transform provided. The transform can be used to control the position of vtkProp3D's, as well as other transformation operations (e.g., vtkTranformPolyData).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.InsideOutOff">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, the normals point out of the box. When on, the normals point into the hexahedron.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.InsideOutOn">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, the normals point out of the box. When on, the normals point into the hexahedron.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetInsideOut">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, the normals point out of the box. When on, the normals point into the hexahedron.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetInsideOut(System.Int32)">
+            <summary>
+                <para>Set/Get the InsideOut flag. When off, the normals point out of the box. When on, the normals point into the hexahedron.  InsideOut is off by default.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.GetPlanes(vtk.vtkPlanes)">
+            <summary>
+                <para>Get the planes describing the implicit function defined by the box widget. The user must provide the instance of the class vtkPlanes. Note that vtkPlanes is a subclass of vtkImplicitFunction, meaning that it can be used by a variety of filters to perform clipping, cutting, and selection of data.  (The direction of the normals of the planes can be reversed enabling the InsideOut flag.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Get the planes describing the implicit function defined by the box widget. The user must provide the instance of the class vtkPlanes. Note that vtkPlanes is a subclass of vtkImplicitFunction, meaning that it can be used by a variety of filters to perform clipping, cutting, and selection of data.  (The direction of the normals of the planes can be reversed enabling the InsideOut flag.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkBoxWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods for turning the interactor observer on and off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.GetScalarBarActor">
+            <summary>
+                <para>Get the ScalarBar used by this Widget. One is created automatically.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkScalarBarWidget.SetScalarBarActor(vtk.vtkScalarBarActor)">
+            <summary>
+                <para>Get the ScalarBar used by this Widget. One is created automatically.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetEdgesProperty">
+            <summary>
+                <para>Get the property of the intersection edges. (This property also applies to the edges when tubed.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetSelectedOutlineProperty">
+            <summary>
+                <para>Get the property of the outline.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetOutlineProperty">
+            <summary>
+                <para>Get the property of the outline.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetSelectedPlaneProperty">
+            <summary>
+                <para>Get the plane properties. The properties of the plane when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetPlaneProperty">
+            <summary>
+                <para>Get the plane properties. The properties of the plane when selected  and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetSelectedNormalProperty">
+            <summary>
+                <para>Get the properties on the normal (line and cone).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetNormalProperty">
+            <summary>
+                <para>Get the properties on the normal (line and cone).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SizeHandles">
+            <summary>
+                <para>Control widget appearance</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.UpdatePlacement">
+            <summary>
+                <para>Satisfies the superclass API.  This will change the state of the widget to match changes that have been made to the underlying PolyDataSource</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetPlane(vtk.vtkPlane)">
+            <summary>
+                <para>Get the implicit function for the plane. The user must provide the instance of the class vtkPlane. Note that vtkPlane is a subclass of vtkImplicitFunction, meaning that it can be used by a variety of filters to perform clipping, cutting, and selection of data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetPolyDataAlgorithm">
+            <summary>
+                <para>Satisfies superclass API.  This returns a pointer to the underlying PolyData (which represents the plane).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata that defines the plane. The polydata contains a single polygon that is clipped by the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.ScaleEnabledOff">
+            <summary>
+                <para>Turn on/off the ability to scale with the mouse </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.ScaleEnabledOn">
+            <summary>
+                <para>Turn on/off the ability to scale with the mouse </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetScaleEnabled">
+            <summary>
+                <para>Turn on/off the ability to scale with the mouse </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetScaleEnabled(System.Int32)">
+            <summary>
+                <para>Turn on/off the ability to scale with the mouse </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.OutlineTranslationOff">
+            <summary>
+                <para>Turn on/off the ability to translate the bounding box by grabbing it with the left mouse button.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.OutlineTranslationOn">
+            <summary>
+                <para>Turn on/off the ability to translate the bounding box by grabbing it with the left mouse button.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetOutlineTranslation">
+            <summary>
+                <para>Turn on/off the ability to translate the bounding box by grabbing it with the left mouse button.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetOutlineTranslation(System.Int32)">
+            <summary>
+                <para>Turn on/off the ability to translate the bounding box by grabbing it with the left mouse button.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.DrawPlaneOff">
+            <summary>
+                <para>Enable/disable the drawing of the plane. In some cases the plane interferes with the object that it is operating on (i.e., the plane interferes with the cut surface it produces producing z-buffer artifacts.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.DrawPlaneOn">
+            <summary>
+                <para>Enable/disable the drawing of the plane. In some cases the plane interferes with the object that it is operating on (i.e., the plane interferes with the cut surface it produces producing z-buffer artifacts.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetDrawPlane">
+            <summary>
+                <para>Enable/disable the drawing of the plane. In some cases the plane interferes with the object that it is operating on (i.e., the plane interferes with the cut surface it produces producing z-buffer artifacts.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetDrawPlane(System.Int32)">
+            <summary>
+                <para>Enable/disable the drawing of the plane. In some cases the plane interferes with the object that it is operating on (i.e., the plane interferes with the cut surface it produces producing z-buffer artifacts.)</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.TubingOff">
+            <summary>
+                <para>Turn on/off tubing of the wire outline of the plane. The tube thickens the line by wrapping with a vtkTubeFilter.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.TubingOn">
+            <summary>
+                <para>Turn on/off tubing of the wire outline of the plane. The tube thickens the line by wrapping with a vtkTubeFilter.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetTubing">
+            <summary>
+                <para>Turn on/off tubing of the wire outline of the plane. The tube thickens the line by wrapping with a vtkTubeFilter.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetTubing(System.Int32)">
+            <summary>
+                <para>Turn on/off tubing of the wire outline of the plane. The tube thickens the line by wrapping with a vtkTubeFilter.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.NormalToZAxisOff">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.NormalToZAxisOn">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetNormalToZAxis">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetNormalToZAxis(System.Int32)">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.NormalToYAxisOff">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.NormalToYAxisOn">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetNormalToYAxis">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetNormalToYAxis(System.Int32)">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.NormalToXAxisOff">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.NormalToXAxisOn">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetNormalToXAxis">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetNormalToXAxis(System.Int32)">
+            <summary>
+                <para>Force the plane widget to be aligned with one of the x-y-z axes. If one axis is set on, the other two will be set off. Remember that when the state changes, a ModifiedEvent is invoked. This can be used to snap the plane to the axes if it is orginally not aligned.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetNormal(System.Double[])">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetNormal">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetNormal(System.Double[])">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetNormal(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetOrigin(System.Double[])">
+            <summary>
+                <para>Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.GetOrigin">
+            <summary>
+                <para>Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetOrigin(System.Double[])">
+            <summary>
+                <para>Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetOrigin(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImplicitPlaneWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods for turning the interactor observer on and off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.GetXYPlotActor">
+            <summary>
+                <para>Get the XY plot used by this Widget. One is created automatically.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkXYPlotWidget.SetXYPlotActor(vtk.vtkXYPlotActor)">
+            <summary>
+                <para>Get the XY plot used by this Widget. One is created automatically.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.SetViewport(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/get the viewport to position/size this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.SetOutlineColor(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/get the color of the outline of this widget.  The outline is visible when (in interactive mode) the cursor is over this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.InteractiveOff">
+            <summary>
+                <para>Set/get whether to allow this widget to be interactively moved/scaled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.InteractiveOn">
+            <summary>
+                <para>Set/get whether to allow this widget to be interactively moved/scaled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.GetInteractive">
+            <summary>
+                <para>Set/get whether to allow this widget to be interactively moved/scaled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.SetInteractive(System.Int32)">
+            <summary>
+                <para>Set/get whether to allow this widget to be interactively moved/scaled.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.ExecuteCameraUpdateEvent(vtk.vtkObject,System.UInt32!System.Runtime.CompilerServices.IsLong,System.IntPtr)">
+            <summary>
+                <para>Callback to keep the camera for the orientation marker up to date with the camera in the parent renderer.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Enable/disable the widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.GetOrientationMarker">
+            <summary>
+                <para>Set/get the orientation marker to be displayed in this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkOrientationMarkerWidget.SetOrientationMarker(vtk.vtkProp)">
+            <summary>
+                <para>Set/get the orientation marker to be displayed in this widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPointWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetHotSpotSize">
+            <summary>
+                <para>Set the "hot spot" size; i.e., the region around the focus, in which the motion vector is used to control the constrained sliding action. Note the size is specified as a fraction of the length of the diagonal of the  point widget's bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetHotSpotSizeMaxValue">
+            <summary>
+                <para>Set the "hot spot" size; i.e., the region around the focus, in which the motion vector is used to control the constrained sliding action. Note the size is specified as a fraction of the length of the diagonal of the  point widget's bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetHotSpotSizeMinValue">
+            <summary>
+                <para>Set the "hot spot" size; i.e., the region around the focus, in which the motion vector is used to control the constrained sliding action. Note the size is specified as a fraction of the length of the diagonal of the  point widget's bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetHotSpotSize(System.Double)">
+            <summary>
+                <para>Set the "hot spot" size; i.e., the region around the focus, in which the motion vector is used to control the constrained sliding action. Note the size is specified as a fraction of the length of the diagonal of the  point widget's bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetSelectedProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetProperty">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.AllOff">
+            <summary>
+                <para>Get the handle properties (the little balls are the handles). The  properties of the handles when selected and normal can be  set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.AllOn">
+            <summary>
+                <para>Convenience methods to turn outline and shadows on and off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.TranslationModeOff">
+            <summary>
+                <para>Convenience methods to turn outline and shadows on and off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.TranslationModeOn">
+            <summary>
+                <para>If translation mode is on, as the widget is moved the bounding box, shadows, and cursor are all translated simultaneously as the point moves.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetTranslationMode">
+            <summary>
+                <para>If translation mode is on, as the widget is moved the bounding box, shadows, and cursor are all translated simultaneously as the point moves.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetTranslationMode(System.Int32)">
+            <summary>
+                <para>If translation mode is on, as the widget is moved the bounding box, shadows, and cursor are all translated simultaneously as the point moves.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.ZShadowsOff">
+            <summary>
+                <para>If translation mode is on, as the widget is moved the bounding box, shadows, and cursor are all translated simultaneously as the point moves.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.ZShadowsOn">
+            <summary>
+                <para>Turn on/off the wireframe z-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetZShadows">
+            <summary>
+                <para>Turn on/off the wireframe z-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetZShadows(System.Int32)">
+            <summary>
+                <para>Turn on/off the wireframe z-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.YShadowsOff">
+            <summary>
+                <para>Turn on/off the wireframe z-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.YShadowsOn">
+            <summary>
+                <para>Turn on/off the wireframe y-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetYShadows">
+            <summary>
+                <para>Turn on/off the wireframe y-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetYShadows(System.Int32)">
+            <summary>
+                <para>Turn on/off the wireframe y-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.XShadowsOff">
+            <summary>
+                <para>Turn on/off the wireframe y-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.XShadowsOn">
+            <summary>
+                <para>Turn on/off the wireframe x-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetXShadows">
+            <summary>
+                <para>Turn on/off the wireframe x-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetXShadows(System.Int32)">
+            <summary>
+                <para>Turn on/off the wireframe x-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.OutlineOff">
+            <summary>
+                <para>Turn on/off the wireframe x-shadows.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.OutlineOn">
+            <summary>
+                <para>Turn on/off the wireframe bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetOutline">
+            <summary>
+                <para>Turn on/off the wireframe bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetOutline(System.Int32)">
+            <summary>
+                <para>Turn on/off the wireframe bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetPosition(System.Double[])">
+            <summary>
+                <para>Turn on/off the wireframe bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetPosition">
+            <summary>
+                <para>Set/Get the position of the point. Note that if the position is set outside of the bounding box, it will be clamped to the boundary of the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetPosition(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point. Note that if the position is set outside of the bounding box, it will be clamped to the boundary of the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetPosition(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of the point. Note that if the position is set outside of the bounding box, it will be clamped to the boundary of the bounding box.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the point. A single point and a vertex compose the vtkPolyData.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the point. A single point and a vertex compose the vtkPolyData.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPointWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProp(vtk.vtkProp)">
+            <summary>
+                <para>@deprecated Replaced by vtkImageTracerWidget::SetViewProp() as of VTK 5.0.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.IsClosed">
+            <summary>
+                <para>Is the path closed or open?</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.InitializeHandles(vtk.vtkPoints)">
+            <summary>
+                <para>Initialize the widget with a set of points and generate lines between them.  If AutoClose is on it will handle the case wherein the first and last points are congruent.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.InteractionOff">
+            <summary>
+                <para>Enable/disable mouse interaction when the widget is visible.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.InteractionOn">
+            <summary>
+                <para>Enable/disable mouse interaction when the widget is visible.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetInteraction">
+            <summary>
+                <para>Enable/disable mouse interaction when the widget is visible.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetInteraction(System.Int32)">
+            <summary>
+                <para>Enable/disable mouse interaction when the widget is visible.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetNumberOfHandles">
+            <summary>
+                <para>Get the number of handles.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetHandlePosition(System.Int32)">
+            <summary>
+                <para>Set/Get the handle position in terms of a zero-based array of handles.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetHandlePosition(System.Int32,System.Double[])">
+            <summary>
+                <para>Set/Get the handle position in terms of a zero-based array of handles.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetHandlePosition(System.Int32,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the handle position in terms of a zero-based array of handles.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetHandlePosition(System.Int32,System.Double[])">
+            <summary>
+                <para>Set/Get the handle position in terms of a zero-based array of handles.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetImageSnapType">
+            <summary>
+                <para>Set/Get the type of snapping to image data: center of a pixel/voxel or nearest point defining a pixel/voxel.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetImageSnapTypeMaxValue">
+            <summary>
+                <para>Set/Get the type of snapping to image data: center of a pixel/voxel or nearest point defining a pixel/voxel.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetImageSnapTypeMinValue">
+            <summary>
+                <para>Set/Get the type of snapping to image data: center of a pixel/voxel or nearest point defining a pixel/voxel.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetImageSnapType(System.Int32)">
+            <summary>
+                <para>Set/Get the type of snapping to image data: center of a pixel/voxel or nearest point defining a pixel/voxel.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetGlyphSource">
+            <summary>
+                <para>Set/Get the type of snapping to image data: center of a pixel/voxel or nearest point defining a pixel/voxel.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetPath(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the points and lines that define the traced path. These point values are guaranteed to be up-to-date when either the InteractionEvent or EndInteraction events are invoked. The user provides the vtkPolyData and the points and cells representing the line are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetCaptureRadius">
+            <summary>
+                <para>Set/Get the capture radius for automatic path closing.  For image data, capture radius should be half the distance between voxel/pixel centers.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetCaptureRadius(System.Double)">
+            <summary>
+                <para>Set/Get the capture radius for automatic path closing.  For image data, capture radius should be half the distance between voxel/pixel centers.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.AutoCloseOff">
+            <summary>
+                <para>In concert with a CaptureRadius value, automatically form a closed path by connecting first to last path points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.AutoCloseOn">
+            <summary>
+                <para>In concert with a CaptureRadius value, automatically form a closed path by connecting first to last path points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetAutoClose">
+            <summary>
+                <para>In concert with a CaptureRadius value, automatically form a closed path by connecting first to last path points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetAutoClose(System.Int32)">
+            <summary>
+                <para>In concert with a CaptureRadius value, automatically form a closed path by connecting first to last path points.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SnapToImageOff">
+            <summary>
+                <para>Force snapping to image data while tracing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SnapToImageOn">
+            <summary>
+                <para>Force snapping to image data while tracing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetSnapToImage">
+            <summary>
+                <para>Force snapping to image data while tracing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetSnapToImage(System.Int32)">
+            <summary>
+                <para>Force snapping to image data while tracing.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetProjectionPosition">
+            <summary>
+                <para>Set the position of the widgets' handles in terms of a plane's position. e.g., if ProjectionNormal is 0, all of the x-coordinate values of the handles are set to ProjectionPosition.  No attempt is made to ensure that the position is within the bounds of either the underlying image data or the prop on which tracing is performed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProjectionPosition(System.Double)">
+            <summary>
+                <para>Set the position of the widgets' handles in terms of a plane's position. e.g., if ProjectionNormal is 0, all of the x-coordinate values of the handles are set to ProjectionPosition.  No attempt is made to ensure that the position is within the bounds of either the underlying image data or the prop on which tracing is performed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProjectionNormalToZAxes">
+            <summary>
+                <para>Set the position of the widgets' handles in terms of a plane's position. e.g., if ProjectionNormal is 0, all of the x-coordinate values of the handles are set to ProjectionPosition.  No attempt is made to ensure that the position is within the bounds of either the underlying image data or the prop on which tracing is performed.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProjectionNormalToYAxes">
+            <summary>
+                <para>Set the projection normal.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively.  Since the handles are 2D glyphs, it is necessary to specify a plane on which to generate them, even though ProjectToPlane may be turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProjectionNormalToXAxes">
+            <summary>
+                <para>Set the projection normal.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively.  Since the handles are 2D glyphs, it is necessary to specify a plane on which to generate them, even though ProjectToPlane may be turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetProjectionNormal">
+            <summary>
+                <para>Set the projection normal.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively.  Since the handles are 2D glyphs, it is necessary to specify a plane on which to generate them, even though ProjectToPlane may be turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetProjectionNormalMaxValue">
+            <summary>
+                <para>Set the projection normal.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively.  Since the handles are 2D glyphs, it is necessary to specify a plane on which to generate them, even though ProjectToPlane may be turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetProjectionNormalMinValue">
+            <summary>
+                <para>Set the projection normal.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively.  Since the handles are 2D glyphs, it is necessary to specify a plane on which to generate them, even though ProjectToPlane may be turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProjectionNormal(System.Int32)">
+            <summary>
+                <para>Set the projection normal.  The normal in SetProjectionNormal is 0,1,2 for YZ,XZ,XY planes respectively.  Since the handles are 2D glyphs, it is necessary to specify a plane on which to generate them, even though ProjectToPlane may be turned off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.ProjectToPlaneOff">
+            <summary>
+                <para>Force handles to be on a specific ortho plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.ProjectToPlaneOn">
+            <summary>
+                <para>Force handles to be on a specific ortho plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetProjectToPlane">
+            <summary>
+                <para>Force handles to be on a specific ortho plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetProjectToPlane(System.Int32)">
+            <summary>
+                <para>Force handles to be on a specific ortho plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetViewProp(vtk.vtkProp)">
+            <summary>
+                <para>Set the prop, usually a vtkImageActor, to trace over.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetSelectedLineProperty">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetSelectedLineProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetLineProperty">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetLineProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the line properties. The properties of the line when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetSelectedHandleProperty">
+            <summary>
+                <para>Set/Get the handle properties (the 2D glyphs are the handles). The properties of the handles when selected and normal can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetSelectedHandleProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the handle properties (the 2D glyphs are the handles). The properties of the handles when selected and normal can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.GetHandleProperty">
+            <summary>
+                <para>Set/Get the handle properties (the 2D glyphs are the handles). The properties of the handles when selected and normal can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetHandleProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the handle properties (the 2D glyphs are the handles). The properties of the handles when selected and normal can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the handle properties (the 2D glyphs are the handles). The properties of the handles when selected and normal can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImageTracerWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.ToString">
+            <summary>
+This returns the state of this object as a string. It is equivalent to PrintSelf.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.PrintSelf(System.IO.TextWriter,System.Int32)">
+            <summary>
+PrintSelf writes the state of this object to a TextWriter.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRightButtonAutoModifier">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRightButtonAutoModifierMaxValue">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRightButtonAutoModifierMinValue">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetRightButtonAutoModifier(System.Int32)">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMiddleButtonAutoModifier">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMiddleButtonAutoModifierMaxValue">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMiddleButtonAutoModifierMinValue">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetMiddleButtonAutoModifier(System.Int32)">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLeftButtonAutoModifier">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLeftButtonAutoModifierMaxValue">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLeftButtonAutoModifierMinValue">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetLeftButtonAutoModifier(System.Int32)">
+            <summary>
+                <para>Set the auto-modifiers associated to buttons. This allows users to bind some buttons to actions that are usually triggered by a key modifier. For example, if you do not need cursoring, you can bind the left button action to SLICE_MOTION_ACTION (see above)  and the left button auto modifier to CONTROL_MODIFIER: you end up with the left button controling panning without pressing a key.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRightButtonAction">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRightButtonActionMaxValue">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRightButtonActionMinValue">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetRightButtonAction(System.Int32)">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMiddleButtonAction">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMiddleButtonActionMaxValue">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMiddleButtonActionMinValue">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetMiddleButtonAction(System.Int32)">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLeftButtonAction">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLeftButtonActionMaxValue">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLeftButtonActionMinValue">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetLeftButtonAction(System.Int32)">
+            <summary>
+                <para>Set action associated to buttons.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.InteractionOff">
+            <summary>
+                <para>Enable/disable mouse interaction so the widget remains on display.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.InteractionOn">
+            <summary>
+                <para>Enable/disable mouse interaction so the widget remains on display.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetInteraction">
+            <summary>
+                <para>Enable/disable mouse interaction so the widget remains on display.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetInteraction(System.Int32)">
+            <summary>
+                <para>Enable/disable mouse interaction so the widget remains on display.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.UseContinuousCursorOff">
+            <summary>
+                <para>Choose between voxel centered or continuous cursor probing.  With voxel centered probing, the cursor snaps to the nearest voxel and the reported cursor coordinates are extent based.  With continuous probing, voxel data is interpolated using vtkDataSetAttributes' InterpolatePoint method and the reported coordinates are 3D spacial continuous.  </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.UseContinuousCursorOn">
+            <summary>
+                <para>Choose between voxel centered or continuous cursor probing.  With voxel centered probing, the cursor snaps to the nearest voxel and the reported cursor coordinates are extent based.  With continuous probing, voxel data is interpolated using vtkDataSetAttributes' InterpolatePoint method and the reported coordinates are 3D spacial continuous.  </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetUseContinuousCursor">
+            <summary>
+                <para>Choose between voxel centered or continuous cursor probing.  With voxel centered probing, the cursor snaps to the nearest voxel and the reported cursor coordinates are extent based.  With continuous probing, voxel data is interpolated using vtkDataSetAttributes' InterpolatePoint method and the reported coordinates are 3D spacial continuous.  </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetUseContinuousCursor(System.Int32)">
+            <summary>
+                <para>Choose between voxel centered or continuous cursor probing.  With voxel centered probing, the cursor snaps to the nearest voxel and the reported cursor coordinates are extent based.  With continuous probing, voxel data is interpolated using vtkDataSetAttributes' InterpolatePoint method and the reported coordinates are 3D spacial continuous.  </para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCurrentImageValue">
+            <summary>
+                <para>Get the current image value at the current cursor position.  To be used in conjunction with GetCursorDataStatus.  The value is VTK_DOUBLE_MAX when the data is invalid.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCurrentCursorPosition">
+            <summary>
+                <para>Get the current cursor position.  To be used in conjunction with GetCursorDataStatus.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCursorDataStatus">
+            <summary>
+                <para>Get the status of the cursor data.  If this returns 1 the CurrentCursorPosition and CurrentImageValue will have current data.  If it returns 0, these values are invalid.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCursorData(System.Double[])">
+            <summary>
+                <para>Get the image coordinate position and voxel value.  Currently only supports single component image data.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetWindowLevel(System.Double[])">
+            <summary>
+                <para>Set/Get the current window and level values.  Set should only be called after SetInput.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetWindowLevel(System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the current window and level values.  Set should only be called after SetInput.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetTexturePlaneProperty">
+            <summary>
+                <para>Set/Get the property for the resliced image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetTexturePlaneProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the property for the resliced image.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetTextProperty">
+            <summary>
+                <para>Set/Get the text property for the image data and window-level annotation.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetTextProperty(vtk.vtkTextProperty)">
+            <summary>
+                <para>Set/Get the text property for the image data and window-level annotation.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetMarginProperty">
+            <summary>
+                <para>Set the properties of the margins.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetMarginProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set the properties of the margins.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCursorProperty">
+            <summary>
+                <para>Set the properties of the cross-hair cursor.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetCursorProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set the properties of the cross-hair cursor.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.DisplayTextOff">
+            <summary>
+                <para>Enable/disable text display of window-level, image coords and values in a render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.DisplayTextOn">
+            <summary>
+                <para>Enable/disable text display of window-level, image coords and values in a render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetDisplayText">
+            <summary>
+                <para>Enable/disable text display of window-level, image coords and values in a render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetDisplayText(System.Int32)">
+            <summary>
+                <para>Enable/disable text display of window-level, image coords and values in a render window.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetLookupTable">
+            <summary>
+                <para>Set/Get the internal lookuptable (lut) to one defined by the user, or, alternatively, to the lut of another vtkImgePlaneWidget.  In this way, a set of three orthogonal planes can share the same lut so that window-levelling is performed uniformly among planes.  The default internal lut can be re- set/allocated by setting to 0 (NULL).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetLookupTable(vtk.vtkLookupTable)">
+            <summary>
+                <para>Set/Get the internal lookuptable (lut) to one defined by the user, or, alternatively, to the lut of another vtkImgePlaneWidget.  In this way, a set of three orthogonal planes can share the same lut so that window-levelling is performed uniformly among planes.  The default internal lut can be re- set/allocated by setting to 0 (NULL).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPicker(vtk.vtkCellPicker)">
+            <summary>
+                <para>Set the internal picker to one defined by the user.  In this way, a set of three orthogonal planes can share the same picker so that picking is performed correctly.  The default internal picker can be re-set/allocated by setting to 0 (NULL).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPlaneOrientationToZAxes">
+            <summary>
+                <para>Set the internal picker to one defined by the user.  In this way, a set of three orthogonal planes can share the same picker so that picking is performed correctly.  The default internal picker can be re-set/allocated by setting to 0 (NULL).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPlaneOrientationToYAxes">
+            <summary>
+                <para>Convenience method sets the plane orientation normal to the x, y, or z axes.  Default is XAxes (0).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPlaneOrientationToXAxes">
+            <summary>
+                <para>Convenience method sets the plane orientation normal to the x, y, or z axes.  Default is XAxes (0).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPlaneOrientation">
+            <summary>
+                <para>Convenience method sets the plane orientation normal to the x, y, or z axes.  Default is XAxes (0).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPlaneOrientation(System.Int32)">
+            <summary>
+                <para>Convenience method sets the plane orientation normal to the x, y, or z axes.  Default is XAxes (0).</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetSelectedPlaneProperty">
+            <summary>
+                <para>Set/Get the plane's outline properties. The properties of the plane's  outline when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetSelectedPlaneProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the plane's outline properties. The properties of the plane's  outline when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPlaneProperty">
+            <summary>
+                <para>Set/Get the plane's outline properties. The properties of the plane's  outline when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPlaneProperty(vtk.vtkProperty)">
+            <summary>
+                <para>Set/Get the plane's outline properties. The properties of the plane's  outline when selected and unselected can be manipulated.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetColorMap(vtk.vtkImageMapToColors)">
+            <summary>
+                <para>Convenience method to get the vtkImageMapToColors filter used by this widget.  The user can properly render other transparent actors in a scene by calling the filter's SetOuputFormatToRGB and  PassAlphaToOutputOff.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetColorMap">
+            <summary>
+                <para>Convenience method to get the vtkImageMapToColors filter used by this widget.  The user can properly render other transparent actors in a scene by calling the filter's SetOuputFormatToRGB and  PassAlphaToOutputOff.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetTexture">
+            <summary>
+                <para>Convenience method to get the texture used by this widget.  This can be used in external slice viewers.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.UpdatePlacement">
+            <summary>
+                <para>Satisfies superclass API.  This will change the state of the widget to match changes that have been made to the underlying PolyDataSource</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPolyDataAlgorithm">
+            <summary>
+                <para>Satisfies superclass API.  This returns a pointer to the underlying PolyData.  Make changes to this before calling the initial PlaceWidget() to have the initial placement follow suit.  Or, make changes after the widget has been initialised and call UpdatePlacement() to realise.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPolyData(vtk.vtkPolyData)">
+            <summary>
+                <para>Grab the polydata (including points) that defines the plane.  The polydata consists of (res+1)*(res+1) points, and res*res quadrilateral polygons, where res is the resolution of the plane. These point values are guaranteed to be up-to-date when either the InteractionEvent or EndInteraction events are invoked. The user provides the vtkPolyData and the points and polyplane are added to it.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.TextureVisibilityOff">
+            <summary>
+                <para>Control the visibility of the actual texture mapped reformatted plane. in some cases you may only want the plane outline for example.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.TextureVisibilityOn">
+            <summary>
+                <para>Control the visibility of the actual texture mapped reformatted plane. in some cases you may only want the plane outline for example.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetTextureVisibility">
+            <summary>
+                <para>Control the visibility of the actual texture mapped reformatted plane. in some cases you may only want the plane outline for example.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetTextureVisibility(System.Int32)">
+            <summary>
+                <para>Control the visibility of the actual texture mapped reformatted plane. in some cases you may only want the plane outline for example.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.TextureInterpolateOff">
+            <summary>
+                <para>Specify whether to interpolate the texture or not. When off, the reslice interpolation is nearest neighbour regardless of how the interpolation is set through the API. Set before setting the vtkImageData imput. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.TextureInterpolateOn">
+            <summary>
+                <para>Specify whether to interpolate the texture or not. When off, the reslice interpolation is nearest neighbour regardless of how the interpolation is set through the API. Set before setting the vtkImageData imput. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetTextureInterpolate">
+            <summary>
+                <para>Specify whether to interpolate the texture or not. When off, the reslice interpolation is nearest neighbour regardless of how the interpolation is set through the API. Set before setting the vtkImageData imput. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetTextureInterpolate(System.Int32)">
+            <summary>
+                <para>Specify whether to interpolate the texture or not. When off, the reslice interpolation is nearest neighbour regardless of how the interpolation is set through the API. Set before setting the vtkImageData imput. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.UserControlledLookupTableOff">
+            <summary>
+                <para>Let the user control the lookup table. NOTE: apply this method BEFORE applying the SetLookupTable method. Default is Off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.UserControlledLookupTableOn">
+            <summary>
+                <para>Let the user control the lookup table. NOTE: apply this method BEFORE applying the SetLookupTable method. Default is Off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetUserControlledLookupTable">
+            <summary>
+                <para>Let the user control the lookup table. NOTE: apply this method BEFORE applying the SetLookupTable method. Default is Off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetUserControlledLookupTable(System.Int32)">
+            <summary>
+                <para>Let the user control the lookup table. NOTE: apply this method BEFORE applying the SetLookupTable method. Default is Off.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.RestrictPlaneToVolumeOff">
+            <summary>
+                <para>Make sure that the plane remains within the volume. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.RestrictPlaneToVolumeOn">
+            <summary>
+                <para>Make sure that the plane remains within the volume. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetRestrictPlaneToVolume">
+            <summary>
+                <para>Make sure that the plane remains within the volume. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetRestrictPlaneToVolume(System.Int32)">
+            <summary>
+                <para>Make sure that the plane remains within the volume. Default is On.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetResliceOutput">
+            <summary>
+                <para>Convenience method to get the vtkImageReslice output.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetResliceInterpolateToCubic">
+            <summary>
+                <para>Convenience method to get the vtkImageReslice output.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetResliceInterpolateToLinear">
+            <summary>
+                <para>Set the interpolation to use when texturing the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetResliceInterpolateToNearestNeighbour">
+            <summary>
+                <para>Set the interpolation to use when texturing the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetResliceInterpolate">
+            <summary>
+                <para>Set the interpolation to use when texturing the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetResliceInterpolate(System.Int32)">
+            <summary>
+                <para>Set the interpolation to use when texturing the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetSlicePosition(System.Double)">
+            <summary>
+                <para>Set the position of the slice along its normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetSlicePosition">
+            <summary>
+                <para>Get the position of the slice along its normal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetSliceIndex(System.Int32)">
+            <summary>
+                <para>Set the slice position in terms of the data extent.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetSliceIndex">
+            <summary>
+                <para>Get the slice position in terms of the data extent.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetVector2(System.Double[])">
+            <summary>
+                <para>Get the vector from the plane origin to point2.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetVector1(System.Double[])">
+            <summary>
+                <para>Get the vector from the plane origin to point1.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetNormal(System.Double[])">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetNormal">
+            <summary>
+                <para>Get the normal to the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCenter(System.Double[])">
+            <summary>
+                <para>Get the center of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetCenter">
+            <summary>
+                <para>Get the center of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPoint2(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPoint2">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPoint2(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPoint2(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of the point defining the second axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPoint1(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetPoint1">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPoint1(System.Double[])">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetPoint1(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the position of the point defining the first axis of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetOrigin(System.Double[])">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.GetOrigin">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetOrigin(System.Double[])">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetOrigin(System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set/Get the origin of the plane.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetInput(vtk.vtkDataSet)">
+            <summary>
+                <para>Set the vtkImageData* input for the vtkImageReslice.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Set the vtkImageData* input for the vtkImageReslice.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.PlaceWidget">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkImagePlaneWidget.SetEnabled(System.Int32)">
+            <summary>
+                <para>Methods that satisfy the superclass' API.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.UpdatePlacement">
+            <summary>
+                <para>If you've made changes to the underlying vtkPolyDataSource AFTER your initial call to PlaceWidget(), use this method to realise the changes in the widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.GetPolyDataAlgorithm">
+            <summary>
+                <para>Returns underlying vtkPolyDataSource that determines geometry.  This can be modified after which PlaceWidget() or UpdatePlacement() can be called.  UpdatePlacement() will always update the planewidget according to the geometry of the underlying PolyDataSource.  PlaceWidget() will only make use of this geometry if there is no Input and no Prop3D set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.GetPolyDataSource">
+            <summary>
+                <para>Returns underlying vtkPolyDataSource that determines geometry.  This can be modified after which PlaceWidget() or UpdatePlacement() can be called.  UpdatePlacement() will always update the planewidget according to the geometry of the underlying PolyDataSource.  PlaceWidget() will only make use of this geometry if there is no Input and no Prop3D set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Returns underlying vtkPolyDataSource that determines geometry.  This can be modified after which PlaceWidget() or UpdatePlacement() can be called.  UpdatePlacement() will always update the planewidget according to the geometry of the underlying PolyDataSource.  PlaceWidget() will only make use of this geometry if there is no Input and no Prop3D set.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>We have to redeclare this abstract, PlaceWidget() requires it.  You HAVE to override this in your concrete child classes.  If there's no Prop3D and no Input, your PlaceWidget must make use of the underlying  PolyDataSource to do its work.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtkPolyDataSourceWidget.PlaceWidget">
+            <summary>
+                <para>Overrides vtk3DWidget PlaceWidget() so that it doesn't complain if there's no Input and no Prop3D.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.Dispose">
+            <summary>
+This method calls Delete() on the native instance.
+Use it to release resources in a timely fashion.
+</summary>
+            <remarks>
+If this method is not called, then the finalizer will 
+call Delete on this instance.
+</remarks>
+        </member>
+        <member name="M:vtk.vtk3DWidget.#ctor">
+            <summary>
+This constructor creates a wrapper class. It is the one to call.  /// </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.#ctor(System.Boolean)">
+            <summary>
+This constructor is called only by derived classes. It asks base classes not allocate a native instance.
+</summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+This constructor is used to convert native pointers into managed wrapper classes.
+</summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetHandleSize">
+            <summary>
+                <para>Set/Get the factor that controls the size of the handles that appear as part of the widget. These handles (like spheres, etc.) are used to manipulate the widget, and are sized as a fraction of the screen diagonal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetHandleSizeMaxValue">
+            <summary>
+                <para>Set/Get the factor that controls the size of the handles that appear as part of the widget. These handles (like spheres, etc.) are used to manipulate the widget, and are sized as a fraction of the screen diagonal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetHandleSizeMinValue">
+            <summary>
+                <para>Set/Get the factor that controls the size of the handles that appear as part of the widget. These handles (like spheres, etc.) are used to manipulate the widget, and are sized as a fraction of the screen diagonal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.SetHandleSize(System.Double)">
+            <summary>
+                <para>Set/Get the factor that controls the size of the handles that appear as part of the widget. These handles (like spheres, etc.) are used to manipulate the widget, and are sized as a fraction of the screen diagonal.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetPlaceFactor">
+            <summary>
+                <para>Set/Get a factor representing the scaling of the widget upon placement (via the PlaceWidget() method). Normally the widget is placed so that it just fits within the bounding box defined in PlaceWidget(bounds). The PlaceFactor will make the widget larger (PlaceFactor &gt; 1) or smaller (PlaceFactor &lt; 1). By default, PlaceFactor is set to 0.5.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetPlaceFactorMaxValue">
+            <summary>
+                <para>Set/Get a factor representing the scaling of the widget upon placement (via the PlaceWidget() method). Normally the widget is placed so that it just fits within the bounding box defined in PlaceWidget(bounds). The PlaceFactor will make the widget larger (PlaceFactor &gt; 1) or smaller (PlaceFactor &lt; 1). By default, PlaceFactor is set to 0.5.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetPlaceFactorMinValue">
+            <summary>
+                <para>Set/Get a factor representing the scaling of the widget upon placement (via the PlaceWidget() method). Normally the widget is placed so that it just fits within the bounding box defined in PlaceWidget(bounds). The PlaceFactor will make the widget larger (PlaceFactor &gt; 1) or smaller (PlaceFactor &lt; 1). By default, PlaceFactor is set to 0.5.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.SetPlaceFactor(System.Double)">
+            <summary>
+                <para>Set/Get a factor representing the scaling of the widget upon placement (via the PlaceWidget() method). Normally the widget is placed so that it just fits within the bounding box defined in PlaceWidget(bounds). The PlaceFactor will make the widget larger (PlaceFactor &gt; 1) or smaller (PlaceFactor &lt; 1). By default, PlaceFactor is set to 0.5.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetInput">
+            <summary>
+                <para>Specify the input dataset. This is not required, but if supplied, and no vtkProp3D is specified, it is used to initially position  the widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.SetInput(vtk.vtkDataSet)">
+            <summary>
+                <para>Specify the input dataset. This is not required, but if supplied, and no vtkProp3D is specified, it is used to initially position  the widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.GetProp3D">
+            <summary>
+                <para>Specify a vtkProp3D around which to place the widget. This  is not required, but if supplied, it is used to initially  position the widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.SetProp3D(vtk.vtkProp3D)">
+            <summary>
+                <para>Specify a vtkProp3D around which to place the widget. This  is not required, but if supplied, it is used to initially  position the widget.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.PlaceWidget(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>This method is used to initially place the widget.  The placement of the widget depends on whether a Prop3D or input dataset is provided. If one of these two is provided, they will be used to obtain a bounding box, around which the widget is placed. Otherwise, you can manually specify a bounds with the PlaceWidget(bounds) method. Note: PlaceWidget(bounds) is required by all subclasses; the other methods are provided as convenience methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.PlaceWidget">
+            <summary>
+                <para>This method is used to initially place the widget.  The placement of the widget depends on whether a Prop3D or input dataset is provided. If one of these two is provided, they will be used to obtain a bounding box, around which the widget is placed. Otherwise, you can manually specify a bounds with the PlaceWidget(bounds) method. Note: PlaceWidget(bounds) is required by all subclasses; the other methods are provided as convenience methods.</para>
+            </summary>
+        </member>
+        <member name="M:vtk.vtk3DWidget.PlaceWidget(System.Double[])">
+            <summary>
+                <para>This method is used to initially place the widget.  The placement of the widget depends on whether a Prop3D or input dataset is provided. If one of these two is provided, they will be used to obtain a bounding box, around which the widget is placed. Otherwise, you can manually specify a bounds with the PlaceWidget(bounds) method. Note: PlaceWidget(bounds) is required by all subclasses; the other methods are provided as convenience methods.</para>
+            </summary>
+        </member>
+    </members>
+</doc>
