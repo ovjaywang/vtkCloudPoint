@@ -13,7 +13,7 @@ namespace vtkPointCloud
         [STAThread]
         static void Main()
         {
-            EnvUtil.SetPathBefore(Environment.CurrentDirectory + "\\vtk\\bin");
+            //EnvUtil.SetPathBefore(Environment.CurrentDirectory + "\\vtk\\bin");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
