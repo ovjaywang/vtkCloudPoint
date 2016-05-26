@@ -34,7 +34,6 @@
             this.导入文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImporttxtFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportXLSFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.距离阈值过滤ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScanClustringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SimpleClusterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SourceClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,7 +117,6 @@
             // 
             this.操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.导入文件ToolStripMenuItem,
-            this.距离阈值过滤ToolStripMenuItem,
             this.ScanClustringToolStripMenuItem,
             this.MCCorMCE,
             this.ExportClusterToolStripMenuItem,
@@ -141,22 +139,16 @@
             // ImporttxtFileToolStripMenuItem
             // 
             this.ImporttxtFileToolStripMenuItem.Name = "ImporttxtFileToolStripMenuItem";
-            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImporttxtFileToolStripMenuItem.Text = "导入txt文件夹";
             this.ImporttxtFileToolStripMenuItem.Click += new System.EventHandler(this.ImporttxtFileToolStripMenuItem_Click);
             // 
             // ImportXLSFileToolStripMenuItem
             // 
             this.ImportXLSFileToolStripMenuItem.Name = "ImportXLSFileToolStripMenuItem";
-            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
-            // 
-            // 距离阈值过滤ToolStripMenuItem
-            // 
-            this.距离阈值过滤ToolStripMenuItem.Name = "距离阈值过滤ToolStripMenuItem";
-            this.距离阈值过滤ToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
-            this.距离阈值过滤ToolStripMenuItem.Text = "距离阈值过滤";
             // 
             // ScanClustringToolStripMenuItem
             // 
@@ -781,7 +773,6 @@
         private System.Windows.Forms.ToolStripMenuItem 导入文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImporttxtFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportXLSFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 距离阈值过滤ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试参数传递ToolStripMenuItem;
        
     }

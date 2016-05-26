@@ -71,8 +71,8 @@ namespace vtkPointCloud
         public double matched_X { get; set; }//匹配坐标x
         public double matched_Y { get; set; }//匹配坐标y
         public double matched_Z { get; set; }//匹配坐标z
+        public Boolean isFilterByDistance { get; set; }
     };
-
 
     public class Line2D
     {

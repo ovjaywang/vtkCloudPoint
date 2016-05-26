@@ -73,6 +73,8 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 18F);
             this.checkBox1.Location = new System.Drawing.Point(24, 161);
             this.checkBox1.Name = "checkBox1";
@@ -90,6 +92,7 @@
             this.OKBtn.TabIndex = 4;
             this.OKBtn.Text = "确认";
             this.OKBtn.UseVisualStyleBackColor = true;
+            this.OKBtn.Click += new System.EventHandler(this.OKBtn_Click);
             // 
             // checkBox2
             // 
