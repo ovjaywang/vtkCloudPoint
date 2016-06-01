@@ -175,6 +175,7 @@
     </Compile>
     <Compile Include="BaseClass\DataModel.cs" />
     <Compile Include="BaseClass\DB.cs" />
+    <Compile Include="BaseClass\DBImproved.cs" />
     <Compile Include="BaseClass\EnvUtil.cs" />
     <Compile Include="BaseClass\FileMap.cs" />
     <Compile Include="BaseClass\Geometry.cs" />

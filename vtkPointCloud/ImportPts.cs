@@ -16,6 +16,7 @@ namespace vtkPointCloud
         public string selPath = "";
         public int xdir = 2;
         public int ydir = 1;
+        public double x_angle=0.0,y_angle=0.0;
         public ImportPts()
         {
             InitializeComponent();
@@ -32,6 +33,17 @@ namespace vtkPointCloud
                 MessageBox.Show("未输入文件夹路径");
                 return;
             }
+            if (!double.TryParse(this.x_angle_TxtBox.Text, out this.x_angle))
+            {
+                MessageBox.Show("输入的不是浮点数，请重新输入");
+                return;
+            }
+            if (!double.TryParse(this.y_angle_TxtBox.Text, out this.y_angle))
+            {
+                MessageBox.Show("输入的不是浮点数，请重新输入");
+                return;
+            }
+
             if (this.clearAllRb.Checked) ptsRb = 1;
             else if (this.noClearRb.Checked) ptsRb = 2;
 
@@ -58,7 +70,9 @@ namespace vtkPointCloud
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
+        /// <summary>
+        /// 文件夹路径选择函数
+        /// </summary>
         private void pathSelbtn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dlg = new FolderBrowserDialog();

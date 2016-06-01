@@ -5,19 +5,19 @@ using System.Text;
 using System.Collections;
 namespace vtkPointCloud
 {
-    public class DB
+    public class DBImproved
     {
         public int clusterAmount = 0;
         public int pointsAmount = 0;
         public static int iritatorNum = 0;
         public static double getDisP(Point3D p1, Point3D p2)
         {
-            double dx = p1.X  - p2.X ;
-            double dy = p1.Y  - p2.Y;
-            double dz = p1.Z  - p2.Z;
+            double dx = p1.X - p2.X;
+            double dy = p1.Y - p2.Y;
+            double dz = p1.Z - p2.Z;
             iritatorNum++;
-            //double rrrr = Math.Sqrt(dx * dx + dy * dy + dz * dz);
-            double rrrr = dx + dy;
+            double rrrr = Math.Sqrt(dx * dx + dy * dy + dz * dz);
+            //double rrrr = dx + dy;
             //Console.WriteLine(rrrr);
             return rrrr;
             //return Math.Sqrt(dx * dx + dy * dy);
@@ -36,8 +36,7 @@ namespace vtkPointCloud
             for (int i = 0; i < lst.Count; i++)
             {
                 Point3D p2 = lst[i];
-                if (!p2.ifShown) { continue; }
-
+                //if (!p2.ifShown) { continue; }
                 if (getDisP(p, p2) <= e)
                 {
                     ++count;//若小于距离 则邻域数目加一
@@ -46,7 +45,7 @@ namespace vtkPointCloud
             }
             if (count >= minPts)
             {
-                p.isKeyPoint=true;//达到最小邻域数目 是核心点
+                p.isKeyPoint = true;//达到最小邻域数目 是核心点
                 return tmpList;
             }
             //tmpList.empty();
@@ -55,14 +54,14 @@ namespace vtkPointCloud
         //拓展每个聚类簇
         public static void expandCluster(Point3D p, ArrayList nei, int c, double e, int minPts, List<Point3D> lst)
         {
-            p.clusterId=c;//簇序列
+            p.clusterId = c;//簇序列
             for (int i = 0; i < nei.Count; i++)
             {
                 Point3D dpp = (Point3D)lst[(int)nei[i]];
-                if (!dpp.ifShown) { continue; }
+                //if (!dpp.ifShown) { continue; }
                 if (dpp.isClassed == false)
                 {	//未访问
-                    dpp.isClassed=true;
+                    dpp.isClassed = true;
                     ArrayList tmpList = new ArrayList();
                     tmpList = isKeyPoint(lst, dpp, e, minPts);
                     if (tmpList.Count >= minPts)
@@ -84,7 +83,7 @@ namespace vtkPointCloud
                     }
                 }
                 //加入c
-                dpp.clusterId=c;
+                dpp.clusterId = c;
                 //Console.WriteLine("加入 " + c);
             }
         }
@@ -94,8 +93,9 @@ namespace vtkPointCloud
             for (int i = 0; i < lst.Count; i++)
             {
                 Point3D dpp = lst[i];
-                if (!dpp.ifShown) { continue; }
-                else {
+                //if (!dpp.ifShown) { continue; }
+                //else
+                {
                     pointsAmount++;
                 }
                 if (dpp.isClassed)
