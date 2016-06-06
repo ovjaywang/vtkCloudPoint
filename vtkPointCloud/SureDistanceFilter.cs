@@ -40,7 +40,7 @@ namespace vtkPointCloud
         }
         private void OKBtn_Click(object sender, EventArgs e){
             MainForm mf = (MainForm)this.Owner;
-            mf.cleanDataByDistance();
+            mf.cleanDataByDistance(this.checkBox2.Checked);
             this.DialogResult = DialogResult.OK;
             this.Close();     
         }

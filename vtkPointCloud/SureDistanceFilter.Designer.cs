@@ -99,6 +99,8 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("宋体", 14F);
             this.checkBox2.Location = new System.Drawing.Point(6, 46);
             this.checkBox2.Name = "checkBox2";

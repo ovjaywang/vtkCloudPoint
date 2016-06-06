@@ -16,8 +16,8 @@ namespace vtkPointCloud
             double dy = p1.Y - p2.Y;
             double dz = p1.Z - p2.Z;
             iritatorNum++;
-            double rrrr = Math.Sqrt(dx * dx + dy * dy + dz * dz);
-            //double rrrr = dx + dy;
+            //double rrrr = Math.Sqrt(dx * dx + dy * dy + dz * dz);
+            double rrrr = Math.Abs(dx) + Math.Abs(dy);
             //Console.WriteLine(rrrr);
             return rrrr;
             //return Math.Sqrt(dx * dx + dy * dy);

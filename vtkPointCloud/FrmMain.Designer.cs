@@ -35,7 +35,6 @@
             this.ImporttxtFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportXLSFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScanClustringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SimpleClusterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SourceClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExplainClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MCCorMCE = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,17 +73,17 @@
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_ImportFixedPoint = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_CleanFixedPoint = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_ExportFixedPointAverageFile = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_ScanPtsClustering = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_ExportClusteringFile = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_MatchingFromFile = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_ExportMatchedPoint = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
+            this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -137,21 +136,20 @@
             // ImporttxtFileToolStripMenuItem
             // 
             this.ImporttxtFileToolStripMenuItem.Name = "ImporttxtFileToolStripMenuItem";
-            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImporttxtFileToolStripMenuItem.Text = "导入txt文件夹";
             this.ImporttxtFileToolStripMenuItem.Click += new System.EventHandler(this.ImporttxtFileToolStripMenuItem_Click);
             // 
             // ImportXLSFileToolStripMenuItem
             // 
             this.ImportXLSFileToolStripMenuItem.Name = "ImportXLSFileToolStripMenuItem";
-            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
             // 
             // ScanClustringToolStripMenuItem
             // 
             this.ScanClustringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SimpleClusterToolStripMenuItem,
             this.SourceClusteringToolStripMenuItem,
             this.ExplainClusteringToolStripMenuItem});
             this.ScanClustringToolStripMenuItem.Enabled = false;
@@ -159,14 +157,6 @@
             this.ScanClustringToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
             this.ScanClustringToolStripMenuItem.Text = "扫描点聚类";
             this.ScanClustringToolStripMenuItem.EnabledChanged += new System.EventHandler(this.ScanClustringToolStripMenuItem_EnabledChanged);
-            // 
-            // SimpleClusterToolStripMenuItem
-            // 
-            this.SimpleClusterToolStripMenuItem.Enabled = false;
-            this.SimpleClusterToolStripMenuItem.Name = "SimpleClusterToolStripMenuItem";
-            this.SimpleClusterToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
-            this.SimpleClusterToolStripMenuItem.Text = "棋盘聚类（手动聚类+自动匹配）";
-            this.SimpleClusterToolStripMenuItem.Click += new System.EventHandler(this.SimpleClusterToolStripMenuItem_Click);
             // 
             // SourceClusteringToolStripMenuItem
             // 
@@ -238,7 +228,7 @@
             this.ScanPointClustringToolStripMenuItem.Name = "ScanPointClustringToolStripMenuItem";
             this.ScanPointClustringToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
             this.ScanPointClustringToolStripMenuItem.Text = "固定点剔野";
-            this.ScanPointClustringToolStripMenuItem.Click += new System.EventHandler(this.固定点剔野ToolStripMenuItem_Click);
+            this.ScanPointClustringToolStripMenuItem.Click += new System.EventHandler(this.CleanFromFixedPointToolStripMenuItem_Click);
             // 
             // OutPutScanCentroidToolStripMenuItem
             // 
@@ -311,8 +301,8 @@
             // AboutToolStripMenuItem1
             // 
             this.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1";
-            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(138, 24);
-            this.AboutToolStripMenuItem1.Text = "关于";
+            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(175, 24);
+            this.AboutToolStripMenuItem1.Text = "版本";
             this.AboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1_Click);
             // 
             // statusStrip1
@@ -531,141 +521,140 @@
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton8,
-            this.toolStripButton9,
-            this.toolStripButton10});
+            this.tsButton_ImportFixedPoint,
+            this.tsButton_CleanFixedPoint,
+            this.tsButton_ExportFixedPointAverageFile});
             this.toolStrip3.Location = new System.Drawing.Point(327, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(108, 35);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
-            // toolStripButton8
+            // tsButton_ImportFixedPoint
             // 
-            this.toolStripButton8.AutoSize = false;
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton8.Text = "固定点单文件加载";
-            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
+            this.tsButton_ImportFixedPoint.AutoSize = false;
+            this.tsButton_ImportFixedPoint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_ImportFixedPoint.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_ImportFixedPoint.Image")));
+            this.tsButton_ImportFixedPoint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_ImportFixedPoint.Name = "tsButton_ImportFixedPoint";
+            this.tsButton_ImportFixedPoint.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_ImportFixedPoint.Text = "固定点单文件加载";
+            this.tsButton_ImportFixedPoint.Click += new System.EventHandler(this.tsButton_ImportFixedPoint_Click);
             // 
-            // toolStripButton9
+            // tsButton_CleanFixedPoint
             // 
-            this.toolStripButton9.AutoSize = false;
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton9.Text = "固定点剔野";
-            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            this.tsButton_CleanFixedPoint.AutoSize = false;
+            this.tsButton_CleanFixedPoint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_CleanFixedPoint.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_CleanFixedPoint.Image")));
+            this.tsButton_CleanFixedPoint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_CleanFixedPoint.Name = "tsButton_CleanFixedPoint";
+            this.tsButton_CleanFixedPoint.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_CleanFixedPoint.Text = "固定点剔野";
+            this.tsButton_CleanFixedPoint.Click += new System.EventHandler(this.tsButton_CleanFixedPoint_Click);
             // 
-            // toolStripButton10
+            // tsButton_ExportFixedPointAverageFile
             // 
-            this.toolStripButton10.AutoSize = false;
-            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton10.Text = "输出均值文件";
-            this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
+            this.tsButton_ExportFixedPointAverageFile.AutoSize = false;
+            this.tsButton_ExportFixedPointAverageFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_ExportFixedPointAverageFile.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_ExportFixedPointAverageFile.Image")));
+            this.tsButton_ExportFixedPointAverageFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_ExportFixedPointAverageFile.Name = "tsButton_ExportFixedPointAverageFile";
+            this.tsButton_ExportFixedPointAverageFile.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_ExportFixedPointAverageFile.Text = "输出均值文件";
+            this.tsButton_ExportFixedPointAverageFile.Click += new System.EventHandler(this.tsButton_ExportFixedPointAverageFile_Click);
             // 
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton3,
-            this.toolStripButton5,
-            this.toolStripButton6,
-            this.toolStripButton7});
+            this.tsButton_ScanPtsClustering,
+            this.tsButton_ExportClusteringFile,
+            this.tsButton_MatchingFromFile,
+            this.tsButton_ExportMatchedPoint});
             this.toolStrip2.Location = new System.Drawing.Point(91, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(140, 35);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // toolStripButton3
+            // tsButton_ScanPtsClustering
             // 
-            this.toolStripButton3.AutoSize = false;
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton3.Text = "勾选扫描点聚类";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.tsButton_ScanPtsClustering.AutoSize = false;
+            this.tsButton_ScanPtsClustering.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_ScanPtsClustering.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_ScanPtsClustering.Name = "tsButton_ScanPtsClustering";
+            this.tsButton_ScanPtsClustering.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_ScanPtsClustering.Text = "勾选扫描点聚类";
+            this.tsButton_ScanPtsClustering.Click += new System.EventHandler(this.tsButton_ScanPtsClustering_Click);
             // 
-            // toolStripButton5
+            // tsButton_ExportClusteringFile
             // 
-            this.toolStripButton5.AutoSize = false;
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton5.Text = "输出聚类处理文件";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            this.tsButton_ExportClusteringFile.AutoSize = false;
+            this.tsButton_ExportClusteringFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_ExportClusteringFile.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_ExportClusteringFile.Image")));
+            this.tsButton_ExportClusteringFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_ExportClusteringFile.Name = "tsButton_ExportClusteringFile";
+            this.tsButton_ExportClusteringFile.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_ExportClusteringFile.Text = "输出聚类处理文件";
+            this.tsButton_ExportClusteringFile.Click += new System.EventHandler(this.tsButton_ExportClusteringFile_Click);
             // 
-            // toolStripButton6
+            // tsButton_MatchingFromFile
             // 
-            this.toolStripButton6.AutoSize = false;
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton6.Text = "真值均值匹配";
-            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            this.tsButton_MatchingFromFile.AutoSize = false;
+            this.tsButton_MatchingFromFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_MatchingFromFile.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_MatchingFromFile.Image")));
+            this.tsButton_MatchingFromFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_MatchingFromFile.Name = "tsButton_MatchingFromFile";
+            this.tsButton_MatchingFromFile.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_MatchingFromFile.Text = "真值均值匹配";
+            this.tsButton_MatchingFromFile.Click += new System.EventHandler(this.tsButton_MatchingFromFile_Click);
             // 
-            // toolStripButton7
+            // tsButton_ExportMatchedPoint
             // 
-            this.toolStripButton7.AutoSize = false;
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton7.Text = "输出匹配文件";
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            this.tsButton_ExportMatchedPoint.AutoSize = false;
+            this.tsButton_ExportMatchedPoint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_ExportMatchedPoint.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_ExportMatchedPoint.Image")));
+            this.tsButton_ExportMatchedPoint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_ExportMatchedPoint.Name = "tsButton_ExportMatchedPoint";
+            this.tsButton_ExportMatchedPoint.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_ExportMatchedPoint.Text = "输出匹配文件";
+            this.tsButton_ExportMatchedPoint.Click += new System.EventHandler(this.tsButton_ExportMatchedPoint_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this.tsButton_ImportScanData,
+            this.tsButton_CLEANALL});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1398, 35);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // tsButton_ImportScanData
             // 
-            this.toolStripButton1.AutoSize = false;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton1.Text = "导入扫描点数据文件夹";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.tsButton_ImportScanData.AutoSize = false;
+            this.tsButton_ImportScanData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_ImportScanData.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_ImportScanData.Image")));
+            this.tsButton_ImportScanData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_ImportScanData.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.tsButton_ImportScanData.Name = "tsButton_ImportScanData";
+            this.tsButton_ImportScanData.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_ImportScanData.Text = "导入扫描点数据文件夹";
+            this.tsButton_ImportScanData.Click += new System.EventHandler(this.tsButton_ImportScanData_Click);
             // 
-            // toolStripButton2
+            // tsButton_CLEANALL
             // 
-            this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(32, 32);
-            this.toolStripButton2.Text = "清空数据";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.tsButton_CLEANALL.AutoSize = false;
+            this.tsButton_CLEANALL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsButton_CLEANALL.Image = ((System.Drawing.Image)(resources.GetObject("tsButton_CLEANALL.Image")));
+            this.tsButton_CLEANALL.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsButton_CLEANALL.Name = "tsButton_CLEANALL";
+            this.tsButton_CLEANALL.Size = new System.Drawing.Size(32, 32);
+            this.tsButton_CLEANALL.Text = "清空数据";
+            this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
             // MainForm
             // 
@@ -729,17 +718,17 @@
         private System.Windows.Forms.ToolStripMenuItem OutPutScanCentroidToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton tsButton_ImportScanData;
+        private System.Windows.Forms.ToolStripButton tsButton_CLEANALL;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton tsButton_ScanPtsClustering;
         private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
-        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStripButton tsButton_ImportFixedPoint;
+        private System.Windows.Forms.ToolStripButton tsButton_ExportClusteringFile;
+        private System.Windows.Forms.ToolStripButton tsButton_MatchingFromFile;
+        private System.Windows.Forms.ToolStripButton tsButton_ExportMatchedPoint;
+        private System.Windows.Forms.ToolStripButton tsButton_CleanFixedPoint;
+        private System.Windows.Forms.ToolStripButton tsButton_ExportFixedPointAverageFile;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
         private System.Windows.Forms.Button SureFilter_btn;
@@ -754,7 +743,6 @@
         private System.Windows.Forms.Button YAxisChangeBtn;
         private System.Windows.Forms.ToolStripMenuItem ScreenCatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ScanClustringToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SimpleClusterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GuideToolStripMenuItem;
