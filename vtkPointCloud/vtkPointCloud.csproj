@@ -179,7 +179,9 @@
     <Compile Include="BaseClass\EnvUtil.cs" />
     <Compile Include="BaseClass\FileMap.cs" />
     <Compile Include="BaseClass\Geometry.cs" />
+    <Compile Include="BaseClass\Matrix.cs" />
     <Compile Include="BaseClass\Polygon.cs" />
+    <Compile Include="BaseClass\Tools.cs" />
     <Compile Include="BaseClass\Triangle.cs" />
     <Compile Include="ClusterParameters.cs">
       <SubType>Form</SubType>

@@ -40,15 +40,15 @@
             this.MCCorMCE = new System.Windows.Forms.ToolStripMenuItem();
             this.ExportClusterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScreenCatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.固定点数据操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportFixedPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScanPointClustringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OutPutScanCentroidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.LookTruePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GetScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +101,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.操作ToolStripMenuItem,
             this.固定点数据操作ToolStripMenuItem,
-            this.文件ToolStripMenuItem,
+            this.ToolsToolStripMenuItem,
             this.配准ToolStripMenuItem,
             this.关于ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -118,8 +118,7 @@
             this.ScanClustringToolStripMenuItem,
             this.MCCorMCE,
             this.ExportClusterToolStripMenuItem,
-            this.iCPToolStripMenuItem,
-            this.ScreenCatchToolStripMenuItem});
+            this.iCPToolStripMenuItem});
             this.操作ToolStripMenuItem.Name = "操作ToolStripMenuItem";
             this.操作ToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
             this.操作ToolStripMenuItem.Text = "扫描点数据预处理";
@@ -136,14 +135,14 @@
             // ImporttxtFileToolStripMenuItem
             // 
             this.ImporttxtFileToolStripMenuItem.Name = "ImporttxtFileToolStripMenuItem";
-            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.ImporttxtFileToolStripMenuItem.Text = "导入txt文件夹";
             this.ImporttxtFileToolStripMenuItem.Click += new System.EventHandler(this.ImporttxtFileToolStripMenuItem_Click);
             // 
             // ImportXLSFileToolStripMenuItem
             // 
             this.ImportXLSFileToolStripMenuItem.Name = "ImportXLSFileToolStripMenuItem";
-            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
             // 
@@ -198,13 +197,6 @@
             this.iCPToolStripMenuItem.Text = "真值均值识别匹配";
             this.iCPToolStripMenuItem.Click += new System.EventHandler(this.iCPToolStripMenuItem_Click);
             // 
-            // ScreenCatchToolStripMenuItem
-            // 
-            this.ScreenCatchToolStripMenuItem.Name = "ScreenCatchToolStripMenuItem";
-            this.ScreenCatchToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
-            this.ScreenCatchToolStripMenuItem.Text = "截取屏幕";
-            this.ScreenCatchToolStripMenuItem.Click += new System.EventHandler(this.ScreenCatchToolStripMenuItem_Click);
-            // 
             // 固定点数据操作ToolStripMenuItem
             // 
             this.固定点数据操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -238,15 +230,16 @@
             this.OutPutScanCentroidToolStripMenuItem.Text = "输出均值文件";
             this.OutPutScanCentroidToolStripMenuItem.Click += new System.EventHandler(this.数据均值文件ToolStripMenuItem_Click);
             // 
-            // 文件ToolStripMenuItem
+            // ToolsToolStripMenuItem
             // 
-            this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.LookTruePointToolStripMenuItem,
-            this.清空数据ToolStripMenuItem});
-            this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
-            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
-            this.文件ToolStripMenuItem.Text = "文件";
+            this.清空数据ToolStripMenuItem,
+            this.GetScreen});
+            this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
+            this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.ToolsToolStripMenuItem.Text = "工具";
             // 
             // toolStripMenuItem1
             // 
@@ -266,6 +259,13 @@
             this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.清空数据ToolStripMenuItem.Text = "清空数据";
             this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
+            // 
+            // GetScreen
+            // 
+            this.GetScreen.Name = "GetScreen";
+            this.GetScreen.Size = new System.Drawing.Size(153, 24);
+            this.GetScreen.Text = "截屏";
+            this.GetScreen.Click += new System.EventHandler(this.GetScreen_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -301,7 +301,7 @@
             // AboutToolStripMenuItem1
             // 
             this.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1";
-            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(175, 24);
+            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(138, 24);
             this.AboutToolStripMenuItem1.Text = "版本";
             this.AboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1_Click);
             // 
@@ -697,12 +697,12 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
+        public System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelCurrentPointCount;
-        private System.Windows.Forms.TreeView treeView1;
+        public System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem 操作ToolStripMenuItem;
@@ -717,7 +717,7 @@
         private System.Windows.Forms.ToolStripMenuItem ScanPointClustringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OutPutScanCentroidToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        public System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsButton_ImportScanData;
         private System.Windows.Forms.ToolStripButton tsButton_CLEANALL;
         private System.Windows.Forms.ToolStrip toolStrip2;
@@ -741,7 +741,6 @@
         private System.Windows.Forms.Button AntiClockWiseBtn;
         private System.Windows.Forms.Button XAxisChangeBtn;
         private System.Windows.Forms.Button YAxisChangeBtn;
-        private System.Windows.Forms.ToolStripMenuItem ScreenCatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ScanClustringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
@@ -752,6 +751,7 @@
         private System.Windows.Forms.ToolStripMenuItem 导入文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImporttxtFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportXLSFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GetScreen;
        
     }
 }
