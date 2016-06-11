@@ -2394,7 +2394,7 @@ namespace vtkPointCloud
         /// <summary>
         /// 导入txt文件夹
         /// </summary>
-        private void ImporttxtFileToolStripMenuItem_Click(object sender, EventArgs e)//导入txt文件夹
+        private void ImporttxtFileToolStripMenuItem_Click(object sender, EventArgs e)//导入txt文件夹git
         {
             ImportPts ip = new ImportPts();
             DialogResult rs = ip.ShowDialog();

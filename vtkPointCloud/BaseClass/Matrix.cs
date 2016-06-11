@@ -444,7 +444,7 @@ namespace vtkPointCloud
 
             return R;
         }
-        private static void StrassenMultiplyRun(Matrix A, Matrix B, Matrix C, int l, Matrix[,] f)    // A * B into C, level of recursion, matrix field
+        public static void StrassenMultiplyRun(Matrix A, Matrix B, Matrix C, int l, Matrix[,] f)    // A * B into C, level of recursion, matrix field
         {
             int size = A.rows;
             int h = size / 2;
@@ -497,7 +497,7 @@ namespace vtkPointCloud
                 for (int j = h; j < size; j++)     // cols
                     C[i, j] = f[l, 1 + 1][i - h, j - h] - f[l, 1 + 2][i - h, j - h] + f[l, 1 + 3][i - h, j - h] + f[l, 1 + 6][i - h, j - h];
         }
-        private static Matrix StupidMultiply(Matrix m1, Matrix m2)                  // Stupid matrix multiplication
+        public static Matrix StupidMultiply(Matrix m1, Matrix m2)                  // Stupid matrix multiplication
         {
             if (m1.cols != m2.rows) throw new MException("Wrong dimensions of matrix!");
 
@@ -509,7 +509,7 @@ namespace vtkPointCloud
             return result;
         }
 
-        private static Matrix Multiply(Matrix m1, Matrix m2)                         // Matrix multiplication
+        public static Matrix Multiply(Matrix m1, Matrix m2)                         // Matrix multiplication
         {
             if (m1.cols != m2.rows) throw new MException("Wrong dimension of matrix!");
             int msize = Math.Max(Math.Max(m1.rows, m1.cols), Math.Max(m2.rows, m2.cols));
@@ -535,7 +535,7 @@ namespace vtkPointCloud
                 return StupidMultiply(m1, m2);
             }
         }
-        private static Matrix Multiply(double n, Matrix m)                          // Multiplication by constant n
+        public static Matrix Multiply(double n, Matrix m)                          // Multiplication by constant n
         {
             Matrix r = new Matrix(m.rows, m.cols);
             for (int i = 0; i < m.rows; i++)
@@ -543,7 +543,7 @@ namespace vtkPointCloud
                     r[i, j] = m[i, j] * n;
             return r;
         }
-        private static Matrix Add(Matrix m1, Matrix m2)         // Sčítání matic
+        public static Matrix Add(Matrix m1, Matrix m2)         // Sčítání matic
         {
             if (m1.rows != m2.rows || m1.cols != m2.cols) throw new MException("Matrices must have the same dimensions!");
             Matrix r = new Matrix(m1.rows, m1.cols);
