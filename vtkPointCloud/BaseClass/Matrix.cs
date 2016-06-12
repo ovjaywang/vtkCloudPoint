@@ -553,6 +553,111 @@ namespace vtkPointCloud
             return r;
         }
 
+        public static double TR(Matrix m){
+            double sum = 0.0;
+            for (int i = 0; i < m.rows; i++)
+                    sum += m[i, i];
+        return sum;
+        }
+
+        public static bool ComputeEvJacobi(Matrix m,double[] dblEigenValue, Matrix mtxEigenVector, int nMaxIt, double eps)
+        {
+            int i, j, p = 0, q = 0, u, w, t, s, l;
+            double fm, cn, sn, omega, x, y, d;
+            int cols = m.cols;
+            int rows = m.rows;
+            if (mtxEigenVector.rows!=m.rows)
+                return false;
+
+            l = 1;
+            for (i = 0; i <cols ; i++)
+            {
+                mtxEigenVector[i,i] = 1.0;
+                for (j = 0; j < cols; j++)
+                    if (i != j)
+                        mtxEigenVector[i * cols , j] = 0.0;
+            }
+
+            while (true)
+            {
+                fm = 0.0;
+                for (i = 1; i <= cols - 1; i++)
+                {
+                    for (j = 0; j <= i - 1; j++)
+                    {
+                        d = Math.Abs(m[i * cols , j]);
+                        if ((i != j) && (d > fm))
+                        {
+                            fm = d;
+                            p = i;
+                            q = j;
+                        }
+                    }
+                }
+
+                if (fm < eps)
+                {
+                    for (i = 0; i < cols; ++i)
+                        dblEigenValue[i] = m[i, i];
+                    return true;
+                }
+
+                if (l > nMaxIt)
+                    return false;
+
+                l = l + 1;
+                u = p * cols + q;
+                w = p * cols + p;
+                t = q * cols + p;
+                s = q * cols + q;
+                x = -m[p*cols,q];
+                y = (m[q*cols,q] - m[p*cols,p]) / 2.0;
+                omega = x / Math.Sqrt(x * x + y * y);
+
+                if (y < 0.0)
+                    omega = -omega;
+
+                sn = 1.0 + Math.Sqrt(1.0 - omega * omega);
+                sn = omega / Math.Sqrt(2.0 * sn);
+                cn = Math.Sqrt(1.0 - sn * sn);
+                fm = m[p * cols , p];
+                m[p * cols, p] = fm * cn * cn + m[q * cols, q] * sn * sn + m[p * cols, q] * omega;
+                m[q * cols, q] = fm * sn * sn + m[q * cols, q] * cn * cn - m[p * cols, q] * omega;
+                m[p * cols, q] = 0.0;
+                m[q * cols , p] = 0.0;
+                for (j = 0; j <= cols - 1; j++)
+                {
+                    if ((j != p) && (j != q))
+                    {
+                        u = p * cols + j; w = q * cols + j;
+                        fm = m[p * cols, q];
+                        m[p * cols, q] = fm * cn + m[p * cols, p] * sn;
+                        m[p * cols, p] = -fm * sn + m[p * cols, p] * cn;
+                    }
+                }
+
+                for (i = 0; i <= cols - 1; i++)
+                {
+                    if ((i != p) && (i != q))
+                    {
+                        u = i * cols + p;
+                        w = i * cols + q;
+                        fm = m[p * cols, q];
+                        m[p * cols, q] = fm * cn + m[p * cols, p] * sn;
+                        m[p * cols, p] = -fm * sn + m[p * cols, p] * cn;
+                    }
+                }
+
+                for (i = 0; i <= cols - 1; i++)
+                {
+                    u = i * cols + p;
+                    w = i * cols + q;
+                    fm = mtxEigenVector[p * cols, q];
+                    mtxEigenVector[p * cols, q] = fm * cn + mtxEigenVector[p * cols, p] * sn;
+                    mtxEigenVector[p * cols, p] = -fm * sn + mtxEigenVector[p * cols, p] * cn;
+                }
+            }
+        }
         public static string NormalizeMatrixString(string matStr)	// From Andy - thank you! :)
         {
             // Remove any multiple spaces
