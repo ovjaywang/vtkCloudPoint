@@ -7,7 +7,15 @@ namespace vtkPointCloud
 {
     class ICP
     {
-        void ICP(List<Point3D> model,List<Point3D> data,double[] R,double[] T,double e) {
+        /// <summary>
+        /// ICP主函数
+        /// </summary>
+        /// <param name="model">模型点-真值</param>
+        /// <param name="data">数据点-测量</param>
+        /// <param name="R">旋转矩阵 3*3 矩阵</param>
+        /// <param name="T">平移矩阵 3*1矩阵</param>
+        /// <param name="e">阈值</param>
+        void ICP(List<Point3D> model,List<Point3D> data,Matrix R,Matrix T,double e) {
             double pre_d = 0.0, d = 0.0;
             List<Point3D> Y, P;
             int round = 0;
@@ -57,7 +65,7 @@ namespace vtkPointCloud
 
         mul2 = mean_P * mean_Y;
 		m = m + mul2;
-
+        
 		Matrix m_T=new Matrix(3,3);
 		m_T = Matrix.Transpose(m);
 
@@ -96,55 +104,65 @@ namespace vtkPointCloud
 			Q[i*4 , 3] = m[4*(i-1) ,2];
 		}
 
-		double eigen;
-        Matrix qr[4];
-		MatrixEigen(Q, &eigen, qr, 4);
+		double[] eigen = new double[4];
+        Matrix qr=new Matrix(4,1);
+        //public static bool ComputeEvJacobi(Matrix m,double[] dblEigenValue, Matrix mtxEigenVector, int nMaxIt, double eps)
+        double epss = 0.0001;
 
+		bool rs=Matrix.ComputeEvJacobi(Q, eigen, qr,100, epss);
+        Console.WriteLine("解求特征值结果 : " + rs);
 		CalculateRotation(qr, R1);
 
-		double qt[3];
+		Matrix qt=new Matrix(1,3);
 		for(int i=0; i<3; i++)
-			qt[i] = mean_Y[i];
+			qt[0,i] = mean_Y[0,i];
 
 		Matrix mul1= new Matrix(3,1);
-		MatrixMul(R1, mean_P, mul1, 3, 3, 3, 1);
-		MatrixDiv(qt, mul1, 3, 1);
+        //R1 3*3;mean_P 3*1;mull 3*1
+        mul1 = Matrix.Multiply(R1, mean_P);
+        qt = qt - mul1;
 
 		for(int i=0; i<3; i++)
-			T1[i] = qt[i];
+			T1[i,0] = qt[0,i];
 
 		d = 0.0;
-		it1 = P.begin();
-		it2 = Y.begin();
-		for(; it1!=P.end(); it1++, it2++)
-		{
-			double sum = (it1->x - it2->x)*(it1->x - it2->x) + (it1->y - it2->y)*(it1->y - it2->y) + (it1->z - it2->z)*(it1->z - it2->z);
-
-			d += sum;
-		}
-
+		//it1 = P.begin();
+		//it2 = Y.begin();
+        for (int p = 0; p < P.Count;p++ )
+        {
+            double sum = (P[p].X - Y[p].X) * (P[p].X - Y[p].X) + (P[p].Y - Y[p].Y) * (P[p].Y - Y[p].Y) + (P[p].Z - Y[p].Z) * (P[p].Z - Y[p].Z);
+            d += sum;
+        }
 		round ++;
 
 		if(round > 1)
 		{
-			printf("*******%d\n", round);
-			printf("R:\n");
-			for(int i=0; i<3; i++)
-				printf("%lf %lf %lf\n", R[3*i], R[3*i + 1], R[3*i + 2]);
-			printf("T:\n%lf %lf %lf\n", T[0], T[1], T[2]);
+			//printf("*******%d\n", round);
+            Console.WriteLine("*******循环 " + rs+"次*********");
+			//printf("R:\n");
+            Console.WriteLine("R:");
+			for(int i=0; i<3; i++){
+                Console.WriteLine(R[i, 0] + " " + R[i, 1] + " " + R[i,2]);
+            }
+				//printf("%lf %lf %lf\n", R[3*i], R[3*i + 1], R[3*i + 2]);
+			//printf("T:\n%lf %lf %lf\n", T[0], T[1], T[2]);
 		}
 
-		printf("d:\n%lf\n", d);
+		//printf("d:\n%lf\n", d);
 
-		if(abs(d - pre_d) >= e)
+		if(Math.Abs(d - pre_d) >= e)
 		{
 			if(round == 1)
 			{
-				for(int i=0; i<9; i++)
-					R[i] = R1[i];
+                for (int i = 0; i < 3; i++)
+                {
+                    R[i,0] = R1[i,0];
+                    R[i,1] = R1[i,1];
+                    R[i,2] = R1[i,2];
+                }
 
 				for(int i=0; i<3; i++)
-					T[i] = T1[i];
+                    T[i, 0] = T1[i, 0];
 			}
 			else
 			{
@@ -153,14 +171,17 @@ namespace vtkPointCloud
                 tempR = R1 * R;
                 tempT = R1 * T;
 
-				for(int i=0; i<9; i++)
-					R[i] = tempR[i];
+                for (int i = 0; i < 9; i++) {
+                    R[i, 0] = tempR[i, 0];
+                    R[i, 1] = tempR[i, 1];
+                    R[i, 2] = tempR[i, 2];
+                }
 
 				for(int i=0; i<3; i++)
-					T[i] = tempT[i] + T1[i];
+                    T[i, 0] =  tempT[i, 0]+T1[i, 0];
 			}
 
-			TransPoint(data, P, R, T);
+			 P=TransPoint(data, R, T);
 
 }
                 
@@ -231,7 +252,7 @@ namespace vtkPointCloud
 			        }
 		        }
 
-		        Y.push_back(model[order]);
+		        Y.Add(model[order]);
 	        }
             return Y;
         }
@@ -260,23 +281,42 @@ namespace vtkPointCloud
         }
         void CalculateRotation(Matrix q, Matrix R)
         {
-            R[0] = q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];
-            R[1] = 2.0 * (q[1] * q[2] - q[0] * q[3]);
-            R[2] = 2.0 * (q[1] * q[3] + q[0] * q[2]);
-            R[3] = 2.0 * (q[1] * q[2] + q[0] * q[3]);
-            R[4] = q[0] * q[0] - q[1] * q[1] + q[2] * q[2] - q[3] * q[3];
-            R[5] = 2.0 * (q[2] * q[3] - q[0] * q[1]);
-            R[6] = 2.0 * (q[1] * q[3] - q[0] * q[2]);
-            R[7] = 2.0 * (q[2] * q[3] + q[0] * q[1]);
-            R[8] = q[0] * q[0] - q[1] * q[1] - q[2] * q[2] + q[3] * q[3];
+            R[0, 0] = q[0, 0] * q[0, 0] + q[1, 0] * q[1, 0] - q[2, 0] * q[2, 0] - q[3, 0] * q[3, 0];
+            R[0, 1] = 2.0 * (q[1, 0] * q[2, 0] - q[0, 0] * q[3, 0]);
+            R[0, 2] = 2.0 * (q[1, 0] * q[3, 0] + q[0, 0] * q[2, 0]);
+            R[1, 0] = 2.0 * (q[1, 0] * q[2, 0] + q[0, 0] * q[3, 0]);
+            R[1, 1] = q[0, 0] * q[0, 0] - q[1, 0] * q[1, 0] + q[2, 0] * q[2, 0] - q[3, 0] * q[3, 0];
+            R[1, 2] = 2.0 * (q[2, 0] * q[3, 0] - q[0, 0] * q[1, 0]);
+            R[2, 0] = 2.0 * (q[1, 0] * q[3, 0] - q[0, 0] * q[2, 0]);
+            R[2, 1] = 2.0 * (q[2, 0] * q[3, 0] + q[0, 0] * q[1, 0]);
+            R[2, 2] = q[0, 0] * q[0, 0] - q[1, 0] * q[1, 0] - q[2, 0] * q[2, 0] + q[3, 0] * q[3, 0];
         }
+        //List<Point3D> TransPoint(List<Point3D> src, Matrix R, Matrix T)
+        //{
+        //    List<Point3D> dst = new List<Point3D>();
 
+        //    for(int i=0;i<src.Count;i++)
+        //    {
+        //        Matrix p=new Matrix(3,1), r=new Matrix(3,1);
+        //        p[0,0] = src[i].X;
+        //        p[1, 0] = src[i].Y;
+        //        p[2, 0] = src[i].Z;
+        //        r = R * p;
+        //        r = r + T;
+
+        //        Point3D point = new Point3D();
+        //        point.X = r[0,0];
+        //        point.Y = r[1, 0];
+        //        point.Z = r[2, 0];
+
+        //        dst.Add(point);
+        //    }
+        //    return dst;
+        //}
+}
 
 
         
 
 
-
-
-    }
 }

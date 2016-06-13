@@ -559,7 +559,15 @@ namespace vtkPointCloud
                     sum += m[i, i];
         return sum;
         }
-
+        /// <summary>
+        ///求实对称矩阵特征值与特征向量的雅可比法
+        /// </summary>
+        /// <param name="m">求取矩阵</param>
+        /// <param name="dblEigenValue">一维数组，长度为矩阵的阶数，返回时存放特征值</param>
+        /// <param name="mtxEigenVector">返回时存放特征向量矩阵，其中第i列为与数组dblEigenValue中第j个特征值对应的特征向量</param>
+        /// <param name="nMaxIt">迭代次数</param>
+        /// <param name="eps">计算精度</param>
+        /// <returns>bool型，求解是否成功</returns>
         public static bool ComputeEvJacobi(Matrix m,double[] dblEigenValue, Matrix mtxEigenVector, int nMaxIt, double eps)
         {
             int i, j, p = 0, q = 0, u, w, t, s, l;
