@@ -50,7 +50,6 @@ namespace vtkPointCloud
             }
             g.Dispose();
         }
-
         /// <summary>
         /// 将野点移除点集
         /// </summary>
@@ -58,6 +57,16 @@ namespace vtkPointCloud
         {
             if (rawData == null) return;
             rawData.RemoveAll((delegate(Point3D p) { return p.clusterId == 0; }));
+        }
+        /// <summary>
+        /// 将过滤点从点集中删除
+        /// </summary>
+        /// <param name="dataSet">需要过滤的点集</param>
+        /// <param name="filterID">需要过滤的编号集合</param>
+        static public void removeFilterPointFromClustering(List<Point3D> dataSet, List<int> filterID)
+        {
+            if (filterID.Count == 0) return;
+            dataSet.RemoveAll((delegate(Point3D p) { return (filterID.Contains(p.clusterId)); }));
         }
     }
 }

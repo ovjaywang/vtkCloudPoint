@@ -1401,6 +1401,9 @@ namespace vtkPointCloud
                         }
                         ccc++;
                     }
+                    for (int l = 0; l < centers.Count; l++) {
+                        ssw.WriteLine(ccc + "\t" + centers[l].X + "\t" + centers[l].Y + "\t" + centers[l].Z);
+                    }
                 }
                 catch
                 {
@@ -2322,8 +2325,8 @@ namespace vtkPointCloud
         {
             Tools.removeErrorPointFromClustering(this.rawData);
             MessageBox.Show("过滤聚类数 ：" + filterID.Count);
-            rawData.RemoveAll((delegate(Point3D p) { return (filterID.Contains(p.clusterId)); }));
-            centers.RemoveAll((delegate(Point3D pp) { return (filterID.Contains(pp.clusterId)); }));
+            Tools.removeFilterPointFromClustering(rawData, filterID);
+            Tools.removeFilterPointFromClustering(centers, filterID);
             ShowPointsFromFile(rawData, 1);
             this.MCCorMCE.Enabled = false;
             this.ExplainClusteringToolStripMenuItem.Enabled = false;
