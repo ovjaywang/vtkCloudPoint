@@ -15,7 +15,7 @@ namespace vtkPointCloud
         /// <param name="R">旋转矩阵 3*3 矩阵</param>
         /// <param name="T">平移矩阵 3*1矩阵</param>
         /// <param name="e">阈值</param>
-        void ICP(List<Point3D> model,List<Point3D> data,Matrix R,Matrix T,double e) {
+        void ICP_algm(List<Point3D> model,List<Point3D> data,Matrix R,Matrix T,double e) {
             double pre_d = 0.0, d = 0.0;
             List<Point3D> Y, P;
             int round = 0;

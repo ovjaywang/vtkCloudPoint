@@ -84,6 +84,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
+            this.测试矩阵ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -135,14 +136,14 @@
             // ImporttxtFileToolStripMenuItem
             // 
             this.ImporttxtFileToolStripMenuItem.Name = "ImporttxtFileToolStripMenuItem";
-            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImporttxtFileToolStripMenuItem.Text = "导入txt文件夹";
             this.ImporttxtFileToolStripMenuItem.Click += new System.EventHandler(this.ImporttxtFileToolStripMenuItem_Click);
             // 
             // ImportXLSFileToolStripMenuItem
             // 
             this.ImportXLSFileToolStripMenuItem.Name = "ImportXLSFileToolStripMenuItem";
-            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
             // 
@@ -236,7 +237,8 @@
             this.toolStripMenuItem1,
             this.LookTruePointToolStripMenuItem,
             this.清空数据ToolStripMenuItem,
-            this.GetScreen});
+            this.GetScreen,
+            this.测试矩阵ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -244,26 +246,26 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(150, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(172, 6);
             // 
             // LookTruePointToolStripMenuItem
             // 
             this.LookTruePointToolStripMenuItem.Name = "LookTruePointToolStripMenuItem";
-            this.LookTruePointToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.LookTruePointToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.LookTruePointToolStripMenuItem.Text = "查看真值点";
             this.LookTruePointToolStripMenuItem.Click += new System.EventHandler(this.LookTruePointToolStripMenuItem_Click);
             // 
             // 清空数据ToolStripMenuItem
             // 
             this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
-            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.清空数据ToolStripMenuItem.Text = "清空数据";
             this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
             // 
             // GetScreen
             // 
             this.GetScreen.Name = "GetScreen";
-            this.GetScreen.Size = new System.Drawing.Size(153, 24);
+            this.GetScreen.Size = new System.Drawing.Size(175, 24);
             this.GetScreen.Text = "截屏";
             this.GetScreen.Click += new System.EventHandler(this.GetScreen_Click);
             // 
@@ -656,6 +658,13 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
+            // 测试矩阵ToolStripMenuItem
+            // 
+            this.测试矩阵ToolStripMenuItem.Name = "测试矩阵ToolStripMenuItem";
+            this.测试矩阵ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.测试矩阵ToolStripMenuItem.Text = "测试矩阵";
+            this.测试矩阵ToolStripMenuItem.Click += new System.EventHandler(this.测试矩阵ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -752,6 +761,7 @@
         private System.Windows.Forms.ToolStripMenuItem ImporttxtFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportXLSFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GetScreen;
+        private System.Windows.Forms.ToolStripMenuItem 测试矩阵ToolStripMenuItem;
        
     }
 }

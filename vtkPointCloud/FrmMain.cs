@@ -2704,6 +2704,19 @@ namespace vtkPointCloud
         {
             exportSingleCenterFile();
         }
+
+        private void 测试矩阵ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Matrix m = new Matrix(2, 2);
+            Matrix n = new Matrix(2, 2);
+            Matrix mul = new Matrix(2, 1);
+            m[0, 0] = 1; n[0, 0] = 2;
+            m[0, 1] = 2; n[0, 1] = -1;
+            m[1, 0] = 0; n[1, 0] = 4;
+            m[1,1] = 3; n[1,1] = -4;
+            m = m - n;
+            Console.WriteLine("\n"+m.ToString());
+        }
       
     }
 }
