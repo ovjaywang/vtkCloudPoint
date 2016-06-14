@@ -1401,8 +1401,8 @@ namespace vtkPointCloud
                         }
                         ccc++;
                     }
-                    for (int l = 0; l < centers.Count; l++) {
-                        ssw.WriteLine(ccc + "\t" + centers[l].X + "\t" + centers[l].Y + "\t" + centers[l].Z);
+                    for (int j = 0; j < centers.Count; j++) {
+                        ssw.WriteLine(centers[j].X + "\t" + centers[j].Y + "\t" + centers[j].Z);
                     }
                 }
                 catch
@@ -1412,7 +1412,7 @@ namespace vtkPointCloud
                 finally
                 {
                     sw.Close();
-                    ssw.Colse();
+                    ssw.Close();
                 }
             }
         }
@@ -2711,15 +2711,26 @@ namespace vtkPointCloud
 
         private void 测试矩阵ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Matrix m = new Matrix(2, 2);
-            Matrix n = new Matrix(2, 2);
-            Matrix mul = new Matrix(2, 1);
-            m[0, 0] = 1; n[0, 0] = 2;
-            m[0, 1] = 2; n[0, 1] = -1;
-            m[1, 0] = 0; n[1, 0] = 4;
-            m[1,1] = 3; n[1,1] = -4;
-            m = m - n;
-            Console.WriteLine("\n"+m.ToString());
+            //Matrix m = new Matrix(2, 2);
+            //Matrix n = new Matrix(2, 2);
+            //Matrix mul = new Matrix(2, 1);
+            //m[0, 0] = 1; n[0, 0] = 2;
+            //m[0, 1] = 2; n[0, 1] = -1;
+            //m[1, 0] = 0; n[1, 0] = 4;
+            //m[1,1] = 3; n[1,1] = -4;
+            //m = m - n;
+            //Console.WriteLine("\n"+m.ToString());
+            Matrix m = new Matrix(3, 3);
+            m[0, 0] = 1; m[0, 1] = 0; m[0, 2] = 0;
+            m[1, 0] = 0; m[1, 1] = 1; m[1, 2] = 0;
+            m[2, 0] = 0; m[2, 1] = 0; m[2, 2] = 1;
+            //public static bool ComputeEvJacobi(Matrix m,double[] dblEigenValue, Matrix mtxEigenVector, int nMaxIt, double eps)
+            double[] dblEigenValue = new double[3]{0,0,0};
+            Matrix mtxEigenVector = new Matrix(3,3);
+            int nMaxIt = 100;
+            double eps = 0.0001;
+            bool rs =Matrix.ComputeEvJacobi(m, dblEigenValue, mtxEigenVector, nMaxIt, eps);
+            Console.WriteLine(rs);
         }
       
     }
