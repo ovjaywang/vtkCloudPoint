@@ -1412,6 +1412,7 @@ namespace vtkPointCloud
                 finally
                 {
                     sw.Close();
+                    ssw.Colse();
                 }
             }
         }
