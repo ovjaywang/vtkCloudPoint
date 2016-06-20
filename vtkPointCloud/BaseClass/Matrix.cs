@@ -570,7 +570,7 @@ namespace vtkPointCloud
         /// <returns>bool型，求解是否成功</returns>
         public static bool ComputeEvJacobi(Matrix m,double[] dblEigenValue, Matrix mtxEigenVector, int nMaxIt, double eps)
         {
-            int i, j, p = 0, q = 0, u, w, t, s, l;
+            int i, j, p = 0, q = 0, l;//u, w,t, s,
             double fm, cn, sn, omega, x, y, d;
             int cols = m.cols;
             int rows = m.rows;
@@ -583,7 +583,7 @@ namespace vtkPointCloud
                 mtxEigenVector[i,i] = 1.0;
                 for (j = 0; j < cols; j++)
                     if (i != j)
-                        mtxEigenVector[i * cols , j] = 0.0;
+                        mtxEigenVector[i , j] = 0.0;
             }
 
             while (true)
@@ -593,7 +593,7 @@ namespace vtkPointCloud
                 {
                     for (j = 0; j <= i - 1; j++)
                     {
-                        d = Math.Abs(m[i * cols , j]);
+                        d = Math.Abs(m[i  , j]);
                         if ((i != j) && (d > fm))
                         {
                             fm = d;
@@ -614,12 +614,12 @@ namespace vtkPointCloud
                     return false;
 
                 l = l + 1;
-                u = p * cols + q;
-                w = p * cols + p;
-                t = q * cols + p;
-                s = q * cols + q;
-                x = -m[p*cols,q];
-                y = (m[q*cols,q] - m[p*cols,p]) / 2.0;
+                //u = p * cols + q;
+                //w = p * cols + p;
+                //t = q * cols + p;
+                //s = q * cols + q;
+                x = -m[p,q];
+                y = (m[q,q] - m[p,p]) / 2.0;
                 omega = x / Math.Sqrt(x * x + y * y);
 
                 if (y < 0.0)
@@ -628,19 +628,19 @@ namespace vtkPointCloud
                 sn = 1.0 + Math.Sqrt(1.0 - omega * omega);
                 sn = omega / Math.Sqrt(2.0 * sn);
                 cn = Math.Sqrt(1.0 - sn * sn);
-                fm = m[p * cols , p];
-                m[p * cols, p] = fm * cn * cn + m[q * cols, q] * sn * sn + m[p * cols, q] * omega;
-                m[q * cols, q] = fm * sn * sn + m[q * cols, q] * cn * cn - m[p * cols, q] * omega;
-                m[p * cols, q] = 0.0;
-                m[q * cols , p] = 0.0;
+                fm = m[p  , p];
+                m[p , p] = fm * cn * cn + m[q , q] * sn * sn + m[p , q] * omega;
+                m[q , q] = fm * sn * sn + m[q , q] * cn * cn - m[p , q] * omega;
+                m[p , q] = 0.0;
+                m[q , p] = 0.0;
                 for (j = 0; j <= cols - 1; j++)
                 {
                     if ((j != p) && (j != q))
                     {
-                        u = p * cols + j; w = q * cols + j;
-                        fm = m[p * cols, q];
-                        m[p * cols, q] = fm * cn + m[p * cols, p] * sn;
-                        m[p * cols, p] = -fm * sn + m[p * cols, p] * cn;
+                        //u = p * cols + j; w = q * cols + j;
+                        fm = m[p , q];
+                        m[p , q] = fm * cn + m[p , p] * sn;
+                        m[p , p] = -fm * sn + m[p , p] * cn;
                     }
                 }
 
@@ -648,21 +648,21 @@ namespace vtkPointCloud
                 {
                     if ((i != p) && (i != q))
                     {
-                        u = i * cols + p;
-                        w = i * cols + q;
-                        fm = m[p * cols, q];
-                        m[p * cols, q] = fm * cn + m[p * cols, p] * sn;
-                        m[p * cols, p] = -fm * sn + m[p * cols, p] * cn;
+                        //u = i * cols + p;
+                        //w = i * cols + q;
+                        fm = m[p , q];
+                        m[p , q] = fm * cn + m[p , p] * sn;
+                        m[p , p] = -fm * sn + m[p , p] * cn;
                     }
                 }
 
                 for (i = 0; i <= cols - 1; i++)
                 {
-                    u = i * cols + p;
-                    w = i * cols + q;
-                    fm = mtxEigenVector[p * cols, q];
-                    mtxEigenVector[p * cols, q] = fm * cn + mtxEigenVector[p * cols, p] * sn;
-                    mtxEigenVector[p * cols, p] = -fm * sn + mtxEigenVector[p * cols, p] * cn;
+                    //u = i * cols + p;
+                    //w = i * cols + q;
+                    fm = mtxEigenVector[p , q];
+                    mtxEigenVector[p , q] = fm * cn + mtxEigenVector[p , p] * sn;
+                    mtxEigenVector[p , p] = -fm * sn + mtxEigenVector[p , p] * cn;
                 }
             }
         }

@@ -49,6 +49,8 @@
             this.LookTruePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GetScreen = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试矩阵ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试ICpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +62,8 @@
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.YAxisChangeBtn = new System.Windows.Forms.Button();
             this.XAxisChangeBtn = new System.Windows.Forms.Button();
             this.SureAutoMatchBtn = new System.Windows.Forms.Button();
@@ -84,20 +88,28 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试矩阵ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.测试图例ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.toolStrip4.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.操作ToolStripMenuItem,
@@ -238,7 +250,9 @@
             this.LookTruePointToolStripMenuItem,
             this.清空数据ToolStripMenuItem,
             this.GetScreen,
-            this.测试矩阵ToolStripMenuItem});
+            this.测试矩阵ToolStripMenuItem,
+            this.测试ICpToolStripMenuItem,
+            this.测试图例ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -246,28 +260,42 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(150, 6);
             // 
             // LookTruePointToolStripMenuItem
             // 
             this.LookTruePointToolStripMenuItem.Name = "LookTruePointToolStripMenuItem";
-            this.LookTruePointToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.LookTruePointToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.LookTruePointToolStripMenuItem.Text = "查看真值点";
             this.LookTruePointToolStripMenuItem.Click += new System.EventHandler(this.LookTruePointToolStripMenuItem_Click);
             // 
             // 清空数据ToolStripMenuItem
             // 
             this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
-            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.清空数据ToolStripMenuItem.Text = "清空数据";
             this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
             // 
             // GetScreen
             // 
             this.GetScreen.Name = "GetScreen";
-            this.GetScreen.Size = new System.Drawing.Size(175, 24);
+            this.GetScreen.Size = new System.Drawing.Size(153, 24);
             this.GetScreen.Text = "截屏";
             this.GetScreen.Click += new System.EventHandler(this.GetScreen_Click);
+            // 
+            // 测试矩阵ToolStripMenuItem
+            // 
+            this.测试矩阵ToolStripMenuItem.Name = "测试矩阵ToolStripMenuItem";
+            this.测试矩阵ToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.测试矩阵ToolStripMenuItem.Text = "测试矩阵";
+            this.测试矩阵ToolStripMenuItem.Click += new System.EventHandler(this.测试矩阵ToolStripMenuItem_Click);
+            // 
+            // 测试ICpToolStripMenuItem
+            // 
+            this.测试ICpToolStripMenuItem.Name = "测试ICpToolStripMenuItem";
+            this.测试ICpToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.测试ICpToolStripMenuItem.Text = "测试ICP";
+            this.测试ICpToolStripMenuItem.Click += new System.EventHandler(this.测试ICpToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -362,6 +390,12 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox3);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.YAxisChangeBtn);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.XAxisChangeBtn);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.SureAutoMatchBtn);
@@ -383,6 +417,36 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(1398, 43);
             this.toolStripContainer1.TabIndex = 4;
             this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.Color.White;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(1051, -14);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.InitialImage = null;
+            this.pictureBox2.Location = new System.Drawing.Point(1169, -14);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
             // YAxisChangeBtn
             // 
@@ -498,6 +562,7 @@
             // 
             // toolStrip4
             // 
+            this.toolStrip4.BackColor = System.Drawing.Color.White;
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -520,6 +585,7 @@
             // 
             // toolStrip3
             // 
+            this.toolStrip3.BackColor = System.Drawing.Color.White;
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -567,6 +633,7 @@
             // 
             // toolStrip2
             // 
+            this.toolStrip2.BackColor = System.Drawing.Color.White;
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -625,6 +692,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsButton_ImportScanData,
@@ -645,7 +713,7 @@
             this.tsButton_ImportScanData.Name = "tsButton_ImportScanData";
             this.tsButton_ImportScanData.Size = new System.Drawing.Size(32, 32);
             this.tsButton_ImportScanData.Text = "导入扫描点数据文件夹";
-            this.tsButton_ImportScanData.Click += new System.EventHandler(this.tsButton_ImportScanData_Click);
+            this.tsButton_ImportScanData.Click += new System.EventHandler(this.tsButton_ImportfixedData_Click);
             // 
             // tsButton_CLEANALL
             // 
@@ -658,12 +726,62 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
-            // 测试矩阵ToolStripMenuItem
+            // label1
             // 
-            this.测试矩阵ToolStripMenuItem.Name = "测试矩阵ToolStripMenuItem";
-            this.测试矩阵ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.测试矩阵ToolStripMenuItem.Text = "测试矩阵";
-            this.测试矩阵ToolStripMenuItem.Click += new System.EventHandler(this.测试矩阵ToolStripMenuItem_Click);
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("楷体", 10.8F);
+            this.label1.Location = new System.Drawing.Point(1097, -1);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 19);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "误差点";
+            this.label1.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("楷体", 10.8F);
+            this.label2.Location = new System.Drawing.Point(1215, -1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 19);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "常规点";
+            this.label2.Visible = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.White;
+            this.pictureBox3.InitialImage = null;
+            this.pictureBox3.Location = new System.Drawing.Point(1287, -14);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.TabIndex = 16;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("楷体", 10.8F);
+            this.label3.Location = new System.Drawing.Point(1322, -1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 19);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "配对点";
+            this.label3.Visible = false;
+            // 
+            // 测试图例ToolStripMenuItem
+            // 
+            this.测试图例ToolStripMenuItem.Name = "测试图例ToolStripMenuItem";
+            this.测试图例ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.测试图例ToolStripMenuItem.Text = "测试图例";
+            this.测试图例ToolStripMenuItem.Click += new System.EventHandler(this.测试图例ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -691,6 +809,8 @@
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
@@ -699,6 +819,7 @@
             this.toolStrip2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -762,6 +883,14 @@
         private System.Windows.Forms.ToolStripMenuItem ImportXLSFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GetScreen;
         private System.Windows.Forms.ToolStripMenuItem 测试矩阵ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试ICpToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem 测试图例ToolStripMenuItem;
        
     }
 }

@@ -68,5 +68,37 @@ namespace vtkPointCloud
             if (filterID.Count == 0) return;
             dataSet.RemoveAll((delegate(Point3D p) { return (filterID.Contains(p.clusterId)); }));
         }
+
+        /// <summary>
+        /// 获取扫描点聚类质心
+        /// </summary>
+        static public List<Point3D> getScanCentroid(List<Point3D>[] fixedData)
+        {
+            List<Point3D>  scanCen = new List<Point3D>();
+
+            for (int i = 0; i < fixedData.Length; i++)
+            {
+                Point3D tmp = new Point3D();
+                int insideNum = 0;
+                for (int j = 0; j < fixedData[i].Count; j++)
+                {
+                    if (fixedData[i][j].clusterId != 0)
+                    {
+                        tmp.X += fixedData[i][j].X;
+                        tmp.Y += fixedData[i][j].Y;
+                        tmp.Z += fixedData[i][j].Z;
+                        insideNum++;
+                    }
+
+                }
+                tmp.X = tmp.X / insideNum;
+                tmp.Y = tmp.Y / insideNum;
+                tmp.Z = tmp.Z / insideNum;
+                tmp.pointName = fixedData[i][0].pointName;
+                tmp.ifShown = true;
+                scanCen.Add(tmp);
+            }
+            return scanCen;
+        }
     }
 }
