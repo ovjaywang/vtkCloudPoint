@@ -61,17 +61,17 @@
             // PathSeltxt
             // 
             this.PathSeltxt.Font = new System.Drawing.Font("宋体", 16F);
-            this.PathSeltxt.Location = new System.Drawing.Point(23, 36);
+            this.PathSeltxt.Location = new System.Drawing.Point(177, 40);
             this.PathSeltxt.Name = "PathSeltxt";
             this.PathSeltxt.ReadOnly = true;
-            this.PathSeltxt.Size = new System.Drawing.Size(599, 38);
+            this.PathSeltxt.Size = new System.Drawing.Size(586, 38);
             this.PathSeltxt.TabIndex = 0;
             this.PathSeltxt.Text = "未选择路径";
             // 
             // pathSelbtn
             // 
             this.pathSelbtn.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pathSelbtn.Location = new System.Drawing.Point(628, 32);
+            this.pathSelbtn.Location = new System.Drawing.Point(33, 36);
             this.pathSelbtn.Name = "pathSelbtn";
             this.pathSelbtn.Size = new System.Drawing.Size(132, 42);
             this.pathSelbtn.TabIndex = 1;

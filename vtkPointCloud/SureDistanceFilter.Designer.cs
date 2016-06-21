@@ -67,7 +67,7 @@
             this.Refilter.Location = new System.Drawing.Point(28, 209);
             this.Refilter.Name = "Refilter";
             this.Refilter.Size = new System.Drawing.Size(165, 42);
-            this.Refilter.TabIndex = 2;
+            this.Refilter.TabIndex = 22;
             this.Refilter.Text = "重新过滤";
             this.Refilter.UseVisualStyleBackColor = true;
             this.Refilter.Click += new System.EventHandler(this.Refilter_Click);
@@ -141,7 +141,7 @@
             this.ThresholdMinTxtBox.Location = new System.Drawing.Point(195, 105);
             this.ThresholdMinTxtBox.Name = "ThresholdMinTxtBox";
             this.ThresholdMinTxtBox.Size = new System.Drawing.Size(146, 30);
-            this.ThresholdMinTxtBox.TabIndex = 5;
+            this.ThresholdMinTxtBox.TabIndex = 2;
             // 
             // textBox2
             // 

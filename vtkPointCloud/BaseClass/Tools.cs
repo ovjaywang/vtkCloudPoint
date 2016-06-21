@@ -100,5 +100,95 @@ namespace vtkPointCloud
             }
             return scanCen;
         }
+        /// <summary>
+        /// 获取聚类中心集合
+        /// </summary>
+        /// <param name="clus">聚类数</param>
+        /// <param name="rawData">所有点</param>
+        /// <returns></returns>
+        static public List<Point3D> getClusterCenter(int clus,List<Point3D> rawData)
+        {
+            List<Point3D> centers = new List<Point3D>();
+            double[] ccenters = new double[clus * 3];
+            int[] counts = new int[clus];
+            for (int i = 0; i < ccenters.Length; i++)
+            {
+                ccenters[i] = 0.0;
+            }
+            for (int k = 0; k < counts.Length; k++)
+            {
+                counts[k] = 0;
+            }
+            for (int i = 0; i < rawData.Count; i++)
+            {
+                if (rawData[i].clusterId != 0)
+                {
+                    ccenters[(rawData[i].clusterId - 1) * 3] += rawData[i].X;
+                    ccenters[(rawData[i].clusterId - 1) * 3 + 1] += rawData[i].Y;
+                    ccenters[(rawData[i].clusterId - 1) * 3 + 2] += rawData[i].Z;
+                    counts[rawData[i].clusterId - 1] += 1;
+                }
+            }
+            for (int i = 0; i < clus; i++)
+            {
+                centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1, true));
+            }
+            return centers;
+        }
+        /// <summary>
+        /// 确认阈值过滤结果 输出聚类 并把野点设为不可见
+        /// <param name="isExport">是否输出过滤后文件</param>
+        /// </summary>
+        static public void cleanDataByDistance(bool isExport,List<Point3D> rawData) {
+            Console.WriteLine("当前点数 : " + rawData.Count);
+            rawData.RemoveAll(delegate(Point3D p) { return (p.isFilterByDistance); });
+            Console.WriteLine("阈值过滤后点数 : " + rawData.Count);
+            if (isExport)//如果需要输出文件
+            {
+                SaveFileDialog saveFile1 = new SaveFileDialog();
+                saveFile1.Filter = "文本文件(.txt)|*.txt";
+                saveFile1.FilterIndex = 1;
+                bool skipRecru = true;
+                while (skipRecru)
+                {
+                    DialogResult diaRs = saveFile1.ShowDialog();
+                    if (diaRs == DialogResult.Cancel)
+                    {
+                        DialogResult dr = MessageBox.Show("确认不保存吗？", "提示", MessageBoxButtons.OKCancel);
+                        if (dr == System.Windows.Forms.DialogResult.OK)
+                        {
+                            skipRecru = false;
+                        }
+                        else if (dr == System.Windows.Forms.DialogResult.Cancel)
+                        {
+                            continue;
+                        }
+                    }
+                    if (diaRs == DialogResult.OK)
+                    {
+                        Console.WriteLine(saveFile1.FileName);
+                        System.IO.StreamWriter ssw = new System.IO.StreamWriter(saveFile1.FileName, false);
+                        try
+                        {
+                            foreach (Point3D p3d in rawData)
+                                ssw.WriteLine(p3d.X + "\t" + p3d.Y + "\t" + p3d.Z);
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+                        finally
+                        {
+                            ssw.Close();
+                            skipRecru = false;
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+
+
     }
 }
