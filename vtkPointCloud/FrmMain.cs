@@ -35,7 +35,7 @@ namespace vtkPointCloud
 
         //点集相关
         List<Point3D> rawData = new List<Point3D>();//raw是原始x y z值数据
-        List<Point3D>[] fixedData;//扫描点数据
+        List<Point3D>[] fixedData;//固定点分组测量数据
         List<List<Point3D>> classedrawData = new List<List<Point3D>>();
         ArrayList pathList = new ArrayList();
         List<Point3D> centers = null;//同聚类中心
@@ -69,12 +69,7 @@ namespace vtkPointCloud
         int clusterSum = 1;
         int pointSum = 0;
         double simple_x_step,simple_y_step;
-        double xsift, ysift;
         vtkActor actorLine = new vtkActor(), actorLine2 = new vtkActor(),actorLine3 = new vtkActor(),actorLine4 = new vtkActor();
-        int rows;
-        int cols;
-        double[] rawDis;
-        double[] colDis;
         List<Point3D> sourceTrueList = null;
         //public double distanceFilterThrehold = 0.0;
         //源文件聚类相关
@@ -835,7 +830,7 @@ namespace vtkPointCloud
         /// <param name="ydir">扫描点y方向 1上2右3下4左</param>
         /// <param name="typpe">1剔野+txt 2剔野+xls 3不剔野+txt 4不剔野+xls</param>
         /// <param name="isXLS">是否是xls文件</param>
-        private void AddFolder(String ptsPath,int xdir,int ydir, int typpe, bool isXLS)//type1 扫描剔野 2扫描不踢野
+        private void AddFolder(String ptsPath,int xdir,int ydir, int typpe, bool isXLS)//添加数据
         {
             string[] files = null; 
             if (isXLS)
@@ -1037,7 +1032,7 @@ namespace vtkPointCloud
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
             dbb.dbscan(rawData, threhold, pointsInthrehold);
-            MessageBox.Show(stopwatch.Elapsed.ToString());
+            MessageBox.Show("消息",stopwatch.Elapsed.ToString());
             clusterSum = dbb.clusterAmount;
             pointSum = dbb.pointsAmount;
             this.BeginInvoke(new UpdateStatusDelegate(UpdateStatus), new object[] { });
@@ -1357,7 +1352,6 @@ namespace vtkPointCloud
             vtkControl.Refresh();
             vtkControl.Update();
         }
-
         
         /// <summary>
         /// 初步聚类中清除聚类过小的 合并距离相近的
@@ -1614,15 +1608,12 @@ namespace vtkPointCloud
             this.SureFilter_btn.Visible = true;
             this.CancleFilterBtn.Visible = true;
             this.RecorrectBtn.Visible = true;
-        }
-
-
-      
-        
+        }        
         /// <summary>
         /// 确认源文件聚类结果
         /// </summary>
-        void sureSourceClustringandExprot() {//确认源文件聚类结果
+        void sureSourceClustringandExprot()//确认源文件聚类结果
+        {
             SureSourceFrm SSF = new SureSourceFrm();
             DialogResult ssfDr = SSF.ShowDialog();
             if (ssfDr == DialogResult.OK)
@@ -1704,7 +1695,8 @@ namespace vtkPointCloud
         /// <summary>
         /// 进行源文件聚类
         /// </summary>
-        void doingSourceClustring(){
+        void doingSourceClustring()//执行源文件聚类
+        {
                 List<Point3D> p_erro = new List<Point3D>();
                 classedrawData.Add(p_erro);
                 int sss = 0;
@@ -1853,7 +1845,7 @@ namespace vtkPointCloud
         /// <summary>
         /// 源文件聚类中 显示源点
         /// </summary>
-        private int showSourcePoint()
+        private int showSourcePoint()//源文件聚类显示源数据
         {
             ShowSourceClustering ssc = new ShowSourceClustering();
             ssc.xaxialsymmetry.Checked = this.true_xasix;
@@ -1929,7 +1921,8 @@ namespace vtkPointCloud
         /// <summary>
         /// 查看真值点函数
         /// </summary>
-        private void seeTruePointFromFile() {
+        private void seeTruePointFromFile() //查看真值点
+        {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter += "点云数据(*.txt)|*.txt";
             openFile.Title = "打开文件";
@@ -1976,9 +1969,7 @@ namespace vtkPointCloud
                 }
                 ShowPointsFromFile(rawData, 1);
             }
-        }
-        
-
+        }       
         /// <summary>
         /// 阈值过滤窗体同步显示
         /// </summary>
@@ -2001,8 +1992,6 @@ namespace vtkPointCloud
             else
                 ShowPointsFromFile(rawData , 7); 
         }
-
-
 
         //////工具栏右侧隐藏按钮事件
         /// <summary>
@@ -2285,12 +2274,18 @@ namespace vtkPointCloud
                 MessageBox.Show("没有显示任何点，不可以聚类");
                 return;
             }
-            getClusterFromList();//计算聚类
-            //          Console.Write(DB.iritatorNum);
-            this.centers = Tools.getClusterCenter(dbb.clusterAmount,this.rawData);//计算质心
-            ShowPointsFromFile(centers, 3);//不同颜色显示核心点与野点
-            this.MCCorMCE.Enabled = true;
-            this.ExportClusterToolStripMenuItem.Enabled = true;
+            bool isSure = false;
+            while (!isSure) {
+                getClusterFromList();//计算聚类
+                this.centers = Tools.getClusterCenter(dbb.clusterAmount, this.rawData);//计算质心
+                ShowPointsFromFile(centers, 3);//不同颜色显示核心点与野点
+                if (MessageBox.Show("是否确认聚类结果?", "消息", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    isSure = true;
+                }
+            }
+            dealwithMCCandMCE();//调用显示
+            //this.ExportClusterToolStripMenuItem.Enabled = true;
         }
         /// <summary>
         /// 源文件聚类菜单单击事件
@@ -2510,6 +2505,15 @@ namespace vtkPointCloud
             showFixPointData(2);//显示剔野之后数据
             ShowPointsFromFile(scanCen, 3);
             this.ExportFixedPointsCentersToolStripMenuItem.Enabled = true;
+        }
+        /// <summary>
+        /// 导出固定点质心文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportFixedPointsCentersToolStripMenuItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportSingleCenterFile();
         }
         /// <summary>
         /// 使用第三列对点进行过滤
@@ -2813,10 +2817,7 @@ namespace vtkPointCloud
             trvp.ShowDialog();
         }
 
-        private void ExportFixedPointsCentersToolStripMenuItemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            exportSingleCenterFile();
-        }
+
 
       
     }
