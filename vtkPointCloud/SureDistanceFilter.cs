@@ -13,6 +13,7 @@ namespace vtkPointCloud
     {
         public double distanceMax = 0.0;
         public double distanceMin = 0.0;
+        private bool isFirst = true;
         public SureDistanceFilter()
         {
             InitializeComponent();
@@ -36,11 +37,16 @@ namespace vtkPointCloud
                 MessageBox.Show("最小值不能比最大值大");
                 return;
             }
-            mf.testParamsTrans(this.checkBox1.Checked,this.distanceMax, this.distanceMin);
+            mf.AmendFilterDistance(this.checkBox1.Checked, this.distanceMax, this.distanceMin);
+            if (isFirst) {
+                mf.isShowLegend(1);
+                isFirst = false;
+            }
         }
         private void OKBtn_Click(object sender, EventArgs e){
             MainForm mf = (MainForm)this.Owner;
             mf.ExcludePtsByDistance(this.checkBox2.Checked);
+            mf.isShowLegend(0);
             this.DialogResult = DialogResult.OK;
             this.Close();     
         }

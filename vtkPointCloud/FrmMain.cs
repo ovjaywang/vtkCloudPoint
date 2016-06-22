@@ -162,7 +162,7 @@ namespace vtkPointCloud
         /// </summary>
         /// <param name="tn">TreeNode节点</param>
         /// <returns></returns>
-        private int GetNodeChecked(TreeNode tn)
+        private int GetNodeChecked(TreeNode tn)//查询treenode下被勾选数
         {
             int x = 0;
             if (tn.Checked)
@@ -182,7 +182,7 @@ namespace vtkPointCloud
         /// </summary>
         /// <param name="treev"></param>
         /// <returns></returns>
-        private int GetTreeViewNodeChecked(TreeView treev)
+        private int GetTreeViewNodeChecked(TreeView treev)//查询treeview被选中数
         {
             int k = 0;
 
@@ -206,7 +206,7 @@ namespace vtkPointCloud
         /// <param name="currNode">当前节点</param>
         /// <param name="state">节点状态</param>
         /// <returns></returns>
-        private void setParentNodeCheckedState(TreeNode currNode, bool state)
+        private void setParentNodeCheckedState(TreeNode currNode, bool state)//给父节点赋予子节点的false
         {
             TreeNode parentNode = currNode.Parent;
 
@@ -222,7 +222,7 @@ namespace vtkPointCloud
         /// <param name="currNode">当前节点</param>
         /// <param name="state">节点状态</param>
         /// <returns></returns>
-        private void setChildNodeCheckedState(TreeNode currNode, bool state)
+        private void setChildNodeCheckedState(TreeNode currNode, bool state)//给子节点赋予父节点的值
         {
             TreeNodeCollection nodes = currNode.Nodes;
             if (nodes.Count > 0)
@@ -424,7 +424,12 @@ namespace vtkPointCloud
             vtkControl.Refresh();
         }
         //显示文本数据点云
-        public void ShowPointsFromFile(List<Point3D> points, int type) //type 1 默认显示 2 核心点显示 误差点显示 3显示质心  4##  5简单过滤显示质心 6 按照distance过滤
+        /// <summary>
+        /// 显示不同方式的点云
+        /// </summary>
+        /// <param name="points">List<Point3D>点集</param>
+        /// <param name="type">//type 1 默认显示 2 核心点显示 误差点显示 3显示质心  4##  5简单过滤显示质心 6 按照distance过滤</param>
+        public void ShowPointsFromFile(List<Point3D> points, int type) 
         {
             vtkControl.GetRenderWindow().Clean();
             //vtkRenderWindow renderWindow = vtkControl.GetRenderWindow();
@@ -486,13 +491,13 @@ namespace vtkPointCloud
                     //    }
                     //}
                     else if (type == 6) {
-                        if (points[i].isFilterByDistance)//不是核心点
+                        if (!points[i].isFilterByDistance)//被过滤点
                         {
                             pointCloud_3.InsertPoint(count_3, points[i].X, points[i].Y, points[i].Z);
                             count_3++;
                         }
                         else
-                        {//是核心点
+                        {//未被过滤点
                             pointCloud_2.InsertPoint(count_2, points[i].X, points[i].Y, points[i].Z);
                             count_2++;
                         }
@@ -611,7 +616,7 @@ namespace vtkPointCloud
             vtkControl.GetRenderWindow().AddRenderer(ren);
             vtkControl.Refresh();
         }
-        private void showRectangle(List<Point2D[]> rtgPoints)
+        private void showRectangle(List<Point2D[]> rtgPoints)//显示矩形图案
         {
             //foreach (Point2D[] pts in rtgPoints)
             ren = new vtkRenderer();
@@ -659,8 +664,13 @@ namespace vtkPointCloud
         }
         //计算聚类点质心（均值）
 
-
-        public double getDisP(double[] p1, Point3D p2)
+        /// <summary>
+        /// 计算真值点与质心距离
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        public double getDisP(double[] p1, Point3D p2)//计算真值点与质心距离
         {
             double dx = p1[0] - p2.matched_X;
             double dy = p1[1] - p2.matched_Y;
@@ -817,6 +827,14 @@ namespace vtkPointCloud
             polydata.SetVerts(SourceVertices);
             return polydata;
         }
+        /// <summary>
+        /// 添加扫描点聚类文件
+        /// </summary>
+        /// <param name="ptsPath">文件夹路径</param>
+        /// <param name="xdir">扫描点x方向 1上2右3下4左</param>
+        /// <param name="ydir">扫描点y方向 1上2右3下4左</param>
+        /// <param name="typpe">1剔野+txt 2剔野+xls 3不剔野+txt 4不剔野+xls</param>
+        /// <param name="isXLS">是否是xls文件</param>
         private void AddFolder(String ptsPath,int xdir,int ydir, int typpe, bool isXLS)//type1 扫描剔野 2扫描不踢野
         {
             string[] files = null; 
@@ -979,20 +997,22 @@ namespace vtkPointCloud
                 treeView1.ExpandAll();
                 if (typpe == 1 || typpe == 2)
                 {
-                    MessageBox.Show("共" + (rawData.Count + duplicatNum) + "个点，其中" + duplicatNum + "个重复点，剩余" + rawData.Count + "个点。");
+                    MessageBox.Show("提示","共" + (rawData.Count + duplicatNum) + "个点，其中" + duplicatNum + "个重复点，剩余" + rawData.Count + "个点。");
                     ShowPointsFromFile(rawData, 1);
                 }
                 else if (typpe == 3)
                 {
-                    MessageBox.Show("共" + (fixedData.Length) + "个扫描点，其中" + duplicatNum + "个重复点，剩余" + pts + "个点。");
+                    MessageBox.Show("提示","共" + (fixedData.Length) + "个扫描点，其中" + duplicatNum + "个重复点，剩余" + pts + "个点。");
                 }
+                SureDistanceFilter sdf = new SureDistanceFilter();
+                sdf.Left = 0;
+                sdf.Show(this);
             }
-            SureDistanceFilter sdf = new SureDistanceFilter();
-            sdf.Left = 0;
-            sdf.Show(this);
+
 
         }
-        private void getClusterFromList()
+        //执行dbscan的线程
+        private void getClusterFromList()//执行dbscan聚类线程
         {
             ClusterParameters cp = new ClusterParameters();
             DialogResult rs = cp.ShowDialog();
@@ -1029,7 +1049,6 @@ namespace vtkPointCloud
             // bkWorker.ReportProgress 会调用到这里，此处可以进行自定义报告方式  
             //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
         }
-
         public void CompleteWork(object sender, RunWorkerCompletedEventArgs e)
         {
             progressForm.Close();
@@ -1086,7 +1105,6 @@ namespace vtkPointCloud
                 {
                     // 状态报告  
                     bkWorker.ReportProgress(i / 10);
-
                     // 等待，用于UI刷新界面，很重要  
                     System.Threading.Thread.Sleep(1);
                 }
@@ -1223,7 +1241,10 @@ namespace vtkPointCloud
             bkWorker2.RunWorkerAsync();
             progressForm.ShowDialog();
         }
-        void exportMatchingFile()
+        /// <summary>
+        /// 导出匹配文件 仰角 方位角 距离 质心x y z
+        /// </summary>
+        void exportMatchingFile()//导出匹配文件
         {
             SaveFileDialog saveFile1 = new SaveFileDialog();
             saveFile1.Filter = "文本文件(.txt)|*.txt";
@@ -1265,7 +1286,9 @@ namespace vtkPointCloud
                 }
             }
         }
-
+        /// <summary>
+        /// 导出扫描点聚类文件 x电机 y电机 distance剧烈
+        /// </summary>
         void exportClusterFile()
         {   //导出聚类数据
             SaveFileDialog saveFile1 = new SaveFileDialog();
@@ -1303,7 +1326,7 @@ namespace vtkPointCloud
                 }
             }
         }
-        private void CallBack(string message)
+        private void CallBack(string message)//回调函数
         {
             //主线程报告信息,可以根据这个信息做判断操作,执行不同逻辑.
             //MessageBox.Show(message);
@@ -1339,7 +1362,7 @@ namespace vtkPointCloud
         /// <summary>
         /// 初步聚类中清除聚类过小的 合并距离相近的
         /// </summary>
-        void clearError_combineClusters_FromScanList()
+        void clearError_combineClusters_FromScanList()//清楚野点 合并聚类接近点
         {
             Console.WriteLine(fixedData.Length);
             for (int i = 0; i < fixedData.Length; i++)//第一层 遍历所有聚类ID
@@ -1366,8 +1389,8 @@ namespace vtkPointCloud
         /// <summary>
         /// 显示固定点数据
         /// </summary>
-        /// <param name="type"></param>
-        void showFixPointData(int type)
+        /// <param name="type">1.显示全部 2.显示正常点和野点 </param>
+        void showFixPointData(int type)//显示固定点数据
         {
             vtkControl.GetRenderWindow().Clean();
 
@@ -1468,10 +1491,6 @@ namespace vtkPointCloud
                 vtkControl.Refresh();
             }
         }
-        private void 数据均值文件ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            exportSingleCenterFile();
-        }
         /// <summary>
         /// 导出单点扫描均值文件
         /// </summary>
@@ -1518,7 +1537,7 @@ namespace vtkPointCloud
         /// <summary>
         /// 处理外接圆和外接矩形
         /// </summary>
-        private void dealwithMCCandMCE()
+        private void dealwithMCCandMCE()//处理外接圆和外接矩形
         {
             filterID.Clear();
             MCC_MCE mcc = new MCC_MCE();
@@ -1966,7 +1985,8 @@ namespace vtkPointCloud
         /// <param name="disMax">距离过滤最大值</param>
         /// <param name="disMin">距离过滤最小值</param>
         /// <returns>返回值注释</returns>
-        public  void testParamsTrans(bool isShowFilter,double disMax,double disMin){
+        public  void AmendFilterDistance(bool isShowFilter,double disMax,double disMin)//修正过滤阈值后界面同步
+        {
             for(int i=0;i<rawData.Count;i++){
                 if (rawData[i].Distance < disMax && rawData[i].Distance>disMin)
                 {
@@ -2173,14 +2193,35 @@ namespace vtkPointCloud
         /// 设置图例是否可见
         /// </summary>
         /// <param name="Visible">是否可见</param>
-        private void isShowLegend(bool Visible)//是否显示图例
+        public void isShowLegend(int Visible)//是否显示图例
         {
-            this.pictureBox1.Visible = Visible;
-            this.label1.Visible = Visible;
-            this.pictureBox2.Visible = Visible;
-            this.label2.Visible = Visible;
-            this.pictureBox3.Visible = Visible;
-            this.label3.Visible = Visible;
+            if (Visible == 0) {//全都不显示
+                this.pictureBox1.Visible = false;
+                this.label1.Visible = false;
+                this.pictureBox2.Visible = false;
+                this.label2.Visible = false;
+                this.pictureBox3.Visible = false;
+                this.label3.Visible = false;
+            }
+            else {
+                
+                this.label1.Visible = true;
+                this.label2.Visible = true;
+                this.pictureBox1.Visible = true;
+                this.pictureBox2.Visible = true;
+                if (Visible == 1) {//按阈值过滤的图例
+                    label1.Text = "被过滤点";
+                    label2.Text = "未过滤点";
+                }
+                else if (Visible == 2) {//聚类后显示
+                    label1.Text = "核心点";
+                    label2.Text = "野点";
+                }
+                else if (Visible == 3) {
+                    this.label3.Visible = true;
+                    this.pictureBox3.Visible = true;     
+                }
+            }
         }
 
 
@@ -2763,7 +2804,7 @@ namespace vtkPointCloud
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(true);
+            isShowLegend(3);
         }
 
         private void 测试真值点导入ToolStripMenuItem_Click(object sender, EventArgs e)
