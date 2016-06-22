@@ -14,7 +14,7 @@ using System.Linq;
 using System.Collections;
 using vtk;
 using System.Threading;
-
+//该版本未删除外接圆外接矩形
 namespace vtkPointCloud
 {
     public partial class MainForm : Form
