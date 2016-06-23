@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace vtkPointCloud
 {
-
+    //45.439 35.452
     public partial class ImportPts : Form
     {
         public int ptsRb = 0;

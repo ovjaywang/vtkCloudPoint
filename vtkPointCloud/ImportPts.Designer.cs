@@ -277,7 +277,7 @@
             this.x_angle_TxtBox.Name = "x_angle_TxtBox";
             this.x_angle_TxtBox.Size = new System.Drawing.Size(139, 38);
             this.x_angle_TxtBox.TabIndex = 15;
-            this.x_angle_TxtBox.Text = "45.439";
+            this.x_angle_TxtBox.Text = "149";
             // 
             // y_angle_TxtBox
             // 
@@ -286,7 +286,7 @@
             this.y_angle_TxtBox.Name = "y_angle_TxtBox";
             this.y_angle_TxtBox.Size = new System.Drawing.Size(170, 38);
             this.y_angle_TxtBox.TabIndex = 17;
-            this.y_angle_TxtBox.Text = "35.452";
+            this.y_angle_TxtBox.Text = "307";
             // 
             // textBox3
             // 

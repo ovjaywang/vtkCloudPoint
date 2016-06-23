@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace vtkPointCloud
 {
-    public partial class  Form2 : Form
+    public partial class  WaitingForm : Form
     {
-        public Form2()
+        public WaitingForm()
         {
             InitializeComponent();
         }

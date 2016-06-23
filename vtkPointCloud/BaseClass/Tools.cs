@@ -136,10 +136,10 @@ namespace vtkPointCloud
             return centers;
         }
         /// <summary>
-        /// 确认阈值过滤结果 输出聚类 并把野点设为不可见
+        /// 确认Distance过滤结果 输出聚类 并把野点设为不可见
         /// <param name="isExport">是否输出过滤后文件</param>
         /// </summary>
-        static public void cleanDataByDistance(bool isExport,List<Point3D> rawData) {
+        static public void cleanDataByDistance(bool isExport,List<Point3D> rawData,int bit) {
             Console.WriteLine("当前点数 : " + rawData.Count);
             rawData.RemoveAll(delegate(Point3D p) { return (p.isFilterByDistance); });
             Console.WriteLine("阈值过滤后点数 : " + rawData.Count);
@@ -147,6 +147,7 @@ namespace vtkPointCloud
             {
                 SaveFileDialog saveFile1 = new SaveFileDialog();
                 saveFile1.Filter = "文本文件(.txt)|*.txt";
+                saveFile1.Title = "输出过滤文件";
                 saveFile1.FilterIndex = 1;
                 bool skipRecru = true;
                 while (skipRecru)
@@ -154,7 +155,7 @@ namespace vtkPointCloud
                     DialogResult diaRs = saveFile1.ShowDialog();
                     if (diaRs == DialogResult.Cancel)
                     {
-                        DialogResult dr = MessageBox.Show("确认不保存吗？", "提示", MessageBoxButtons.OKCancel);
+                        DialogResult dr = MessageBox.Show("确认不保存距离过滤后点集吗？", "提示", MessageBoxButtons.OKCancel);
                         if (dr == System.Windows.Forms.DialogResult.OK)
                         {
                             skipRecru = false;
@@ -166,12 +167,12 @@ namespace vtkPointCloud
                     }
                     if (diaRs == DialogResult.OK)
                     {
-                        Console.WriteLine(saveFile1.FileName);
+                        //Console.WriteLine(saveFile1.FileName);
                         System.IO.StreamWriter ssw = new System.IO.StreamWriter(saveFile1.FileName, false);
                         try
                         {
                             foreach (Point3D p3d in rawData)
-                                ssw.WriteLine(p3d.X + "\t" + p3d.Y + "\t" + p3d.Z);
+                                ssw.WriteLine(p3d.motor_x.ToString("F" + bit) + "\t" + p3d.motor_y.ToString("F" + bit) + "\t" + p3d.Distance.ToString("F" + bit));
                         }
                         catch
                         {
@@ -187,7 +188,89 @@ namespace vtkPointCloud
                 }
             }
         }
-
+        /// <summary>
+        /// 导出扫描点聚类文件 x电机 y电机 distance剧烈
+        /// </summary>
+        static public void exportClusterFile(List<Point3D> rawData)
+        {   //导出聚类数据
+            SaveFileDialog saveFile1 = new SaveFileDialog();
+            saveFile1.Filter = "文本文件(.txt)|*.txt";
+            saveFile1.Title = "输出聚类文件";
+            saveFile1.FilterIndex = 1;
+            bool skipRecru = true;
+            while (skipRecru) {
+                DialogResult rssss = saveFile1.ShowDialog();
+                if (rssss == System.Windows.Forms.DialogResult.Cancel)//选择取消
+                {
+                    DialogResult dr = MessageBox.Show("确认不保存聚类结果吗？", "提示", MessageBoxButtons.OKCancel);
+                    if (dr == System.Windows.Forms.DialogResult.OK)
+                    {
+                        skipRecru = false;
+                    }
+                    else if (dr == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        continue;
+                    }
+                }
+                if (rssss == System.Windows.Forms.DialogResult.OK && saveFile1.FileName.Length > 0)//选择确认
+                {
+                    System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFile1.FileName, false);
+                    //System.IO.StreamWriter ssw = new System.IO.StreamWriter("E:\\789.txt", false);
+                    try
+                    {
+                        int ccc = 1;
+                        //输出均值 电机x 电机y 距离distance
+                        for (int j = 0; j < rawData.Count; j++)
+                        {
+                            if (rawData[j].clusterId != 0 && (!rawData[j].isFilter))
+                            {
+                                sw.WriteLine(ccc + "\t" + rawData[j].motor_x + "\t" + rawData[j].motor_y + "\t" + rawData[j].Distance);
+                            }
+                            ccc++;
+                        }
+                        //输出均值XYZ
+                        //for (int j = 0; j < centers.Count; j++) {
+                        //    ssw.WriteLine(centers[j].X + "\t" + centers[j].Y + "\t" + centers[j].Z);
+                        //}
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        sw.Close();
+                        //ssw.Close();
+                        skipRecru = false;
+                    }
+                }
+            }
+           
+            
+        }
+        /// <summary>
+        /// 获取所有聚类的外接圆
+        /// </summary>
+        /// <param name="hulls">每个数组是同一个聚类点的List</param>
+        /// <param name="clusterSum">聚类数</param>
+        static public List<Point2D> getCircles(List<Point2D>[] hulls, int clusterSum)
+        {
+            List<Point2D> circles = new List<Point2D>();
+            for (int j = 0; j < clusterSum; j++)
+            {
+                if (hulls[j].Count == 0) continue;
+                else Console.WriteLine(hulls[j].Count);
+                List<Point2D> m_points = Geometry.MakeConvexHull(hulls[j]);
+                Polygon pgon = new Polygon(m_points.ToArray());
+                Point2D CircleCenter;//圆心点
+                double CircleRadius = -1;
+                Geometry.FindMinimalBoundingCircle(m_points, out CircleCenter, out CircleRadius);
+                CircleCenter.radius = CircleRadius;
+                CircleCenter.clusID = j+1;
+                circles.Add(CircleCenter);
+            }
+            return circles;
+        }
 
 
     }

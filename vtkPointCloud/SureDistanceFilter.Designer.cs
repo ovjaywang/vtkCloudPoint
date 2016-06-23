@@ -60,6 +60,7 @@
             this.ThresholdMaxTxtBox.Name = "ThresholdMaxTxtBox";
             this.ThresholdMaxTxtBox.Size = new System.Drawing.Size(146, 30);
             this.ThresholdMaxTxtBox.TabIndex = 1;
+            this.ThresholdMaxTxtBox.Text = "42.12";
             // 
             // Refilter
             // 
@@ -142,6 +143,7 @@
             this.ThresholdMinTxtBox.Name = "ThresholdMinTxtBox";
             this.ThresholdMinTxtBox.Size = new System.Drawing.Size(146, 30);
             this.ThresholdMinTxtBox.TabIndex = 2;
+            this.ThresholdMinTxtBox.Text = "41.7";
             // 
             // textBox2
             // 
