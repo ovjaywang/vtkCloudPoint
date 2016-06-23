@@ -609,10 +609,6 @@ namespace vtkPointCloud
                     {
                         actor.GetProperty().SetColor(1, 1, 0);
                     }
-                    else
-                    {
-                        actor.GetProperty().SetColor(0, 1, 0);
-                    }
                 }
 
                 ren.AddActor(actor);
@@ -2115,26 +2111,24 @@ namespace vtkPointCloud
 
                 }
                 else if (Visible == 4) {//显示超过半径阈值和小于半径阈值的圆的图例
-                    this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\green_circle.png");
+                    this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\white_circle.png");
                     label1.Text = "阈值半径"+"\n"+"内点集";
                     label1.Location = new Point(this.pictureBox1.Location.X+this.pictureBox1.Width-20, this.pictureBox1.Location.Y+10);                    
                     this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\yellow_circle.png");
                     this.pictureBox2.Location = new Point(this.label1.Location.X + this.label1.Width -10, this.pictureBox1.Location.Y);
                     label2.Text = "阈值半径"+"\n"+"外点集";
                     label2.Location = new Point(this.pictureBox2.Location.X + this.pictureBox2.Width - 20, this.pictureBox2.Location.Y + 10);
-                    this.label1.Visible = true;
                     this.label2.Visible = true;
-                    this.pictureBox1.Visible = true;
                     this.pictureBox2.Visible = true;             
             }
-            this.label1.Visible = true;
+            this.label1.Visible = true;//默认显示一组
             this.pictureBox1.Visible = true;
             if (Visible == 1 || Visible==4)//显示两个
             {
                 this.label2.Visible = true;
                 this.pictureBox2.Visible = true;
             }
-            else if (Visible == 2) {
+            else if (Visible == 2) {//显示4个
                 this.label2.Visible = true;
                 this.label3.Visible = true;
                 this.label4.Visible = true;
