@@ -189,49 +189,27 @@ namespace vtkPointCloud
             }
         }
         /// <summary>
-        /// 导出扫描点聚类文件 x电机 y电机 distance剧烈
+        ///  导出聚类质心文件
         /// </summary>
-        static public void exportClusterFile(List<Point3D> rawData)
-        {   //导出聚类数据
-            SaveFileDialog saveFile1 = new SaveFileDialog();
-            saveFile1.Filter = "文本文件(.txt)|*.txt";
-            saveFile1.Title = "输出聚类文件";
-            saveFile1.FilterIndex = 1;
-            bool skipRecru = true;
-            while (skipRecru) {
-                DialogResult rssss = saveFile1.ShowDialog();
-                if (rssss == System.Windows.Forms.DialogResult.Cancel)//选择取消
-                {
-                    DialogResult dr = MessageBox.Show("确认不保存聚类结果吗？", "提示", MessageBoxButtons.OKCancel);
-                    if (dr == System.Windows.Forms.DialogResult.OK)
-                    {
-                        skipRecru = false;
-                    }
-                    else if (dr == System.Windows.Forms.DialogResult.Cancel)
-                    {
-                        continue;
-                    }
-                }
-                if (rssss == System.Windows.Forms.DialogResult.OK && saveFile1.FileName.Length > 0)//选择确认
-                {
-                    System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFile1.FileName, false);
-                    //System.IO.StreamWriter ssw = new System.IO.StreamWriter("E:\\789.txt", false);
+        /// <param name="circles">圆心文件</param>
+        /// <param name="bit">小数点位</param>
+        /// <param name="x_angle">电机x</param>
+        /// <param name="y_angle">电机y</param>
+        /// <param name="ss">输出路径</param>
+        static public void exportClustersCenterFile(List<Point2D> circles,int bit,double x_angle,double y_angle,string ss)
+        {   //导出聚类数据     
+                    System.IO.StreamWriter sw = new System.IO.StreamWriter(ss, false);
                     try
                     {
                         int ccc = 1;
                         //输出均值 电机x 电机y 距离distance
-                        for (int j = 0; j < rawData.Count; j++)
-                        {
-                            if (rawData[j].clusterId != 0 && (!rawData[j].isFilter))
-                            {
-                                sw.WriteLine(ccc + "\t" + rawData[j].motor_x + "\t" + rawData[j].motor_y + "\t" + rawData[j].Distance);
-                            }
+                        for (int j = 0; j < circles.Count; j++)
+                        {                    
+                                sw.WriteLine(j + "\t" + ((-2) * (circles[j].motor_x - x_angle) / 180 * Math.PI).ToString("F" + bit) + "\t"
+                                    + (2 * (circles[j].motor_y - y_angle) / 180 * Math.PI).ToString("F" + bit) + "\t"
+                                    +circles[j].distance.ToString("F" + bit));
                             ccc++;
                         }
-                        //输出均值XYZ
-                        //for (int j = 0; j < centers.Count; j++) {
-                        //    ssw.WriteLine(centers[j].X + "\t" + centers[j].Y + "\t" + centers[j].Z);
-                        //}
                     }
                     catch
                     {
@@ -240,13 +218,29 @@ namespace vtkPointCloud
                     finally
                     {
                         sw.Close();
-                        //ssw.Close();
-                        skipRecru = false;
-                    }
+                    }       
+        }
+
+        static public void exportClustersPointsFile(List<Point3D>[] rawData, int bit, double x_angle, double y_angle, string ss)
+        {   //导出聚类数据     
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(ss, false);
+            try
+            {
+                int ccc = 1;
+                //输出均值 电机x 电机y 距离distance
+                for (int j = 0; j < rawData.Length; j++)
+                {
+                    
                 }
             }
-           
-            
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                sw.Close();
+            }
         }
         /// <summary>
         /// 获取所有聚类的外接圆

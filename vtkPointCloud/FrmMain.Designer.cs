@@ -92,6 +92,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
+            this.测试输出双文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -236,7 +237,8 @@
             this.测试ICpToolStripMenuItem,
             this.测试图例ToolStripMenuItem,
             this.测试真值点导入ToolStripMenuItem,
-            this.测试MessageBoxToolStripMenuItem});
+            this.测试MessageBoxToolStripMenuItem,
+            this.测试输出双文件ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -771,6 +773,13 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
+            // 测试输出双文件ToolStripMenuItem
+            // 
+            this.测试输出双文件ToolStripMenuItem.Name = "测试输出双文件ToolStripMenuItem";
+            this.测试输出双文件ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试输出双文件ToolStripMenuItem.Text = "测试输出双文件";
+            this.测试输出双文件ToolStripMenuItem.Click += new System.EventHandler(this.测试输出双文件ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -825,7 +834,7 @@
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem 操作ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem iCPToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem iCPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 固定点数据操作ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 配准ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 调用exeToolStripMenuItem;
@@ -856,7 +865,7 @@
         private System.Windows.Forms.Button XAxisChangeBtn;
         private System.Windows.Forms.Button YAxisChangeBtn;
         private System.Windows.Forms.ToolStripMenuItem ScanClustringToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GuideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem1;
@@ -879,6 +888,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试MessageBoxToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.ToolStripMenuItem 测试输出双文件ToolStripMenuItem;
        
     }
 }

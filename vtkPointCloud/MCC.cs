@@ -15,6 +15,7 @@ namespace vtkPointCloud
         //public double Threshold = 0.0;
         private bool isFirstIn = true;
         MainForm mf;
+        SaveFileDialog saveFile1 = new SaveFileDialog();
         public MCC()
         {
             InitializeComponent();
@@ -33,7 +34,15 @@ namespace vtkPointCloud
                     return;
                 }
             }
-            mf.SureFilterByRadius(this.checkBox1.Checked);
+            Tools.removeFilterPointFromClustering(mf.rawData, mf.filterID);//清除属于大半径的数据点
+            Tools.removeFilterPointFromClustering(mf.centers, mf.filterID);//清除属于大半径的质心点
+            mf.ShowPointsFromFile(mf.rawData, 1);
+            mf.ExplainClusteringToolStripMenuItem.Enabled = false;
+            mf.iCPToolStripMenuItem.Enabled = true;
+            mf.isShowLegend(0);
+            if (this.checkBox1.Checked) Tools.exportClustersCenterFile(mf.circles, mf.bit, mf.x_angle, mf.y_angle, this.outpath1txt.Text);
+            if(this.checkBox2.Checked) 
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -60,5 +69,38 @@ namespace vtkPointCloud
                 isFirstIn = false;
             }   
         }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.out1btn.Enabled = this.checkBox1.Checked;
+            this.outpath1txt.Enabled = this.checkBox1.Checked;
+        }
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            this.out2btn.Enabled = this.checkBox2.Checked;
+            this.outpath2txt.Enabled = this.checkBox2.Checked;
+        }
+        private void out1btn_Click(object sender, EventArgs e)
+        {
+            
+            saveFile1.Filter = "文本文件(.txt)|*.txt";
+            saveFile1.Title = "输出聚类文件";
+            saveFile1.FilterIndex = 1;
+            if (saveFile1.ShowDialog() == DialogResult.OK) {
+                this.outpath1txt.Text = saveFile1.FileName;
+            }
+        }
+
+        private void out2btn_Click(object sender, EventArgs e)
+        {
+            saveFile1.Filter = "文本文件(.txt)|*.txt";
+            saveFile1.Title = "输出质心文件";
+            saveFile1.FilterIndex = 1;
+            if (saveFile1.ShowDialog() == DialogResult.OK)
+            {
+                this.outpath2txt.Text = saveFile1.FileName;
+            }
+        }
+
+
     }
 }

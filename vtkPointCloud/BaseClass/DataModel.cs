@@ -9,6 +9,9 @@ namespace vtkPointCloud
         public double x { get; set; }
         public double y { get; set; }
         public int clusID { get; set; }
+        public double motor_x { get; set; }
+        public double motor_y { get; set; }
+        public double distance { get; set; }
         public double ratio { get; set; }
         public bool isFilter{ get;set; }
         public double radius { get; set; }

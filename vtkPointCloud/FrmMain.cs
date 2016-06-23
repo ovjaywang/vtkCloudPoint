@@ -20,14 +20,14 @@ namespace vtkPointCloud
     public partial class MainForm : Form
     {
         //目录和可视化模块相关
-        int bit = 0;
+        public int bit = 0;
         vtkRenderer ren = null;
         string fullFilePath;
         TreeNode root = null;//根目录
         string selPath;//自身路径
         vtkFormsWindowControl vtkControl = null;
         List<double> xSet = new List<double>(),ySet = new List<double>(),zSet = new List<double>();//x,y,z坐标集合
-        double x_angle = 0.0, y_angle = 0.0;//x y灵位角度
+        public double x_angle = 0.0, y_angle = 0.0;//x y灵位角度
         //dbscan相关
         //public DB dbb;//DB类对象
         public DBImproved dbb;
@@ -87,7 +87,7 @@ namespace vtkPointCloud
         //参数相关
         public List<Point2D>[] hulls;//个数为聚类数 每个元素为某ID的所有点集
         public List<Point2D> circles;
-        List<int> filterID = new List<int>();
+        public List<int> filterID = new List<int>();
         double[] scale = new double[3];//比例尺 三个方向
         double[] trueScale;//真值范围
         double[] centroidScale;//质心范围
@@ -1525,18 +1525,6 @@ namespace vtkPointCloud
             this.toolStripStatusLabel2.Text = "超过阈值半径聚类数：" + filterID.Count; ;
             showCircle(circles,2);
         }
-        public void SureFilterByRadius(bool IsOut) {
-            MessageBox.Show("过滤聚类数 ：" + filterID.Count,"消息");
-            Tools.removeFilterPointFromClustering(rawData, filterID);
-            Tools.removeFilterPointFromClustering(centers, filterID);
-            ShowPointsFromFile(rawData, 1);
-            this.ExplainClusteringToolStripMenuItem.Enabled = false;
-            this.iCPToolStripMenuItem.Enabled = true;
-            isShowLegend(0);
-            if (IsOut) {
-                Tools.exportClusterFile(this.rawData);
-            }
-        }
         /// <summary>
         /// 确认源文件聚类结果
         /// </summary>
@@ -2715,6 +2703,12 @@ namespace vtkPointCloud
                 MessageBox.Show(null, "呵呵呵", "666");
             }));
 
+        }
+
+        private void 测试输出双文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MCC mc = new MCC();
+            mc.ShowDialog();
         }
 
 
