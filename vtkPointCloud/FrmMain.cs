@@ -38,8 +38,9 @@ namespace vtkPointCloud
         //点集相关
         public List<Point3D> rawData = new List<Point3D>();//raw是原始x y z值数据
         List<Point3D>[] fixedData;//固定点分组测量数据
-        List<List<Point3D>> classedrawData = new List<List<Point3D>>();
-        ArrayList pathList = new ArrayList();
+        public List<Point3D>[] grouping = null;
+        List<List<Point3D>> classedrawData = new List<List<Point3D>>();//源文件匹配相关
+        ArrayList pathList = new ArrayList();//路径列表
         public List<Point3D> centers = null;//同聚类中心
         List<Point3D> scanCen = null;//真值点
         List<int> matchedID = new List<int>();//已匹配ID
@@ -1568,7 +1569,7 @@ namespace vtkPointCloud
                         {
                             ssw.WriteLine(abc + "\t" +
                                 (-2) * (pps.motor_x - x_angle) / 180 * Math.PI + "\t" +//需求要求导出仰角 方位角和距离
-                                 2 * (pps.motor_y - x_angle) / 180 * Math.PI + "\t" +
+                                 2 * (pps.motor_y - y_angle) / 180 * Math.PI + "\t" +
                                  pps.Distance + "\t" + sourceTrueList[pps.clusterId].X + "\t" +
                                  sourceTrueList[pps.clusterId].Y + "\t" +
                                  sourceTrueList[pps.clusterId].Z + "\t");
@@ -2420,10 +2421,10 @@ namespace vtkPointCloud
         /// <summary>
         /// 固定点剔野
         /// </summary>
-        private void tsButton_CleanFixedPoint_Click(object sender, EventArgs e)
+        private void tsButton_CleanFixedPoint_Click(object sender, EventArgs e)//固定点剔野
         {
             //getClusterFromList();
-            this.centers =Tools.getClusterCenter(clusterSum,this.rawData);
+            Tools.getClusterCenter(clusterSum,this.rawData,this.centers,this.grouping);
             ShowPointsFromFile(centers, 3);
         }
         /// <summary>
@@ -2457,7 +2458,7 @@ namespace vtkPointCloud
                 return;
             }
             //getClusterFromList();//计算聚类
-            this.centers=Tools.getClusterCenter(dbb.clusterAmount,this.rawData);//计算质心
+            Tools.getClusterCenter(dbb.clusterAmount,this.rawData,this.centers,this.grouping);//计算质心
             ShowPointsFromFile(centers, 3);//不同颜色显示点
             this.iCPToolStripMenuItem.Enabled = true;
         }

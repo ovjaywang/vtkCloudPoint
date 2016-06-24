@@ -34,14 +34,24 @@ namespace vtkPointCloud
                     return;
                 }
             }
+            if (this.outpath1txt.Text == "未选择路径" && this.checkBox1.Checked)
+            {
+                MessageBox.Show("尚未选择聚类输出路径");
+                return;
+            }
+            if (this.outpath2txt.Text == "未选择路径" && this.checkBox2.Checked)
+            {
+                MessageBox.Show("尚未选择质心输出路径");
+                return;
+            }
             Tools.removeFilterPointFromClustering(mf.rawData, mf.filterID);//清除属于大半径的数据点
             Tools.removeFilterPointFromClustering(mf.centers, mf.filterID);//清除属于大半径的质心点
             mf.ShowPointsFromFile(mf.rawData, 1);
             mf.ExplainClusteringToolStripMenuItem.Enabled = false;
             mf.iCPToolStripMenuItem.Enabled = true;
             mf.isShowLegend(0);
-            if (this.checkBox1.Checked) Tools.exportClustersCenterFile(mf.circles, mf.bit, mf.x_angle, mf.y_angle, this.outpath1txt.Text);
-            if(this.checkBox2.Checked) 
+            if (this.checkBox1.Checked) Tools.exportClustersCenterFile(mf.centers, mf.bit, mf.x_angle, mf.y_angle, this.outpath2txt.Text);//输出质心
+            if (this.checkBox2.Checked) Tools.exportClustersPointsFile(mf.grouping, mf.bit, mf.x_angle, mf.y_angle, this.outpath1txt.Text);//输出聚类
 
             this.DialogResult = DialogResult.OK;
             this.Close();

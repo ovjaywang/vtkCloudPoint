@@ -35,7 +35,14 @@ namespace vtkPointCloud
             mf = (MainForm)this.Owner;
             this.Visible = false;
             mf.getClusterFromList(threhold, point);
-            mf.centers = Tools.getClusterCenter(mf.dbb.clusterAmount, mf.rawData);//计算质心
+
+            mf.centers = new List<Point3D>();
+            mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];
+            for (int j = 0; j < mf.dbb.clusterAmount; j++)
+            {
+                mf.grouping[j] = new List<Point3D>();
+            }
+            Tools.getClusterCenter(mf.dbb.clusterAmount,mf.rawData, mf.centers, mf.grouping);//计算质心 计算分组
             //mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组
             mf.circles = Tools.getCircles(mf.hulls, mf.clusterSum);//计算外接圆
             mf.showCircle(mf.circles,1);

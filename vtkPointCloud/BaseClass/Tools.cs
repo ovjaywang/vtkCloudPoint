@@ -51,12 +51,14 @@ namespace vtkPointCloud
             g.Dispose();
         }
         /// <summary>
-        /// 将野点移除点集
+        /// 将野点移除点集-确认聚类效果时做
         /// </summary>
         static public void removeErrorPointFromClustering(List<Point3D> rawData)
         {
+            int sum = rawData.Count;
             if (rawData == null) return;
             rawData.RemoveAll((delegate(Point3D p) { return p.clusterId == 0; }));
+            Console.WriteLine("剔除野点个数为 : "+ (rawData.Count-sum));
         }
         /// <summary>
         /// 将过滤点从点集中删除
@@ -106,11 +108,12 @@ namespace vtkPointCloud
         /// <param name="clus">聚类数</param>
         /// <param name="rawData">所有点</param>
         /// <returns></returns>
-        static public List<Point3D> getClusterCenter(int clus,List<Point3D> rawData)
-        {
-            List<Point3D> centers = new List<Point3D>();
-            double[] ccenters = new double[clus * 3];
-            int[] counts = new int[clus];
+        public static void getClusterCenter(int clus, List<Point3D> rawData, List<Point3D> centers, List<Point3D>[] grouping)
+        {   
+            //初始化
+            double[] ccenters = new double[clus * 3];//分别记录x y z
+            int[] counts = new int[clus];//记录数量
+
             for (int i = 0; i < ccenters.Length; i++)
             {
                 ccenters[i] = 0.0;
@@ -119,21 +122,22 @@ namespace vtkPointCloud
             {
                 counts[k] = 0;
             }
-            for (int i = 0; i < rawData.Count; i++)
-            {
-                if (rawData[i].clusterId != 0)
+
+                foreach (Point3D p in rawData)
                 {
-                    ccenters[(rawData[i].clusterId - 1) * 3] += rawData[i].X;
-                    ccenters[(rawData[i].clusterId - 1) * 3 + 1] += rawData[i].Y;
-                    ccenters[(rawData[i].clusterId - 1) * 3 + 2] += rawData[i].Z;
-                    counts[rawData[i].clusterId - 1] += 1;
+                    if (p.clusterId != 0)
+                    {
+                        ccenters[(p.clusterId - 1) * 3] += p.X;
+                        ccenters[(p.clusterId - 1) * 3 + 1] += p.Y;
+                        ccenters[(p.clusterId - 1) * 3 + 2] += p.Z;
+                        counts[p.clusterId - 1] += 1;
+                        grouping[p.clusterId - 1].Add(p);
+                    }
                 }
-            }
             for (int i = 0; i < clus; i++)
             {
                 centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1, true));
             }
-            return centers;
         }
         /// <summary>
         /// 确认Distance过滤结果 输出聚类 并把野点设为不可见
@@ -191,28 +195,36 @@ namespace vtkPointCloud
         /// <summary>
         ///  导出聚类质心文件
         /// </summary>
-        /// <param name="circles">圆心文件</param>
+        /// <param name="circles">质心</param>
         /// <param name="bit">小数点位</param>
         /// <param name="x_angle">电机x</param>
         /// <param name="y_angle">电机y</param>
         /// <param name="ss">输出路径</param>
-        static public void exportClustersCenterFile(List<Point2D> circles,int bit,double x_angle,double y_angle,string ss)
-        {   //导出聚类数据     
+        static public void exportClustersCenterFile(List<Point3D> centers,int bit,double x_angle,double y_angle,string ss)
+        {           //导出聚类数据     
                     System.IO.StreamWriter sw = new System.IO.StreamWriter(ss, false);
+                    double x,y,z,motor_x,motor_y,d,xita,phi;
                     try
                     {
                         int ccc = 1;
                         //输出均值 电机x 电机y 距离distance
-                        for (int j = 0; j < circles.Count; j++)
-                        {                    
-                                sw.WriteLine(j + "\t" + ((-2) * (circles[j].motor_x - x_angle) / 180 * Math.PI).ToString("F" + bit) + "\t"
-                                    + (2 * (circles[j].motor_y - y_angle) / 180 * Math.PI).ToString("F" + bit) + "\t"
-                                    +circles[j].distance.ToString("F" + bit));
+                        for (int j = 0; j < centers.Count; j++)
+                        {
+                            x= centers[j].X;
+                            y= centers[j].Y;
+                            z= centers[j].Z;
+                            phi = Math.Asin(y / z);
+                            xita = Math.Atan(x/(z*Math.Cos(phi)));
+                            motor_x = ( xita * (-90.0) / Math.PI)+x_angle;
+                            motor_y = ( phi * 90 /Math.PI) +y_angle;
+                            d = z / Math.Cos(xita);
+                            sw.WriteLine(motor_x.ToString("F" + bit) + "\t"+ motor_y.ToString("F" + bit) + "\t"+ d.ToString("F" + bit));
                             ccc++;
                         }
                     }
                     catch
                     {
+                        MessageBox.Show("输出文件失败!", "提示");
                         throw;
                     }
                     finally
@@ -220,21 +232,32 @@ namespace vtkPointCloud
                         sw.Close();
                     }       
         }
-
-        static public void exportClustersPointsFile(List<Point3D>[] rawData, int bit, double x_angle, double y_angle, string ss)
-        {   //导出聚类数据     
+        static public List<Point3D>[] getGroupsFromClusterID(List<Point3D> rawData,int clus) {
+            if (clus == 0) return null;
+            List<Point3D>[] hulls = new List<Point3D>[clus];//hulls = new List<Point2D>[cs];
+            foreach (Point3D p in rawData)
+            {
+                hulls[p.clusterId-1].Add(p);
+            }
+            return hulls;
+        }
+        static public void exportClustersPointsFile(List<Point3D>[] grouping, int bit, double x_angle, double y_angle, string ss)
+        {   //导出聚类数据
             System.IO.StreamWriter sw = new System.IO.StreamWriter(ss, false);
             try
             {
-                int ccc = 1;
                 //输出均值 电机x 电机y 距离distance
-                for (int j = 0; j < rawData.Length; j++)
+                for (int j = 0; j < grouping.Length; j++)
                 {
-                    
+                    foreach (Point3D p3d in grouping[j])
+                    {
+                        sw.WriteLine(p3d.clusterId + "\t" + p3d.motor_x.ToString("F" + bit) + "\t" + p3d.motor_y.ToString("F" + bit) + "\t" + p3d.Distance.ToString("F" + bit));
+                    }
                 }
             }
             catch
             {
+                MessageBox.Show("输出文件失败!", "提示");
                 throw;
             }
             finally
