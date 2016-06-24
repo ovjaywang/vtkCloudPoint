@@ -44,8 +44,8 @@ namespace vtkPointCloud
                 return;
             }
 
-            if (this.clearAllRb.Checked) ptsRb = 1;
-            else if (this.noClearRb.Checked) ptsRb = 2;
+            if (this.clearAllRb.Checked) ptsRb = 1;//清除重复点
+            else if (this.noClearRb.Checked) ptsRb = 2;//不清除重复点
 
             if (shang_rb1.Checked) xdir = 1;
             else if (you_rb1.Checked) xdir = 2;

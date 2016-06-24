@@ -74,7 +74,7 @@ namespace vtkPointCloud
         /// <summary>
         /// 获取扫描点聚类质心
         /// </summary>
-        static public List<Point3D> getScanCentroid(List<Point3D>[] fixedData)
+        static public List<Point3D> getFixedPtsCentroid(List<Point3D>[] fixedData,bool isIgnoreDuplication)
         {
             List<Point3D>  scanCen = new List<Point3D>();
 
@@ -84,14 +84,20 @@ namespace vtkPointCloud
                 int insideNum = 0;
                 for (int j = 0; j < fixedData[i].Count; j++)
                 {
-                    if (fixedData[i][j].clusterId != 0)
+                    if (fixedData[i][j].clusterId != 0 && isIgnoreDuplication)
                     {
                         tmp.X += fixedData[i][j].X;
                         tmp.Y += fixedData[i][j].Y;
                         tmp.Z += fixedData[i][j].Z;
                         insideNum++;
                     }
-
+                    else
+                    {
+                        tmp.X += fixedData[i][j].X * fixedData[i][j].ptsCount;
+                        tmp.Y += fixedData[i][j].Y * fixedData[i][j].ptsCount;
+                        tmp.Z += fixedData[i][j].Z * fixedData[i][j].ptsCount;
+                        insideNum += fixedData[i][j].ptsCount;
+                    }
                 }
                 tmp.X = tmp.X / insideNum;
                 tmp.Y = tmp.Y / insideNum;
@@ -144,9 +150,9 @@ namespace vtkPointCloud
         /// <param name="isExport">是否输出过滤后文件</param>
         /// </summary>
         static public void cleanDataByDistance(bool isExport,List<Point3D> rawData,int bit) {
-            Console.WriteLine("当前点数 : " + rawData.Count);
+            int tmp = rawData.Count;
             rawData.RemoveAll(delegate(Point3D p) { return (p.isFilterByDistance); });
-            Console.WriteLine("阈值过滤后点数 : " + rawData.Count);
+            MessageBox.Show("通过distance过滤 "+(tmp - rawData.Count)+" 个点");
             if (isExport)//如果需要输出文件
             {
                 SaveFileDialog saveFile1 = new SaveFileDialog();

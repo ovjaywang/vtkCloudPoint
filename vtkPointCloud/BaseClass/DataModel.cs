@@ -12,19 +12,19 @@ namespace vtkPointCloud
         public double ratio { get; set; }
         public bool isFilter{ get;set; }
         public double radius { get; set; }
-        public Point2D() { }
-        public Point2D(double xx, double yy, int cc)
-        {
-            this.x = xx;
-            this.y = yy;
-            this.clusID = cc;
-        }
-        public Point2D(double xx, double yy, double rr,bool isFilter) {
-            this.x = xx;
-            this.y = yy;
-            this.radius = rr;
-            this.isFilter = isFilter;
-        }
+        //public Point2D() { }
+        //public Point2D(double xx, double yy, int cc)
+        //{
+        //    this.x = xx;
+        //    this.y = yy;
+        //    this.clusID = cc;
+        //}
+        //public Point2D(double xx, double yy, double rr,bool isFilter) {
+        //    this.x = xx;
+        //    this.y = yy;
+        //    this.radius = rr;
+        //    this.isFilter = isFilter;
+        //}
         public Point2D(double xx, double yy)
         {
             this.x = xx;
@@ -59,7 +59,8 @@ namespace vtkPointCloud
         public int clusterId { get; set; }//聚类id
         public int pathId { get; set; }//路径id
         public Boolean ifShown { get; set; }//是否显示
-        public Boolean isFilter { get; set; }//是否过滤
+        //public Boolean isFilter { get; set; }//是否过滤
+        public int ptsCount { get; set; }
         public Boolean isClassed { get; set; }//是否已被分类
         public Boolean isKeyPoint { get; set; }//是否是关键点
         public Boolean isMatched { get; set; }//是否已被匹配
