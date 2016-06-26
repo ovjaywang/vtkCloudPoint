@@ -38,6 +38,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ThresholdMinTxtBox = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox_maxD = new System.Windows.Forms.TextBox();
+            this.textBox_minD = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +65,7 @@
             this.ThresholdMaxTxtBox.Size = new System.Drawing.Size(146, 30);
             this.ThresholdMaxTxtBox.TabIndex = 1;
             this.ThresholdMaxTxtBox.Text = "42.12";
+            this.ThresholdMaxTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Refilter
             // 
@@ -85,6 +90,7 @@
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "显示被过滤点";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // OKBtn
             // 
@@ -114,7 +120,7 @@
             // 
             this.groupBox1.Controls.Add(this.OKBtn);
             this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Location = new System.Drawing.Point(29, 296);
+            this.groupBox1.Location = new System.Drawing.Point(28, 380);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(351, 106);
             this.groupBox1.TabIndex = 6;
@@ -129,7 +135,7 @@
             this.groupBox2.Controls.Add(this.ThresholdMaxTxtBox);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.Refilter);
-            this.groupBox2.Location = new System.Drawing.Point(24, 12);
+            this.groupBox2.Location = new System.Drawing.Point(23, 96);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(356, 268);
             this.groupBox2.TabIndex = 7;
@@ -143,7 +149,8 @@
             this.ThresholdMinTxtBox.Name = "ThresholdMinTxtBox";
             this.ThresholdMinTxtBox.Size = new System.Drawing.Size(146, 30);
             this.ThresholdMinTxtBox.TabIndex = 2;
-            this.ThresholdMinTxtBox.Text = "41.7";
+            this.ThresholdMinTxtBox.Text = "41.70";
+            this.ThresholdMinTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
             // 
@@ -156,21 +163,69 @@
             this.textBox2.Text = "距离最小阈值";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("宋体", 12F);
+            this.textBox3.Location = new System.Drawing.Point(23, 12);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(167, 30);
+            this.textBox3.TabIndex = 8;
+            this.textBox3.Text = "Distance最大值";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("宋体", 12F);
+            this.textBox4.Location = new System.Drawing.Point(23, 48);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(167, 30);
+            this.textBox4.TabIndex = 9;
+            this.textBox4.Text = "Distance最小值";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_maxD
+            // 
+            this.textBox_maxD.Font = new System.Drawing.Font("宋体", 12F);
+            this.textBox_maxD.Location = new System.Drawing.Point(226, 12);
+            this.textBox_maxD.Name = "textBox_maxD";
+            this.textBox_maxD.ReadOnly = true;
+            this.textBox_maxD.Size = new System.Drawing.Size(153, 30);
+            this.textBox_maxD.TabIndex = 10;
+            this.textBox_maxD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_minD
+            // 
+            this.textBox_minD.Font = new System.Drawing.Font("宋体", 12F);
+            this.textBox_minD.Location = new System.Drawing.Point(226, 48);
+            this.textBox_minD.Name = "textBox_minD";
+            this.textBox_minD.ReadOnly = true;
+            this.textBox_minD.Size = new System.Drawing.Size(153, 30);
+            this.textBox_minD.TabIndex = 11;
+            this.textBox_minD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // SureDistanceFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 418);
+            this.ClientSize = new System.Drawing.Size(403, 496);
+            this.Controls.Add(this.textBox_minD);
+            this.Controls.Add(this.textBox_maxD);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SureDistanceFilter";
             this.Text = "距离阈值确认";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SureDistanceFilter_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -186,5 +241,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox ThresholdMinTxtBox;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox textBox_maxD;
+        public System.Windows.Forms.TextBox textBox_minD;
     }
 }

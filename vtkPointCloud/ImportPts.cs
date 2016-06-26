@@ -12,7 +12,8 @@ namespace vtkPointCloud
     //45.439 35.452
     public partial class ImportPts : Form
     {
-        public int ptsRb = 0;
+        //public int ptsRb = 0;
+        public bool isIgnoreDuplication = true;
         public string selPath = "";
         public int xdir = 2;
         public int ydir = 1;
@@ -44,8 +45,8 @@ namespace vtkPointCloud
                 return;
             }
 
-            if (this.clearAllRb.Checked) ptsRb = 1;//清除重复点
-            else if (this.noClearRb.Checked) ptsRb = 2;//不清除重复点
+            if (this.clearAllRb.Checked) isIgnoreDuplication = true;//清除重复点
+            else if (this.noClearRb.Checked) isIgnoreDuplication = false;//不清除重复点
 
             if (shang_rb1.Checked) xdir = 1;
             else if (you_rb1.Checked) xdir = 2;

@@ -294,6 +294,59 @@ namespace vtkPointCloud
             }
             return circles;
         }
+        /// <summary>
+        /// 阈值过滤窗体同步显示-扫描点
+        /// </summary>
+        /// <param name="disMax">距离过滤最大值</param>
+        /// <param name="disMin">距离过滤最小值</param>
+        /// <returns>返回值注释</returns>
+        static public  void FilterByDistance_ScanPoint(List<Point3D> rawData,double disMax,double disMin)//修正过滤阈值后界面同步
+        {
+            if (rawData == null||rawData.Count ==0) {
+                MessageBox.Show("没有数据，不能过滤！", "提示");
+                return;
+            }
+            for(int i=0;i<rawData.Count;i++){
+                if (rawData[i].Distance < disMax && rawData[i].Distance>disMin)
+                {
+                    rawData[i].isFilterByDistance = false;
+                }
+                else {
+                    rawData[i].isFilterByDistance = true;
+                }
+            }
+        }
+        /// <summary>
+        /// 阈值过滤窗体同步显示-扫描点
+        /// </summary>
+        /// <param name="disMax">距离过滤最大值</param>
+        /// <param name="disMin">距离过滤最小值</param>
+        /// <returns>返回值注释</returns>
+        static public void FilterByDistance_FixedPoint(List<Point3D>[] grouping, double disMax, double disMin)//修正过滤阈值后界面同步
+        {
+            if (grouping == null || grouping.Length == 0) {
+                MessageBox.Show("没有数据，不能过滤！", "提示");
+                return;
+            }
+            for (int i = 0; i < grouping.Length; i++)
+            {
+                foreach (Point3D p in grouping[i])
+                {
+                    if (p.Distance>disMax ||p.Distance<disMin)
+                    {
+                        p.isFilterByDistance = true;
+                    }
+                    else
+                    {
+                        p.isFilterByDistance = false;
+                    }
+
+                }
+                    
+            }
+        }
+
+
 
 
     }
