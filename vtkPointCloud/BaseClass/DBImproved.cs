@@ -29,7 +29,7 @@ namespace vtkPointCloud
         //    return Math.Sqrt(dx * dx + dy * dy);
         //}
         //判断是否是核心点 minPts是阈值范围内最小邻域点数 e是阈值半径 返回值邻域数组
-        public static ArrayList isKeyPoint(List<Point3D> lst, Point3D p, double e, int minPts)
+        private static ArrayList isKeyPoint(List<Point3D> lst, Point3D p, double e, int minPts)
         {
             int count = 0;
             ArrayList tmpList = new ArrayList();
@@ -52,7 +52,7 @@ namespace vtkPointCloud
             return tmpList;
         }
         //拓展每个聚类簇
-        public static void expandCluster(Point3D p, ArrayList nei, int c, double e, int minPts, List<Point3D> lst)
+        private static void expandCluster(Point3D p, ArrayList nei, int c, double e, int minPts, List<Point3D> lst)
         {
             p.clusterId = c;//簇序列
             for (int i = 0; i < nei.Count; i++)
@@ -105,7 +105,7 @@ namespace vtkPointCloud
                 if (tmpList.Count >= minPts)
                 {
                     c++;
-                    Console.WriteLine("新聚类 " + c);
+                    //Console.WriteLine("新聚类 " + c);
                     expandCluster(dpp, tmpList, c, e, minPts, lst);
                 }
             }

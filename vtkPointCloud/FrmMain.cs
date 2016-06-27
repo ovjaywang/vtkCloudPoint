@@ -20,6 +20,7 @@ namespace vtkPointCloud
     public partial class MainForm : Form
     {
         //目录和可视化模块相关
+        
         public int bit = 0;
         vtkRenderer ren = null;
         string fullFilePath;
@@ -1050,8 +1051,9 @@ namespace vtkPointCloud
                     sdf.textBox_maxD.Text = rawData.Max(m => m.Distance).ToString();
                     sdf.textBox_minD.Text = rawData.Min(m => m.Distance).ToString();
                 }
-                else if (typpe == 3 || typpe == 4) { 
-                    
+                else if (typpe == 3 || typpe == 4) {
+                    sdf.textBox_maxD.Text = Tools.GetGroupingManOrMin(this.grouping,1).ToString();
+                    sdf.textBox_minD.Text = Tools.GetGroupingManOrMin(this.grouping, 2).ToString();
                 }
                 sdf.Show(this);
             }
@@ -2760,6 +2762,8 @@ namespace vtkPointCloud
         {
             double x_Min = rawData.Min(m => m.X);
             double y_Min = rawData.Min(m => m.Y);
+            double x_Max = rawData.Max(m => m.X);
+            double y_Max = rawData.Max(m => m.Y);
             if (rawData == null || rawData.Count == 0) return;
             rawData.Sort((x, y) =>
                 {
@@ -2784,26 +2788,125 @@ namespace vtkPointCloud
                     return result;
                 }
               );
-            //System.IO.StreamWriter ssw = new System.IO.StreamWriter("E:\\sort.txt", false);
-            //try
-            //{
-            //    foreach (Point3D p3d in rawData)
-            //        ssw.WriteLine(p3d.X.ToString("F6") + "\t" + p3d.Y.ToString("F6"));
-            //}
-            //catch
-            //{
-            //    throw;
-            //}
-            //finally
-            //{
-            //    ssw.Close();
-            //}
-            Point3D[] hehe = new Point3D[2000];
-            rawData=rawData.Take(2000).ToList();
-            MessageBox.Show(rawData.Count+"");
+            List<Point3D> cell=rawData.Take(2000).ToList();
+            //MessageBox.Show(rawData.Count+"");
+            double cell_x = cell.Max(m => m.X) - x_Min;
+            double cell_y = cell.Max(m => m.Y) - y_Min;
+            int rows = (int)((y_Max - y_Min)/cell_y)+1;
+            int cols =  (int)((x_Max - x_Min)/cell_x)+1;
+            List<Point3D>[] cells= new List<Point3D>[rows * cols];
+            cells[0] = cell;
+            Console.WriteLine("rows : " + rows + "\tcols : " + cols);
+            int index = 0;
+            for (int p = 0; p < rows; p++) {
+                for (int q = 0; q < cols; q++)
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
+            int sum = 0;
+            for (int i = 0; i < cells.Length; i++)
+            {
+                Console.Write(cells[i].Count + "\t");
+                sum += cells[i].Count;
+            }
+                Console.WriteLine("\n\r 总点数 ： " + sum+"\t总分块数 ："+cells.Length);
+            }
+
+        private void 测试多线程ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            double x_Min = rawData.Min(m => m.X);
+            double y_Min = rawData.Min(m => m.Y);
+            double x_Max = rawData.Max(m => m.X);
+            double y_Max = rawData.Max(m => m.Y);
+            if (rawData == null || rawData.Count == 0) return;
+            rawData.Sort((x, y) =>
+            {
+                int result;
+                double d1 = Math.Max(x.X - x_Min, x.Y - y_Min);
+                double d2 = Math.Max(y.X - x_Min, y.Y - y_Min);
+                if (d1 == d2)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    if (d1 > d2)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                return result;
+            }
+              );
+            List<Point3D> cell = rawData.Take(80).ToList();
+            //MessageBox.Show(rawData.Count+"");
+            double cell_x = cell.Max(m => m.X) - x_Min;
+            double cell_y = cell.Max(m => m.Y) - y_Min;
+            int rows = (int)((y_Max - y_Min) / cell_y) + 1;
+            int cols = (int)((x_Max - x_Min) / cell_x) + 1;
+            List<Point3D>[] cells = new List<Point3D>[rows * cols];
+            cells[0] = cell;
+            Console.Write("rows : " + rows + "\tcols : " + cols+"\t");
+            int index = 0;
+            for (int p = 0; p < rows; p++)
+            {
+                for (int q = 0; q < cols; q++)
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
+            int sum = 0;
+            Console.WriteLine("\n\r总点数：" + sum + "\t总分块数：" + cells.Length);
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+            for (int i = 0; i < cells.Length; i++)
+            {
+                ThreadPool.QueueUserWorkItem(StartCode,cells[i]);                              
+            }
+            RegisteredWaitHandle registeredWaitHandle = null;
+            var mainAutoResetEvent = new AutoResetEvent(false);
+            registeredWaitHandle = ThreadPool.RegisterWaitForSingleObject(new AutoResetEvent(false), new WaitOrTimerCallback(delegate(object obj, bool timeout)
+            {
+                int workerThreads = 0;
+                int maxWordThreads = 0;
+                int compleThreads = 0;
+                ThreadPool.GetAvailableThreads(out workerThreads, out compleThreads);
+                ThreadPool.GetMaxThreads(out maxWordThreads, out compleThreads);
+                //Console.WriteLine("Check 可用线程{0},最大线程{1}", workerThreads, maxWordThreads);
+                //当可用的线数与池程池最大的线程相等时表示线程池中所有的线程已经完成
+                if (workerThreads == maxWordThreads)
+                {
+                    Console.WriteLine("线程池里的线程都执行完了");
+                    mainAutoResetEvent.Set();
+                    registeredWaitHandle.Unregister(null);
+                }
+            }), null, 1000, false);
+            Console.WriteLine("主线程进入等待");
+            mainAutoResetEvent.WaitOne();
+            Console.WriteLine("主线程继续执行");
+            Console.WriteLine("聚类运行时间：" + stopwatch.Elapsed.ToString(), "消息");
         }
       
-
+        private static void StartCode(object i)
+        {
+            List<Point3D> cell = i as List<Point3D>;
+            DBImproved ThreadDB = new DBImproved();
+            ThreadDB.dbscan(cell, 0.07, 7);
+            Console.WriteLine(cell.Count+"个数据点，"+ThreadDB.clusterAmount + " 个聚类");
+       }
 
 
       

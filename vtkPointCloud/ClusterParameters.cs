@@ -37,7 +37,7 @@ namespace vtkPointCloud
             mf.getClusterFromList(threhold, point);
 
             mf.centers = new List<Point3D>();
-            mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];
+            mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];//将聚类写进分组的数组
             for (int j = 0; j < mf.dbb.clusterAmount; j++)
             {
                 mf.grouping[j] = new List<Point3D>();

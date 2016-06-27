@@ -55,6 +55,8 @@
             this.测试真值点导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试MessageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试输出双文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试最大最小值ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试按照左上角排序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,8 +97,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试最大最小值ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.测试按照左上角排序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -260,7 +261,8 @@
             this.测试MessageBoxToolStripMenuItem,
             this.测试输出双文件ToolStripMenuItem,
             this.测试最大最小值ToolStripMenuItem,
-            this.测试按照左上角排序ToolStripMenuItem});
+            this.测试按照左上角排序ToolStripMenuItem,
+            this.测试多线程ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -268,70 +270,84 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(197, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 6);
             // 
             // LookTruePointToolStripMenuItem
             // 
             this.LookTruePointToolStripMenuItem.Name = "LookTruePointToolStripMenuItem";
-            this.LookTruePointToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.LookTruePointToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.LookTruePointToolStripMenuItem.Text = "查看真值点";
             this.LookTruePointToolStripMenuItem.Click += new System.EventHandler(this.LookTruePointToolStripMenuItem_Click);
             // 
             // 清空数据ToolStripMenuItem
             // 
             this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
-            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.清空数据ToolStripMenuItem.Text = "清空数据";
             this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.ClearDataToolStripMenuItem_Click);
             // 
             // GetScreen
             // 
             this.GetScreen.Name = "GetScreen";
-            this.GetScreen.Size = new System.Drawing.Size(200, 24);
+            this.GetScreen.Size = new System.Drawing.Size(213, 24);
             this.GetScreen.Text = "截屏";
             this.GetScreen.Click += new System.EventHandler(this.GetScreen_Click);
             // 
             // 测试矩阵ToolStripMenuItem
             // 
             this.测试矩阵ToolStripMenuItem.Name = "测试矩阵ToolStripMenuItem";
-            this.测试矩阵ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试矩阵ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试矩阵ToolStripMenuItem.Text = "测试矩阵";
             this.测试矩阵ToolStripMenuItem.Click += new System.EventHandler(this.测试矩阵ToolStripMenuItem_Click);
             // 
             // 测试ICpToolStripMenuItem
             // 
             this.测试ICpToolStripMenuItem.Name = "测试ICpToolStripMenuItem";
-            this.测试ICpToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试ICpToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试ICpToolStripMenuItem.Text = "测试ICP";
             this.测试ICpToolStripMenuItem.Click += new System.EventHandler(this.测试ICpToolStripMenuItem_Click);
             // 
             // 测试图例ToolStripMenuItem
             // 
             this.测试图例ToolStripMenuItem.Name = "测试图例ToolStripMenuItem";
-            this.测试图例ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试图例ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试图例ToolStripMenuItem.Text = "测试图例";
             this.测试图例ToolStripMenuItem.Click += new System.EventHandler(this.测试图例ToolStripMenuItem_Click);
             // 
             // 测试真值点导入ToolStripMenuItem
             // 
             this.测试真值点导入ToolStripMenuItem.Name = "测试真值点导入ToolStripMenuItem";
-            this.测试真值点导入ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试真值点导入ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试真值点导入ToolStripMenuItem.Text = "测试真值点导入";
             this.测试真值点导入ToolStripMenuItem.Click += new System.EventHandler(this.测试真值点导入ToolStripMenuItem_Click);
             // 
             // 测试MessageBoxToolStripMenuItem
             // 
             this.测试MessageBoxToolStripMenuItem.Name = "测试MessageBoxToolStripMenuItem";
-            this.测试MessageBoxToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试MessageBoxToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试MessageBoxToolStripMenuItem.Text = "测试MessageBox";
             this.测试MessageBoxToolStripMenuItem.Click += new System.EventHandler(this.测试MessageBoxToolStripMenuItem_Click);
             // 
             // 测试输出双文件ToolStripMenuItem
             // 
             this.测试输出双文件ToolStripMenuItem.Name = "测试输出双文件ToolStripMenuItem";
-            this.测试输出双文件ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.测试输出双文件ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试输出双文件ToolStripMenuItem.Text = "测试输出双文件";
             this.测试输出双文件ToolStripMenuItem.Click += new System.EventHandler(this.测试输出双文件ToolStripMenuItem_Click);
+            // 
+            // 测试最大最小值ToolStripMenuItem
+            // 
+            this.测试最大最小值ToolStripMenuItem.Name = "测试最大最小值ToolStripMenuItem";
+            this.测试最大最小值ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试最大最小值ToolStripMenuItem.Text = "测试最大最小值";
+            this.测试最大最小值ToolStripMenuItem.Click += new System.EventHandler(this.测试最大最小值ToolStripMenuItem_Click);
+            // 
+            // 测试按照左上角排序ToolStripMenuItem
+            // 
+            this.测试按照左上角排序ToolStripMenuItem.Name = "测试按照左上角排序ToolStripMenuItem";
+            this.测试按照左上角排序ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试按照左上角排序ToolStripMenuItem.Text = "测试按照左上角排序";
+            this.测试按照左上角排序ToolStripMenuItem.Click += new System.EventHandler(this.测试按照左上角排序ToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -802,19 +818,12 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
-            // 测试最大最小值ToolStripMenuItem
+            // 测试多线程ToolStripMenuItem
             // 
-            this.测试最大最小值ToolStripMenuItem.Name = "测试最大最小值ToolStripMenuItem";
-            this.测试最大最小值ToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
-            this.测试最大最小值ToolStripMenuItem.Text = "测试最大最小值";
-            this.测试最大最小值ToolStripMenuItem.Click += new System.EventHandler(this.测试最大最小值ToolStripMenuItem_Click);
-            // 
-            // 测试按照左上角排序ToolStripMenuItem
-            // 
-            this.测试按照左上角排序ToolStripMenuItem.Name = "测试按照左上角排序ToolStripMenuItem";
-            this.测试按照左上角排序ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试按照左上角排序ToolStripMenuItem.Text = "测试按照左上角排序";
-            this.测试按照左上角排序ToolStripMenuItem.Click += new System.EventHandler(this.测试按照左上角排序ToolStripMenuItem_Click);
+            this.测试多线程ToolStripMenuItem.Name = "测试多线程ToolStripMenuItem";
+            this.测试多线程ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试多线程ToolStripMenuItem.Text = "测试多线程";
+            this.测试多线程ToolStripMenuItem.Click += new System.EventHandler(this.测试多线程ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -929,6 +938,7 @@
         private System.Windows.Forms.ToolStripMenuItem ImportXlsFixedPtsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试最大最小值ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试按照左上角排序ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试多线程ToolStripMenuItem;
        
     }
 }

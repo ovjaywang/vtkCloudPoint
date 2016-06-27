@@ -345,8 +345,54 @@ namespace vtkPointCloud
                     
             }
         }
-
-
+        /// <summary>
+        /// 获取分组后的最大最小值
+        /// </summary>
+        /// <param name="grouping">分组数组</param>
+        /// <param name="typpe">1最大 2最小</param>
+        /// <returns></returns>
+        static public double GetGroupingManOrMin(List<Point3D>[] grouping,int typpe){
+            if (grouping ==null||grouping.Length==0)
+            {
+                return 0;
+            }
+            double result = grouping[0][0].Distance;
+            double tmp;
+            if (typpe==1)//最大
+            {
+                for (int i = 0; i < grouping.Length; i++)
+                {
+                    tmp =grouping[i].Max((m => m.Distance));
+                    if(result < tmp){
+                        result = tmp;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < grouping.Length; i++)
+                {
+                    tmp = grouping[i].Min((m => m.Distance));
+                    if (result > tmp)
+                    {
+                        result = tmp;
+                    }
+                }
+            }            
+            return result;
+        }
+        /// <summary>
+        /// 通过矩阵范围从点集筛选满足条件的点
+        /// </summary>
+        /// <param name="rawData">点集</param>
+        /// <param name="min_x">x最小值</param>
+        /// <param name="min_y">y最小值</param>
+        /// <param name="max_x">x最大值</param>
+        /// <param name="max_y">y最大值</param>
+        /// <returns></returns>
+        static public List<Point3D> getListByScale(List<Point3D> rawData, double min_x, double min_y, double max_x, double max_y) {
+            return rawData.FindAll(delegate(Point3D p) { return (p.X >= min_x) && (p.Y >= min_y) && (p.X <= max_x) && (p.Y <= max_y); });
+        }
 
 
     }
