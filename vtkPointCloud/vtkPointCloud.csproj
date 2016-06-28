@@ -196,6 +196,12 @@
     <Compile Include="ClusterParameters.Designer.cs">
       <DependentUpon>ClusterParameters.cs</DependentUpon>
     </Compile>
+    <Compile Include="testParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="testParams.Designer.cs">
+      <DependentUpon>testParams.cs</DependentUpon>
+    </Compile>
     <Compile Include="WaitingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     <EmbeddedResource Include="ClusterParameters.resx">
       <DependentUpon>ClusterParameters.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="testParams.resx">
+      <DependentUpon>testParams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>

@@ -44,15 +44,12 @@ namespace vtkPointCloud
             if (!isFix)
             {//判断是否是固定点
                 Tools.FilterByDistance_ScanPoint(mf.rawData, this.distanceMax, this.distanceMin);
-                if (this.checkBox1.Checked)//判断是否显示点
-                    mf.ShowPointsFromFile(mf.rawData, 6);
-                else
-                    mf.ShowPointsFromFile(mf.rawData, 7);
+                mf.ShowPointsFromFile(mf.rawData, 6+(this.checkBox1.Checked?0:1));
             }
             else
             { 
                 Tools.FilterByDistance_FixedPoint(mf.grouping, this.distanceMax, this.distanceMin);
-                mf.showFixPointData(2);//显示剔野之后数据
+                mf.showFixPointData(2 + (this.checkBox1.Checked ? 0 : 2));//显示剔野之后数据
             }
             if (isFirst) {
                 mf.isShowLegend(1);
@@ -65,6 +62,7 @@ namespace vtkPointCloud
                 //if (MessageBox.Show("确认不使用Distance的值过滤吗?", "消息", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 //{
                 //    this.DialogResult = DialogResult.Cancel;
+                //    this.isClose = false;
                 //    this.Close();
                 //}
                 //else
@@ -72,14 +70,18 @@ namespace vtkPointCloud
                 //    return;
                 //}
                 mf = (MainForm)this.Owner;
+                mf.isShowLegend(0);
                 if (!isFix)
                 {//判断是否固定点
                     mf.ExcludePtsByDistance(this.checkBox2.Checked);
-                    mf.isShowLegend(0);
+                    
                 }
                 else
                 {
-                    Tools.getFixedPtsCentroid(mf.grouping, this.checkBox2.Checked);
+                    mf.RejectPtsByDistanceFromFixed(this.checkBox2.Checked);
+                    mf.centers = Tools.getFixedPtsCentroid(mf.grouping, this.checkBox2.Checked);
+                    mf.showFixPointData(3);
+                    mf.isShowLegend(5);
                 }
                 isClose = false;
                 this.DialogResult = DialogResult.OK;
@@ -97,10 +99,9 @@ namespace vtkPointCloud
             mf = (MainForm)this.Owner;
             if (!isFix)//不是固定点
                 mf.ShowPointsFromFile(mf.rawData, 6 + ((this.checkBox1.Checked) ? 0 : 1));
-            else { 
-                
-            }
-                
+            else {
+                mf.showFixPointData(2 + ((this.checkBox1.Checked) ? 0 : 2));
+            }    
         }
 
         private void SureDistanceFilter_FormClosing(object sender, FormClosingEventArgs e)

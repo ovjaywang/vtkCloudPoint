@@ -42,8 +42,7 @@
             this.ImportFixedPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportTxtFixedPtsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportXlsFixedPtsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FixedPointClustringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportFixedPointsCentersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FixedPointMatchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.LookTruePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +56,7 @@
             this.测试输出双文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试最大最小值ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试按照左上角排序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,7 +97,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试野点回调ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -202,8 +202,7 @@
             // 
             this.固定点数据操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ImportFixedPointToolStripMenuItem,
-            this.FixedPointClustringToolStripMenuItem,
-            this.ExportFixedPointsCentersToolStripMenuItem});
+            this.FixedPointMatchingToolStripMenuItem});
             this.固定点数据操作ToolStripMenuItem.Name = "固定点数据操作ToolStripMenuItem";
             this.固定点数据操作ToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
             this.固定点数据操作ToolStripMenuItem.Text = "固定点数据预处理";
@@ -214,7 +213,7 @@
             this.ImportTxtFixedPtsToolStripMenuItem,
             this.ImportXlsFixedPtsToolStripMenuItem});
             this.ImportFixedPointToolStripMenuItem.Name = "ImportFixedPointToolStripMenuItem";
-            this.ImportFixedPointToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.ImportFixedPointToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.ImportFixedPointToolStripMenuItem.Text = "导入固定点文件夹";
             // 
             // ImportTxtFixedPtsToolStripMenuItem
@@ -231,21 +230,13 @@
             this.ImportXlsFixedPtsToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXlsFixedPtsToolStripMenuItem.Click += new System.EventHandler(this.ImportXlsFixedPtsToolStripMenuItem_Click);
             // 
-            // FixedPointClustringToolStripMenuItem
+            // FixedPointMatchingToolStripMenuItem
             // 
-            this.FixedPointClustringToolStripMenuItem.Enabled = false;
-            this.FixedPointClustringToolStripMenuItem.Name = "FixedPointClustringToolStripMenuItem";
-            this.FixedPointClustringToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.FixedPointClustringToolStripMenuItem.Text = "固定点剔野";
-            this.FixedPointClustringToolStripMenuItem.Click += new System.EventHandler(this.CleanFromFixedPointToolStripMenuItem_Click);
-            // 
-            // ExportFixedPointsCentersToolStripMenuItem
-            // 
-            this.ExportFixedPointsCentersToolStripMenuItem.Enabled = false;
-            this.ExportFixedPointsCentersToolStripMenuItem.Name = "ExportFixedPointsCentersToolStripMenuItem";
-            this.ExportFixedPointsCentersToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.ExportFixedPointsCentersToolStripMenuItem.Text = "输出固定点均值文件";
-            this.ExportFixedPointsCentersToolStripMenuItem.Click += new System.EventHandler(this.ExportFixedPointsCentersToolStripMenuItemToolStripMenuItem_Click);
+            this.FixedPointMatchingToolStripMenuItem.Enabled = false;
+            this.FixedPointMatchingToolStripMenuItem.Name = "FixedPointMatchingToolStripMenuItem";
+            this.FixedPointMatchingToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.FixedPointMatchingToolStripMenuItem.Text = "固定点真值匹配";
+            this.FixedPointMatchingToolStripMenuItem.Click += new System.EventHandler(this.FixedPointMatchingToolStripMenuItem_Click);
             // 
             // ToolsToolStripMenuItem
             // 
@@ -262,7 +253,8 @@
             this.测试输出双文件ToolStripMenuItem,
             this.测试最大最小值ToolStripMenuItem,
             this.测试按照左上角排序ToolStripMenuItem,
-            this.测试多线程ToolStripMenuItem});
+            this.测试多线程ToolStripMenuItem,
+            this.测试野点回调ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -348,6 +340,13 @@
             this.测试按照左上角排序ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试按照左上角排序ToolStripMenuItem.Text = "测试按照左上角排序";
             this.测试按照左上角排序ToolStripMenuItem.Click += new System.EventHandler(this.测试按照左上角排序ToolStripMenuItem_Click);
+            // 
+            // 测试多线程ToolStripMenuItem
+            // 
+            this.测试多线程ToolStripMenuItem.Name = "测试多线程ToolStripMenuItem";
+            this.测试多线程ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试多线程ToolStripMenuItem.Text = "测试多线程";
+            this.测试多线程ToolStripMenuItem.Click += new System.EventHandler(this.测试多线程ToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -818,12 +817,12 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
-            // 测试多线程ToolStripMenuItem
+            // 测试野点回调ToolStripMenuItem
             // 
-            this.测试多线程ToolStripMenuItem.Name = "测试多线程ToolStripMenuItem";
-            this.测试多线程ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试多线程ToolStripMenuItem.Text = "测试多线程";
-            this.测试多线程ToolStripMenuItem.Click += new System.EventHandler(this.测试多线程ToolStripMenuItem_Click);
+            this.测试野点回调ToolStripMenuItem.Name = "测试野点回调ToolStripMenuItem";
+            this.测试野点回调ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试野点回调ToolStripMenuItem.Text = "测试野点回溯";
+            this.测试野点回调ToolStripMenuItem.Click += new System.EventHandler(this.测试野点回调ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -885,8 +884,7 @@
         private System.Windows.Forms.ToolStripMenuItem 调用exeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportFixedPointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem FixedPointClustringToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ExportFixedPointsCentersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FixedPointMatchingToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         public System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsButton_ImportScanData;
@@ -939,6 +937,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试最大最小值ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试按照左上角排序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试多线程ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试野点回调ToolStripMenuItem;
        
     }
 }

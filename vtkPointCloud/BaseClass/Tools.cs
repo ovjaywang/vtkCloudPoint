@@ -129,24 +129,24 @@ namespace vtkPointCloud
                 counts[k] = 0;
             }
 
-                foreach (Point3D p in rawData)
+            foreach (Point3D p in rawData)
+            {
+                if (p.clusterId != 0)
                 {
-                    if (p.clusterId != 0)
-                    {
-                        ccenters[(p.clusterId - 1) * 3] += p.X;
-                        ccenters[(p.clusterId - 1) * 3 + 1] += p.Y;
-                        ccenters[(p.clusterId - 1) * 3 + 2] += p.Z;
-                        counts[p.clusterId - 1] += 1;
-                        grouping[p.clusterId - 1].Add(p);
-                    }
+                    ccenters[(p.clusterId - 1) * 3] += p.X;
+                    ccenters[(p.clusterId - 1) * 3 + 1] += p.Y;
+                    ccenters[(p.clusterId - 1) * 3 + 2] += p.Z;
+                    counts[p.clusterId - 1] += 1;
+                    grouping[p.clusterId - 1].Add(p);
                 }
+            }
             for (int i = 0; i < clus; i++)
             {
                 centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1, true));
             }
         }
         /// <summary>
-        /// 确认Distance过滤结果 输出聚类 并把野点设为不可见
+        /// 确认Distance过滤结果 输出聚类 并把野点设为不可见--扫描点
         /// <param name="isExport">是否输出过滤后文件</param>
         /// </summary>
         static public void cleanDataByDistance(bool isExport,List<Point3D> rawData,int bit) {
@@ -157,7 +157,7 @@ namespace vtkPointCloud
             {
                 SaveFileDialog saveFile1 = new SaveFileDialog();
                 saveFile1.Filter = "文本文件(.txt)|*.txt";
-                saveFile1.Title = "输出过滤文件";
+                saveFile1.Title = "输出扫描点过滤文件";
                 saveFile1.FilterIndex = 1;
                 bool skipRecru = true;
                 while (skipRecru)
@@ -198,6 +198,69 @@ namespace vtkPointCloud
                 }
             }
         }
+        /// <summary>
+        /// 确认Distance过滤结果 输出聚类 并把野点设为不可见--固定点
+        /// <param name="isExport">是否输出过滤后文件</param>
+        /// </summary>
+        static public void cleanDataByDistance2(bool isExport, List<Point3D>[] grouping, int bit)
+        {
+            int tmp = 0;
+            tmp=grouping.Sum(m => m.Count);
+            for (int i = 0; i < grouping.Length; i++)
+            {
+                grouping[i].RemoveAll(delegate(Point3D p) { return (p.isFilterByDistance); });
+            }
+            MessageBox.Show("通过distance过滤 " + (grouping.Sum(m => m.Count) - tmp) + " 个点");
+            if (isExport)//如果需要输出文件
+            {
+                SaveFileDialog saveFile1 = new SaveFileDialog();
+                saveFile1.Filter = "文本文件(.txt)|*.txt";
+                saveFile1.Title = "输出固定点过滤文件";
+                saveFile1.FilterIndex = 1;
+                bool skipRecru = true;
+                while (skipRecru)
+                {
+                    DialogResult diaRs = saveFile1.ShowDialog();
+                    if (diaRs == DialogResult.Cancel)
+                    {
+                        DialogResult dr = MessageBox.Show("确认不保存距离过滤后点集吗？", "提示", MessageBoxButtons.OKCancel);
+                        if (dr == System.Windows.Forms.DialogResult.OK)
+                        {
+                            skipRecru = false;
+                        }
+                        else if (dr == System.Windows.Forms.DialogResult.Cancel)
+                        {
+                            continue;
+                        }
+                    }
+                    if (diaRs == DialogResult.OK)
+                    {
+                        //Console.WriteLine(saveFile1.FileName);
+                        System.IO.StreamWriter ssw = new System.IO.StreamWriter(saveFile1.FileName, false);
+                        try
+                        {
+                            for (int i = 0; i < grouping.Length; i++)
+                            {
+                                foreach (Point3D p3d in grouping[i])
+                                    ssw.WriteLine(p3d.motor_x.ToString("F" + bit) + "\t" + p3d.motor_y.ToString("F" + bit) + "\t" + p3d.Distance.ToString("F" + bit));
+                            }
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+                        finally
+                        {
+                            ssw.Close();
+                            skipRecru = false;
+                        }
+                    }
+
+                }
+            }
+        }
+
+
         /// <summary>
         ///  导出聚类质心文件
         /// </summary>
@@ -332,13 +395,13 @@ namespace vtkPointCloud
             {
                 foreach (Point3D p in grouping[i])
                 {
-                    if (p.Distance>disMax ||p.Distance<disMin)
+                    if (p.Distance<disMax && p.Distance>disMin)
                     {
-                        p.isFilterByDistance = true;
+                        p.isFilterByDistance = false;
                     }
                     else
                     {
-                        p.isFilterByDistance = false;
+                        p.isFilterByDistance = true;
                     }
 
                 }
