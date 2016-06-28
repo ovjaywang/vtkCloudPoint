@@ -599,25 +599,30 @@ namespace vtkPointCloud
        /// <summary>
        /// 显示外接圆 白色是原始图案 黄色是超过阈值图案
        /// </summary>
-       /// <param name="ls">点集列表</param>
+       /// <param name="ls">圆心点集列表</param>
         /// /// <param name="type">1.显示核心点和野点 2.显示过滤后的所有点</param>
-        public void showCircle(List<Point2D> ls,int type)//显示圆形图案
+        public void showCircle(List<Point2D> ls,int type, List<Point3D> li)//显示圆形图案
         { //输入为各圆心的List
             ren = new vtkRenderer();
-            if (type == 1) ShowPointsFromFile(rawData, 2);//不同颜色显示野点和核心点
-            else if (type == 2) ShowPointsFromFile(rawData, 1);
+            if (type == 1) ShowPointsFromFile(li, 2);//不同颜色显示野点和核心点
+            else if (type == 2) ShowPointsFromFile(li, 1);
             ShowPointsFromFile(centers, 3);//显示质心
+            vtkRegularPolygonSource polygonSource ;
+            vtkPolyDataMapper mapper;
+            vtkActor actor;
             for (int k = 0; k < ls.Count; k++)
             {
-                vtkRegularPolygonSource polygonSource = new vtkRegularPolygonSource();
+                if (ls[k].radius > 0.5)
+                {
+                    polygonSource = new vtkRegularPolygonSource();
                 polygonSource.GeneratePolygonOff(); // Uncomment this line to generate only the outline of the circle
                 polygonSource.SetNumberOfSides(100);
                 polygonSource.SetRadius(ls[k].radius);
                 polygonSource.SetCenter(ls[k].x, ls[k].y, centers[k].Z);
                 // Visualize
-                vtkPolyDataMapper mapper = new vtkPolyDataMapper();
+                mapper = new vtkPolyDataMapper();
                 mapper.SetInputConnection(polygonSource.GetOutputPort()); ;
-                vtkActor actor = new vtkActor();
+                actor = new vtkActor();
                 actor.SetMapper(mapper);
                 actor.GetProperty().SetLineWidth(3);
                 actor.GetProperty().SetOpacity(0.6);
@@ -631,6 +636,7 @@ namespace vtkPointCloud
                 }
 
                 ren.AddActor(actor);
+                }
             }
             vtkControl.GetRenderWindow().AddRenderer(ren);
             vtkControl.Refresh();
@@ -1539,7 +1545,7 @@ namespace vtkPointCloud
                 }
             }
             this.toolStripStatusLabel2.Text = "超过阈值半径聚类数：" + filterID.Count; ;
-            showCircle(circles,2);
+            showCircle(circles,2,rawData);
         }
         /// <summary>
         /// 确认源文件聚类结果
@@ -2938,7 +2944,6 @@ namespace vtkPointCloud
                     sw.Close();
                 }
         }
-      
         private static void StartCode(object i)
         {
             List<Point3D> cell = i as List<Point3D>;
@@ -2950,32 +2955,62 @@ namespace vtkPointCloud
         private void 测试野点回调ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileMap fileMap = new FileMap();
-            List<string> pointsList = fileMap.ReadFile("G:\\300.txt");
+            List<string> pointsList = fileMap.ReadFile("G:\\200.txt");
             String[] tmpxyz;
             Point3D point ;
             List<Point3D> lis = new List<Point3D>();
+            int lastClusterID = 0,clusterLength = 0,deleteNum=0,id;
             for (int i = 0; i < pointsList.Count; i++)
             {
                 point = new Point3D();
                 tmpxyz = pointsList[i].Split('\t');
+                id = Convert.ToInt32(tmpxyz[3]);
+                if ( id != 0)
+                {                
+                    if(id != lastClusterID)
+                    {
+                        if (clusterLength <= 3) {
+                        deleteNum ++;
+                            for (int t = 0; t < clusterLength; t++) {
+                                lis[i - clusterLength + t].clusterId = 0;
+                            }
+                        }
+                        lastClusterID = Convert.ToInt32(tmpxyz[3]);
+                        clusterLength = 1;
+                    }
+                    else
+                    {
+                        clusterLength++;//聚类点数加1
+                    }
+                }
                 point.X = Convert.ToDouble(tmpxyz[0]);//第一个字段
                 point.Y = Convert.ToDouble(tmpxyz[1]);//第二个字段
                 point.Z = Convert.ToDouble(tmpxyz[2]);//第三个字段
-                point.clusterId = Convert.ToInt32(tmpxyz[3]);
+                if (id !=0)
+                {
+                    point.clusterId = id - deleteNum;
+                    point.isClassed = true;
+                }
+                else
+                {
+                    point.clusterId = 0;
+                    point.isClassed = false;
+                }
+                point.ifShown =true;
                 lis.Add(point);
             }
+            Console.WriteLine("因为聚类过小被删的有 ： " + deleteNum);
             
-            double[] ccenters = new double[230 * 3];//分别记录x y z
-            int[] counts = new int[230];//记录数量
+            List<Point3D> addList =lis.FindAll(delegate(Point3D p) { return (p.clusterId ==0); });
+            dbb = new DBImproved();
+            dbb.cf = 242 - deleteNum;
+            dbb.dbscan(addList, 0.07, 7);
+            Console.WriteLine(dbb.clusterAmount);
+            double[] ccenters = new double[(242 - deleteNum) * 3];//分别记录x y z
+            int[] counts = new int[(242 - deleteNum)];//记录数量
 
-            for (int i = 0; i < ccenters.Length; i++)
-            {
-                ccenters[i] = 0.0;
-            }
-            for (int k = 0; k < counts.Length; k++)
-            {
-                counts[k] = 0;
-            }
+
+
 
             foreach (Point3D p in lis)
             {
@@ -2989,60 +3024,71 @@ namespace vtkPointCloud
                     //grouping[p.clusterId - 1].Add(p);
                 }
             }
-            for (int i = 0; i < counts.Length; i++)
-            {
-                Console.WriteLine(ccenters[i * 3] + "  " + ccenters[(i) * 3 + 1]  + "  " + ccenters[(i) * 3 + 2] +"  "+counts[i] );
-            }
-            
             centers = new List<Point3D>();
+            int clusDeleteNum = 0;
+            List<int> deleteIDs = new List<int>();//剔除聚类过小的ID
             for (int i = 0; i < counts.Length; i++)
             {
-                centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1, true));//ID也写进入
-                Console.WriteLine(centers[i].X+"  "+centers[i].Y+"  "+centers[i].Z+"  "+centers[i].clusterId);
+                //if (counts[i] < 5)//排除聚类为小于5的
+                //{
+                //    clusDeleteNum ++;
+                //    continue;
+                //}
+                centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1 - clusDeleteNum, true));//ID也写进入
+                //Console.WriteLine(centers[i - clusDeleteNum].X + "  " + centers[i - clusDeleteNum].Y + "  " + centers[i - clusDeleteNum].Z + "  " + centers[i - clusDeleteNum].clusterId);
             }
-            
-            int zeroSum = 0;//记录0聚类的个数
-            foreach (Point3D pppp in lis)
-            {
-                if (pppp.clusterId == 0)
-                {
-                    List<Point3D> tmpL = centers.FindAll(delegate(Point3D p) { return (Math.Abs((p.X - pppp.X) + Math.Abs(p.Y - pppp.Y)) < 0.07); });
-                    if (tmpL.Count > 0)
-                    {
-                        Console.WriteLine("待选聚类数 : " + tmpL.Count);
-                        tmpL.Sort((x, y) =>
-                        {
-                            int result;
-                            double d1 = Math.Abs(x.X - pppp.X) + Math.Abs(x.Y - pppp.Y);
-                            double d2 = Math.Abs(y.X - pppp.X) + Math.Abs(y.Y - pppp.Y);
-                            if (d1 == d2)
-                            {
-                                result = 0;
-                            }
-                            else
-                            {
-                                if (d1 > d2)
-                                {
-                                    result = 1;
-                                }
-                                else
-                                {
-                                    result = -1;
-                                }
-                            }
-                            return result;
-                        });   //这里需要写入参数rawData.Take(hee).ToList()
-                        pppp.clusterId = tmpL.Take(1).ToList()[0].clusterId;
-                    }
-                    else
-                    {
-                        zeroSum++;
-                    }
-                }
-            }
-            Console.WriteLine("0聚类的个数为 ：" + zeroSum);
+            Console.WriteLine("聚类数 ："+(counts.Length - clusDeleteNum));
+            this.clusterSum = counts.Length - clusDeleteNum;//多一个零聚类
+            //int zeroSum = 0;//记录0聚类的个数
+            //foreach (Point3D pppp in lis)
+            //{
+            //    if (pppp.clusterId == 0)
+            //    {
+            //        List<Point3D> tmpL = centers.FindAll(delegate(Point3D p) { return (Math.Abs((p.X - pppp.X) + Math.Abs(p.Y - pppp.Y)) < 0.03); });
+            //        if (tmpL.Count > 0)
+            //        {
+            //            Console.WriteLine("待选聚类数 : " + tmpL.Count);
+            //            tmpL.Sort((x, y) =>
+            //            {
+            //                int result;
+            //                double d1 = Math.Abs(x.X - pppp.X) + Math.Abs(x.Y - pppp.Y);
+            //                double d2 = Math.Abs(y.X - pppp.X) + Math.Abs(y.Y - pppp.Y);
+            //                if (d1 == d2)
+            //                {
+            //                    result = 0;
+            //                }
+            //                else
+            //                {
+            //                    if (d1 > d2)
+            //                    {
+            //                        result = 1;
+            //                    }
+            //                    else
+            //                    {
+            //                        result = -1;
+            //                    }
+            //                }
+            //                return result;
+            //            });   //这里需要写入参数rawData.Take(hee).ToList()
+            //            pppp.clusterId = tmpL.Take(1).ToList()[0].clusterId;
+            //        }
+            //        else
+            //        {
+            //            zeroSum++;
+            //        }
+            //    }
+            //}
+            //Console.WriteLine("0聚类的个数为 ：" + zeroSum);
+            ShowPointsFromFile(lis, 2);
+            //Tools.getClusterCenter(clusterSum, lis, this.centers, this.grouping);//计算质心 计算分组
+            this.circles = Tools.getCircles(this.hulls, clusterSum);//计算外接圆
+            showCircle(this.circles, 1,lis);
+            //            Tools.getClusterCenter(mf.dbb.clusterAmount,mf.rawData, mf.centers, mf.grouping);//计算质心 计算分组
+            //mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组 计算外接多边形
+            //mf.circles = Tools.getCircles(mf.hulls, mf.clusterSum);//计算外接圆
+            //mf.showCircle(mf.circles, 1);
         }
-
+        
 
 
 

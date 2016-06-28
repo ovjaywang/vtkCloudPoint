@@ -70,7 +70,6 @@ namespace vtkPointCloud
             if (filterID.Count == 0) return;
             dataSet.RemoveAll((delegate(Point3D p) { return (filterID.Contains(p.clusterId)); }));
         }
-
         /// <summary>
         /// 获取扫描点聚类质心
         /// </summary>

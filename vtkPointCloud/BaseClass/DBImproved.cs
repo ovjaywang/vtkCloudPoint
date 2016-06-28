@@ -10,6 +10,7 @@ namespace vtkPointCloud
         public int clusterAmount = 0;
         public int pointsAmount = 0;
         public static int iritatorNum = 0;
+        public int cf = 0;
         public static double getDisP(Point3D p1, Point3D p2)
         {
             double dx = p1.X - p2.X;
@@ -89,27 +90,26 @@ namespace vtkPointCloud
         }
         public void dbscan(List<Point3D> lst, double e, int minPts)
         {
-            int c = 0;
             for (int i = 0; i < lst.Count; i++)
             {
                 Point3D dpp = lst[i];
                 //if (!dpp.ifShown) { continue; }
                 //else
-                {
+                //{
                     pointsAmount++;
-                }
+                //}
                 if (dpp.isClassed)
                     continue;
                 ArrayList tmpList = new ArrayList();
                 tmpList = isKeyPoint(lst, dpp, e, minPts);
                 if (tmpList.Count >= minPts)
                 {
-                    c++;
+                    cf++;
                     //Console.WriteLine("新聚类 " + c);
-                    expandCluster(dpp, tmpList, c, e, minPts, lst);
+                    expandCluster(dpp, tmpList, cf, e, minPts, lst);
                 }
             }
-            this.clusterAmount = c;
+            this.clusterAmount = cf;
             //Console.WriteLine("当前聚类 ： "+c);
         }
     }

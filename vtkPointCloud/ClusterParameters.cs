@@ -43,9 +43,9 @@ namespace vtkPointCloud
                 mf.grouping[j] = new List<Point3D>();
             }
             Tools.getClusterCenter(mf.dbb.clusterAmount,mf.rawData, mf.centers, mf.grouping);//计算质心 计算分组
-            //mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组
+            mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组 计算外接多边形
             mf.circles = Tools.getCircles(mf.hulls, mf.clusterSum);//计算外接圆
-            mf.showCircle(mf.circles,1);
+            mf.showCircle(mf.circles,1,mf.rawData);
             mf.isShowLegend(2);
             if (isFirst) {
                 isFirst = false;
@@ -76,7 +76,7 @@ namespace vtkPointCloud
             Tools.removeErrorPointFromClustering(mf.rawData);
             mf.isShowLegend(0);
             mf.isShowLegend(4);
-            mf.showCircle(mf.circles, 2);
+            mf.showCircle(mf.circles, 2,mf.rawData);
             mf.dealwithMCCandMCE();
             this.Visible = false;
             this.DialogResult = DialogResult.Yes;
