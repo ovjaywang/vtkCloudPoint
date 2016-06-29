@@ -344,7 +344,7 @@ namespace vtkPointCloud
             for (int j = 0; j < clusterSum; j++)
             {
                 if (hulls[j].Count == 0) continue;
-                else Console.WriteLine(hulls[j].Count);
+                //else Console.WriteLine(hulls[j].Count);
                 List<Point2D> m_points = Geometry.MakeConvexHull(hulls[j]);
                 Polygon pgon = new Polygon(m_points.ToArray());
                 Point2D CircleCenter;//圆心点
