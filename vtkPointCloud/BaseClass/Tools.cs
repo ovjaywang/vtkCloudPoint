@@ -453,7 +453,7 @@ namespace vtkPointCloud
         /// <param name="max_y">y最大值</param>
         /// <returns></returns>
         static public List<Point3D> getListByScale(List<Point3D> rawData, double min_x, double min_y, double max_x, double max_y) {
-            return rawData.FindAll(delegate(Point3D p) { return (p.X >= min_x) && (p.Y >= min_y) && (p.X <= max_x) && (p.Y <= max_y); });
+            return rawData.FindAll(delegate(Point3D p) { return (p.X > min_x) && (p.Y > min_y) && (p.X <= max_x) && (p.Y <= max_y); });
         }
 
 
