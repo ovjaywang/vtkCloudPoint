@@ -2965,7 +2965,8 @@ namespace vtkPointCloud
                     }
                 }
             }
-            Console.WriteLine("\n\r------------------------------------"+noZeroClusters[noZeroClusters.Count-1].clusterId+"------------------------------------");
+            int s = noZeroClusters[noZeroClusters.Count-1].clusterId;
+            Console.WriteLine("\n\r------------------------------------"+s+"------------------------------------");
             foreach (Point3D p in ZeroClusters)
             {
                 noZeroClusters.Add(p);
@@ -2984,6 +2985,10 @@ namespace vtkPointCloud
             finally {
                 sw.Close();
             }
+
+            MergeCellData(hee, s);
+
+
         }
         private static void StartCode(object i)
         {
@@ -2997,8 +3002,12 @@ namespace vtkPointCloud
 
         private void 测试野点回调ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MergeCellData(300, 227);
+        }
+        private void MergeCellData(int cellNum,int clusterNum)
+        {
             FileMap fileMap = new FileMap();
-            List<string> pointsList = fileMap.ReadFile("G:\\200.txt");
+            List<string> pointsList = fileMap.ReadFile("G:\\"+cellNum+".txt");
             String[] tmpxyz;
             Point3D point;
             List<Point3D> lis = new List<Point3D>();//非零聚类
@@ -3011,7 +3020,7 @@ namespace vtkPointCloud
                 id = Convert.ToInt32(tmpxyz[3]);
                 if (id != 0)
                 {
-                    if ((id != lastClusterID) && (lastClusterID!=0))//当ID变换时
+                    if ((id != lastClusterID) && (lastClusterID != 0))//当ID变换时
                     {
                         if (clusterLength <= 3)//判断该组聚类小于3
                         {
@@ -3048,20 +3057,19 @@ namespace vtkPointCloud
                     zeroLis.Add(point);
                 }
 
-                
-            }
-            Console.WriteLine("\r\n因为聚类过小被删的有 ： " + deleteNum+"现聚类 ："+ (250-deleteNum));
-            mixCloseCluster(250-deleteNum,lis,zeroLis);
-        }
 
+            }
+            Console.WriteLine("\r\n因为聚类过小被删的有 ： " + deleteNum + "现聚类 ：" + (clusterNum - deleteNum));
+            mixCloseCluster(clusterNum - deleteNum, lis, zeroLis);
+        }
         private void mixCloseCluster(int clusterNum, List<Point3D> tmpList, List<Point3D> tmpList0)
         {
             //List<Point3D> addList = tmpList.FindAll(delegate(Point3D p) { return (p.clusterId == 0); });
             dbb = new DBImproved();
             dbb.clusterAmount = clusterNum;
-            //dbb.cf = clusterNum;//设置聚类初始ID
-            //dbb.dbscan(tmpList0, 0.07, 7);
-            //Console.WriteLine("重新聚类后聚类数 :"+dbb.clusterAmount);
+            dbb.cf = clusterNum;//设置聚类初始ID
+            dbb.dbscan(tmpList0, 0.07, 7);
+            Console.WriteLine("重新聚类后聚类数 :"+dbb.clusterAmount);
 
             foreach (Point3D p in tmpList0)
             {
