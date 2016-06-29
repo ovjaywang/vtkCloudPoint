@@ -3009,9 +3009,6 @@ namespace vtkPointCloud
             double[] ccenters = new double[(242 - deleteNum) * 3];//分别记录x y z
             int[] counts = new int[(242 - deleteNum)];//记录数量
 
-
-
-
             foreach (Point3D p in lis)
             {
                 //Console.WriteLine(p.clusterId);
