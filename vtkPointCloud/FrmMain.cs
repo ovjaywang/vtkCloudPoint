@@ -2915,10 +2915,10 @@ namespace vtkPointCloud
             //Console.WriteLine("聚类运行时间：" + stopwatch.Elapsed.ToString(), "消息");
             MessageBox.Show("聚类运行时间：" + stopwatch.Elapsed.ToString() + "\t总聚类数：" + sumClus + "聚类数据：" + sumPts+"个");
             System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\" + hee + ".txt", false);//把cells分别按照聚类输出 ID需要合并 
-            int idLast = cells[0][0].clusterId;
-            int idNow = 0,id,clusLen =0;
+            int idLast = cells[0][0].clusterId;//上一个ID是多少
+            int idNow = 0,id,clusLen =0;//当前聚类ID、当前cell内部ID以及当前聚类长度
+            int delSum = 0;
             List<Point3D> noZeroClusters = new List<Point3D>();
-            List<Point3D> ZeroClusters = new List<Point3D>();
             for (int i = 0; i < cells.Length; i++) {
                 if (cells[i].Count == 0) continue;
                 cells[i].Sort((x, y) =>//按照ID排序 否则
@@ -2944,15 +2944,24 @@ namespace vtkPointCloud
                 for (int j = 0; j < cells[i].Count; j++)
                 {
                     id = cells[i][j].clusterId;
-                    if (id == 0) ZeroClusters.Add(cells[i][j]);
+                    if (id == 0) noZeroClusters.Add(cells[i][j]);
                     else
                     {
-                        if (id != idLast) {
-                          
-                           if (clusLen <= 3) {
+                        if ((id != idLast))
+                        {
+                            if ((clusLen <= 3)&&(idLast!=0))
+                            {//如果聚类过小 1.把该聚类的ID设为0 2.ID值不自增
                                Console.WriteLine("聚类过小！" + idNow);
+                               delSum++;
+                               for (int k = 0; k < clusLen; k++)
+                               {
+                                   noZeroClusters[noZeroClusters.Count -1 - k].clusterId = 0;
+                               }
                            }
-                           idNow++;
+                           else
+                           {
+                               idNow++;
+                           }
                            clusLen = 1;
                         }
                         else
@@ -2967,10 +2976,7 @@ namespace vtkPointCloud
             }
             int s = noZeroClusters[noZeroClusters.Count-1].clusterId;
             Console.WriteLine("\n\r------------------------------------"+s+"------------------------------------");
-            foreach (Point3D p in ZeroClusters)
-            {
-                noZeroClusters.Add(p);
-            }
+            Console.WriteLine("因过聚类小于3被删除的有" + delSum + "个.");
             try
             {
                 foreach (Point3D p in noZeroClusters)
@@ -2987,8 +2993,6 @@ namespace vtkPointCloud
             }
 
             MergeCellData(hee, s);
-
-
         }
         private static void StartCode(object i)
         {
@@ -3002,7 +3006,7 @@ namespace vtkPointCloud
 
         private void 测试野点回调ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MergeCellData(300, 227);
+            MergeCellData(200, 250);
         }
         private void MergeCellData(int cellNum,int clusterNum)
         {
@@ -3012,41 +3016,20 @@ namespace vtkPointCloud
             Point3D point;
             List<Point3D> lis = new List<Point3D>();//非零聚类
             List<Point3D> zeroLis = new List<Point3D>();//0聚类
-            int lastClusterID = Convert.ToInt32(pointsList[0].Split('\t')[3]), clusterLength = 0, deleteNum = 0, id;
+            int lastClusterID = Convert.ToInt32(pointsList[0].Split('\t')[3]),   id;
             for (int i = 0; i < pointsList.Count; i++)
             {
                 point = new Point3D();
                 tmpxyz = pointsList[i].Split('\t');
                 id = Convert.ToInt32(tmpxyz[3]);
-                if (id != 0)
-                {
-                    if ((id != lastClusterID) && (lastClusterID != 0))//当ID变换时
-                    {
-                        if (clusterLength <= 3)//判断该组聚类小于3
-                        {
-                            deleteNum++;
-                            Console.WriteLine("此时clusterLength 为" + clusterLength);
-                            //Console.WriteLine("被删除开始行数为 ： " + (i+1));
-                            for (int t = 0; t < clusterLength; t++)
-                            {
-                                lis[i - clusterLength + t].clusterId = 0;
-                            }
-                        }
-                        lastClusterID = Convert.ToInt32(tmpxyz[3]);
-                        clusterLength = 1;
-                    }
-                    else
-                    {
-                        clusterLength++;//聚类点数加1
-                    }
-                }
+
                 point.X = Convert.ToDouble(tmpxyz[0]);//第一个字段
                 point.Y = Convert.ToDouble(tmpxyz[1]);//第二个字段
                 point.Z = Convert.ToDouble(tmpxyz[2]);//第三个字段
                 point.ifShown = true;
                 if (id != 0)
                 {
-                    point.clusterId = id - deleteNum;
+                    point.clusterId = id ;
                     point.isClassed = true;
                     lis.Add(point);
                 }
@@ -3056,11 +3039,8 @@ namespace vtkPointCloud
                     point.isClassed = false;
                     zeroLis.Add(point);
                 }
-
-
             }
-            Console.WriteLine("\r\n因为聚类过小被删的有 ： " + deleteNum + "现聚类 ：" + (clusterNum - deleteNum));
-            mixCloseCluster(clusterNum - deleteNum, lis, zeroLis);
+            mixCloseCluster(clusterNum , lis, zeroLis);
         }
         private void mixCloseCluster(int clusterNum, List<Point3D> tmpList, List<Point3D> tmpList0)
         {
@@ -3069,7 +3049,7 @@ namespace vtkPointCloud
             dbb.clusterAmount = clusterNum;
             dbb.cf = clusterNum;//设置聚类初始ID
             dbb.dbscan(tmpList0, 0.07, 7);
-            Console.WriteLine("重新聚类后聚类数 :"+dbb.clusterAmount);
+            Console.WriteLine("原始聚类数据："+clusterNum+"重新聚类后聚类数 :"+dbb.clusterAmount);
 
             foreach (Point3D p in tmpList0)
             {
@@ -3143,9 +3123,46 @@ namespace vtkPointCloud
             //Tools.getClusterCenter(clusterSum, lis, this.centers, this.grouping);//计算质心 计算分组
             this.circles = Tools.getCircles(this.hulls, clusterSum);//计算外接圆
             showCircle(this.circles,1, tmpList);
+            IntegratingClus(tmpList, this.circles);
         }
 
+        private void IntegratingClus(List<Point3D> l ,List<Point2D> centroids) {//按照ID排序好的Centroid
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            for (int i = 0; i < centroids.Count;i++ )
+            {
+                if (!centroids[i].isTraversal)
+                {
+                    centroids[i].isTraversal = true;
+                    for (int j = i+1; j < centroids.Count; j++)
+                    {
+                        
+                    }
+                    //FindIndex(0, grouping[pathList.Count].Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
+                    List<Point2D> plist = centroids.FindAll(delegate(Point2D p) { return ((Math.Abs(p.x - centroids[i].x)+ (Math.Abs(p.y - centroids[i].y)))< 0.07); });
+                    if (plist.Count>1)
+                    {
+                        Console.Write("\t当前ID:" + centroids[i].clusID+"\t 阈值内ID:");
+                        foreach (Point2D p in plist)
+                        {
+                            if (p.clusID > centroids[i].clusID)
+                            {
+                                Console.Write(p.clusID + "\t");
+                                int index = centroids.FindIndex(0,delegate(Point2D q) { return (q.clusID == p.clusID); });
+                                dic.Add(index, centroids[i].clusID);
+                                centroids[index].isTraversal = true;
+                            }
+                        }
+                        Console.WriteLine();
+                    }
 
+                }
+            }
+            foreach (KeyValuePair<int,int> k in dic)
+            {
+                Console.WriteLine("Key:{0}, Value:{1}", k.Key, k.Value);
+            }
+
+        }
       
     }
 }

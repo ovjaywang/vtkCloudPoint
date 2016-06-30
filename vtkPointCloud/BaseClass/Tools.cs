@@ -352,6 +352,7 @@ namespace vtkPointCloud
                 Geometry.FindMinimalBoundingCircle(m_points, out CircleCenter, out CircleRadius);
                 CircleCenter.radius = CircleRadius;
                 CircleCenter.clusID = j+1;
+                CircleCenter.isTraversal = false;
                 circles.Add(CircleCenter);
             }
             return circles;
