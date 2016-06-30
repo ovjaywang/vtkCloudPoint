@@ -10,13 +10,13 @@ namespace vtkPointCloud
     static class Geometry
     {
         // For debugging.
-        public static Point2D[] g_MinMaxCorners;
+        public static Point3D[] g_MinMaxCorners;
         public static Rectangle2D g_MinMaxBox;
-        public static Point2D[] g_NonCulledPoints;
+        public static Point3D[] g_NonCulledPoints;
 
         // Find the points nearest the upper left, upper right,
         // lower left, and lower right corners.
-        private static void GetMinMaxCorners(List<Point2D> points, ref Point2D ul, ref Point2D ur, ref Point2D ll, ref Point2D lr)
+        private static void GetMinMaxCorners(List<Point3D> points, ref Point3D ul, ref Point3D ur, ref Point3D ll, ref Point3D lr)
         {
             // Start with the first point as the solution.
             ul = points[0];
@@ -24,36 +24,36 @@ namespace vtkPointCloud
             ll = ul;
             lr = ul;
             // Search the other points.
-            foreach (Point2D pt in points)
+            foreach (Point3D pt in points)
             {
-                if (-pt.x - pt.y > -ul.x - ul.y) ul = pt;
-                if (pt.x - pt.y > ur.x - ur.y) ur = pt;
-                if (-pt.x + pt.y > -ll.x + ll.y) ll = pt;
-                if (pt.x + pt.y > lr.x + lr.y) lr = pt;
+                if (-pt.X - pt.Y > -ul.X - ul.Y) ul = pt;
+                if (pt.X - pt.Y > ur.X - ur.Y) ur = pt;
+                if (-pt.X + pt.Y > -ll.X + ll.Y) ll = pt;
+                if (pt.X + pt.Y > lr.X + lr.Y) lr = pt;
             }
-            g_MinMaxCorners = new Point2D[] { ul, ur, lr, ll }; // For debugging.
+            g_MinMaxCorners = new Point3D[] { ul, ur, lr, ll }; // For debugging.
         }
 
         // Find a box that fits inside the MinMax quadrilateral.
-        private static Rectangle2D GetMinMaxBox(List<Point2D> points)
+        private static Rectangle2D GetMinMaxBox(List<Point3D> points)
         {
             // Find the MinMax quadrilateral.
-            Point2D ul = new Point2D(0, 0), ur = ul, ll = ul, lr = ul;
+            Point3D ul = new Point3D(0, 0,0), ur = ul, ll = ul, lr = ul;
             GetMinMaxCorners(points, ref ul, ref ur, ref ll, ref lr);
 
             // Get the coordinates of a box that lies inside this quadrilateral.
             double xmin, xmax, ymin, ymax;
-            xmin = ul.x;
-            ymin = ul.y;
+            xmin = ul.X;
+            ymin = ul.Y;
 
-            xmax = ur.x;
-            if (ymin < ur.y) ymin = ur.y;
+            xmax = ur.X;
+            if (ymin < ur.Y) ymin = ur.Y;
 
-            if (xmax > lr.x) xmax = lr.x;
-            ymax = lr.y;
+            if (xmax > lr.X) xmax = lr.X;
+            ymax = lr.Y;
 
-            if (xmin < ll.x) xmin = ll.x;
-            if (ymax > ll.y) ymax = ll.y;
+            if (xmin < ll.X) xmin = ll.X;
+            if (ymax > ll.Y) ymax = ll.Y;
 
             Rectangle2D result = new Rectangle2D(xmin, ymin, xmax - xmin, ymax - ymin);
             g_MinMaxBox = result;    // For debugging.
@@ -64,43 +64,43 @@ namespace vtkPointCloud
         // trapezoid defined by the vertices with smallest and
         // largest X and Y coordinates.
         // Return the points that are not culled.
-        private static List<Point2D> HullCull(List<Point2D> points)
+        private static List<Point3D> HullCull(List<Point3D> points)//获取外界多边形定点
         {
             // Find a culling box.
             Rectangle2D culling_box = GetMinMaxBox(points);
 
             // Cull the points.
-            List<Point2D> results = new List<Point2D>();
-            foreach (Point2D pt in points)
+            List<Point3D> results = new List<Point3D>();
+            foreach (Point3D pt in points)
             {
                 // See if (this point lies outside of the culling box.
-                if (pt.x <= culling_box.Left ||
-                    pt.x >= culling_box.Right ||
-                    pt.y <= culling_box.Top ||
-                    pt.y >= culling_box.Bottom)
+                if (pt.X <= culling_box.Left ||
+                    pt.X >= culling_box.Right ||
+                    pt.Y <= culling_box.Top ||
+                    pt.Y >= culling_box.Bottom)
                 {
                     // This point cannot be culled.
                     // Add it to the results.
                     results.Add(pt);
                 }
             }
-            g_NonCulledPoints = new Point2D[results.Count];   // For debugging.
+            g_NonCulledPoints = new Point3D[results.Count];   // For debugging.
             results.CopyTo(g_NonCulledPoints);              // For debugging.
             return results;
         }
 
-        public static List<Point2D> MakeConvexHull(List<Point2D> points)
+        public static List<Point2D> MakeConvexHull(List<Point3D> points)
         {
             // Cull.
             points = HullCull(points);
 
             // Find the remaining point with the smallest Y value.
             // if (there's a tie, take the one with the smaller X value.
-            Point2D best_pt = points[0];
-            foreach (Point2D pt in points)
+            Point3D best_pt = points[0];
+            foreach (Point3D pt in points)
             {
-                if ((pt.y < best_pt.y) ||
-                   ((pt.y == best_pt.y) && (pt.x < best_pt.x)))
+                if ((pt.Y < best_pt.Y) ||
+                   ((pt.Y == best_pt.Y) && (pt.X < best_pt.X)))
                 {
                     best_pt = pt;
                 }
@@ -108,7 +108,8 @@ namespace vtkPointCloud
 
             // Move this point to the convex hull.
             List<Point2D> hull = new List<Point2D>();
-            hull.Add(best_pt);
+            //hull.Add(best_pt);
+            hull.Add(new Point2D(best_pt.X, best_pt.Y));
             points.Remove(best_pt);
 
             // Start wrapping up the other points.
@@ -123,9 +124,9 @@ namespace vtkPointCloud
                 double best_angle = 3600;
 
                 // Search the rest of the points.
-                foreach (Point2D pt in points)
+                foreach (Point3D pt in points)
                 {
-                    double test_angle = AngleValue(X, Y, pt.x, pt.y);
+                    double test_angle = AngleValue(X, Y, pt.X, pt.Y);
                     if ((test_angle >= sweep_angle) &&
                         (best_angle > test_angle))
                     {
@@ -145,7 +146,7 @@ namespace vtkPointCloud
                 }
 
                 // Add the best point to the convex hull.
-                hull.Add(best_pt);
+                hull.Add(new Point2D(best_pt.X, best_pt.Y));
                 points.Remove(best_pt);
 
                 sweep_angle = best_angle;
@@ -194,13 +195,13 @@ namespace vtkPointCloud
             }
             return t * 90;
         }
-        public static void FindMinimalBoundingCircle(List<Point2D> points, out Point2D center, out double radius)
+        public static void FindMinimalBoundingCircle(List<Point3D> points, out Point2D center, out double radius)
         {
             // Find the convex hull.
             List<Point2D> hull = MakeConvexHull(points);
 
             // The best solution so far.
-            Point2D best_center = points[0];
+            Point2D best_center = new Point2D(points[0].X, points[0].Y);
             double best_radius2 = double.MaxValue;
 
             // Look at pairs of hull points.

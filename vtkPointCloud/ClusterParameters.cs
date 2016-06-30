@@ -37,14 +37,16 @@ namespace vtkPointCloud
             mf.getClusterFromList(threhold, point);
 
             mf.centers = new List<Point3D>();
-            mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];//将聚类写进分组的数组
+            //mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];//将聚类写进分组的数组
+            mf.clusList = new List<ClusObj>();
             for (int j = 0; j < mf.dbb.clusterAmount; j++)
             {
-                mf.grouping[j] = new List<Point3D>();
+                mf.clusList.Add(new ClusObj());
             }
-            Tools.getClusterCenter(mf.dbb.clusterAmount,mf.rawData, mf.centers, mf.grouping);//计算质心 计算分组
+            Tools.getClusterCenter(mf.dbb.clusterAmount,mf.rawData, mf.centers, mf.clusList,null);//计算质心 计算分组
             mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组 计算外接多边形
-            mf.circles = Tools.getCircles(mf.hulls, mf.clusterSum);//计算外接圆
+            //mf.circles = Tools.getCircles(mf.hulls, mf.clusterSum);//计算外接圆
+            mf.circles = Tools.getCircles(mf.clusList, mf.clusterSum);//计算外接圆
             mf.showCircle(mf.circles,1,mf.rawData);
             mf.isShowLegend(2);
             if (isFirst) {

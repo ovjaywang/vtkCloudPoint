@@ -37,11 +37,11 @@ namespace vtkPointCloud
         int pointsInthrehold;//dbscan点数
         public bool isSureClusterRs = false;
         ClusterParameters cp ;
+        Dictionary<int, int> dick;
         //点集相关
         public List<Point3D> rawData = new List<Point3D>();//raw是原始x y z值数据
-        //List<Point3D>[] fixedData;//固定点分组测量数据
         bool isIgnoreDuplication = true;
-        public List<Point3D>[] grouping = null;
+        public List<ClusObj> clusList = null;//依据聚类ID的分组List 每个ClusObj存一个聚类
         List<List<Point3D>> classedrawData = new List<List<Point3D>>();//源文件匹配相关
         ArrayList pathList = new ArrayList();//路径列表
         public List<Point3D> centers = null;//同聚类中心
@@ -89,9 +89,9 @@ namespace vtkPointCloud
         List<Point3D> transPts = null;
         List<Point3D> showPts = null;
         //参数相关
-        public List<Point2D>[] hulls;//个数为聚类数 每个元素为某ID的所有点集
+        //public List<Point2D>[] hulls;//个数为聚类数 每个元素为某ID的所有点集
         public List<Point2D> circles;
-        public List<int> filterID = new List<int>();
+        public List<int> filterID = new List<int>();//阈值过滤的ID
         double[] scale = new double[3];//比例尺 三个方向
         double[] trueScale;//真值范围
         double[] centroidScale;//质心范围
@@ -448,11 +448,6 @@ namespace vtkPointCloud
                 {
                     cs = dbb.clusterAmount;
                 }
-                hulls = new List<Point2D>[cs];
-                for (int i = 0; i < cs; i++)
-                {
-                    hulls[i] = new List<Point2D>();
-                }
             }
             for (int i = 0; i < points.Count; i++)
             {
@@ -473,7 +468,8 @@ namespace vtkPointCloud
                         else
                         {//是核心点
                             pointCloud_3.InsertPoint(count_3, points[i].X, points[i].Y, points[i].Z);
-                            hulls[points[i].clusterId - 1].Add(new Point2D(points[i].X, points[i].Y));
+                            //hulls[points[i].clusterId - 1].Add(new Point2D(points[i].X, points[i].Y));
+                            clusList[points[i].clusterId - 1].li.Add(new Point3D(points[i].X, points[i].Y, points[i].Z, points[i].clusterId, true));
                             count_3++;
                         }
                     }
@@ -618,6 +614,13 @@ namespace vtkPointCloud
                 li.RemoveAll((delegate(Point3D p) { return (!toobig.Contains(p.clusterId)); }));
                 ls.RemoveAll((delegate(Point2D p) { return (!toobig.Contains(p.clusID)); }));
                 centers.RemoveAll((delegate(Point3D p) { return (!toobig.Contains(p.clusterId)); }));
+                ShowPointsFromFile(li, 1);
+            }
+            else if (type == 4)
+            {
+                li.RemoveAll((delegate(Point3D p) { return ((!dick.Keys.ToList().Contains(p.clusterId))&&(!dick.Values.ToList().Contains(p.clusterId))); }));
+                ls.RemoveAll((delegate(Point2D p) { return ((!dick.Keys.ToList().Contains(p.clusID)) && (!dick.Values.ToList().Contains(p.clusID))); }));
+                centers.RemoveAll((delegate(Point3D p) { return ((!dick.Keys.ToList().Contains(p.clusterId)) && (!dick.Values.ToList().Contains(p.clusterId))); }));
                 ShowPointsFromFile(li, 1);
             }
             ShowPointsFromFile(centers, 3);//显示质心
@@ -895,12 +898,12 @@ namespace vtkPointCloud
             if (files.Length != 0)
             {
                 Point3D point;
-                //fixedData = new List<Point3D>[files.Length];
-                grouping = new List<Point3D>[files.Length];
+                //grouping = new List<Point3D>[files.Length];
+                clusList = new List<ClusObj>();
                 for (int i = 0; i < files.Length; i++)
                 {
-                    //fixedData[i] = new List<Point3D>();
-                    grouping[i] = new List<Point3D>();
+                    //grouping[i] = new List<Point3D>();
+                    clusList.Add(new ClusObj());
                 }
                 TreeNode treeDir = new TreeNode(ptsPath);
                 root.Nodes.Add(treeDir);
@@ -1023,15 +1026,19 @@ namespace vtkPointCloud
                         }
                         else if (typpe == 3||typpe==4)//固定点-清除或不清除
                         {
-                            if (grouping[pathList.Count].FindAll(delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); }).Count == 0){
+                            //if (grouping[pathList.Count].FindAll(delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); }).Count == 0){
+                            if (clusList[pathList.Count].li.FindAll(delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); }).Count == 0)
+                            {
                                 point.ptsCount = 1;
-                                grouping[pathList.Count].Add(point);
+                                //grouping[pathList.Count].Add(point);
+                                clusList[pathList.Count].li.Add(point);
                                 pts++;
                             }      
                                 
                             else
                             {
-                                grouping[pathList.Count][grouping[pathList.Count].FindIndex(0, grouping[pathList.Count].Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
+                                //grouping[pathList.Count][grouping[pathList.Count].FindIndex(0, grouping[pathList.Count].Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
+                                clusList[pathList.Count].li[clusList[pathList.Count].li.FindIndex(0, clusList[pathList.Count].li.Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
                                 if (typpe == 3) duplicatNum++;
                                 else pts++;
                             }
@@ -1059,12 +1066,12 @@ namespace vtkPointCloud
                 }
                 else if (typpe == 3)
                 {
-                    MessageBox.Show("共" + (grouping.Length) + "个固定点，其中" + duplicatNum + "个重复点，剩余" + pts + "个数据点。", "提示");
+                    MessageBox.Show("共" + (clusList.Count) + "个固定点，其中" + duplicatNum + "个重复点，剩余" + pts + "个数据点。", "提示");
                     showFixPointData(1);//显示完整数据
                 }
                 else if (typpe == 4)
                 {
-                    MessageBox.Show("共" + (grouping.Length) + "个固定点，" + pts + "个数据点。", "提示");
+                    MessageBox.Show("共" + (clusList.Count) + "个固定点，" + pts + "个数据点。", "提示");
                     showFixPointData(1);//显示完整数据
                 }
                 SureDistanceFilter sdf = new SureDistanceFilter(typpe>2);//用typpe判断是否固定点
@@ -1074,8 +1081,8 @@ namespace vtkPointCloud
                     sdf.textBox_minD.Text = rawData.Min(m => m.Distance).ToString();
                 }
                 else if (typpe == 3 || typpe == 4) {
-                    sdf.textBox_maxD.Text = Tools.GetGroupingManOrMin(this.grouping,1).ToString();
-                    sdf.textBox_minD.Text = Tools.GetGroupingManOrMin(this.grouping, 2).ToString();
+                    sdf.textBox_maxD.Text = Tools.GetGroupingManOrMin(this.clusList, 1).ToString();
+                    sdf.textBox_minD.Text = Tools.GetGroupingManOrMin(this.clusList, 2).ToString();
                 }
                 sdf.Show(this);
             }
@@ -1377,7 +1384,8 @@ namespace vtkPointCloud
             }
             pathList.Clear();
             truePointPid = new int[1];
-            grouping = null;
+            //grouping = null;
+            clusList = null;
             //if(trueLocArrayList!=null)
             //    trueLocArrayList.Clear();
             root.Nodes.Clear();
@@ -1393,22 +1401,22 @@ namespace vtkPointCloud
         /// </summary>
         void clearError_combineClusters_FromScanList()//清楚野点 合并聚类接近点
         {
-            for (int i = 0; i < grouping.Length; i++)//第一层 遍历所有聚类ID
+            for (int i = 0; i < clusList.Count; i++)//第一层 遍历所有聚类ID
             {
-                Console.WriteLine(grouping[i].Count);
-                for (int j = 0; j < grouping[i].Count; j++)//第二层
+                Console.WriteLine(clusList[i].li.Count);
+                for (int j = 0; j < clusList[i].li.Count; j++)//第二层
                 {
                     int c = 0;
-                    for (int k = 0; k < grouping[i].Count; k++)
+                    for (int k = 0; k < clusList[i].li.Count; k++)
                     {
-                        if (DB.getDisP(grouping[i][j], grouping[i][k]) < 0.06) /////两个聚类之间距离过小 该数数值需要更改
+                        if (DB.getDisP(clusList[i].li[j], clusList[i].li[k]) < 0.06) /////两个聚类之间距离过小 该数数值需要更改
                         {
                             c++;
                         }
                     }
                     if (c < 9)//聚类过小 设为野点
                     {
-                        grouping[i][j].clusterId = 0;
+                        clusList[i].li[j].clusterId = 0;
                     }
                 }
             }
@@ -1438,30 +1446,30 @@ namespace vtkPointCloud
             vtkActor actor_2 = new vtkActor();
 
             int count_1 = 0, count_2 = 0; 
-                for (int i = 0; i < grouping.Length; i++)
+                for (int i = 0; i < clusList.Count; i++)
                 {
-                    for (int j = 0; j < grouping[i].Count; j++)
+                    for (int j = 0; j < clusList[i].li.Count; j++)
                     {
                         if (type == 1 || type ==3)
                         {
-                            pointCloud_1.InsertPoint(count_1, grouping[i][j].X, grouping[i][j].Y, grouping[i][j].Z);
+                            pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
                             count_1++;
                         }
-                        else if ((type == 4) && (!grouping[i][j].isFilterByDistance))
+                        else if ((type == 4) && (!clusList[i].li[j].isFilterByDistance))
                         {
-                            pointCloud_1.InsertPoint(count_1, grouping[i][j].X, grouping[i][j].Y, grouping[i][j].Z);
+                            pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
                             count_1++;
                         }
                         else if (type == 2)
                         {
-                            if (grouping[i][j].isFilterByDistance)
+                            if (clusList[i].li[j].isFilterByDistance)
                             {
-                                pointCloud_1.InsertPoint(count_1, grouping[i][j].X, grouping[i][j].Y, grouping[i][j].Z);
+                                pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
                                 count_1++;
                             }
                             else
                             {
-                                pointCloud_2.InsertPoint(count_2, grouping[i][j].X, grouping[i][j].Y, grouping[i][j].Z);
+                                pointCloud_2.InsertPoint(count_2, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
                                 count_2++;
                             }
                         }
@@ -2444,7 +2452,7 @@ namespace vtkPointCloud
         }
         public void RejectPtsByDistanceFromFixed(bool isOutPut)
         {
-            Tools.cleanDataByDistance2(isOutPut, this.grouping, this.bit);
+            Tools.cleanDataByDistance2(isOutPut, this.clusList, this.bit);
             this.FixedPointMatchingToolStripMenuItem.Enabled = true;
 
         }
@@ -2462,7 +2470,7 @@ namespace vtkPointCloud
         private void tsButton_CleanFixedPoint_Click(object sender, EventArgs e)//固定点剔野
         {
             //getClusterFromList();
-            Tools.getClusterCenter(clusterSum,this.rawData,this.centers,this.grouping);
+            Tools.getClusterCenter(clusterSum, this.rawData, this.centers, this.clusList,null);
             ShowPointsFromFile(centers, 3);
         }
         /// <summary>
@@ -2496,7 +2504,7 @@ namespace vtkPointCloud
                 return;
             }
             //getClusterFromList();//计算聚类
-            Tools.getClusterCenter(dbb.clusterAmount,this.rawData,this.centers,this.grouping);//计算质心
+            Tools.getClusterCenter(dbb.clusterAmount,this.rawData,this.centers,this.clusList,null);//计算质心
             ShowPointsFromFile(centers, 3);//不同颜色显示点
             this.iCPToolStripMenuItem.Enabled = true;
         }
@@ -3056,113 +3064,70 @@ namespace vtkPointCloud
                 //Console.WriteLine(p.X + "  " + p.Y + "  " + p.Z + "  " + p.clusterId);
                 tmpList.Add(p);
             }
-            double[] ccenters = new double[dbb.clusterAmount * 3];//分别记录x y z
-            int[] counts = new int[dbb.clusterAmount];//记录数量
-
-
-            foreach (Point3D p in tmpList)
-            {
-                if (p.clusterId != 0)//只加入ID不为0的进行质心计算
-                {
-                    ccenters[(p.clusterId - 1) * 3] += p.X;
-                    ccenters[(p.clusterId - 1) * 3 + 1] += p.Y;
-                    ccenters[(p.clusterId - 1) * 3 + 2] += p.Z;
-                    counts[p.clusterId - 1] += 1;
-                    //grouping[p.clusterId - 1].Add(p);
-                }
-            }
             centers = new List<Point3D>();
-            //int deleteAllZero = 0;
-            for (int i = 0; i < counts.Length; i++)
+            clusList = new List<ClusObj>();
+            for (int j = 0; j < dbb.clusterAmount; j++)
             {
-                centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1 , true));//ID也写进入
-                Console.WriteLine(centers[i ].X + "  " + centers[i ].Y + "  " + centers[i ].Z + "  " + centers[i ].clusterId);
+                clusList.Add(new ClusObj());
             }
-            this.clusterSum = counts.Length;//多一个零聚类
-            //int zeroSum = 0;//记录0聚类的个数
-            //foreach (Point3D pppp in lis)
-            //{
-            //    if (pppp.clusterId == 0)
-            //    {
-            //        List<Point3D> tmpL = centers.FindAll(delegate(Point3D p) { return (Math.Abs((p.X - pppp.X) + Math.Abs(p.Y - pppp.Y)) < 0.03); });
-            //        if (tmpL.Count > 0)
-            //        {
-            //            Console.WriteLine("待选聚类数 : " + tmpL.Count);
-            //            tmpL.Sort((x, y) =>
-            //            {
-            //                int result;
-            //                double d1 = Math.Abs(x.X - pppp.X) + Math.Abs(x.Y - pppp.Y);
-            //                double d2 = Math.Abs(y.X - pppp.X) + Math.Abs(y.Y - pppp.Y);
-            //                if (d1 == d2)
-            //                {
-            //                    result = 0;
-            //                }
-            //                else
-            //                {
-            //                    if (d1 > d2)
-            //                    {
-            //                        result = 1;
-            //                    }
-            //                    else
-            //                    {
-            //                        result = -1;
-            //                    }
-            //                }
-            //                return result;
-            //            });   //这里需要写入参数rawData.Take(hee).ToList()
-            //            pppp.clusterId = tmpL.Take(1).ToList()[0].clusterId;
-            //        }
-            //        else
-            //        {
-            //            zeroSum++;
-            //        }
-            //    }
-            //}
-            //Console.WriteLine("0聚类的个数为 ：" + zeroSum);
-            ShowPointsFromFile(tmpList, 2);
+            //int deleteAllZero = 0;
+            Tools.getClusterCenter(dbb.clusterAmount, tmpList, centers, clusList,null);
+            this.clusterSum = dbb.clusterAmount;//多一个零聚类
+            //ShowPointsFromFile(tmpList, 2);
             //Tools.getClusterCenter(clusterSum, lis, this.centers, this.grouping);//计算质心 计算分组
-            this.circles = Tools.getCircles(this.hulls, clusterSum);//计算外接圆
-            showCircle(this.circles,1, tmpList);
-            IntegratingClus(tmpList, this.circles);
-        }
+            this.circles = Tools.getCircles(this.clusList, clusterSum);//计算外接圆
+            //showCircle(this.circles,1, tmpList);
+            this.dick=IntegratingClus(tmpList, this.centers,0.1);//计算需要融合的ID
 
-        private void IntegratingClus(List<Point3D> l ,List<Point2D> centroids) {//按照ID排序好的Centroid
+            int CountAfterMerge =Tools.refreshCensAndClusByDictionary(this.centers, tmpList, this.dick,ref this.clusList);//重新分配ID号 计算分配后ID数
+            
+            //重新洗牌！！
+            this.circles = Tools.getCircles(this.clusList, CountAfterMerge);//再次计算外接圆
+            showCircle(this.circles,1, tmpList);//显示圆
+        }
+        /// <summary>
+        /// 将小于阈值范围的质心点集置入Dictionary 遍历之 融合之
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="centroids"></param>
+        private Dictionary<int,int> IntegratingClus(List<Point3D> l, List<Point3D> cts,double thre)
+        {//按照ID排序好的Centroid
             Dictionary<int, int> dic = new Dictionary<int, int>();
-            for (int i = 0; i < centroids.Count;i++ )
+            int mergeCount = 0;
+            for (int i = 0; i < cts.Count; i++)
             {
-                if (!centroids[i].isTraversal)
+                if (!cts[i].isTraversal)//若尚未遍历
                 {
-                    centroids[i].isTraversal = true;
-                    for (int j = i+1; j < centroids.Count; j++)
+                    cts[i].isTraversal = true;
+                    //寻找与本质心小于阈值的点集
+                    List<Point3D> plist = cts.FindAll(delegate(Point3D p)
                     {
-                        
-                    }
-                    //FindIndex(0, grouping[pathList.Count].Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
-                    List<Point2D> plist = centroids.FindAll(delegate(Point2D p) { return ((Math.Abs(p.x - centroids[i].x)+ (Math.Abs(p.y - centroids[i].y)))< 0.07); });
-                    if (plist.Count>1)
+                        return ((Math.Abs(p.X - cts[i].X) + (Math.Abs(p.Y - cts[i].Y))) < thre)
+                            && (p.clusterId > cts[i].clusterId);
+                    });
+                    if (plist.Count!=0)
                     {
-                        Console.Write("\t当前ID:" + centroids[i].clusID+"\t 阈值内ID:");
-                        foreach (Point2D p in plist)
+                        mergeCount += plist.Count;
+                        Console.Write("\t当前ID:" + cts[i].clusterId + "\t 阈值内ID:");
+                        foreach (Point3D p in plist)
                         {
-                            if (p.clusID > centroids[i].clusID)
-                            {
-                                Console.Write(p.clusID + "\t");
-                                int index = centroids.FindIndex(0,delegate(Point2D q) { return (q.clusID == p.clusID); });
-                                dic.Add(index, centroids[i].clusID);
-                                centroids[index].isTraversal = true;
-                            }
+                            Console.Write("ID:" + p.clusterId + "__Index：");
+                            int index = cts.FindIndex(0, delegate(Point3D p22) { return (p22.clusterId == p.clusterId); });
+                            Console.Write(index + "\t");
+                            dic.Add(p.clusterId, cts[i].clusterId);//明确加入的是聚类编号而不是Index
+                            cts[index].isTraversal = true;
                         }
                         Console.WriteLine();
                     }
-
                 }
             }
+            Console.WriteLine("被融合聚类 ： "+mergeCount);
             foreach (KeyValuePair<int,int> k in dic)
             {
-                Console.WriteLine("Key:{0}, Value:{1}", k.Key, k.Value);
+                Console.WriteLine("取消聚类:{0}, 扩大聚类:{1}", k.Key, k.Value);
             }
-
+            return dic;
         }
-      
+        
     }
 }

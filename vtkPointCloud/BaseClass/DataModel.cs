@@ -4,12 +4,31 @@ using System.Text;
 
 namespace vtkPointCloud
 {
+    public class ClusObj 
+    {
+        public List<Point3D> li { get; set; }
+        public int clusId{get;set;}
+        public int ptsCount;
+        public ClusObj(List<Point3D> l, int id)
+        {
+            this.clusId = id;
+            this.li = null;
+            this.li = l;
+            this.ptsCount = l.Count;
+        }
+        public ClusObj(List<Point3D> l) {
+            this.li = null;
+            this.li = l;
+            this.ptsCount = l.Count;
+        }
+        public ClusObj() { this.li = new List<Point3D>(); }
+    }
     public class Point2D
     {
         public double x { get; set; }
         public double y { get; set; }
         public int clusID { get; set; }
-        public bool isTraversal { get; set; }
+
         public bool isFilter{ get;set; }
         public double radius { get; set; }
         //public Point2D() { }
@@ -49,6 +68,7 @@ namespace vtkPointCloud
             this.Z = zz;
             this.clusterId = clusterId;
             this.ifShown = isShown;
+            this.isTraversal = false;
         }
         public double motor_x { get; set; }//点机x
         public double motor_y { get; set; }//点机y
@@ -58,6 +78,7 @@ namespace vtkPointCloud
         public double Z { get; set; }//三维z
         public int clusterId { get; set; }//聚类id
         public int pathId { get; set; }//路径id
+        public bool isTraversal { get; set; }
         public Boolean ifShown { get; set; }//是否显示
         //public Boolean isFilter { get; set; }//是否过滤
         public int ptsCount { get; set; }

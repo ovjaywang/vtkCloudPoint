@@ -57,6 +57,7 @@
             this.测试最大最小值ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试按照左上角排序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试野点回调ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,7 +98,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试野点回调ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -347,6 +347,13 @@
             this.测试多线程ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试多线程ToolStripMenuItem.Text = "测试多线程";
             this.测试多线程ToolStripMenuItem.Click += new System.EventHandler(this.测试多线程ToolStripMenuItem_Click);
+            // 
+            // 测试野点回调ToolStripMenuItem
+            // 
+            this.测试野点回调ToolStripMenuItem.Name = "测试野点回调ToolStripMenuItem";
+            this.测试野点回调ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试野点回调ToolStripMenuItem.Text = "测试野点回溯";
+            this.测试野点回调ToolStripMenuItem.Click += new System.EventHandler(this.测试野点回调ToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -816,13 +823,6 @@
             this.tsButton_CLEANALL.Size = new System.Drawing.Size(32, 32);
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
-            // 
-            // 测试野点回调ToolStripMenuItem
-            // 
-            this.测试野点回调ToolStripMenuItem.Name = "测试野点回调ToolStripMenuItem";
-            this.测试野点回调ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试野点回调ToolStripMenuItem.Text = "测试野点回溯";
-            this.测试野点回调ToolStripMenuItem.Click += new System.EventHandler(this.测试野点回调ToolStripMenuItem_Click);
             // 
             // MainForm
             // 

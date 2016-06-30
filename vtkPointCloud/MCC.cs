@@ -51,7 +51,7 @@ namespace vtkPointCloud
             mf.iCPToolStripMenuItem.Enabled = true;
             mf.isShowLegend(0);
             if (this.checkBox1.Checked) Tools.exportClustersCenterFile(mf.centers, mf.bit, mf.x_angle, mf.y_angle, this.outpath2txt.Text);//输出质心
-            if (this.checkBox2.Checked) Tools.exportClustersPointsFile(mf.grouping, mf.bit, mf.x_angle, mf.y_angle, this.outpath1txt.Text);//输出聚类
+            if (this.checkBox2.Checked) Tools.exportClustersPointsFile(mf.clusList, mf.bit, mf.x_angle, mf.y_angle, this.outpath1txt.Text);//输出聚类
 
             this.DialogResult = DialogResult.OK;
             this.Close();

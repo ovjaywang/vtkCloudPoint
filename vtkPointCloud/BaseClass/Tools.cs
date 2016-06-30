@@ -71,37 +71,37 @@ namespace vtkPointCloud
             dataSet.RemoveAll((delegate(Point3D p) { return (filterID.Contains(p.clusterId)); }));
         }
         /// <summary>
-        /// 获取扫描点聚类质心
+        /// 获取固定点聚类质心
         /// </summary>
-        static public List<Point3D> getFixedPtsCentroid(List<Point3D>[] fixedData,bool isIgnoreDuplication)
+        static public List<Point3D> getFixedPtsCentroid(List<ClusObj> clusList,bool isIgnoreDuplication)
         {
             List<Point3D>  scanCen = new List<Point3D>();
 
-            for (int i = 0; i < fixedData.Length; i++)
+            for (int i = 0; i < clusList.Count; i++)
             {
                 Point3D tmp = new Point3D();
                 int insideNum = 0;
-                for (int j = 0; j < fixedData[i].Count; j++)
+                for (int j = 0; j < clusList[i].li.Count; j++)
                 {
-                    if (fixedData[i][j].clusterId != 0 && isIgnoreDuplication)
+                    if (clusList[i].li[j].clusterId != 0 && isIgnoreDuplication)
                     {
-                        tmp.X += fixedData[i][j].X;
-                        tmp.Y += fixedData[i][j].Y;
-                        tmp.Z += fixedData[i][j].Z;
+                        tmp.X += clusList[i].li[j].X;
+                        tmp.Y += clusList[i].li[j].Y;
+                        tmp.Z += clusList[i].li[j].Z;
                         insideNum++;
                     }
                     else
                     {
-                        tmp.X += fixedData[i][j].X * fixedData[i][j].ptsCount;
-                        tmp.Y += fixedData[i][j].Y * fixedData[i][j].ptsCount;
-                        tmp.Z += fixedData[i][j].Z * fixedData[i][j].ptsCount;
-                        insideNum += fixedData[i][j].ptsCount;
+                        tmp.X += clusList[i].li[j].X * clusList[i].li[j].ptsCount;
+                        tmp.Y += clusList[i].li[j].Y * clusList[i].li[j].ptsCount;
+                        tmp.Z += clusList[i].li[j].Z * clusList[i].li[j].ptsCount;
+                        insideNum += clusList[i].li[j].ptsCount;
                     }
                 }
                 tmp.X = tmp.X / insideNum;
                 tmp.Y = tmp.Y / insideNum;
                 tmp.Z = tmp.Z / insideNum;
-                tmp.pointName = fixedData[i][0].pointName;
+                tmp.pointName = clusList[i].li[0].pointName;
                 tmp.ifShown = true;
                 scanCen.Add(tmp);
             }
@@ -113,35 +113,40 @@ namespace vtkPointCloud
         /// <param name="clus">聚类数</param>
         /// <param name="rawData">所有点</param>
         /// <returns></returns>
-        public static void getClusterCenter(int clus, List<Point3D> rawData, List<Point3D> centers, List<Point3D>[] grouping)
-        {   
-            //初始化
-            double[] ccenters = new double[clus * 3];//分别记录x y z
-            int[] counts = new int[clus];//记录数量
-
-            for (int i = 0; i < ccenters.Length; i++)
-            {
-                ccenters[i] = 0.0;
+        public static void getClusterCenter(int clus, List<Point3D> rawData, List<Point3D> centers, List<ClusObj> clusList,List<int> idList)
+        {
+            Dictionary<int, int> idTmp = new Dictionary<int, int>();
+            int i = 1;
+            if (idList != null) {
+                foreach (int j in idList)
+                {
+                    idTmp.Add(j, i);
+                    i++;
+                }
             }
-            for (int k = 0; k < counts.Length; k++)
+            else
             {
-                counts[k] = 0;
+                for (int t = 0; t < clus; t++)
+                {
+                    idTmp.Add(t + 1, t+1);
+                }
             }
-
+            Console.WriteLine("ID数目为 ： "+idTmp.Count);
+            int tm;
             foreach (Point3D p in rawData)
             {
                 if (p.clusterId != 0)
                 {
-                    ccenters[(p.clusterId - 1) * 3] += p.X;
-                    ccenters[(p.clusterId - 1) * 3 + 1] += p.Y;
-                    ccenters[(p.clusterId - 1) * 3 + 2] += p.Z;
-                    counts[p.clusterId - 1] += 1;
-                    grouping[p.clusterId - 1].Add(p);
+                    tm=idTmp[p.clusterId] - 1;
+                    p.clusterId = idTmp[p.clusterId];
+                    clusList[tm].li.Add(p);//加入分组聚类
                 }
             }
-            for (int i = 0; i < clus; i++)
+            foreach (ClusObj obj in clusList)
             {
-                centers.Add(new Point3D(ccenters[(i) * 3] / counts[i], ccenters[(i) * 3 + 1] / counts[i], ccenters[(i) * 3 + 2] / counts[i], i + 1, true));
+                if (obj.li.Count == 0) continue;
+                obj.clusId = obj.li[0].clusterId;
+                centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
             }
         }
         /// <summary>
@@ -201,15 +206,16 @@ namespace vtkPointCloud
         /// 确认Distance过滤结果 输出聚类 并把野点设为不可见--固定点
         /// <param name="isExport">是否输出过滤后文件</param>
         /// </summary>
-        static public void cleanDataByDistance2(bool isExport, List<Point3D>[] grouping, int bit)
+        static public void cleanDataByDistance2(bool isExport, List<ClusObj> clusList, int bit)
         {
             int tmp = 0;
-            tmp=grouping.Sum(m => m.Count);
-            for (int i = 0; i < grouping.Length; i++)
+            //tmp=grouping.Sum(m => m.Count);//计算数据数量
+            tmp = clusList.Sum(m => m.li.Count);
+            for (int i = 0; i < clusList.Count; i++)
             {
-                grouping[i].RemoveAll(delegate(Point3D p) { return (p.isFilterByDistance); });
+                clusList[i].li.RemoveAll(delegate(Point3D p) { return (p.isFilterByDistance); });
             }
-            MessageBox.Show("通过distance过滤 " + (grouping.Sum(m => m.Count) - tmp) + " 个点");
+            MessageBox.Show("通过distance过滤 " + (clusList.Sum(m => m.li.Count) - tmp) + " 个点");
             if (isExport)//如果需要输出文件
             {
                 SaveFileDialog saveFile1 = new SaveFileDialog();
@@ -238,9 +244,9 @@ namespace vtkPointCloud
                         System.IO.StreamWriter ssw = new System.IO.StreamWriter(saveFile1.FileName, false);
                         try
                         {
-                            for (int i = 0; i < grouping.Length; i++)
+                            for (int i = 0; i < clusList.Count; i++)
                             {
-                                foreach (Point3D p3d in grouping[i])
+                                foreach (Point3D p3d in clusList[i].li)
                                     ssw.WriteLine(p3d.motor_x.ToString("F" + bit) + "\t" + p3d.motor_y.ToString("F" + bit) + "\t" + p3d.Distance.ToString("F" + bit));
                             }
                         }
@@ -309,15 +315,15 @@ namespace vtkPointCloud
             }
             return hulls;
         }
-        static public void exportClustersPointsFile(List<Point3D>[] grouping, int bit, double x_angle, double y_angle, string ss)
+        static public void exportClustersPointsFile(List<ClusObj> clusList, int bit, double x_angle, double y_angle, string ss)
         {   //导出聚类数据
             System.IO.StreamWriter sw = new System.IO.StreamWriter(ss, false);
             try
             {
                 //输出均值 电机x 电机y 距离distance
-                for (int j = 0; j < grouping.Length; j++)
+                for (int j = 0; j < clusList.Count; j++)
                 {
-                    foreach (Point3D p3d in grouping[j])
+                    foreach (Point3D p3d in clusList[j].li)
                     {
                         sw.WriteLine(p3d.clusterId + "\t" + p3d.motor_x.ToString("F" + bit) + "\t" + p3d.motor_y.ToString("F" + bit) + "\t" + p3d.Distance.ToString("F" + bit));
                     }
@@ -338,21 +344,19 @@ namespace vtkPointCloud
         /// </summary>
         /// <param name="hulls">每个数组是同一个聚类点的List</param>
         /// <param name="clusterSum">聚类数</param>
-        static public List<Point2D> getCircles(List<Point2D>[] hulls, int clusterSum)
+        //static public List<Point2D> getCircles(List<Point2D>[] hulls, int clusterSum)
+        static public List<Point2D> getCircles(List<ClusObj> clusList,int clusterSum)
         {
             List<Point2D> circles = new List<Point2D>();
             for (int j = 0; j < clusterSum; j++)
             {
-                if (hulls[j].Count == 0) continue;
-                //else Console.WriteLine(hulls[j].Count);
-                List<Point2D> m_points = Geometry.MakeConvexHull(hulls[j]);
-                Polygon pgon = new Polygon(m_points.ToArray());
+                if (clusList[j].li.Count == 0) continue;
+                //else Console.WriteLine(clusList[j].li.Count);
                 Point2D CircleCenter;//圆心点
                 double CircleRadius = -1;
-                Geometry.FindMinimalBoundingCircle(m_points, out CircleCenter, out CircleRadius);
+                Geometry.FindMinimalBoundingCircle(clusList[j].li, out CircleCenter, out CircleRadius);//依据外接定点计算外接圆
                 CircleCenter.radius = CircleRadius;
                 CircleCenter.clusID = j+1;
-                CircleCenter.isTraversal = false;
                 circles.Add(CircleCenter);
             }
             return circles;
@@ -385,15 +389,16 @@ namespace vtkPointCloud
         /// <param name="disMax">距离过滤最大值</param>
         /// <param name="disMin">距离过滤最小值</param>
         /// <returns>返回值注释</returns>
-        static public void FilterByDistance_FixedPoint(List<Point3D>[] grouping, double disMax, double disMin)//修正过滤阈值后界面同步
+        static public void FilterByDistance_FixedPoint(List<ClusObj> clusList, double disMax, double disMin)//修正过滤阈值后界面同步
         {
-            if (grouping == null || grouping.Length == 0) {
+            if (clusList == null || clusList.Count == 0)
+            {
                 MessageBox.Show("没有数据，不能过滤！", "提示");
                 return;
             }
-            for (int i = 0; i < grouping.Length; i++)
+            for (int i = 0; i < clusList.Count; i++)
             {
-                foreach (Point3D p in grouping[i])
+                foreach (Point3D p in clusList[i].li)
                 {
                     if (p.Distance<disMax && p.Distance>disMin)
                     {
@@ -414,18 +419,18 @@ namespace vtkPointCloud
         /// <param name="grouping">分组数组</param>
         /// <param name="typpe">1最大 2最小</param>
         /// <returns></returns>
-        static public double GetGroupingManOrMin(List<Point3D>[] grouping,int typpe){
-            if (grouping ==null||grouping.Length==0)
+        static public double GetGroupingManOrMin(List<ClusObj> clusList,int typpe){
+            if (clusList == null || clusList.Count == 0)
             {
                 return 0;
             }
-            double result = grouping[0][0].Distance;
+            double result = clusList[0].li[0].Distance;
             double tmp;
             if (typpe==1)//最大
             {
-                for (int i = 0; i < grouping.Length; i++)
+                for (int i = 0; i < clusList.Count; i++)
                 {
-                    tmp =grouping[i].Max((m => m.Distance));
+                    tmp = clusList[i].li.Max((m => m.Distance));
                     if(result < tmp){
                         result = tmp;
                     }
@@ -433,9 +438,9 @@ namespace vtkPointCloud
             }
             else
             {
-                for (int i = 0; i < grouping.Length; i++)
+                for (int i = 0; i < clusList.Count; i++)
                 {
-                    tmp = grouping[i].Min((m => m.Distance));
+                    tmp = clusList[i].li.Min((m => m.Distance));
                     if (result > tmp)
                     {
                         result = tmp;
@@ -453,10 +458,46 @@ namespace vtkPointCloud
         /// <param name="max_x">x最大值</param>
         /// <param name="max_y">y最大值</param>
         /// <returns></returns>
-        static public List<Point3D> getListByScale(List<Point3D> rawData, double min_x, double min_y, double max_x, double max_y) {
-            return rawData.FindAll(delegate(Point3D p) { return (p.X > min_x) && (p.Y > min_y) && (p.X <= max_x) && (p.Y <= max_y); });
+        static public List<Point3D> getListByScale(List<Point3D> rawData, double min_x, double min_y, double max_x, double max_y){
+            return rawData.FindAll(delegate(Point3D p) { return (p.X > min_x) && (p.Y > min_y) && (p.X <= max_x) && (p.Y <= max_y);});
         }
 
+        /// <summary>
+        /// 根据距离阈值更新聚类效果 融合接近聚类
+        /// </summary>
+        /// <param name="centers"></param>
+        /// <param name="tmpList"></param>
+        /// <param name="dic"></param>
+        /// <param name="grouping"></param>
+        static public int refreshCensAndClusByDictionary(List<Point3D> centers, List<Point3D> tmpList, Dictionary<int, int> dic,ref List<ClusObj> clusList)
+        {
+            //dic存放 对应的clusID而非Index 按照value（ID）排序（讲道理，ID = index + 1）
+            //grouping 序列对应ID
+            List<int> keys =dic.Keys.ToList();
+            foreach (Point3D p in tmpList)
+            {
+                if(keys.Contains(p.clusterId)){
+                    int IndexOfKey = keys.FindIndex(0, delegate(int q) { return (q == p.clusterId); });//找到原聚类在key中的位置
+                    p.clusterId = dic[keys[IndexOfKey]];//修改聚类  //dic[key]
+                }
+            }
+            centers.RemoveAll((delegate(Point3D p) { return (keys.Contains(p.clusterId)); }));//删除在字典中的原始聚类
+            List<int> idList = new List<int>();
+            for (int i = 0; i < centers.Count; i++)
+            {
+                idList.Add(centers[i].clusterId);
+            }
+            int clusCount = centers.Count;
+            centers = new List<Point3D>();
+            clusList = new List<ClusObj>();
+            for (int i = 0; i < clusCount; i++)
+            {
+                clusList.Add(new ClusObj());
+            }
+            Tools.getClusterCenter(clusCount, tmpList, centers, clusList, idList);
+            return clusCount;
+        }
+        
 
     }
 }

@@ -48,7 +48,7 @@ namespace vtkPointCloud
             }
             else
             { 
-                Tools.FilterByDistance_FixedPoint(mf.grouping, this.distanceMax, this.distanceMin);
+                Tools.FilterByDistance_FixedPoint(mf.clusList, this.distanceMax, this.distanceMin);
                 mf.showFixPointData(2 + (this.checkBox1.Checked ? 0 : 2));//显示剔野之后数据
             }
             if (isFirst) {
@@ -78,7 +78,7 @@ namespace vtkPointCloud
                 else
                 {
                     mf.RejectPtsByDistanceFromFixed(this.checkBox2.Checked);
-                    mf.centers = Tools.getFixedPtsCentroid(mf.grouping, this.checkBox2.Checked);
+                    mf.centers = Tools.getFixedPtsCentroid(mf.clusList, this.checkBox2.Checked);
                     mf.showFixPointData(3);
                     mf.isShowLegend(5);
                 }
