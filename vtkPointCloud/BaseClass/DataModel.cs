@@ -8,6 +8,7 @@ namespace vtkPointCloud
     {
         public List<Point3D> li { get; set; }
         public int clusId{get;set;}
+        public string clusName { get; set;}
         public int ptsCount;
         public ClusObj(List<Point3D> l, int id)
         {
@@ -22,6 +23,11 @@ namespace vtkPointCloud
             this.ptsCount = l.Count;
         }
         public ClusObj() { this.li = new List<Point3D>(); }
+        public ClusObj(String s)
+        {
+            this.clusName = s;
+            this.li = new List<Point3D>();
+        }
     }
     public class Point2D
     {
@@ -31,19 +37,6 @@ namespace vtkPointCloud
 
         public bool isFilter{ get;set; }
         public double radius { get; set; }
-        //public Point2D() { }
-        //public Point2D(double xx, double yy, int cc)
-        //{
-        //    this.x = xx;
-        //    this.y = yy;
-        //    this.clusID = cc;
-        //}
-        //public Point2D(double xx, double yy, double rr,bool isFilter) {
-        //    this.x = xx;
-        //    this.y = yy;
-        //    this.radius = rr;
-        //    this.isFilter = isFilter;
-        //}
         public Point2D(double xx, double yy)
         {
             this.x = xx;

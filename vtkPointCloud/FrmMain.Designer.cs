@@ -98,6 +98,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
+            this.测试IndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -254,7 +255,8 @@
             this.测试最大最小值ToolStripMenuItem,
             this.测试按照左上角排序ToolStripMenuItem,
             this.测试多线程ToolStripMenuItem,
-            this.测试野点回调ToolStripMenuItem});
+            this.测试野点回调ToolStripMenuItem,
+            this.测试IndexToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -824,6 +826,13 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
+            // 测试IndexToolStripMenuItem
+            // 
+            this.测试IndexToolStripMenuItem.Name = "测试IndexToolStripMenuItem";
+            this.测试IndexToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试IndexToolStripMenuItem.Text = "测试Index";
+            this.测试IndexToolStripMenuItem.Click += new System.EventHandler(this.测试IndexToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -938,6 +947,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试按照左上角排序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试多线程ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试野点回调ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试IndexToolStripMenuItem;
        
     }
 }

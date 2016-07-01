@@ -19,7 +19,6 @@ namespace vtkPointCloud
         {
             InitializeComponent();
             textThrehold.Focus();
-            
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -60,6 +59,7 @@ namespace vtkPointCloud
             mf = (MainForm)this.Owner;
             foreach(Point3D p in mf.rawData){
                 p.clusterId = 0;
+                p.isClassed = false;
             }
             if (!isFirst) {
                 if (MessageBox.Show("确认取消聚类结果吗?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)

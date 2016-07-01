@@ -75,7 +75,7 @@ namespace vtkPointCloud
                 {//判断是否固定点
                     mf.ExcludePtsByDistance(this.checkBox2.Checked);
                 }
-                else
+                else//如果是固定点
                 {
                     mf.RejectPtsByDistanceFromFixed(this.checkBox2.Checked);
                     mf.centers = Tools.getFixedPtsCentroid(mf.clusList, this.checkBox2.Checked);

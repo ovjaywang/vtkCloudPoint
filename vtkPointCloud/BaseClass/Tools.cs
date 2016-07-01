@@ -465,10 +465,11 @@ namespace vtkPointCloud
         /// <summary>
         /// 根据距离阈值更新聚类效果 融合接近聚类
         /// </summary>
-        /// <param name="centers"></param>
-        /// <param name="tmpList"></param>
-        /// <param name="dic"></param>
-        /// <param name="grouping"></param>
+        /// <param name="centers">质心点集</param>
+        /// <param name="tmpList">重新分配好ID的数据点集</param>
+        /// <param name="dic">ID映射列表</param>
+        /// <param name="clusList"></param>
+        /// <returns></returns>
         static public int refreshCensAndClusByDictionary(List<Point3D> centers, List<Point3D> tmpList, Dictionary<int, int> dic,ref List<ClusObj> clusList)
         {
             //dic存放 对应的clusID而非Index 按照value（ID）排序（讲道理，ID = index + 1）
@@ -497,7 +498,51 @@ namespace vtkPointCloud
             Tools.getClusterCenter(clusCount, tmpList, centers, clusList, idList);
             return clusCount;
         }
-        
+        /// <summary>
+        /// 将小于阈值范围的质心点集置入Dictionary 遍历之 融合之
+        /// </summary>
+        /// <param name="l">数据点集</param>
+        /// <param name="cts">质心点集</param>
+        /// <param name="thre">融合阈值</param>
+        /// <returns></returns>
+        static public Dictionary<int, int> IntegratingClusID(List<Point3D> l, List<Point3D> cts, double thre)
+        {//按照ID排序好的Centroid
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            int mergeCount = 0;
+            for (int i = 0; i < cts.Count; i++)
+            {
+                if (!cts[i].isTraversal)//若尚未遍历
+                {
+                    cts[i].isTraversal = true;
+                    //寻找与本质心小于阈值的点集
+                    List<Point3D> plist = cts.FindAll(delegate(Point3D p)
+                    {
+                        return ((Math.Abs(p.X - cts[i].X) + (Math.Abs(p.Y - cts[i].Y))) < thre)
+                            && (p.clusterId > cts[i].clusterId);
+                    });
+                    if (plist.Count != 0)
+                    {
+                        mergeCount += plist.Count;
+                        Console.Write("\t当前ID:" + cts[i].clusterId + "\t 阈值内ID:");
+                        foreach (Point3D p in plist)
+                        {
+                            Console.Write("ID:" + p.clusterId + "__Index：");
+                            int index = cts.FindIndex(0, delegate(Point3D p22) { return (p22.clusterId == p.clusterId); });
+                            Console.Write(index + "\t");
+                            dic.Add(p.clusterId, cts[i].clusterId);//明确加入的是聚类编号而不是Index
+                            cts[index].isTraversal = true;
+                        }
+                        Console.WriteLine();
+                    }
+                }
+            }
+            Console.WriteLine("被融合聚类 ： " + mergeCount);
+            foreach (KeyValuePair<int, int> k in dic)
+            {
+                Console.WriteLine("取消聚类:{0}, 扩大聚类:{1}", k.Key, k.Value);
+            }
+            return dic;
+        }
 
     }
 }
