@@ -20,7 +20,7 @@ namespace vtkPointCloud
     public partial class MainForm : Form
     {
         //目录和可视化模块相关
-        
+        RegisteredWaitHandle registeredWaitHandle = null;
         public int bit = 0;
         vtkRenderer ren = null;
         string fullFilePath;
@@ -29,15 +29,18 @@ namespace vtkPointCloud
         vtkFormsWindowControl vtkControl = null;
         List<double> xSet = new List<double>(),ySet = new List<double>(),zSet = new List<double>();//x,y,z坐标集合
         public double x_angle = 0.0, y_angle = 0.0;//x y灵位角度
-        static int sumClus = 0,sumPts=0;
+        static int sumClus = 0,sumPts=0;//总点数 总聚类数
         //dbscan相关
         //public DB dbb;//DB类对象
         public DBImproved dbb;
-        double threhold;//dbscan阈值
-        int pointsInthrehold;//dbscan点数
+        static double threhold;//dbscan阈值
+        static int pointsInthrehold;//dbscan点数
+        static int ptsIncell;//分块内点数
         public bool isSureClusterRs = false;
         ClusterParameters cp ;
-        Dictionary<int, int> dick;
+        Dictionary<int, int> dick;//融合分块聚类的ID映射
+        List<Point3D>[] cells;//分块聚类集合
+        System.Diagnostics.Stopwatch stwt;
         //点集相关
         public List<Point3D> rawData = new List<Point3D>();//raw是原始x y z值数据
         bool isIgnoreDuplication = true;
@@ -55,6 +58,7 @@ namespace vtkPointCloud
         private delegate void UpdateStatusDelegate();
         private BackgroundWorker bkWorker = new BackgroundWorker();
         private BackgroundWorker bkWorker2 = new BackgroundWorker();
+        private BackgroundWorker bkWorker3 = new BackgroundWorker();
         private int percentValue = 0;
         //icp相关
         vtkMatrix4x4 M;//刚性变换矩阵
@@ -75,7 +79,7 @@ namespace vtkPointCloud
         public int clusterSum = 1;
         int pointSum = 0;
         double simple_x_step,simple_y_step;
-        vtkActor actorLine = new vtkActor(), actorLine2 = new vtkActor(),actorLine3 = new vtkActor(),actorLine4 = new vtkActor();
+        vtkActor actorLine = new vtkActor(), actorLine2 = new vtkActor(),actorLine3 = new vtkActor(),actorLine4 = new vtkActor();//画线
         List<Point3D> sourceTrueList = null;
         //public double distanceFilterThrehold = 0.0;
         //源文件聚类相关
@@ -113,6 +117,12 @@ namespace vtkPointCloud
             bkWorker2.DoWork += new DoWorkEventHandler(DoWork2);
             bkWorker2.ProgressChanged += new ProgressChangedEventHandler(ProgessChanged2);
             bkWorker2.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteWork2);
+
+            bkWorker3.WorkerReportsProgress = true;
+            bkWorker3.WorkerSupportsCancellation = true;
+            bkWorker3.DoWork += new DoWorkEventHandler(DoWork3);
+            bkWorker3.ProgressChanged += new ProgressChangedEventHandler(ProgessChanged3);
+            bkWorker3.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteWork3);
             if (vtkControl == null)
             {
                 vtkControl = new vtkFormsWindowControl();
@@ -150,6 +160,33 @@ namespace vtkPointCloud
             vtkControl.Refresh();
             vtkControl.GetRenderWindow().Render();
             vtkControl.GetRenderWindow().Start();
+        }
+        /// <summary>
+        /// 在线程中更新线程池中的状态 当可用线程等于最大线程则退出
+        /// </summary>
+        private void UpdateStatus3()
+        {
+            var mainAutoResetEvent = new AutoResetEvent(false);
+            registeredWaitHandle = ThreadPool.RegisterWaitForSingleObject(new AutoResetEvent(false), new WaitOrTimerCallback(delegate(object obj, bool timeout)
+            {
+                int workerThreads = 0;
+                int maxWordThreads = 0;
+                int compleThreads = 0;
+                ThreadPool.GetAvailableThreads(out workerThreads, out compleThreads);
+                ThreadPool.GetMaxThreads(out maxWordThreads, out compleThreads);
+                Console.WriteLine("Check 可用线程{0},最大线程{1}", workerThreads, maxWordThreads);
+                //当可用的线数与池程池最大的线程相等时表示线程池中所有的线程已经完成
+                if (workerThreads == maxWordThreads)
+                {
+                    Console.WriteLine("线程池里的线程都执行完了");
+                    mainAutoResetEvent.Set();
+                    registeredWaitHandle.Unregister(null);
+                }
+            }), null, 1000, false);
+            Console.WriteLine("主线程进入等待");
+            mainAutoResetEvent.WaitOne();
+            Console.WriteLine("主线程继续执行");
+            treeView1.Enabled = false;
         }
         /// <summary>
         /// 查询某treeNode节点下有多少节点被选中（递归实现，不受级数限制）
@@ -1091,16 +1128,18 @@ namespace vtkPointCloud
 
         }
         //执行dbscan的线程
-        public void getClusterFromList(double tr,int pts)//执行dbscan聚类线程
+        public void getClusterFromList(double tr,int pts,int ptsInCell)//执行dbscan聚类线程
         {
-                this.threhold = tr;
-                this.pointsInthrehold = pts;
+                MainForm.threhold = tr;
+                MainForm.pointsInthrehold = pts;
+                MainForm.ptsIncell = ptsInCell;
                 foreach (Point3D p in rawData) {
                     p.clusterId = 0;
                     p.isClassed = false;
                 }
                 progressForm.StartPosition = FormStartPosition.CenterParent;
-                bkWorker.RunWorkerAsync();
+                //bkWorker.RunWorkerAsync();
+                bkWorker3.RunWorkerAsync();
                 progressForm.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\loading.gif");
                 progressForm.pictureBox1.Visible = true;
                 progressForm.pictureBox1.Focus();
@@ -1110,9 +1149,9 @@ namespace vtkPointCloud
         {
             // 事件处理，指定处理函数
             //dbb = new DB();
-            dbb = new DBImproved();
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
+            dbb = new DBImproved();
             dbb.dbscan(rawData, threhold, pointsInthrehold);
             MessageBox.Show("聚类运行时间："+stopwatch.Elapsed.ToString(),"消息");    
             clusterSum = dbb.clusterAmount;
@@ -1130,7 +1169,7 @@ namespace vtkPointCloud
             progressForm.Close();
             MessageBox.Show("处理完毕，总共" + rawData.Count + "个点云，生成" + dbb.clusterAmount + "个聚类", "提示");
             this.cp.Visible = true;
-            this.cp.button1.Text = "重新聚类";
+            this.cp.DoClusteringBtn.Text = "重新聚类";
             this.cp.Left = 0;
         }
         private int ProcessProgress(object sender, DoWorkEventArgs e)
@@ -1152,6 +1191,7 @@ namespace vtkPointCloud
             }
             return -1;
         }
+        // 真正后台执行ICP算法
         public void DoWork2(object sender, DoWorkEventArgs e)
         {
             // 事件处理，指定处理函数
@@ -1165,12 +1205,197 @@ namespace vtkPointCloud
             // bkWorker.ReportProgress 会调用到这里，此处可以进行自定义报告方式  
             //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
         }
+        private int ProcessProgress2(object sender, DoWorkEventArgs e)
+        {
+            for (int i = 0; i <= 1000; i++)
+            {
+                if (bkWorker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return -1;
+                }
+                else
+                {
+                    // 状态报告  
+                    bkWorker.ReportProgress(i / 10);
+                    // 等待，用于UI刷新界面，很重要  
+                    System.Threading.Thread.Sleep(1);
+                }
+            }
+            return -1;
+        }
         public void CompleteWork2(object sender, RunWorkerCompletedEventArgs e)
         {
             progressForm.Close();
             MessageBox.Show("处理完毕,效果如图");
         }
-        private int ProcessProgress2(object sender, DoWorkEventArgs e)
+        public void DoWork3(object sender, DoWorkEventArgs e)
+        {
+            double x_Min = rawData.Min(m => m.X);//计算x最小
+            double y_Min = rawData.Min(m => m.Y);//计算y最小
+            double x_Max = rawData.Max(m => m.X);//计算x最大
+            double y_Max = rawData.Max(m => m.Y);//计算y最大
+            if (rawData == null || rawData.Count == 0) return;
+            rawData.Sort((x, y) =>
+            {
+                int result;
+                double d1 = Math.Max(x.X - x_Min, x.Y - y_Min);
+                double d2 = Math.Max(y.X - x_Min, y.Y - y_Min);
+                if (d1 == d2)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    if (d1 > d2)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                return result;
+            }
+            );
+            Console.WriteLine("分块点数 = " + MainForm.ptsIncell);
+            List<Point3D> cell = rawData.Take(MainForm.ptsIncell).ToList();
+            //MessageBox.Show(rawData.Count+"");
+            double cell_x = cell.Max(m => m.X) - x_Min;
+            double cell_y = cell.Max(m => m.Y) - y_Min;
+            int rows = (int)((y_Max - y_Min) / cell_y) + 1;
+            int cols = (int)((x_Max - x_Min) / cell_x) + 1;
+            cells= new List<Point3D>[rows * cols];
+            cells[0] = cell;
+            Console.Write("rows : " + rows + "\tcols : " + cols + "\t");
+            int index = 0;
+            for (int p = 0; p < rows; p++)
+            {
+                for (int q = 0; q < cols; q++)
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        if ((p == (rows - 1)) && (q != (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Max);
+                        }
+                        else if ((p != (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Min + (p + 1) * cell_y);
+                        }
+                        else if ((p == (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Max);
+                        }
+                        else
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
+            Console.WriteLine("\n\r总分块数：" + cells.Length);
+            stwt = new System.Diagnostics.Stopwatch();
+            stwt.Start();
+            for (int i = 0; i < cells.Length; i++)
+            {
+                ThreadPool.QueueUserWorkItem(StartCode, cells[i]);//将每个分块加入线程池分别计算聚类
+            }
+            this.BeginInvoke(new UpdateStatusDelegate(UpdateStatus3), new object[] { });
+            e.Result = ProcessProgress(bkWorker, e);
+        }
+        public void ProgessChanged3(object sender, ProgressChangedEventArgs e)
+        {
+            // bkWorker.ReportProgress 会调用到这里，此处可以进行自定义报告方式  
+            //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
+        }
+        public void CompleteWork3(object sender, RunWorkerCompletedEventArgs e)
+        {
+            progressForm.Close();
+            MessageBox.Show("聚类运行时间：" + stwt.Elapsed.ToString() + "\t总聚类数：" + sumClus + "聚类数据：" + sumPts + "个");
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\" + MainForm.ptsIncell + ".txt", false);//把cells分别按照聚类输出 ID需要合并 
+            int idLast = cells[0][0].clusterId;//上一个ID是多少
+            int idNow = 0, id, clusLen = 0;//当前聚类ID、当前cell内部ID以及当前聚类长度
+            int delSum = 0;
+            List<Point3D> noZeroClusters = new List<Point3D>();
+            for (int i = 0; i < cells.Length; i++)
+            {
+                if (cells[i].Count == 0) continue;
+                cells[i].Sort((x, y) =>//按照ID排序 否则
+                {
+                    int result;
+                    if (x.clusterId == y.clusterId) result = 0;
+                    else
+                    {
+                        if (x.clusterId > y.clusterId) result = 1;
+                        else result = -1;
+                    }
+                    return result;
+                });
+                idLast = cells[i][0].clusterId;
+                if (idLast != 0)
+                {
+                    idNow++;
+                    clusLen = 1;
+                }
+                else
+                {
+                    clusLen = 0;
+                }
+                for (int j = 0; j < cells[i].Count; j++)
+                {
+                    id = cells[i][j].clusterId;
+                    if (id == 0) noZeroClusters.Add(cells[i][j]);//若ID为0 则ID就是0
+                    else
+                    {
+                        if ((id != idLast))
+                        {
+                            if ((clusLen <= 3) && (idLast != 0))//目前设为小于3个非正常聚类
+                            {//如果聚类过小 1.把该聚类的ID设为0 2.ID值不自增
+                                Console.WriteLine("聚类过小！" + idNow);
+                                delSum++;
+                                for (int k = 0; k < clusLen; k++)
+                                {
+                                    noZeroClusters[noZeroClusters.Count - 1 - k].clusterId = 0;//回溯之前的结果 把ID设为0
+                                }
+                            }
+                            else
+                            {
+                                idNow++;
+                            }
+                            clusLen = 1;
+                        }
+                        else
+                        {
+                            clusLen++;
+                        }
+                        cells[i][j].clusterId = idNow;
+                        noZeroClusters.Add(cells[i][j]);
+                        idLast = id;
+                    }
+                }
+            }
+            int Clus_Count = noZeroClusters[noZeroClusters.Count - 1].clusterId;//该聚类总数
+            Console.WriteLine("\n\r------------------------------------分块聚类合理聚类数: " + Clus_Count + "------------------------------------");
+            Console.WriteLine("因过聚类小于3被删除的有" + delSum + "个.");
+            try
+            {
+                foreach (Point3D p in noZeroClusters)
+                {
+                    sw.WriteLine(p.X + "\t" + p.Y + "\t" + p.Z + "\t" + p.clusterId);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                sw.Close();
+            }
+            MergeCellData(MainForm.ptsIncell, Clus_Count);
+        }
+        private int ProcessProgress3(object sender, DoWorkEventArgs e)
         {
             for (int i = 0; i <= 1000; i++)
             {
@@ -1387,6 +1612,7 @@ namespace vtkPointCloud
             truePointPid = new int[1];
             //grouping = null;
             clusList = null;
+            circles = null;
             //if(trueLocArrayList!=null)
             //    trueLocArrayList.Clear();
             root.Nodes.Clear();
@@ -2853,11 +3079,14 @@ namespace vtkPointCloud
                 Console.Write(cells[i].Count + "\t");
                 sum += cells[i].Count;
             }
-                Console.WriteLine("\n\r 总点数 ： " + sum+"\t总分块数 ："+cells.Length);
+                Console.WriteLine("\n 总点数 ： " + sum+"\t总分块数 ："+cells.Length);
             }
 
         private void 测试多线程ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ProcessScanPtsClustering();
+        }
+        private void ProcessScanPtsClustering() {
             double x_Min = rawData.Min(m => m.X);
             double y_Min = rawData.Min(m => m.Y);
             double x_Max = rawData.Max(m => m.X);
@@ -2899,31 +3128,31 @@ namespace vtkPointCloud
             List<Point3D>[] cells = new List<Point3D>[rows * cols];
             cells[0] = cell;
             Console.Write("rows : " + rows + "\tcols : " + cols + "\t");
-           int index = 0;
-           for (int p = 0; p < rows; p++)
-           {
-               for (int q = 0; q < cols; q++)
-               {
-                   if (index == 0) { index++; }
-                   else
-                   {
-                       if ((p == (rows - 1)) && (q != (cols - 1)))
-                       {
-                           cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Max);
-                       }
-                       else if ((p != (rows - 1)) && (q == (cols - 1)))
-                       {
-                           cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Min + (p + 1) * cell_y);
-                       }
-                       else if ((p == (rows - 1)) && (q == (cols - 1)))
-                       {
-                           cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Max);
-                       }
-                       else
-                           cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
-                   }
-               }
-           }
+            int index = 0;
+            for (int p = 0; p < rows; p++)
+            {
+                for (int q = 0; q < cols; q++)
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        if ((p == (rows - 1)) && (q != (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Max);
+                        }
+                        else if ((p != (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Min + (p + 1) * cell_y);
+                        }
+                        else if ((p == (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Max);
+                        }
+                        else
+                            cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
             Console.WriteLine("\n\r总分块数：" + cells.Length);
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
@@ -2954,27 +3183,29 @@ namespace vtkPointCloud
             mainAutoResetEvent.WaitOne();
             Console.WriteLine("主线程继续执行");
             //Console.WriteLine("聚类运行时间：" + stopwatch.Elapsed.ToString(), "消息");
-            MessageBox.Show("聚类运行时间：" + stopwatch.Elapsed.ToString() + "\t总聚类数：" + sumClus + "聚类数据：" + sumPts+"个");
+            MessageBox.Show("聚类运行时间：" + stopwatch.Elapsed.ToString() + "\t总聚类数：" + sumClus + "聚类数据：" + sumPts + "个");
             System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\" + hee + ".txt", false);//把cells分别按照聚类输出 ID需要合并 
             int idLast = cells[0][0].clusterId;//上一个ID是多少
-            int idNow = 0,id,clusLen =0;//当前聚类ID、当前cell内部ID以及当前聚类长度
+            int idNow = 0, id, clusLen = 0;//当前聚类ID、当前cell内部ID以及当前聚类长度
             int delSum = 0;
             List<Point3D> noZeroClusters = new List<Point3D>();
-            for (int i = 0; i < cells.Length; i++) {
+            for (int i = 0; i < cells.Length; i++)
+            {
                 if (cells[i].Count == 0) continue;
                 cells[i].Sort((x, y) =>//按照ID排序 否则
+                {
+                    int result;
+                    if (x.clusterId == y.clusterId) result = 0;
+                    else
                     {
-                        int result;
-                        if (x.clusterId == y.clusterId) result = 0;
-                        else
-                        {
-                            if (x.clusterId > y.clusterId) result = 1;
-                            else result = -1;
-                        }
-                        return result;
-                    });
+                        if (x.clusterId > y.clusterId) result = 1;
+                        else result = -1;
+                    }
+                    return result;
+                });
                 idLast = cells[i][0].clusterId;
-                if (idLast != 0) {
+                if (idLast != 0)
+                {
                     idNow++;
                     clusLen = 1;
                 }
@@ -2985,25 +3216,25 @@ namespace vtkPointCloud
                 for (int j = 0; j < cells[i].Count; j++)
                 {
                     id = cells[i][j].clusterId;
-                    if (id == 0) noZeroClusters.Add(cells[i][j]);
+                    if (id == 0) noZeroClusters.Add(cells[i][j]);//若ID为0 则ID就是0
                     else
                     {
                         if ((id != idLast))
                         {
-                            if ((clusLen <= 3)&&(idLast!=0))
+                            if ((clusLen <= 3) && (idLast != 0))//目前设为小于3个非正常聚类
                             {//如果聚类过小 1.把该聚类的ID设为0 2.ID值不自增
-                               Console.WriteLine("聚类过小！" + idNow);
-                               delSum++;
-                               for (int k = 0; k < clusLen; k++)
-                               {
-                                   noZeroClusters[noZeroClusters.Count -1 - k].clusterId = 0;
-                               }
-                           }
-                           else
-                           {
-                               idNow++;
-                           }
-                           clusLen = 1;
+                                Console.WriteLine("聚类过小！" + idNow);
+                                delSum++;
+                                for (int k = 0; k < clusLen; k++)
+                                {
+                                    noZeroClusters[noZeroClusters.Count - 1 - k].clusterId = 0;//回溯之前的结果 把ID设为0
+                                }
+                            }
+                            else
+                            {
+                                idNow++;
+                            }
+                            clusLen = 1;
                         }
                         else
                         {
@@ -3015,31 +3246,32 @@ namespace vtkPointCloud
                     }
                 }
             }
-            int s = noZeroClusters[noZeroClusters.Count-1].clusterId;
-            Console.WriteLine("\n\r------------------------------------"+s+"------------------------------------");
+            int Clus_Count = noZeroClusters[noZeroClusters.Count - 1].clusterId;//该聚类总数
+            Console.WriteLine("\n\r------------------------------------分块聚类合理聚类数: " + Clus_Count + "------------------------------------");
             Console.WriteLine("因过聚类小于3被删除的有" + delSum + "个.");
             try
             {
                 foreach (Point3D p in noZeroClusters)
                 {
-                    sw.WriteLine(p.X + "\t" + p.Y + "\t" + p.Z + "\t" +p.clusterId);
+                    sw.WriteLine(p.X + "\t" + p.Y + "\t" + p.Z + "\t" + p.clusterId);
                 }
             }
             catch (Exception)
             {
                 throw;
             }
-            finally {
+            finally
+            {
                 sw.Close();
             }
 
-            MergeCellData(hee, s);
+            //MergeCellData(hee, Clus_Count);
         }
         private static void StartCode(object i)
         {
             List<Point3D> cell = i as List<Point3D>;
             DBImproved ThreadDB = new DBImproved();
-            ThreadDB.dbscan(cell, 0.06, 7);
+            ThreadDB.dbscan(cell, MainForm.threhold, pointsInthrehold);
             sumClus += ThreadDB.clusterAmount;
             sumPts += cell.Count;
             Console.WriteLine(cell.Count+"个数据点，"+ThreadDB.clusterAmount + " 个聚类");
@@ -3049,6 +3281,11 @@ namespace vtkPointCloud
         {
             MergeCellData(200, 250);
         }
+        /// <summary>
+        /// 测试类 读取分块聚类数据 分配ID为0的和ID不为0的进两个List
+        /// </summary>
+        /// <param name="cellNum">分块块数</param>
+        /// <param name="clusterNum">聚类数目</param>
         private void MergeCellData(int cellNum,int clusterNum)
         {
             FileMap fileMap = new FileMap();
@@ -3083,9 +3320,14 @@ namespace vtkPointCloud
             }
             mixCloseCluster(clusterNum , lis, zeroLis);
         }
+        /// <summary>
+        /// 融合距离相近的聚类，重新分配ID 质心 外接多边形和外接圆
+        /// </summary>
+        /// <param name="clusterNum">聚类数目</param>
+        /// <param name="tmpList">非零聚类</param>
+        /// <param name="tmpList0">零聚类</param>
         private void mixCloseCluster(int clusterNum, List<Point3D> tmpList, List<Point3D> tmpList0)
         {
-            //List<Point3D> addList = tmpList.FindAll(delegate(Point3D p) { return (p.clusterId == 0); });
             dbb = new DBImproved();
             dbb.clusterAmount = clusterNum;
             dbb.cf = clusterNum;//设置聚类初始ID

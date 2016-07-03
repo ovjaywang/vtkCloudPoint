@@ -58,6 +58,7 @@
             this.测试按照左上角排序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试野点回调ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试IndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +99,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试IndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -153,14 +153,14 @@
             // ImporttxtFileToolStripMenuItem
             // 
             this.ImporttxtFileToolStripMenuItem.Name = "ImporttxtFileToolStripMenuItem";
-            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.ImporttxtFileToolStripMenuItem.Text = "导入txt文件夹";
             this.ImporttxtFileToolStripMenuItem.Click += new System.EventHandler(this.ImporttxtFileToolStripMenuItem_Click);
             // 
             // ImportXLSFileToolStripMenuItem
             // 
             this.ImportXLSFileToolStripMenuItem.Name = "ImportXLSFileToolStripMenuItem";
-            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
             // 
@@ -356,6 +356,13 @@
             this.测试野点回调ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试野点回调ToolStripMenuItem.Text = "测试野点回溯";
             this.测试野点回调ToolStripMenuItem.Click += new System.EventHandler(this.测试野点回调ToolStripMenuItem_Click);
+            // 
+            // 测试IndexToolStripMenuItem
+            // 
+            this.测试IndexToolStripMenuItem.Name = "测试IndexToolStripMenuItem";
+            this.测试IndexToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试IndexToolStripMenuItem.Text = "测试Index";
+            this.测试IndexToolStripMenuItem.Click += new System.EventHandler(this.测试IndexToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -825,13 +832,6 @@
             this.tsButton_CLEANALL.Size = new System.Drawing.Size(32, 32);
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
-            // 
-            // 测试IndexToolStripMenuItem
-            // 
-            this.测试IndexToolStripMenuItem.Name = "测试IndexToolStripMenuItem";
-            this.测试IndexToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试IndexToolStripMenuItem.Text = "测试Index";
-            this.测试IndexToolStripMenuItem.Click += new System.EventHandler(this.测试IndexToolStripMenuItem_Click);
             // 
             // MainForm
             // 
