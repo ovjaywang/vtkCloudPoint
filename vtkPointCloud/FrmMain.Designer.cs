@@ -99,6 +99,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
+            this.测试状态栏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -153,14 +154,14 @@
             // ImporttxtFileToolStripMenuItem
             // 
             this.ImporttxtFileToolStripMenuItem.Name = "ImporttxtFileToolStripMenuItem";
-            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImporttxtFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImporttxtFileToolStripMenuItem.Text = "导入txt文件夹";
             this.ImporttxtFileToolStripMenuItem.Click += new System.EventHandler(this.ImporttxtFileToolStripMenuItem_Click);
             // 
             // ImportXLSFileToolStripMenuItem
             // 
             this.ImportXLSFileToolStripMenuItem.Name = "ImportXLSFileToolStripMenuItem";
-            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.ImportXLSFileToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
             // 
@@ -256,7 +257,8 @@
             this.测试按照左上角排序ToolStripMenuItem,
             this.测试多线程ToolStripMenuItem,
             this.测试野点回调ToolStripMenuItem,
-            this.测试IndexToolStripMenuItem});
+            this.测试IndexToolStripMenuItem,
+            this.测试状态栏ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -833,6 +835,13 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
+            // 测试状态栏ToolStripMenuItem
+            // 
+            this.测试状态栏ToolStripMenuItem.Name = "测试状态栏ToolStripMenuItem";
+            this.测试状态栏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试状态栏ToolStripMenuItem.Text = "测试状态栏";
+            this.测试状态栏ToolStripMenuItem.Click += new System.EventHandler(this.测试状态栏ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -948,6 +957,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试多线程ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试野点回调ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试IndexToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试状态栏ToolStripMenuItem;
        
     }
 }

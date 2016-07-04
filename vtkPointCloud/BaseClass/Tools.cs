@@ -128,7 +128,7 @@ namespace vtkPointCloud
             {
                 for (int t = 0; t < clus; t++)
                 {
-                    idTmp.Add(t + 1, t+1);
+                    idTmp.Add(t+1, t+1);
                 }
             }
             Console.WriteLine("ID数目为 ： "+idTmp.Count);
@@ -142,10 +142,45 @@ namespace vtkPointCloud
                     clusList[tm].li.Add(p);//加入分组聚类
                 }
             }
+            int dd = 1;
             foreach (ClusObj obj in clusList)
             {
+                obj.clusId = dd++;
                 if (obj.li.Count == 0) continue;
                 obj.clusId = obj.li[0].clusterId;
+                centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
+            }
+        }
+        public static void GetClusList(List<Point3D> rawData, List<Point3D> centers, List<ClusObj> clusList, List<int> idList)
+        {
+            Dictionary<int, int> idTmp = new Dictionary<int, int>();
+            int i = 1;
+            if (idList != null)
+            {
+                foreach (int j in idList)
+                {
+                    idTmp.Add(j, i);
+                    i++;
+                }
+            }
+            else
+            {
+                for (int t = 0; t < clusList.Count; t++)
+                {
+                    idTmp.Add(t + 1, t + 1);
+                }
+            }
+            foreach (Point3D p in rawData)
+            {
+                if (p.clusterId != 0) {
+                    clusList[p.clusterId - 1].li.Add(p);
+                }
+            }
+            foreach (ClusObj obj in clusList)
+            {
+                //obj.clusId = dd++;
+                if (obj.li.Count == 0) continue;
+                //obj.clusId = obj.li[0].clusterId;
                 centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
             }
         }
@@ -345,12 +380,11 @@ namespace vtkPointCloud
         /// <param name="hulls">每个数组是同一个聚类点的List</param>
         /// <param name="clusterSum">聚类数</param>
         //static public List<Point2D> getCircles(List<Point2D>[] hulls, int clusterSum)
-        static public List<Point2D> getCircles(List<ClusObj> clusList,int clusterSum)
+        static public List<Point2D> getCircles(List<ClusObj> clusList)
         {
             List<Point2D> circles = new List<Point2D>();
-            for (int j = 0; j < clusterSum; j++)
+            for (int j = 0; j < clusList.Count; j++)
             {
-                if (clusList[j].li.Count == 0) continue;
                 //else Console.WriteLine(clusList[j].li.Count);
                 Point2D CircleCenter;//圆心点
                 double CircleRadius = -1;
@@ -470,33 +504,40 @@ namespace vtkPointCloud
         /// <param name="dic">ID映射列表</param>
         /// <param name="clusList"></param>
         /// <returns></returns>
-        static public int refreshCensAndClusByDictionary(List<Point3D> centers, List<Point3D> tmpList, Dictionary<int, int> dic,ref List<ClusObj> clusList)
+        static public List<Point3D> refreshCensAndClusByDictionary(Dictionary<int, int> dic,List<ClusObj> clusList)
         {
             //dic存放 对应的clusID而非Index 按照value（ID）排序（讲道理，ID = index + 1）
             //grouping 序列对应ID
             List<int> keys =dic.Keys.ToList();
-            foreach (Point3D p in tmpList)
+            //tmpList.Sort((x, y) =>//按照ID排序 否则
+            //{
+            //    int result;
+            //    if (x.clusterId == y.clusterId) result = 0;
+            //    else
+            //    {
+            //        if (x.clusterId > y.clusterId) result = 1;
+            //        else result = -1;
+            //    }
+            //    return result;
+            //});
+            //Console.WriteLine("最大ID :" + tmpList[tmpList.Count - 1].clusterId);
+            foreach (ClusObj ob in clusList)
             {
-                if(keys.Contains(p.clusterId)){
-                    int IndexOfKey = keys.FindIndex(0, delegate(int q) { return (q == p.clusterId); });//找到原聚类在key中的位置
-                    p.clusterId = dic[keys[IndexOfKey]];//修改聚类  //dic[key]
+                if (keys.Contains(ob.clusId)) {
+                    foreach (Point3D p in ob.li)
+                    {
+                        clusList[dic[ob.clusId] - 1].li.Add(p);
+                    }
                 }
             }
-            centers.RemoveAll((delegate(Point3D p) { return (keys.Contains(p.clusterId)); }));//删除在字典中的原始聚类
-            List<int> idList = new List<int>();
-            for (int i = 0; i < centers.Count; i++)
+            clusList.RemoveAll((delegate(ClusObj p) { return (keys.Contains(p.clusId)); }));
+            List<Point3D> centers = new List<Point3D>();
+            foreach (ClusObj obj in clusList)
             {
-                idList.Add(centers[i].clusterId);
+                centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
             }
-            int clusCount = centers.Count;
-            centers = new List<Point3D>();
-            clusList = new List<ClusObj>();
-            for (int i = 0; i < clusCount; i++)
-            {
-                clusList.Add(new ClusObj());
-            }
-            Tools.getClusterCenter(clusCount, tmpList, centers, clusList, idList);
-            return clusCount;
+            Console.WriteLine("keys中包含"+keys.Count+"质心有"+centers.Count);
+            return centers;
         }
         /// <summary>
         /// 将小于阈值范围的质心点集置入Dictionary 遍历之 融合之
@@ -505,34 +546,34 @@ namespace vtkPointCloud
         /// <param name="cts">质心点集</param>
         /// <param name="thre">融合阈值</param>
         /// <returns></returns>
-        static public Dictionary<int, int> IntegratingClusID(List<Point3D> l, List<Point3D> cts, double thre)
+        static public Dictionary<int, int> IntegratingClusID( List<Point3D> centers, double thre)
         {//按照ID排序好的Centroid
             Dictionary<int, int> dic = new Dictionary<int, int>();
             int mergeCount = 0;
-            for (int i = 0; i < cts.Count; i++)
+            for (int i = 0; i < centers.Count; i++)
             {
-                if (!cts[i].isTraversal)//若尚未遍历
+                if (!centers[i].isTraversal)//若尚未遍历
                 {
-                    cts[i].isTraversal = true;
+                    centers[i].isTraversal = true;
                     //寻找与本质心小于阈值的点集
-                    List<Point3D> plist = cts.FindAll(delegate(Point3D p)
+                    List<Point3D> plist = centers.FindAll(delegate(Point3D p)
                     {
-                        return ((Math.Abs(p.X - cts[i].X) + (Math.Abs(p.Y - cts[i].Y))) < thre)
-                            && (p.clusterId > cts[i].clusterId);
+                        return ((Math.Abs(p.X - centers[i].X) + (Math.Abs(p.Y - centers[i].Y))) < thre)
+                            && (!p.isTraversal);
                     });
                     if (plist.Count != 0)
                     {
                         mergeCount += plist.Count;
-                        Console.Write("\t当前ID:" + cts[i].clusterId + "\t 阈值内ID:");
+                        //Console.Write("\t当前ID:" + centers[i].clusterId + "\t 阈值内ID:");
                         foreach (Point3D p in plist)
                         {
-                            Console.Write("ID:" + p.clusterId + "__Index：");
-                            int index = cts.FindIndex(0, delegate(Point3D p22) { return (p22.clusterId == p.clusterId); });
-                            Console.Write(index + "\t");
-                            dic.Add(p.clusterId, cts[i].clusterId);//明确加入的是聚类编号而不是Index
-                            cts[index].isTraversal = true;
+                            //Console.Write("ID:" + p.clusterId + "__Index：");
+                            int index = centers.FindIndex(0, delegate(Point3D p22) { return (p22.clusterId == p.clusterId); });
+                            //Console.Write(index + "\t");
+                            dic.Add(p.clusterId, centers[i].clusterId);//明确加入的是聚类编号而不是Index
+                            centers[index].isTraversal = true;
                         }
-                        Console.WriteLine();
+                        //Console.WriteLine();
                     }
                 }
             }

@@ -1,4 +1,6 @@
-﻿namespace vtkPointCloud
+﻿using System.Drawing;
+using System.Windows.Forms;
+namespace vtkPointCloud
 {
     partial class WaitingForm
     {
@@ -40,7 +42,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(179, 15);
             this.progressBar1.TabIndex = 0;
-            this.progressBar1.Visible = false;
             // 
             // textBox1
             // 
@@ -49,12 +50,12 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(179, 37);
-            this.textBox1.TabIndex = 1;
+            this.textBox1.TabIndex = 4;
             this.textBox1.Text = "正在进行计算......";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(80, 114);
+            this.pictureBox1.Location = new System.Drawing.Point(75, 112);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(136, 10);
             this.pictureBox1.TabIndex = 2;
@@ -69,9 +70,11 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.progressBar1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WaitingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "提示";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

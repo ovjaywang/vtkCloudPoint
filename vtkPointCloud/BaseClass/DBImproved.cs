@@ -7,9 +7,9 @@ namespace vtkPointCloud
 {
     public class DBImproved
     {
-        public int clusterAmount = 0;
-        public int pointsAmount = 0;
-        public static int iritatorNum = 0;
+        public int clusterAmount = 0;//聚类总数
+        public int pointsAmount = 0;//数据点数
+        public static int iritatorNum = 0;//迭代次数
         public int cf = 0;
         public static double getDisP(Point3D p1, Point3D p2)
         {

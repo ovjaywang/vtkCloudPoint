@@ -37,13 +37,13 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.ComfirmResult = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PtsInCellTxtBox = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SureMergeBtn = new System.Windows.Forms.Button();
             this.MergeBtn = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.MergeThrehold = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.PtsInCellTxtBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -154,6 +154,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "聚类";
             // 
+            // PtsInCellTxtBox
+            // 
+            this.PtsInCellTxtBox.Font = new System.Drawing.Font("华文仿宋", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PtsInCellTxtBox.Location = new System.Drawing.Point(227, 197);
+            this.PtsInCellTxtBox.Name = "PtsInCellTxtBox";
+            this.PtsInCellTxtBox.Size = new System.Drawing.Size(129, 34);
+            this.PtsInCellTxtBox.TabIndex = 8;
+            this.PtsInCellTxtBox.Text = "200";
+            this.PtsInCellTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("华文仿宋", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox4.Location = new System.Drawing.Point(9, 194);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(196, 37);
+            this.textBox4.TabIndex = 7;
+            this.textBox4.Text = "分块内点数";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.SureMergeBtn);
@@ -169,7 +190,6 @@
             // 
             // SureMergeBtn
             // 
-            this.SureMergeBtn.Enabled = false;
             this.SureMergeBtn.Font = new System.Drawing.Font("华文仿宋", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SureMergeBtn.Location = new System.Drawing.Point(228, 76);
             this.SureMergeBtn.Name = "SureMergeBtn";
@@ -210,29 +230,8 @@
             this.MergeThrehold.Name = "MergeThrehold";
             this.MergeThrehold.Size = new System.Drawing.Size(129, 34);
             this.MergeThrehold.TabIndex = 7;
-            this.MergeThrehold.Text = "0";
+            this.MergeThrehold.Text = "0.1";
             this.MergeThrehold.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("华文仿宋", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox4.Location = new System.Drawing.Point(9, 194);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(196, 37);
-            this.textBox4.TabIndex = 7;
-            this.textBox4.Text = "分块内点数";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // PtsInCellTxtBox
-            // 
-            this.PtsInCellTxtBox.Font = new System.Drawing.Font("华文仿宋", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.PtsInCellTxtBox.Location = new System.Drawing.Point(227, 197);
-            this.PtsInCellTxtBox.Name = "PtsInCellTxtBox";
-            this.PtsInCellTxtBox.Size = new System.Drawing.Size(129, 34);
-            this.PtsInCellTxtBox.TabIndex = 8;
-            this.PtsInCellTxtBox.Text = "200";
-            this.PtsInCellTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ClusterParameters
             // 
@@ -268,9 +267,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox MergeThrehold;
-        private System.Windows.Forms.Button SureMergeBtn;
         public System.Windows.Forms.Button MergeBtn;
         private System.Windows.Forms.TextBox PtsInCellTxtBox;
         private System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.Button SureMergeBtn;
     }
 }
