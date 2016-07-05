@@ -484,7 +484,7 @@ namespace vtkPointCloud
                         {//是核心点
                             pointCloud_3.InsertPoint(count_3, points[i].X, points[i].Y, points[i].Z);
                             //hulls[points[i].clusterId - 1].Add(new Point2D(points[i].X, points[i].Y));
-                            clusList[points[i].clusterId - 1].li.Add(new Point3D(points[i].X, points[i].Y, points[i].Z, points[i].clusterId, true));
+                            //clusList[points[i].clusterId - 1].li.Add(new Point3D(points[i].X, points[i].Y, points[i].Z, points[i].clusterId, true));
                             count_3++;
                         }
                     }
@@ -3411,6 +3411,27 @@ namespace vtkPointCloud
                         break;
                     }
                 }
+            }
+        }
+
+        private void 测试深拷贝ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Point3D> a = new List<Point3D>();
+            List<Point3D> b = new List<Point3D>();
+            a.Add(new Point3D(1, 2, 3));
+            a.Add(new Point3D(9, 8, 7));
+            //a.ForEach(i => b.Add(i));
+            a.ForEach(i => b.Add((Point3D)i.Clone()));
+            foreach (Point3D p in b)
+            {
+                Console.WriteLine(p.X + "\t" + p.Y + "\t" + p.Z);
+            }
+            b[1].X = 4;
+            b[1].Y = 5;
+            b[1].Z = 6;
+            foreach (Point3D p in a)
+            {
+                Console.WriteLine(p.X + "\t" + p.Y + "\t" + p.Z);
             }
         }
     }

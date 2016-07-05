@@ -59,6 +59,7 @@
             this.测试多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试野点回调ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试IndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试状态栏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,7 +100,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试状态栏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试深拷贝ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -258,7 +259,8 @@
             this.测试多线程ToolStripMenuItem,
             this.测试野点回调ToolStripMenuItem,
             this.测试IndexToolStripMenuItem,
-            this.测试状态栏ToolStripMenuItem});
+            this.测试状态栏ToolStripMenuItem,
+            this.测试深拷贝ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -365,6 +367,13 @@
             this.测试IndexToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试IndexToolStripMenuItem.Text = "测试Index";
             this.测试IndexToolStripMenuItem.Click += new System.EventHandler(this.测试IndexToolStripMenuItem_Click);
+            // 
+            // 测试状态栏ToolStripMenuItem
+            // 
+            this.测试状态栏ToolStripMenuItem.Name = "测试状态栏ToolStripMenuItem";
+            this.测试状态栏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试状态栏ToolStripMenuItem.Text = "测试状态栏";
+            this.测试状态栏ToolStripMenuItem.Click += new System.EventHandler(this.测试状态栏ToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -835,12 +844,12 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
-            // 测试状态栏ToolStripMenuItem
+            // 测试深拷贝ToolStripMenuItem
             // 
-            this.测试状态栏ToolStripMenuItem.Name = "测试状态栏ToolStripMenuItem";
-            this.测试状态栏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试状态栏ToolStripMenuItem.Text = "测试状态栏";
-            this.测试状态栏ToolStripMenuItem.Click += new System.EventHandler(this.测试状态栏ToolStripMenuItem_Click);
+            this.测试深拷贝ToolStripMenuItem.Name = "测试深拷贝ToolStripMenuItem";
+            this.测试深拷贝ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试深拷贝ToolStripMenuItem.Text = "测试深拷贝";
+            this.测试深拷贝ToolStripMenuItem.Click += new System.EventHandler(this.测试深拷贝ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -958,6 +967,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试野点回调ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试IndexToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试状态栏ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试深拷贝ToolStripMenuItem;
        
     }
 }

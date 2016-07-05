@@ -30,6 +30,9 @@ namespace vtkPointCloud
             if (MessageBox.Show("确认聚类结果吗,确认将删除野点?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
                 return;
             mf = (MainForm)this.Owner;
+
+            mf.rawData = new List<Point3D>();
+            mf.clusForMerge.ForEach(i => mf.rawData.Add((Point3D)i.Clone()));
             Tools.removeErrorPointFromClustering(mf.rawData);
             mf.isShowLegend(0);
             mf.isShowLegend(4);
@@ -134,16 +137,13 @@ namespace vtkPointCloud
                 isMerge = true;
             }
 
-            //tmpCenters = new List<Point3D>();
-
-            //tmpCenters.AddRange(mf.centers);
             foreach (Point3D p in mf.centers)
             {
                 p.isTraversal = false;
             }
-            tmpClusList = null;
             tmpClusList = new List<ClusObj>();
-            tmpClusList.AddRange(mf.clusList);
+            //a.ForEach(i => b.Add((Point3D)i.Clone()));
+            mf.clusList.ForEach(i => tmpClusList.Add((ClusObj)i.Clone()));
             int fff = 0;
             foreach (ClusObj oo in mf.clusList)//clusList被改写了 fuck
             {
@@ -154,11 +154,6 @@ namespace vtkPointCloud
             tmpCenters = null;
             tmpCenters = Tools.refreshCensAndClusByDictionary(dick, tmpClusList);//重新分配ID号 计算分配后ID数
             fff = 0;
-            foreach (ClusObj oo in tmpClusList)
-            {
-                fff += oo.li.Count;
-            }
-            Console.WriteLine("fff的新值为" + fff);
             //mf.centers = null;
             //mf.centers = tmpCenters;
             //重新洗牌！！
@@ -184,10 +179,14 @@ namespace vtkPointCloud
                 }
             }
             mf = (MainForm)this.Owner;
-            mf.centers = null;
-            mf.centers = this.tmpCenters;
-            mf.clusList = null;
-            mf.clusList = this.tmpClusList;
+            
+            mf.centers = new List<Point3D>();
+            this.tmpCenters.ForEach(i => mf.centers.Add((Point3D)i.Clone()));//复制当前分组
+            mf.clusList = new List<ClusObj>();
+            this.tmpClusList.ForEach(i => mf.clusList.Add((ClusObj)i.Clone()));//复制当前质心
+            mf.circles = new List<Point2D>();
+            this.tmpCircles.ForEach(i => mf.circles.Add((Point2D)i.Clone()));
+
         }
     }
 }

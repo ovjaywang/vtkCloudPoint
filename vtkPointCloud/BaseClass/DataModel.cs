@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 namespace vtkPointCloud
 {
-    public class ClusObj 
+    [Serializable] 
+    public class ClusObj : ICloneable
     {
         public List<Point3D> li { get; set; }
         public int clusId{get;set;}
@@ -28,13 +31,37 @@ namespace vtkPointCloud
             this.clusName = s;
             this.li = new List<Point3D>();
         }
+        public Object Clone() //深度拷贝  
+        {
+            using (MemoryStream ms = new MemoryStream(1000))
+            {
+                object CloneObject;
+                BinaryFormatter bf = new BinaryFormatter(null, new StreamingContext(StreamingContextStates.Clone));
+                bf.Serialize(ms, this);
+                ms.Seek(0, SeekOrigin.Begin);
+                // 反序列化至另一个对象(即创建了一个原对象的深表副本)   
+                CloneObject = bf.Deserialize(ms);
+                // 关闭流   
+                ms.Close();
+                return CloneObject;
+            }
+            //另一种序列化与反序列化进行深拷贝
+            //using (Stream objectStream = new MemoryStream())
+            //{
+            //    //利用 System.Runtime.Serialization序列化与反序列化完成引用对象的复制  
+            //    IFormatter formatter = new BinaryFormatter();
+            //    formatter.Serialize(objectStream, RealObject);
+            //    objectStream.Seek(0, SeekOrigin.Begin);
+            //    return (T)formatter.Deserialize(objectStream);
+            //}   
+        }
     }
-    public class Point2D
+     [Serializable]
+    public class Point2D : ICloneable
     {
         public double x { get; set; }
         public double y { get; set; }
         public int clusID { get; set; }
-
         public bool isFilter{ get;set; }
         public double radius { get; set; }
         public Point2D(double xx, double yy)
@@ -42,10 +69,26 @@ namespace vtkPointCloud
             this.x = xx;
             this.y = yy;
         }
+        public Object Clone() //深度拷贝  
+        {
+            using (MemoryStream ms = new MemoryStream(1000))
+            {
+                object CloneObject;
+                BinaryFormatter bf = new BinaryFormatter(null, new StreamingContext(StreamingContextStates.Clone));
+                bf.Serialize(ms, this);
+                ms.Seek(0, SeekOrigin.Begin);
+                // 反序列化至另一个对象(即创建了一个原对象的深表副本)   
+                CloneObject = bf.Deserialize(ms);
+                // 关闭流   
+                ms.Close();
+                return CloneObject;
+            }
+        }
     };
 
     //3维点所有属性 包括电机xyz 球面坐标xyz 聚类ID 是否已被分类 是否已被匹配 是否被遍历到 是否是关键点 路径Id
-    public class Point3D
+    [Serializable] 
+    public class Point3D :ICloneable
     {
         public Point3D() { }
         public Point3D(double xx, double yy, double zz)
@@ -87,8 +130,34 @@ namespace vtkPointCloud
         public double matched_Y { get; set; }//匹配坐标y
         public double matched_Z { get; set; }//匹配坐标z
         public Boolean isFilterByDistance { get; set; }
+        public Object Clone() //深度拷贝  
+        {
+            using (MemoryStream ms = new MemoryStream(1000))
+            {
+                object CloneObject;
+                BinaryFormatter bf = new BinaryFormatter(null, new StreamingContext(StreamingContextStates.Clone));
+                bf.Serialize(ms, this);
+                ms.Seek(0, SeekOrigin.Begin);
+                // 反序列化至另一个对象(即创建了一个原对象的深表副本)   
+                CloneObject = bf.Deserialize(ms);
+                // 关闭流   
+                ms.Close();
+                return CloneObject;
+            }
+        }
     };
-
+    public static class CloneForList{
+        public static IList<Point3D> Clone<Point3D>(this IList<Point3D> source)
+where Point3D : ICloneable
+        {
+            IList<Point3D> newList = new List<Point3D>(source.Count);
+            foreach (var item in source)
+            {
+                newList.Add((Point3D)((ICloneable)item.Clone()));
+            }
+            return newList;
+        }
+}
     public class Line2D
     {
         public Point2D startPoint;
