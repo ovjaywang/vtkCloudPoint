@@ -60,6 +60,10 @@
             this.测试野点回调ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试IndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试状态栏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试深拷贝ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试匹配ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试画矩形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试删除actorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +104,9 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
-            this.测试深拷贝ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MoveStepTxt = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.测试画双点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -195,7 +201,6 @@
             // 
             // iCPToolStripMenuItem
             // 
-            this.iCPToolStripMenuItem.Enabled = false;
             this.iCPToolStripMenuItem.Name = "iCPToolStripMenuItem";
             this.iCPToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.iCPToolStripMenuItem.Text = "真值均值识别匹配";
@@ -260,7 +265,11 @@
             this.测试野点回调ToolStripMenuItem,
             this.测试IndexToolStripMenuItem,
             this.测试状态栏ToolStripMenuItem,
-            this.测试深拷贝ToolStripMenuItem});
+            this.测试深拷贝ToolStripMenuItem,
+            this.测试匹配ToolStripMenuItem,
+            this.测试画矩形ToolStripMenuItem,
+            this.测试删除actorToolStripMenuItem,
+            this.测试画双点ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -375,6 +384,34 @@
             this.测试状态栏ToolStripMenuItem.Text = "测试状态栏";
             this.测试状态栏ToolStripMenuItem.Click += new System.EventHandler(this.测试状态栏ToolStripMenuItem_Click);
             // 
+            // 测试深拷贝ToolStripMenuItem
+            // 
+            this.测试深拷贝ToolStripMenuItem.Name = "测试深拷贝ToolStripMenuItem";
+            this.测试深拷贝ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试深拷贝ToolStripMenuItem.Text = "测试深拷贝";
+            this.测试深拷贝ToolStripMenuItem.Click += new System.EventHandler(this.测试深拷贝ToolStripMenuItem_Click);
+            // 
+            // 测试匹配ToolStripMenuItem
+            // 
+            this.测试匹配ToolStripMenuItem.Name = "测试匹配ToolStripMenuItem";
+            this.测试匹配ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试匹配ToolStripMenuItem.Text = "测试匹配";
+            this.测试匹配ToolStripMenuItem.Click += new System.EventHandler(this.测试匹配ToolStripMenuItem_Click);
+            // 
+            // 测试画矩形ToolStripMenuItem
+            // 
+            this.测试画矩形ToolStripMenuItem.Name = "测试画矩形ToolStripMenuItem";
+            this.测试画矩形ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试画矩形ToolStripMenuItem.Text = "测试画矩形";
+            this.测试画矩形ToolStripMenuItem.Click += new System.EventHandler(this.测试画矩形ToolStripMenuItem_Click);
+            // 
+            // 测试删除actorToolStripMenuItem
+            // 
+            this.测试删除actorToolStripMenuItem.Name = "测试删除actorToolStripMenuItem";
+            this.测试删除actorToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试删除actorToolStripMenuItem.Text = "测试删除actor";
+            this.测试删除actorToolStripMenuItem.Click += new System.EventHandler(this.测试删除actorToolStripMenuItem_Click);
+            // 
             // 配准ToolStripMenuItem
             // 
             this.配准ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -386,7 +423,7 @@
             // 调用exeToolStripMenuItem
             // 
             this.调用exeToolStripMenuItem.Name = "调用exeToolStripMenuItem";
-            this.调用exeToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
+            this.调用exeToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.调用exeToolStripMenuItem.Text = "调用exe";
             this.调用exeToolStripMenuItem.Click += new System.EventHandler(this.调用exeToolStripMenuItem_Click);
             // 
@@ -468,6 +505,8 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.MoveStepTxt);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
@@ -844,12 +883,36 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
-            // 测试深拷贝ToolStripMenuItem
+            // MoveStepTxt
             // 
-            this.测试深拷贝ToolStripMenuItem.Name = "测试深拷贝ToolStripMenuItem";
-            this.测试深拷贝ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试深拷贝ToolStripMenuItem.Text = "测试深拷贝";
-            this.测试深拷贝ToolStripMenuItem.Click += new System.EventHandler(this.测试深拷贝ToolStripMenuItem_Click);
+            this.MoveStepTxt.Font = new System.Drawing.Font("宋体", 15F);
+            this.MoveStepTxt.Location = new System.Drawing.Point(895, 5);
+            this.MoveStepTxt.Name = "MoveStepTxt";
+            this.MoveStepTxt.Size = new System.Drawing.Size(134, 36);
+            this.MoveStepTxt.TabIndex = 20;
+            this.MoveStepTxt.Text = "500";
+            this.MoveStepTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MoveStepTxt.Visible = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.Font = new System.Drawing.Font("宋体", 15F);
+            this.textBox2.Location = new System.Drawing.Point(764, 5);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(134, 36);
+            this.textBox2.TabIndex = 21;
+            this.textBox2.Text = "移动步长";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.Visible = false;
+            // 
+            // 测试画双点ToolStripMenuItem
+            // 
+            this.测试画双点ToolStripMenuItem.Name = "测试画双点ToolStripMenuItem";
+            this.测试画双点ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试画双点ToolStripMenuItem.Text = "测试画双点";
+            this.测试画双点ToolStripMenuItem.Click += new System.EventHandler(this.测试画双点ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -861,11 +924,13 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "CloudPoint Viewer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -968,6 +1033,12 @@
         private System.Windows.Forms.ToolStripMenuItem 测试IndexToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试状态栏ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试深拷贝ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试匹配ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试画矩形ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试删除actorToolStripMenuItem;
+        private System.Windows.Forms.TextBox MoveStepTxt;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ToolStripMenuItem 测试画双点ToolStripMenuItem;
        
     }
 }

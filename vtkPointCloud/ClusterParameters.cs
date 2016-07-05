@@ -33,6 +33,7 @@ namespace vtkPointCloud
 
             mf.rawData = new List<Point3D>();
             mf.clusForMerge.ForEach(i => mf.rawData.Add((Point3D)i.Clone()));
+            MainForm.clusterSum = tmpClusList.Count;
             Tools.removeErrorPointFromClustering(mf.rawData);
             mf.isShowLegend(0);
             mf.isShowLegend(4);
@@ -79,51 +80,6 @@ namespace vtkPointCloud
             {
                 isFirst = false;
             }
-        }
-        private void NoCellClustering(){
-            if (!int.TryParse(this.textPoint.Text, out this.point))
-            {
-                MessageBox.Show("输入的不是整数，请重新输入");
-                return;
-            }
-            if (!double.TryParse(this.textThrehold.Text, out this.threhold))
-            {
-                MessageBox.Show("输入的不是浮点数，请重新输入");
-                return;
-            }
-            mf = (MainForm)this.Owner;
-            this.Visible = false;
-            mf.getClusterFromList(threhold, point, ptsIncell);
-
-            mf.centers = new List<Point3D>();
-            //mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];//将聚类写进分组的数组
-            mf.clusList = new List<ClusObj>();
-            for (int j = 0; j < mf.dbb.clusterAmount; j++)
-            {
-                mf.clusList.Add(new ClusObj());//初始化每个List
-            }
-            Tools.getClusterCenter(mf.dbb.clusterAmount, mf.rawData, mf.centers, mf.clusList, null);//计算质心 计算分组
-            mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组 计算外接多边形
-            //mf.circles = Tools.getCircles(mf.hulls, mf.clusterSum);//计算外接圆
-            mf.circles = Tools.getCircles(mf.clusList);//计算外接圆
-            mf.showCircle(mf.circles, 1, mf.rawData,mf.centers);
-            mf.isShowLegend(2);
-            if (isFirst)
-            {
-                isFirst = false;
-                this.ComfirmResult.Enabled = true;
-            }
-            mf.centers = new List<Point3D>();
-            //mf.grouping = new List<Point3D>[mf.dbb.clusterAmount];//将聚类写进分组的数组
-            mf.clusList = new List<ClusObj>();
-            for (int j = 0; j < mf.dbb.clusterAmount; j++)
-            {
-                mf.clusList.Add(new ClusObj());//初始化每个List
-            }
-            Tools.getClusterCenter(mf.dbb.clusterAmount, mf.rawData, mf.centers, mf.clusList, null);//计算质心 计算分组
-            mf.ShowPointsFromFile(mf.centers, 3);//不同颜色显示核心点与野点  这一步对聚类进行分组 计算外接多边形
-            mf.circles = Tools.getCircles(mf.clusList);//计算外接圆
-            mf.showCircle(mf.circles, 1, mf.rawData,mf.centers);
         }
         private void MergeBtn_Click(object sender, EventArgs e)
         {
@@ -181,11 +137,11 @@ namespace vtkPointCloud
             mf = (MainForm)this.Owner;
             
             mf.centers = new List<Point3D>();
-            this.tmpCenters.ForEach(i => mf.centers.Add((Point3D)i.Clone()));//复制当前分组
+            this.tmpCenters.ForEach(i => mf.centers.Add((Point3D)i.Clone()));//复制当前质心
             mf.clusList = new List<ClusObj>();
-            this.tmpClusList.ForEach(i => mf.clusList.Add((ClusObj)i.Clone()));//复制当前质心
+            this.tmpClusList.ForEach(i => mf.clusList.Add((ClusObj)i.Clone()));//复制当前分组
             mf.circles = new List<Point2D>();
-            this.tmpCircles.ForEach(i => mf.circles.Add((Point2D)i.Clone()));
+            this.tmpCircles.ForEach(i => mf.circles.Add((Point2D)i.Clone()));//赋值当前外接圆
 
         }
     }
