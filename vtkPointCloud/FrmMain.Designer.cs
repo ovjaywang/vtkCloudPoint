@@ -51,7 +51,6 @@
             this.测试矩阵ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试ICpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试图例ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.测试真值点导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试MessageBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试输出双文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试最大最小值ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,8 +75,6 @@
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.MoveStepTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -107,9 +104,15 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsButton_ImportScanData = new System.Windows.Forms.ToolStripButton();
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.MoveStepTxt = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.zoomRatioTxt = new System.Windows.Forms.TextBox();
             this.SureRegionBtn = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
+            this.DoMatchBtn = new System.Windows.Forms.Button();
+            this.测试清屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -259,7 +262,6 @@
             this.测试矩阵ToolStripMenuItem,
             this.测试ICpToolStripMenuItem,
             this.测试图例ToolStripMenuItem,
-            this.测试真值点导入ToolStripMenuItem,
             this.测试MessageBoxToolStripMenuItem,
             this.测试输出双文件ToolStripMenuItem,
             this.测试最大最小值ToolStripMenuItem,
@@ -272,7 +274,8 @@
             this.测试匹配ToolStripMenuItem,
             this.测试画矩形ToolStripMenuItem,
             this.测试删除actorToolStripMenuItem,
-            this.测试画双点ToolStripMenuItem});
+            this.测试画双点ToolStripMenuItem,
+            this.测试清屏ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -323,13 +326,6 @@
             this.测试图例ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试图例ToolStripMenuItem.Text = "测试图例";
             this.测试图例ToolStripMenuItem.Click += new System.EventHandler(this.测试图例ToolStripMenuItem_Click);
-            // 
-            // 测试真值点导入ToolStripMenuItem
-            // 
-            this.测试真值点导入ToolStripMenuItem.Name = "测试真值点导入ToolStripMenuItem";
-            this.测试真值点导入ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试真值点导入ToolStripMenuItem.Text = "测试真值点导入";
-            this.测试真值点导入ToolStripMenuItem.Click += new System.EventHandler(this.测试真值点导入ToolStripMenuItem_Click);
             // 
             // 测试MessageBoxToolStripMenuItem
             // 
@@ -480,7 +476,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.CheckBoxes = true;
             this.treeView1.Location = new System.Drawing.Point(0, 71);
@@ -508,7 +504,7 @@
             // 
             // toolStripContainer1
             // 
-            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStripContainer1.BottomToolStripPanelVisible = false;
             // 
@@ -545,28 +541,6 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.Color.White;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Font = new System.Drawing.Font("宋体", 15F);
-            this.textBox2.Location = new System.Drawing.Point(276, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(134, 36);
-            this.textBox2.TabIndex = 21;
-            this.textBox2.Text = "移动步长";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // MoveStepTxt
-            // 
-            this.MoveStepTxt.Font = new System.Drawing.Font("宋体", 15F);
-            this.MoveStepTxt.Location = new System.Drawing.Point(407, 80);
-            this.MoveStepTxt.Name = "MoveStepTxt";
-            this.MoveStepTxt.Size = new System.Drawing.Size(134, 36);
-            this.MoveStepTxt.TabIndex = 20;
-            this.MoveStepTxt.Text = "500";
-            this.MoveStepTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -913,9 +887,33 @@
             this.tsButton_CLEANALL.Text = "清空数据";
             this.tsButton_CLEANALL.Click += new System.EventHandler(this.tsButton_CLEANALL_Click);
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox2.Font = new System.Drawing.Font("宋体", 15F);
+            this.textBox2.Location = new System.Drawing.Point(276, 80);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(134, 36);
+            this.textBox2.TabIndex = 21;
+            this.textBox2.Text = "移动步长";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.Visible = false;
+            // 
+            // MoveStepTxt
+            // 
+            this.MoveStepTxt.Font = new System.Drawing.Font("宋体", 15F);
+            this.MoveStepTxt.Location = new System.Drawing.Point(407, 80);
+            this.MoveStepTxt.Name = "MoveStepTxt";
+            this.MoveStepTxt.Size = new System.Drawing.Size(134, 36);
+            this.MoveStepTxt.TabIndex = 20;
+            this.MoveStepTxt.Text = "500";
+            this.MoveStepTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MoveStepTxt.Visible = false;
+            // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBox1.Font = new System.Drawing.Font("宋体", 15F);
             this.textBox1.Location = new System.Drawing.Point(538, 80);
             this.textBox1.Name = "textBox1";
@@ -924,6 +922,7 @@
             this.textBox1.TabIndex = 23;
             this.textBox1.Text = "缩放比例";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Visible = false;
             // 
             // zoomRatioTxt
             // 
@@ -934,18 +933,66 @@
             this.zoomRatioTxt.TabIndex = 22;
             this.zoomRatioTxt.Text = "1.01";
             this.zoomRatioTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.zoomRatioTxt.Visible = false;
             // 
             // SureRegionBtn
             // 
-            this.SureRegionBtn.BackColor = System.Drawing.Color.White;
+            this.SureRegionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.SureRegionBtn.Font = new System.Drawing.Font("宋体", 15F);
-            this.SureRegionBtn.Location = new System.Drawing.Point(809, 80);
+            this.SureRegionBtn.Location = new System.Drawing.Point(1130, 80);
             this.SureRegionBtn.Name = "SureRegionBtn";
             this.SureRegionBtn.Size = new System.Drawing.Size(134, 36);
             this.SureRegionBtn.TabIndex = 24;
             this.SureRegionBtn.Text = "确认范围";
             this.SureRegionBtn.UseVisualStyleBackColor = false;
+            this.SureRegionBtn.Visible = false;
             this.SureRegionBtn.Click += new System.EventHandler(this.SureRegionBtn_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox3.Font = new System.Drawing.Font("宋体", 15F);
+            this.textBox3.Location = new System.Drawing.Point(805, 80);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(156, 36);
+            this.textBox3.TabIndex = 26;
+            this.textBox3.Text = "范围内点数";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.Visible = false;
+            // 
+            // PtsInRegionTxt
+            // 
+            this.PtsInRegionTxt.BackColor = System.Drawing.Color.White;
+            this.PtsInRegionTxt.Font = new System.Drawing.Font("宋体", 15F);
+            this.PtsInRegionTxt.Location = new System.Drawing.Point(961, 80);
+            this.PtsInRegionTxt.Name = "PtsInRegionTxt";
+            this.PtsInRegionTxt.ReadOnly = true;
+            this.PtsInRegionTxt.Size = new System.Drawing.Size(134, 36);
+            this.PtsInRegionTxt.TabIndex = 25;
+            this.PtsInRegionTxt.Text = "0";
+            this.PtsInRegionTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PtsInRegionTxt.Visible = false;
+            // 
+            // DoMatchBtn
+            // 
+            this.DoMatchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DoMatchBtn.Font = new System.Drawing.Font("宋体", 15F);
+            this.DoMatchBtn.Location = new System.Drawing.Point(1270, 80);
+            this.DoMatchBtn.Name = "DoMatchBtn";
+            this.DoMatchBtn.Size = new System.Drawing.Size(109, 36);
+            this.DoMatchBtn.TabIndex = 27;
+            this.DoMatchBtn.Text = "匹配";
+            this.DoMatchBtn.UseVisualStyleBackColor = false;
+            this.DoMatchBtn.Visible = false;
+            this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
+            // 
+            // 测试清屏ToolStripMenuItem
+            // 
+            this.测试清屏ToolStripMenuItem.Name = "测试清屏ToolStripMenuItem";
+            this.测试清屏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试清屏ToolStripMenuItem.Text = "测试清屏";
+            this.测试清屏ToolStripMenuItem.Click += new System.EventHandler(this.测试清屏ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -953,6 +1000,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1391, 656);
+            this.Controls.Add(this.DoMatchBtn);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.PtsInRegionTxt);
             this.Controls.Add(this.SureRegionBtn);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolStripContainer1);
@@ -1057,7 +1107,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem 测试图例ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 测试真值点导入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试MessageBoxToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -1080,7 +1129,11 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox zoomRatioTxt;
         private System.Windows.Forms.Button SureRegionBtn;
-       
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox PtsInRegionTxt;
+        private System.Windows.Forms.Button DoMatchBtn;
+        private System.Windows.Forms.ToolStripMenuItem 测试清屏ToolStripMenuItem;
+
     }
 }
 

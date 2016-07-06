@@ -202,17 +202,11 @@
     <Compile Include="FixedPtsMatch_Export.Designer.cs">
       <DependentUpon>FixedPtsMatch_Export.cs</DependentUpon>
     </Compile>
-    <Compile Include="testParams.cs">
+    <Compile Include="MCC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="testParams.Designer.cs">
-      <DependentUpon>testParams.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WaitingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WaitingForm.Designer.cs">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
+    <Compile Include="MCC.Designer.cs">
+      <DependentUpon>MCC.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -244,12 +238,6 @@
     <Compile Include="MatchingParams.Designer.cs">
       <DependentUpon>MatchingParams.cs</DependentUpon>
     </Compile>
-    <Compile Include="MCC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MCC.Designer.cs">
-      <DependentUpon>MCC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowSourceClustering.cs">
@@ -270,21 +258,18 @@
     <Compile Include="SureSourceFrm.Designer.cs">
       <DependentUpon>SureSourceFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WaitingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitingForm.Designer.cs">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutFrm.resx">
       <DependentUpon>AboutFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClusterParameters.resx">
       <DependentUpon>ClusterParameters.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FixedPtsMatch_Export.resx">
-      <DependentUpon>FixedPtsMatch_Export.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="testParams.resx">
-      <DependentUpon>testParams.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitingForm.resx">
-      <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -301,9 +286,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MatchingParams.resx">
       <DependentUpon>MatchingParams.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MCC.resx">
-      <DependentUpon>MCC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
