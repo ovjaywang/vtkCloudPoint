@@ -109,6 +109,7 @@
             this.tsButton_CLEANALL = new System.Windows.Forms.ToolStripButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.zoomRatioTxt = new System.Windows.Forms.TextBox();
+            this.SureRegionBtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -313,7 +314,7 @@
             // 
             this.测试ICpToolStripMenuItem.Name = "测试ICpToolStripMenuItem";
             this.测试ICpToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试ICpToolStripMenuItem.Text = "测试ICP";
+            this.测试ICpToolStripMenuItem.Text = "测试新ICP算法";
             this.测试ICpToolStripMenuItem.Click += new System.EventHandler(this.测试ICpToolStripMenuItem_Click);
             // 
             // 测试图例ToolStripMenuItem
@@ -514,10 +515,6 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.zoomRatioTxt);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox2);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.MoveStepTxt);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
@@ -553,7 +550,7 @@
             // 
             this.textBox2.BackColor = System.Drawing.Color.White;
             this.textBox2.Font = new System.Drawing.Font("宋体", 15F);
-            this.textBox2.Location = new System.Drawing.Point(764, 5);
+            this.textBox2.Location = new System.Drawing.Point(276, 80);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(134, 36);
@@ -564,7 +561,7 @@
             // MoveStepTxt
             // 
             this.MoveStepTxt.Font = new System.Drawing.Font("宋体", 15F);
-            this.MoveStepTxt.Location = new System.Drawing.Point(895, 5);
+            this.MoveStepTxt.Location = new System.Drawing.Point(407, 80);
             this.MoveStepTxt.Name = "MoveStepTxt";
             this.MoveStepTxt.Size = new System.Drawing.Size(134, 36);
             this.MoveStepTxt.TabIndex = 20;
@@ -920,7 +917,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.Font = new System.Drawing.Font("宋体", 15F);
-            this.textBox1.Location = new System.Drawing.Point(1026, 5);
+            this.textBox1.Location = new System.Drawing.Point(538, 80);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(134, 36);
@@ -931,20 +928,38 @@
             // zoomRatioTxt
             // 
             this.zoomRatioTxt.Font = new System.Drawing.Font("宋体", 15F);
-            this.zoomRatioTxt.Location = new System.Drawing.Point(1157, 5);
+            this.zoomRatioTxt.Location = new System.Drawing.Point(669, 80);
             this.zoomRatioTxt.Name = "zoomRatioTxt";
             this.zoomRatioTxt.Size = new System.Drawing.Size(134, 36);
             this.zoomRatioTxt.TabIndex = 22;
-            this.zoomRatioTxt.Text = "1.05";
+            this.zoomRatioTxt.Text = "1.01";
             this.zoomRatioTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // SureRegionBtn
+            // 
+            this.SureRegionBtn.BackColor = System.Drawing.Color.White;
+            this.SureRegionBtn.Font = new System.Drawing.Font("宋体", 15F);
+            this.SureRegionBtn.Location = new System.Drawing.Point(809, 80);
+            this.SureRegionBtn.Name = "SureRegionBtn";
+            this.SureRegionBtn.Size = new System.Drawing.Size(134, 36);
+            this.SureRegionBtn.TabIndex = 24;
+            this.SureRegionBtn.Text = "确认范围";
+            this.SureRegionBtn.UseVisualStyleBackColor = false;
+            this.SureRegionBtn.Click += new System.EventHandler(this.SureRegionBtn_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1391, 656);
+            this.Controls.Add(this.SureRegionBtn);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this.zoomRatioTxt);
             this.Controls.Add(this.statusStrip2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.MoveStepTxt);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1064,6 +1079,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试画双点ToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox zoomRatioTxt;
+        private System.Windows.Forms.Button SureRegionBtn;
        
     }
 }

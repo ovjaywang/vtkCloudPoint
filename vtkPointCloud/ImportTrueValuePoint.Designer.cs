@@ -78,7 +78,7 @@
             this.textBox1.Location = new System.Drawing.Point(29, 106);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(407, 36);
+            this.textBox1.Size = new System.Drawing.Size(364, 36);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "请选择真值点坐标方向";
             // 

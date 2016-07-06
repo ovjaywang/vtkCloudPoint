@@ -50,6 +50,7 @@ namespace vtkPointCloud
         List<List<Point3D>> classedrawData = new List<List<Point3D>>();//源文件匹配相关
         ArrayList pathList = new ArrayList();//路径列表
         public List<Point3D> centers = null;//聚类质心
+        public List<Point3D> trues = null;
         List<int> matchedID = new List<int>();//已匹配ID
         //多线程相关
         static int threadCount = 0;
@@ -2303,6 +2304,15 @@ namespace vtkPointCloud
                 label1.Text = "数据点";
                 label2.Text = "质心";
             }
+            else if (Visible == 6) {
+                this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\red_point.png");
+                this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\green_point.png");
+                this.pictureBox3.Image = Image.FromFile(Application.StartupPath + "\\white_rectangle.png");
+                label1.Text = "真值点";
+                label2.Text = "质心点";
+                label3.Text = "选择范围";
+                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 5, this.pictureBox3.Location.Y + 10);
+            }
             this.label1.Visible = true;//默认显示一组
             this.pictureBox1.Visible = true;
             if (Visible == 1 || Visible == 4 || Visible == 5)//显示两个
@@ -2318,6 +2328,12 @@ namespace vtkPointCloud
                 this.pictureBox2.Visible = true;
                 this.pictureBox3.Visible = true;
                 this.pictureBox4.Visible = true;
+            }
+            else if (Visible == 6) {
+                this.label2.Visible = true;
+                this.label3.Visible = true;
+                this.pictureBox2.Visible = true;
+                this.pictureBox3.Visible = true;
             }
         }
 
@@ -2877,12 +2893,9 @@ namespace vtkPointCloud
         }
         private void 测试ICpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             List<Point3D> sourceSet = new List<Point3D>();
             List<Point3D> dataSet = new List<Point3D>();
             Point3D point;
-
-            //treeDir.Nodes.Add(Path.GetFileName(file));
 
             FileMap fileMap = new FileMap();
             List<string> pointsList1 = null;
@@ -2900,11 +2913,7 @@ namespace vtkPointCloud
                 sourceSet.Add(point);
             }
             Console.WriteLine("\n真实值：" + sourceSet.Count);
-
-
-
             List<string> pointsList2 = null;
-
             pointsList2 = fileMap.ReadFile("C:\\Users\\Administrator\\Desktop\\Data\\实验数据\\聚类后质心XYZ.txt");
             line = pointsList2.Count;
             for (int i = 1; i < line; i++)
@@ -2925,14 +2934,11 @@ namespace vtkPointCloud
             icp.go_hell_ICP(sourceSet, dataSet, R, T, ee);
             Console.WriteLine(R.ToString());
             Console.WriteLine(T.ToString());
-
-
-
         }
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(2);
+            isShowLegend(6);
         }
 
         private void 测试真值点导入ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3093,6 +3099,7 @@ namespace vtkPointCloud
         {
             FileMap fileMap = new FileMap();
             centers = new List<Point3D>();
+            trues = new List<Point3D>();
             List<string> pointsList = fileMap.ReadFile("G:\\centers.txt");
             for (int i = 0; i < pointsList.Count; i++)
             {
@@ -3159,6 +3166,7 @@ namespace vtkPointCloud
                     }
                     //truePointPid[0] = truePointCloud.InsertNextPoint(pX, pY, pZ);
                     truePointPid[0] = truePointCloud.InsertNextPoint(pX, pY, 0);
+                    trues.Add(new Point3D(pX, pY, pZ));
                     truePointVertices.InsertNextCell(1, truePointPid);
                     //truePolyVertex.GetPointIds().SetId(i, i);
                 }
@@ -3333,6 +3341,7 @@ namespace vtkPointCloud
             tmpAngle[1] = trueScale[1];
             tmpAngle[2] = trueScale[2];
             tmpAngle[3] = trueScale[3];
+            this.
             showBounds(tmpAngle);
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)//取消方向键对控件的焦点的控件，用自己自定义的函数处理各个方向键的处理函数
@@ -3392,6 +3401,20 @@ namespace vtkPointCloud
                     return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void SureRegionBtn_Click(object sender, EventArgs e)
+        {
+            List<Point3D> InRegionTrues = new List<Point3D>();
+            foreach (Point3D p in trues)
+            {
+                if ((p.X <= tmpAngle[1]) && (p.X >= tmpAngle[0]) && (p.Y <= tmpAngle[3]) && (p.Y >= tmpAngle[2])) {
+                    InRegionTrues.Add(p);
+                }
+            }
+            Console.WriteLine("真值范围 ：" + trueScale[0] + "\t" + trueScale[1] + "\t" + trueScale[2] + "\t" + trueScale[3] + "\t");
+            Console.WriteLine("所选范围 ：" + tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+            Console.WriteLine("选中的真值有" + InRegionTrues.Count);
         }
     }
 }
