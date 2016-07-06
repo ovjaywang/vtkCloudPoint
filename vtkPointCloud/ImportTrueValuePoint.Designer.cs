@@ -57,7 +57,7 @@
             this.PathSeltxt.Location = new System.Drawing.Point(209, 25);
             this.PathSeltxt.Name = "PathSeltxt";
             this.PathSeltxt.ReadOnly = true;
-            this.PathSeltxt.Size = new System.Drawing.Size(587, 38);
+            this.PathSeltxt.Size = new System.Drawing.Size(519, 38);
             this.PathSeltxt.TabIndex = 1;
             this.PathSeltxt.Text = "未选择路径";
             // 
@@ -75,7 +75,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("宋体", 15F);
-            this.textBox1.Location = new System.Drawing.Point(29, 69);
+            this.textBox1.Location = new System.Drawing.Point(29, 106);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(364, 36);
@@ -89,8 +89,7 @@
             this.groupBox2.Controls.Add(this.zuo_rb1);
             this.groupBox2.Controls.Add(this.shang_rb1);
             this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Font = new System.Drawing.Font("宋体", 12F);
-            this.groupBox2.Location = new System.Drawing.Point(29, 125);
+            this.groupBox2.Location = new System.Drawing.Point(29, 163);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(337, 252);
             this.groupBox2.TabIndex = 13;
@@ -152,8 +151,7 @@
             this.groupBox3.Controls.Add(this.xia_rb2);
             this.groupBox3.Controls.Add(this.shang_rb2);
             this.groupBox3.Controls.Add(this.pictureBox2);
-            this.groupBox3.Font = new System.Drawing.Font("宋体", 12F);
-            this.groupBox3.Location = new System.Drawing.Point(438, 125);
+            this.groupBox3.Location = new System.Drawing.Point(391, 163);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(337, 252);
             this.groupBox3.TabIndex = 14;
@@ -211,30 +209,28 @@
             // Sure_button
             // 
             this.Sure_button.Font = new System.Drawing.Font("宋体", 15F);
-            this.Sure_button.Location = new System.Drawing.Point(508, 69);
+            this.Sure_button.Location = new System.Drawing.Point(209, 456);
             this.Sure_button.Name = "Sure_button";
             this.Sure_button.Size = new System.Drawing.Size(120, 42);
             this.Sure_button.TabIndex = 15;
             this.Sure_button.Text = "确认";
             this.Sure_button.UseVisualStyleBackColor = true;
-            this.Sure_button.Click += new System.EventHandler(this.Sure_button_Click);
             // 
             // Cancel_button
             // 
             this.Cancel_button.Font = new System.Drawing.Font("宋体", 15F);
-            this.Cancel_button.Location = new System.Drawing.Point(692, 69);
+            this.Cancel_button.Location = new System.Drawing.Point(457, 456);
             this.Cancel_button.Name = "Cancel_button";
             this.Cancel_button.Size = new System.Drawing.Size(104, 42);
             this.Cancel_button.TabIndex = 16;
             this.Cancel_button.Text = "取消";
             this.Cancel_button.UseVisualStyleBackColor = true;
-            this.Cancel_button.Click += new System.EventHandler(this.Cancel_button_Click);
             // 
             // ImportTrueValuePoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 414);
+            this.ClientSize = new System.Drawing.Size(749, 517);
             this.Controls.Add(this.Cancel_button);
             this.Controls.Add(this.Sure_button);
             this.Controls.Add(this.groupBox3);
