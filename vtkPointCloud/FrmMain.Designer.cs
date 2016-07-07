@@ -84,9 +84,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.SureAutoMatchBtn = new System.Windows.Forms.Button();
-            this.SureMatchBtn = new System.Windows.Forms.Button();
-            this.RecorrectMatch = new System.Windows.Forms.Button();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -109,6 +106,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
+            this.测试删除坐标ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -271,7 +269,8 @@
             this.测试画矩形ToolStripMenuItem,
             this.测试删除actorToolStripMenuItem,
             this.测试画双点ToolStripMenuItem,
-            this.测试清屏ToolStripMenuItem});
+            this.测试清屏ToolStripMenuItem,
+            this.测试删除坐标ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -522,7 +521,6 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox2);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.SureAutoMatchBtn);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip2);
@@ -639,39 +637,6 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Visible = false;
-            // 
-            // SureAutoMatchBtn
-            // 
-            this.SureAutoMatchBtn.Location = new System.Drawing.Point(1110, 3);
-            this.SureAutoMatchBtn.Name = "SureAutoMatchBtn";
-            this.SureAutoMatchBtn.Size = new System.Drawing.Size(185, 42);
-            this.SureAutoMatchBtn.TabIndex = 11;
-            this.SureAutoMatchBtn.Text = "确认自动匹配结果";
-            this.SureAutoMatchBtn.UseVisualStyleBackColor = true;
-            this.SureAutoMatchBtn.Visible = false;
-            this.SureAutoMatchBtn.Click += new System.EventHandler(this.SureAutoMatchBtn_Click);
-            // 
-            // SureMatchBtn
-            // 
-            this.SureMatchBtn.Location = new System.Drawing.Point(792, 210);
-            this.SureMatchBtn.Name = "SureMatchBtn";
-            this.SureMatchBtn.Size = new System.Drawing.Size(147, 45);
-            this.SureMatchBtn.TabIndex = 7;
-            this.SureMatchBtn.Text = "确认匹配结果";
-            this.SureMatchBtn.UseVisualStyleBackColor = true;
-            this.SureMatchBtn.Visible = false;
-            this.SureMatchBtn.Click += new System.EventHandler(this.SureMatchBtn_Click);
-            // 
-            // RecorrectMatch
-            // 
-            this.RecorrectMatch.Location = new System.Drawing.Point(631, 210);
-            this.RecorrectMatch.Name = "RecorrectMatch";
-            this.RecorrectMatch.Size = new System.Drawing.Size(134, 45);
-            this.RecorrectMatch.TabIndex = 8;
-            this.RecorrectMatch.Text = "重新输入";
-            this.RecorrectMatch.UseVisualStyleBackColor = true;
-            this.RecorrectMatch.Visible = false;
-            this.RecorrectMatch.Click += new System.EventHandler(this.RecorrectMatch_Click);
             // 
             // toolStrip4
             // 
@@ -939,6 +904,12 @@
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
+            // 测试删除坐标ToolStripMenuItem
+            // 
+            this.测试删除坐标ToolStripMenuItem.Name = "测试删除坐标ToolStripMenuItem";
+            this.测试删除坐标ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试删除坐标ToolStripMenuItem.Text = "测试删除坐标";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -954,8 +925,6 @@
             this.Controls.Add(this.zoomRatioTxt);
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.RecorrectMatch);
-            this.Controls.Add(this.SureMatchBtn);
             this.Controls.Add(this.MoveStepTxt);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
@@ -1027,9 +996,6 @@
         private System.Windows.Forms.ToolStripButton tsButton_ExportFixedPointAverageFile;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
-        private System.Windows.Forms.Button SureMatchBtn;
-        private System.Windows.Forms.Button RecorrectMatch;
-        private System.Windows.Forms.Button SureAutoMatchBtn;
         private System.Windows.Forms.ToolStripMenuItem ScanClustringToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
@@ -1076,6 +1042,7 @@
         private System.Windows.Forms.TextBox PtsInRegionTxt;
         private System.Windows.Forms.Button DoMatchBtn;
         private System.Windows.Forms.ToolStripMenuItem 测试清屏ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试删除坐标ToolStripMenuItem;
 
     }
 }

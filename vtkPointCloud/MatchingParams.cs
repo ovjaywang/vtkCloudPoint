@@ -13,6 +13,7 @@ namespace vtkPointCloud
     {
         MainForm mf;
         public double matchingParams;
+        bool isAmend = false;//判断是否通过阈值调整过
         public MatchingParams()
         {
             InitializeComponent();
@@ -40,13 +41,28 @@ namespace vtkPointCloud
                 MessageBox.Show("输入的不是整数，请重新输入");
                 return;
             }
-            mf.RecorrectMatchingPtsByDistance(this.matchingParams,this.IsShowUnmatchedPtsCheckBox.Checked);
+            if (!isAmend) {
+                isAmend = true;
+                mf.isShowLegend(0);
+                mf.isShowLegend(8);
+                this.IsShowUnmatchedCenterPtsCheckBox.Enabled = true;
+                this.IsShowUnmatchedTruePtsCheckBox.Enabled = true;
+                this.SureMatchingParams.Enabled = true;
+            }
+            mf.RecorrectMatchingPtsByDistance(this.matchingParams,
+                this.IsShowUnmatchedCenterPtsCheckBox.Checked,this.IsShowUnmatchedTruePtsCheckBox.Checked);
         }
 
         private void IsShowUnmatchedPtsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             mf = (MainForm)this.Owner;
-            mf.showMatchedLine(this.IsShowUnmatchedPtsCheckBox.Checked);
+            mf.showMatchedLine(this.IsShowUnmatchedCenterPtsCheckBox.Checked, this.IsShowUnmatchedTruePtsCheckBox.Checked);
+        }
+
+        private void IsShowUnmatchedTruePtsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            mf = (MainForm)this.Owner;
+            mf.showMatchedLine(this.IsShowUnmatchedCenterPtsCheckBox.Checked, this.IsShowUnmatchedTruePtsCheckBox.Checked);
         }
     }
 }

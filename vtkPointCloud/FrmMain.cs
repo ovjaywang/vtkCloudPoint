@@ -57,6 +57,7 @@ namespace vtkPointCloud
         private delegate void funHandle(int nValue);//声明计算聚类的线程
         public delegate void CallBackDelegate(string message);
         private static WaitingForm progressForm = new WaitingForm();
+
         private ProgressBar psbar = progressForm.progressBar1;
         private delegate void UpdateStatusDelegate();
         private BackgroundWorker bkWorker = new BackgroundWorker();
@@ -65,7 +66,7 @@ namespace vtkPointCloud
         private int percentValue = 0;
         //icp相关
         //vtkPoints truePoints;//用以顯示的真值點集
-        bool isSureRegion = false;//判斷是否確認
+        bool isSureRegion = true;//判斷是否確
         List<Point3D> InRegionTrues;//范围内均值
         vtkMatrix4x4 M;//刚性变换矩阵
         vtkPoints truePointCloud = new vtkPoints();//真值点云
@@ -74,7 +75,6 @@ namespace vtkPointCloud
         vtkCellArray truePointVertices = new vtkCellArray();//真值顶点
         vtkPolyVertex truePolyVertex = new vtkPolyVertex();
         vtkActor trueActor;//真值点actor
-        //vtkPoints visualizeTruePointCloud = null;//为了可视化加入的旁侧真值点
         int clock = 0;
         int clock_x = 1, clock_y = 1;//x y轴正负
         int[] vtpc_Pid = new int[1];
@@ -105,6 +105,9 @@ namespace vtkPointCloud
         double[] scale = new double[3];//比例尺 三个方向
         double[] trueScale = new double[6];//真值范围
         double[] centroidScale;//质心范围
+        vtkAxesActor axes = new vtkAxesActor();
+        vtkOrientationMarkerWidget widget = new vtkOrientationMarkerWidget();
+
         public MainForm()
         {
             InitializeComponent();
@@ -133,6 +136,8 @@ namespace vtkPointCloud
             {
                 vtkControl = new vtkFormsWindowControl();
             }
+            widget.SetOutlineColor(0.9300, 0.5700, 0.1300);
+            widget.SetOrientationMarker(axes);
 
             root = new TreeNode("Cloud　Point");
             treeView1.Nodes.Add(root);
@@ -234,100 +239,7 @@ namespace vtkPointCloud
                     setChildNodeCheckedState(tn, state);
                 }
         }
-        /// <summary>
-        /// 展示匹配结果
-        /// </summary>
-        /// <returns></returns>
-        public void showMatchResult() //显示匹配点
-        {
-            ren = new vtkRenderer();
-            vtkControl.GetRenderWindow().Clean();
-            if (centers.Count == 0) { return; }
-            vtkPoints MatchedPoint = new vtkPoints();
-            vtkCellArray vtMatched = new vtkCellArray();
-            int nPts = centers.Count;
-            int[] ids = new int[nPts];
-            int count = 0;
-            for (int i = 0; i < nPts; i++)
-            {
-                if (((Point3D)centers[i]).isMatched)
-                {
-                    ids[i] = MatchedPoint.InsertNextPoint(centers[i].X, centers[i].Y, centers[i].Z);
-                    count++;
-                }
-            }
-            vtMatched.InsertNextCell(count, ids);
-            vtkPolyData matchedPointPoly = new vtkPolyData();
-            matchedPointPoly.SetPoints(MatchedPoint);
-            matchedPointPoly.SetVerts(vtMatched);
-
-            vtkPolyDataMapper mapper1 = new vtkPolyDataMapper();
-            mapper1.SetInput(matchedPointPoly);
-
-            vtkActor actorMatched = new vtkActor();
-            actorMatched.SetMapper(mapper1);
-            actorMatched.GetProperty().SetColor(1.0, 0, 0);
-            actorMatched.GetProperty().SetPointSize(3);
-            ren.AddActor(actorMatched);
-
-            count = 0;
-            vtkPoints UnMatchedPoint = new vtkPoints();
-            vtkCellArray vtUnMatched = new vtkCellArray();
-            ids = new int[nPts];
-            for (int i = 0; i < nPts; i++)
-            {
-                if (!((Point3D)centers[i]).isMatched)
-                {
-                    ids[i] = UnMatchedPoint.InsertNextPoint(((Point3D)centers[i]).X, ((Point3D)centers[i]).Y, ((Point3D)centers[i]).Z);
-                    count++;
-                }
-            }
-            vtUnMatched.InsertNextCell(count, ids);
-            vtkPolyData unMatchedPointPoly = new vtkPolyData();
-            unMatchedPointPoly.SetPoints(UnMatchedPoint);
-            unMatchedPointPoly.SetVerts(vtUnMatched);
-
-
-            vtkPolyDataMapper mapper2 = new vtkPolyDataMapper();
-            mapper2.SetInput(unMatchedPointPoly);
-
-            vtkActor actorUnMatched = new vtkActor();
-            actorUnMatched.SetMapper(mapper2);
-            actorUnMatched.GetProperty().SetColor(0, 1.0, 0);
-            actorUnMatched.GetProperty().SetPointSize(3);
-            ren.AddActor(actorUnMatched);
-
-            //count = 0;
-            //vtkPoints locPoints = new vtkPoints();
-            vtkCellArray vtLoc = new vtkCellArray();
-            //nPts = trueLoc.Count;
-            //ids = new int[nPts];
-            //for (int i = 0; i < nPts; i++)
-            //{
-            //    ids[i] = locPoints.InsertNextPoint(trueLoc[i].X,trueLoc[i].Y,trueLoc[i].Z);
-            //        count++;
-            //}
-            vtLoc.InsertNextCell(truePointCloud.GetReferenceCount(), ids);
-            vtkPolyData locPointPoly = new vtkPolyData();
-            locPointPoly.SetPoints(truePointCloud);
-            locPointPoly.SetVerts(vtLoc);
-
-
-            vtkPolyDataMapper mapper3 = new vtkPolyDataMapper();
-            mapper3.SetInput(locPointPoly);
-
-            vtkActor actorLoc = new vtkActor();
-            actorLoc.SetMapper(mapper3);
-            actorLoc.GetProperty().SetColor(0, 0, 1.0);
-            actorLoc.GetProperty().SetPointSize(3);
-            ren.AddActor(actorLoc);
-
-
-            vtkControl.GetRenderWindow().AddRenderer(ren);
-            vtkControl.Refresh();
-
-        }
-        public  void showMatchedLine(bool isShowUnmatched)//画匹配线
+        public  void showMatchedLine(bool isShowUnmatchedCenterPts,bool isShowUnmatchedTruePts)//画匹配线
         {
             ren = new vtkRenderer();
             vtkControl.GetRenderWindow().Clean();
@@ -345,7 +257,7 @@ namespace vtkPointCloud
             int[] match_Pid = new int[1];
             for (int i = 0; i < centers.Count; i++)//质心点
             {
-                if (centers[i].isMatched)
+                if (centers[i].isMatched)//若质心被匹配
                 {
                     match_Pid[0] = matchPoints.InsertNextPoint(centers[i].matched_X, centers[i].matched_Y, centers[i].matched_Z);
                     matchCellArry.InsertNextCell(1, match_Pid);
@@ -353,19 +265,21 @@ namespace vtkPointCloud
                     match_Pid[0] = matchPoints.InsertNextPoint(truePointCloud.GetPoint(centers[i].matchNum));
                     matchCellArry.InsertNextCell(1, match_Pid);
                 }
-                else if (isShowUnmatched)
+                else if (isShowUnmatchedCenterPts)//若质心未被匹配
                 {
                     match_Pid[0] = unMatchPointCloud.InsertNextPoint(centers[i].matched_X, centers[i].matched_Y, centers[i].matched_Z);
                     unMatchCellArry.InsertNextCell(1, match_Pid);
 
                 }
             }
-            for (int i = 0; i < truePointCloud.GetNumberOfPoints(); i++)//真值点
-            {
-                if (!(matchedID.Contains(i)))
+            if (isShowUnmatchedTruePts) {
+                for (int i = 0; i < truePointCloud.GetNumberOfPoints(); i++)//真值点
                 {
-                    match_Pid[0] = unMatchTruePointCloud.InsertNextPoint(truePointCloud.GetPoint(i));
-                    unMatchTrueCellArry.InsertNextCell(1, match_Pid);
+                    if (!(matchedID.Contains(i)))//若真值ID不在列表里
+                    {
+                        match_Pid[0] = unMatchTruePointCloud.InsertNextPoint(truePointCloud.GetPoint(i));
+                        unMatchTrueCellArry.InsertNextCell(1, match_Pid);
+                    }
                 }
             }
             matchPolydata.SetPoints(matchPoints); //把点导入的polydata中去
@@ -389,13 +303,13 @@ namespace vtkPointCloud
             vtkActor unMatchTrueActor = new vtkActor();
 
             matchActor.SetMapper(MatchDataMapper);
-            matchActor.GetProperty().SetColor(1, 0, 0);
+            matchActor.GetProperty().SetColor(1, 0, 0);//红色
             matchActor.GetProperty().SetPointSize(5);
             unMatchActor.SetMapper(unMatchMapper);
-            unMatchActor.GetProperty().SetColor(0, 1, 0);
+            unMatchActor.GetProperty().SetColor(0, 1, 0);//绿色
             unMatchActor.GetProperty().SetPointSize(5);
             unMatchTrueActor.SetMapper(unMatchTrueMapper);
-            unMatchTrueActor.GetProperty().SetColor(0, 0, 1);
+            unMatchTrueActor.GetProperty().SetColor(0, 0, 1);//蓝色
             unMatchTrueActor.GetProperty().SetPointSize(5);
 
             ren.AddActor(matchActor);
@@ -421,6 +335,7 @@ namespace vtkPointCloud
                 }
             }
             vtkControl.GetRenderWindow().AddRenderer(ren);
+            showAxes();
             vtkControl.Refresh();
         }
         //显示文本数据点云
@@ -578,8 +493,24 @@ namespace vtkPointCloud
                 actor_3.GetProperty().SetColor(0, 1, 0);//绿色
                 ren.AddActor(actor_3);
             }
+
             vtkControl.GetRenderWindow().AddRenderer(ren);
-            vtkControl.Refresh();
+
+
+            if (type == 1 || type ==6 || type ==7 ) {
+                showAxes();
+            }
+            //vtkRenderWindowInteractor interactor = new vtkRenderWindowInteractor();
+            //interactor.SetRenderWindow(vtkControl.GetRenderWindow());
+
+            //widget.SetViewport(0, 0, 0.4, 0.4);
+            //widget.SetInteractor(interactor);
+            //widget.SetEnabled(1);
+            //widget.InteractiveOn();
+            //ren.ResetCamera();
+            //vtkControl.GetRenderWindow().Render();
+            //interactor.Start();
+            //vtkControl.Refresh();
             switch (type)
             {
                 case 1:
@@ -665,10 +596,24 @@ namespace vtkPointCloud
                     }
                 }
                 ren.AddActor(actor);
-
             }
             vtkControl.GetRenderWindow().AddRenderer(ren);
+            if (type == 1) {
+                showAxes();
+            }
             vtkControl.Refresh();
+        }
+        private void showAxes() {
+            vtkRenderWindowInteractor interactor = new vtkRenderWindowInteractor();
+            interactor.SetRenderWindow(vtkControl.GetRenderWindow());
+            vtkInteractorStyleTrackballCamera sty = new vtkInteractorStyleTrackballCamera();
+            interactor.SetInteractorStyle(sty);
+            widget.SetViewport(0, 0, 0.4, 0.4);
+            widget.SetInteractor(interactor);
+            widget.SetEnabled(1);
+            widget.InteractiveOn();
+            ren.ResetCamera();
+            vtkControl.GetRenderWindow().Render();
         }
         //计算聚类点质心（均值）
 
@@ -685,11 +630,16 @@ namespace vtkPointCloud
             double dz = p1[2] - p2.matched_Z;
             return Math.Sqrt(dx * dx + dy * dy + dz * dz);
         }
+        public double getDis(Point3D p1,Point3D p2){
+            double dx = p1.tmp_X - p2.matched_X;
+            double dy = p1.matched_Y - p2.matched_Y;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
         void ICP()
         {
             //ren.RemoveAllViewProps();
-            vtkControl.GetRenderWindow().Clean();
-            //vtkControl.Refresh();
+            //vtkControl.GetRenderWindow().Clean();
+            ren = new vtkRenderer();
             vtkPolyData SourcePolydata = Tools.ArrayList2PolyData(1, this.centers, this.trueScale, this.centroidScale,
                 this.scale, this.clock, this.clock_y, this.clock_x);//对center处理
             vtkPolyData TargetPolydata = new vtkPolyData(); ;//对真值处理
@@ -742,16 +692,16 @@ namespace vtkPointCloud
             solutionActor.GetProperty().SetColor(0, 0, 1);
             solutionActor.GetProperty().SetPointSize(3);
             //vtkControl.GetRenderWindow().RemoveRenderer(ren);
-            ren = new vtkRenderer();
+
             
             ren.AddActor(targetActor);
             ren.AddActor(solutionActor);
-            ren.SetBackground(0.3, 0.6, 0.3);
+            //ren.SetBackground(0.3, 0.6, 0.3);
             // Render and interact
 
             vtkControl.GetRenderWindow().AddRenderer(ren);
-            ren.Render();
-            vtkControl.Refresh();
+            //ren.Render();
+            //vtkControl.Refresh();
               
 
             SourcePolydata.FastDelete();
@@ -1057,6 +1007,7 @@ namespace vtkPointCloud
             }
             Console.WriteLine("\n\r总分块数：" + cells.Length + ",共 " + rows + " 行 " + cols + " 列.");
             bkWorker3.RunWorkerAsync();
+            progressForm = new WaitingForm();
             progressForm.progressBar1.Maximum = cells.Length;
             progressForm.Show();
         }
@@ -1068,6 +1019,7 @@ namespace vtkPointCloud
         }
         private void UpdateStatus()
         {
+            showAxes();
             vtkControl.Refresh();
             vtkControl.GetRenderWindow().Render();
             vtkControl.GetRenderWindow().Start();
@@ -1080,9 +1032,10 @@ namespace vtkPointCloud
         {
             progressForm.Close();
             MessageBox.Show("处理完毕,效果如图");
+            isShowLegend(7);
             calMatchedCoords();
             MatchingParams mp = new MatchingParams();
-            mp.Left = 0;
+            mp.Left = 20;
             mp.Top = 150;
             mp.Show(this);
         }
@@ -1471,9 +1424,12 @@ namespace vtkPointCloud
                                         (-2) * (rawData[i].motor_x - x_angle) / 180 * Math.PI + "\t" +//需求要求导出仰角 方位角和距离
                                          2 * (rawData[i].motor_y - y_angle) / 180 * Math.PI + "\t" +
                                          rawData[i].Distance + "\t" +
-                                    truePointCloud.GetPoint(centers[j].matchNum)[0] + "\t" +
-                                    truePointCloud.GetPoint(centers[j].matchNum)[1] + "\t" +
-                                     truePointCloud.GetPoint(centers[j].matchNum)[2]);
+                                         InRegionTrues[centers[j].matchNum].X + "\t" +
+                                         InRegionTrues[centers[j].matchNum].Y + "\t" +
+                                         InRegionTrues[centers[j].matchNum].Z );
+                                    //truePointCloud.GetPoint(centers[j].matchNum)[0] + "\t" +
+                                    //truePointCloud.GetPoint(centers[j].matchNum)[1] + "\t" +
+                                    // truePointCloud.GetPoint(centers[j].matchNum)[2]);
                                 }
                             }
                         }
@@ -2059,124 +2015,13 @@ namespace vtkPointCloud
                 ShowPointsFromFile(rawData, 1);
             }
         }
-
-
-
-
-
-        //////工具栏右侧隐藏按钮事件
-        /// <summary>
-        /// 确认自动匹配效果单击事件
-        /// </summary>
-        private void SureAutoMatchBtn_Click(object sender, EventArgs e)
-        {
-            matchedID.Clear();
-            MatchingParams mp = new MatchingParams();
-            DialogResult rs = mp.ShowDialog();
-            double mpthrehold = 0.0;
-            if (rs == DialogResult.OK)
-            {
-                mpthrehold = mp.matchingParams;
-                int countMatched = 0;
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    int matchedId = 0;
-                    //这里改正了centers的真值  因为不需要输出 修改为通过矩阵变换和真值接近的点
-                    centers[j].matched_X = centers[j].tmp_X * M.GetElement(0, 0)
-                        + centers[j].tmp_Y * M.GetElement(0, 1)
-                        + centers[j].tmp_Z * M.GetElement(0, 2) + M.GetElement(0, 3);
-                    centers[j].matched_Y = centers[j].tmp_X * M.GetElement(1, 0)
-                        + centers[j].tmp_Y * M.GetElement(1, 1)
-                        + centers[j].tmp_Z * M.GetElement(1, 2) + M.GetElement(1, 3);
-                    centers[j].matched_Z = centers[j].tmp_X * M.GetElement(2, 0)
-                        + centers[j].tmp_Y * M.GetElement(2, 1)
-                        + centers[j].tmp_Z * M.GetElement(2, 2) + M.GetElement(2, 3);
-                    centers[j].isMatched = false;
-                    double center2True = getDisP(truePointCloud.GetPoint(0), centers[j]);//设一个距离初值
-                    for (int i = 0; i < truePointCloud.GetNumberOfPoints(); i++)
-                    {
-                        double ddd = getDisP(truePointCloud.GetPoint(i), centers[j]);
-                        if (ddd < center2True)
-                        {
-                            center2True = ddd;
-                            matchedId = i;
-                        }
-                    }
-                    if (center2True < mpthrehold)
-                    {
-
-                        ((Point3D)centers[j]).isMatched = true;
-                        ((Point3D)centers[j]).matchNum = matchedId;
-                        matchedID.Add(matchedId);
-                        countMatched++;
-                    }
-                }
-                MessageBox.Show("总共" + centers.Count + "个聚类质心，总共" + truePointCloud.GetNumberOfPoints() + "个真值点，匹配" + countMatched + "个点", "提示");
-                showMatchedLine(true);
-                this.SureAutoMatchBtn.Visible = false;
-                this.SureMatchBtn.Visible = true;
-                this.RecorrectMatch.Visible = true;
-            }
-            else if (rs == DialogResult.Cancel)
-            {
-                return;
-            }
-            //this.ExportMatchToolStripMenuItem.Enabled = true;
-            this.SureMatchBtn.Enabled = true;
-            this.RecorrectMatch.Enabled = true;
-        }
-        /// <summary>
-        ///确认匹配结果单击事件
-        /// </summary>
-        private void SureMatchBtn_Click(object sender, EventArgs e)
-        {
-            exportMatchingFile();
-        }
-        /// <summary>
-        ///重新修正匹配阈值单击事件
-        /// </summary>
-        private void RecorrectMatch_Click(object sender, EventArgs e)
-        {
-            matchedID.Clear();
-            MatchingParams mp = new MatchingParams();
-            DialogResult rs = mp.ShowDialog();
-            double mpthrehold = 0.0;
-            if (rs == DialogResult.OK)
-            {
-                mpthrehold = mp.matchingParams;
-                int countMatched = 0;
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    int matchedId = 0;
-                    centers[j].isMatched = false;
-                    double center2True = getDisP(truePointCloud.GetPoint(0), centers[j]);//设一个距离初值
-                    for (int i = 0; i < truePointCloud.GetNumberOfPoints(); i++)
-                    {
-                        double ddd = getDisP(truePointCloud.GetPoint(i), centers[j]);
-                        if (ddd < center2True)
-                        {
-                            center2True = ddd;
-                            matchedId = i;
-                        }
-                    }
-                    if (center2True < mpthrehold)
-                    {
-
-                        ((Point3D)centers[j]).isMatched = true;
-                        ((Point3D)centers[j]).matchNum = matchedId;
-                        matchedID.Add(matchedId);
-                        countMatched++;
-                    }
-                }
-                MessageBox.Show("总共" + centers.Count + "个聚类质心，总共" + truePointCloud.GetNumberOfPoints() + "个真值点，匹配" + countMatched + "个点", "提示");
-                showMatchedLine(true);
-            }
-        }
-
         /// <summary>
         /// 设置图例是否可见
         /// </summary>
         /// <param name="Visible">0.全部不可见 1.Distan过滤标注</param>
+        /// <param name="Visible">2.分块聚类后野点核心点+外接圆 3.白色外接圆</param>
+        /// <param name="Visible">4.黄白显示不同半径外接圆 5.固定点及其质心</param>
+        /// <param name="Visible">6.左右对比质心和真值 7.匹配后显示真值和质心</param>
         public void isShowLegend(int Visible)//是否显示图例
         {
             if (Visible == 0)
@@ -2246,9 +2091,28 @@ namespace vtkPointCloud
                 label3.Text = "选择范围";
                 label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 5, this.pictureBox3.Location.Y + 10);
             }
+            else if (Visible == 7) {
+                this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\blue_point.png");
+                this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\green_point.png");
+                label1.Text = "质心点";
+                label2.Text = "真值点";
+            }
+            else if (Visible == 8)
+            {
+                this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\red_point.png");
+                this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\green_point.png");
+                this.pictureBox3.Image = Image.FromFile(Application.StartupPath + "\\blue_point.png");
+                label1.Text = "已配对真值点质心点";
+                label2.Text = "未配对质心点";
+                label3.Text = "未配对真值点";
+                pictureBox2.Location = new Point(this.label1.Location.X + this.label1.Width -10, this.pictureBox1.Location.Y);
+                label2.Location = new Point(this.pictureBox2.Location.X + this.pictureBox2.Width -30, this.pictureBox3.Location.Y + 10);
+                pictureBox3.Location = new Point(this.label2.Location.X + this.label2.Width -10, this.pictureBox2.Location.Y);
+                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox3.Width - 30, this.pictureBox3.Location.Y + 10);
+            }
             this.label1.Visible = true;//默认显示一组
             this.pictureBox1.Visible = true;
-            if (Visible == 1 || Visible == 4 || Visible == 5)//显示两个
+            if (Visible == 1 || Visible == 4 || Visible == 5 || Visible ==7)//显示两个
             {
                 this.label2.Visible = true;
                 this.pictureBox2.Visible = true;
@@ -2262,7 +2126,7 @@ namespace vtkPointCloud
                 this.pictureBox3.Visible = true;
                 this.pictureBox4.Visible = true;
             }
-            else if (Visible == 6)
+            else if (Visible == 6 || Visible == 8)
             {
                 this.label2.Visible = true;
                 this.label3.Visible = true;
@@ -2270,6 +2134,12 @@ namespace vtkPointCloud
                 this.pictureBox3.Visible = true;
             }
         }
+        /// <summary>
+        /// 导入真值点文件
+        /// </summary>
+        /// <param name="TruePath"></param>
+        /// <param name="x_d"></param>
+        /// <param name="y_d"></param>
         private void ImportTruePoint(String TruePath, int x_d, int y_d)
         {
             FileMap fileMap = new FileMap();
@@ -2334,7 +2204,18 @@ namespace vtkPointCloud
                 //truePolyVertex.GetPointIds().SetId(i, i);
             }
         }
-
+        private void DrawTruesAndCenters()
+        {
+            isSureRegion = false;
+            showTruesAndCenters();//显示初步的真值点和质心点
+            tmpAngle[0] = trueScale[0] - (trueScale[1] - trueScale[0]) / 20;//确定真值点初步四角
+            tmpAngle[1] = trueScale[1] + (trueScale[1] - trueScale[0]) / 20;
+            tmpAngle[2] = trueScale[2] - (trueScale[3] - trueScale[2]) / 20;
+            tmpAngle[3] = trueScale[3] + (trueScale[3] - trueScale[2]) / 20;
+            this.MoveStepTxt.Text = (int)((trueScale[1] - trueScale[0]) / 15) + "";
+            showPtsInRegion();//显示范围内的点数
+            showBounds(tmpAngle);//显示真值点初步边界
+        }
         //////菜单栏项目单击事件
 
         /// <summary>
@@ -2494,11 +2375,25 @@ namespace vtkPointCloud
         /// </summary>
         private void iCPToolStripMenuItem_Click(object sender, EventArgs e)//导入真值文件与质心匹配
         {
-            matchingPointCloud(1);
-            //testMatchingPointCloud(1);
+            Console.WriteLine("\ncenters的数量 ：" + centers.Count);
 
-            //this.SureAutoMatchBtn.Visible = true;
-
+            ImportTrueValuePoint trvp = new ImportTrueValuePoint();
+            DialogResult rs = trvp.ShowDialog();
+            if (rs == DialogResult.OK)
+            {
+                ImportTruePoint(trvp.selPath, trvp.xdir, trvp.ydir);
+                Console.WriteLine("trues的数量：" + trues.Count);
+                this.textBox1.Visible = true;
+                this.textBox2.Visible = true;
+                this.textBox3.Visible = true;
+                this.MoveStepTxt.Visible = true;
+                this.zoomRatioTxt.Visible = true;
+                this.PtsInRegionTxt.Visible = true;
+                this.SureRegionBtn.Visible = true;
+                this.DoMatchBtn.Visible = true;
+                isShowLegend(6);
+                DrawTruesAndCenters();
+            }
         }
         /// <summary>
         /// 导入固定点txt文件夹-菜单单击事件
@@ -2859,8 +2754,6 @@ namespace vtkPointCloud
             this.SourceClusteringToolStripMenuItem.Enabled = true;
         }
 
-
-
         private void 测试矩阵ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Matrix m = new Matrix(2, 2);
@@ -2932,7 +2825,7 @@ namespace vtkPointCloud
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(6);
+            isShowLegend(7);
         }
         public delegate void MessageBoxHand();
         private void 测试MessageBoxToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3294,21 +3187,15 @@ namespace vtkPointCloud
             ren.AddActor(centerActor);
 
             vtkControl.GetRenderWindow().AddRenderer(ren);//将渲染加入控制controler 否则界面不会自动刷新
+            showAxes();
             vtkControl.Refresh();
         }
 
         private void 测试画双点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isSureRegion = false;
-            showTruesAndCenters();//显示初步的真值点和质心点
-            tmpAngle[0] = trueScale[0] - (trueScale[1] - trueScale[0]) / 20;//确定真值点初步四角
-            tmpAngle[1] = trueScale[1] + (trueScale[1] - trueScale[0]) / 20;
-            tmpAngle[2] = trueScale[2] - (trueScale[3] - trueScale[2]) / 20;
-            tmpAngle[3] = trueScale[3] + (trueScale[3] - trueScale[2]) / 20;
-            this.MoveStepTxt.Text = (int)((trueScale[1] - trueScale[0]) / 15) + "";
-            showPtsInRegion();//显示范围内的点数
-            showBounds(tmpAngle);//显示真值点初步边界
+            DrawTruesAndCenters();
         }
+
         /// <summary>
         /// 重写覆盖原始的按键绑定时间 通过上下左右 pageup pagedown来指导缩放和移动
         /// </summary>
@@ -3317,7 +3204,7 @@ namespace vtkPointCloud
         /// <returns></returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)//取消方向键对控件的焦点的控件，用自己自定义的函数处理各个方向键的处理函数
         {
-            if (isSureRegion) return true;
+            if (isSureRegion) return base.ProcessCmdKey(ref msg, keyData);
             double zoom = 0, ste = 0;
             if ((keyData == Keys.Up) || (keyData == Keys.Down)
                 || (keyData == Keys.Left) || (keyData == Keys.Right)
@@ -3490,16 +3377,20 @@ namespace vtkPointCloud
                 centers[j].isMatched = false; 
             }
         }
-        public void RecorrectMatchingPtsByDistance(double matchDistance,bool isShowUnmatchedPts) {
+        public void RecorrectMatchingPtsByDistance(double matchDistance,
+                bool isShowUnmatchedCenterPts,bool isShowUnmatchedTruePts) {
             int countMatched = 0;
+            matchedID = new List<int>();
+            double center2True = 0.0;
+            double ddd = 0.0;
             for (int j = 0; j < centers.Count; j++)
             {
                 int matchedId = 0;
                 centers[j].isMatched = false;
-                double center2True = getDisP(truePointCloud.GetPoint(0), centers[j]);//设一个距离初值
+                center2True = getDisP(truePointCloud.GetPoint(0), centers[j]);//设一个距离初值
                 for (int i = 0; i < truePointCloud.GetNumberOfPoints(); i++)
                 {
-                    double ddd = getDisP(truePointCloud.GetPoint(i), centers[j]);//找最小值
+                    ddd = getDisP(truePointCloud.GetPoint(i), centers[j]);//找最小值
                     if (ddd < center2True)
                     {
                         center2True = ddd;
@@ -3508,14 +3399,14 @@ namespace vtkPointCloud
                 }
                 if (center2True < matchDistance)
                 {
-                    ((Point3D)centers[j]).isMatched = true;
-                    ((Point3D)centers[j]).matchNum = matchedId;
+                    centers[j].isMatched = true;
+                    centers[j].matchNum = matchedId;//这个ID是truepointcloud的下标
                     matchedID.Add(matchedId);
                     countMatched++;
                 }
             }
-            MessageBox.Show("总共" + centers.Count + "个聚类质心，总共" + truePointCloud.GetNumberOfPoints() + "个真值点，匹配" + countMatched + "个点", "提示");
-            showMatchedLine(isShowUnmatchedPts);
+            this.toolStripStatusLabelCurrentPointCount.Text = "总共" + centers.Count + "个聚类质心，总共" + truePointCloud.GetNumberOfPoints() + "个真值点，匹配" + countMatched + "个点";
+            showMatchedLine(isShowUnmatchedCenterPts,isShowUnmatchedTruePts);
         }
 
 

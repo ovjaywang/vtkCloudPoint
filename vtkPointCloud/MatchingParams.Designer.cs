@@ -34,7 +34,8 @@
             this.CancleMatchingParams = new System.Windows.Forms.Button();
             this.AdjustMatchDistance = new System.Windows.Forms.Button();
             this.ExportMatchedPtsCheckBox = new System.Windows.Forms.CheckBox();
-            this.IsShowUnmatchedPtsCheckBox = new System.Windows.Forms.CheckBox();
+            this.IsShowUnmatchedCenterPtsCheckBox = new System.Windows.Forms.CheckBox();
+            this.IsShowUnmatchedTruePtsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -60,8 +61,9 @@
             // 
             // SureMatchingParams
             // 
+            this.SureMatchingParams.Enabled = false;
             this.SureMatchingParams.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SureMatchingParams.Location = new System.Drawing.Point(12, 272);
+            this.SureMatchingParams.Location = new System.Drawing.Point(12, 314);
             this.SureMatchingParams.Name = "SureMatchingParams";
             this.SureMatchingParams.Size = new System.Drawing.Size(124, 48);
             this.SureMatchingParams.TabIndex = 2;
@@ -72,7 +74,7 @@
             // CancleMatchingParams
             // 
             this.CancleMatchingParams.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CancleMatchingParams.Location = new System.Drawing.Point(154, 272);
+            this.CancleMatchingParams.Location = new System.Drawing.Point(154, 314);
             this.CancleMatchingParams.Name = "CancleMatchingParams";
             this.CancleMatchingParams.Size = new System.Drawing.Size(121, 48);
             this.CancleMatchingParams.TabIndex = 3;
@@ -97,33 +99,50 @@
             this.ExportMatchedPtsCheckBox.Checked = true;
             this.ExportMatchedPtsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ExportMatchedPtsCheckBox.Font = new System.Drawing.Font("宋体", 16.2F);
-            this.ExportMatchedPtsCheckBox.Location = new System.Drawing.Point(12, 223);
+            this.ExportMatchedPtsCheckBox.Location = new System.Drawing.Point(32, 259);
             this.ExportMatchedPtsCheckBox.Name = "ExportMatchedPtsCheckBox";
             this.ExportMatchedPtsCheckBox.Size = new System.Drawing.Size(202, 32);
             this.ExportMatchedPtsCheckBox.TabIndex = 5;
             this.ExportMatchedPtsCheckBox.Text = "输出匹配文件";
             this.ExportMatchedPtsCheckBox.UseVisualStyleBackColor = true;
             // 
-            // IsShowUnmatchedPtsCheckBox
+            // IsShowUnmatchedCenterPtsCheckBox
             // 
-            this.IsShowUnmatchedPtsCheckBox.AutoSize = true;
-            this.IsShowUnmatchedPtsCheckBox.Checked = true;
-            this.IsShowUnmatchedPtsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.IsShowUnmatchedPtsCheckBox.Font = new System.Drawing.Font("宋体", 16.2F);
-            this.IsShowUnmatchedPtsCheckBox.Location = new System.Drawing.Point(12, 161);
-            this.IsShowUnmatchedPtsCheckBox.Name = "IsShowUnmatchedPtsCheckBox";
-            this.IsShowUnmatchedPtsCheckBox.Size = new System.Drawing.Size(202, 32);
-            this.IsShowUnmatchedPtsCheckBox.TabIndex = 6;
-            this.IsShowUnmatchedPtsCheckBox.Text = "显示未匹配点";
-            this.IsShowUnmatchedPtsCheckBox.UseVisualStyleBackColor = true;
-            this.IsShowUnmatchedPtsCheckBox.CheckedChanged += new System.EventHandler(this.IsShowUnmatchedPtsCheckBox_CheckedChanged);
+            this.IsShowUnmatchedCenterPtsCheckBox.AutoSize = true;
+            this.IsShowUnmatchedCenterPtsCheckBox.Checked = true;
+            this.IsShowUnmatchedCenterPtsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.IsShowUnmatchedCenterPtsCheckBox.Enabled = false;
+            this.IsShowUnmatchedCenterPtsCheckBox.Font = new System.Drawing.Font("宋体", 16.2F);
+            this.IsShowUnmatchedCenterPtsCheckBox.Location = new System.Drawing.Point(32, 161);
+            this.IsShowUnmatchedCenterPtsCheckBox.Name = "IsShowUnmatchedCenterPtsCheckBox";
+            this.IsShowUnmatchedCenterPtsCheckBox.Size = new System.Drawing.Size(258, 32);
+            this.IsShowUnmatchedCenterPtsCheckBox.TabIndex = 6;
+            this.IsShowUnmatchedCenterPtsCheckBox.Text = "显示未匹配质心点";
+            this.IsShowUnmatchedCenterPtsCheckBox.UseVisualStyleBackColor = true;
+            this.IsShowUnmatchedCenterPtsCheckBox.CheckedChanged += new System.EventHandler(this.IsShowUnmatchedPtsCheckBox_CheckedChanged);
+            // 
+            // IsShowUnmatchedTruePtsCheckBox
+            // 
+            this.IsShowUnmatchedTruePtsCheckBox.AutoSize = true;
+            this.IsShowUnmatchedTruePtsCheckBox.Checked = true;
+            this.IsShowUnmatchedTruePtsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.IsShowUnmatchedTruePtsCheckBox.Enabled = false;
+            this.IsShowUnmatchedTruePtsCheckBox.Font = new System.Drawing.Font("宋体", 16.2F);
+            this.IsShowUnmatchedTruePtsCheckBox.Location = new System.Drawing.Point(32, 210);
+            this.IsShowUnmatchedTruePtsCheckBox.Name = "IsShowUnmatchedTruePtsCheckBox";
+            this.IsShowUnmatchedTruePtsCheckBox.Size = new System.Drawing.Size(258, 32);
+            this.IsShowUnmatchedTruePtsCheckBox.TabIndex = 7;
+            this.IsShowUnmatchedTruePtsCheckBox.Text = "显示未匹配真值点";
+            this.IsShowUnmatchedTruePtsCheckBox.UseVisualStyleBackColor = true;
+            this.IsShowUnmatchedTruePtsCheckBox.CheckedChanged += new System.EventHandler(this.IsShowUnmatchedTruePtsCheckBox_CheckedChanged);
             // 
             // MatchingParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 357);
-            this.Controls.Add(this.IsShowUnmatchedPtsCheckBox);
+            this.ClientSize = new System.Drawing.Size(304, 407);
+            this.Controls.Add(this.IsShowUnmatchedTruePtsCheckBox);
+            this.Controls.Add(this.IsShowUnmatchedCenterPtsCheckBox);
             this.Controls.Add(this.ExportMatchedPtsCheckBox);
             this.Controls.Add(this.AdjustMatchDistance);
             this.Controls.Add(this.CancleMatchingParams);
@@ -147,6 +166,7 @@
         private System.Windows.Forms.Button CancleMatchingParams;
         private System.Windows.Forms.Button AdjustMatchDistance;
         private System.Windows.Forms.CheckBox ExportMatchedPtsCheckBox;
-        private System.Windows.Forms.CheckBox IsShowUnmatchedPtsCheckBox;
+        private System.Windows.Forms.CheckBox IsShowUnmatchedCenterPtsCheckBox;
+        private System.Windows.Forms.CheckBox IsShowUnmatchedTruePtsCheckBox;
     }
 }
