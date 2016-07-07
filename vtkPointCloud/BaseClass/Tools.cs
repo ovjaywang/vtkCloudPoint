@@ -587,7 +587,7 @@ namespace vtkPointCloud
             return dic;
         }
         static public vtkPolyData ArrayList2PolyData(int type,List<Point3D> centers,double[] trueScale, double[] centroidScale
-            , double[] scale, int clock, int clock_y, int clock_x, vtkPoints visualizeTruePointCloud)//ArrayList转成可视化PolyData
+            , double[] scale, int clock, int clock_y, int clock_x)//ArrayList转成可视化PolyData
         {
             vtkPolyData polydata = new vtkPolyData();
             vtkPoints SourcePoints = new vtkPoints();
@@ -602,49 +602,6 @@ namespace vtkPointCloud
                     pid[0] = SourcePoints.InsertNextPoint(centers[i].tmp_X, centers[i].tmp_Y, centers[i].tmp_Z);
                     SourceVertices.InsertNextCell(1, pid);
                     //}
-                }
-            }
-            else if (type == 2)
-            {
-                double param_y = 0;
-                double param_x = 0;
-                //x y z 质心的间距
-                double x_dis = (trueScale[1] - trueScale[0]) * 0.5 - (centroidScale[1] * scale[0] - centroidScale[0] * scale[0]) * 0.5;
-                double y_dis = (trueScale[3] - trueScale[2]) * 0.5 - (centroidScale[3] * scale[0] - centroidScale[2] * scale[0]) * 0.5;
-                double z_dis = (trueScale[5] - trueScale[4]) * 0.5 - (centroidScale[5] * scale[0] - centroidScale[4] * scale[0]) * 0.5;
-                if (clock == 0)
-                {//y正方向朝上
-                    param_y = 0.8;
-                    if (clock_y == -1)
-                    {
-                        param_y = 0.4;
-                    }
-                }
-                else if (clock == 6)
-                {
-                    param_y = 0.4;
-                    if (clock_y == -1)
-                    {
-                        param_y = 0.8;
-                    }
-                }
-                else if (clock == 9)
-                {
-                    param_y = 0.6;
-                }
-                else if (clock == 3)
-                {
-                    param_y = 0.6;
-                }
-                Console.WriteLine("时钟方向;" + clock + " " + clock_x + " " + clock_y);
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    pid[0] = SourcePoints.InsertNextPoint(
-                        (centers[j].tmp_X + (trueScale[1] - trueScale[0]) * param_x),
-                        (centers[j].tmp_Y + (trueScale[3] - trueScale[2]) * param_y),
-                         visualizeTruePointCloud.GetPoint(0)[2]);
-                    //truePointCloud.GetPoint(0)[2]);
-                    SourceVertices.InsertNextCell(1, pid);
                 }
             }
             polydata.SetPoints(SourcePoints); //把点导入的polydata中去

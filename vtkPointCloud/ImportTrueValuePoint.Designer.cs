@@ -215,6 +215,7 @@
             this.Sure_button.TabIndex = 15;
             this.Sure_button.Text = "确认";
             this.Sure_button.UseVisualStyleBackColor = true;
+            this.Sure_button.Click += new System.EventHandler(this.Sure_button_Click);
             // 
             // Cancel_button
             // 

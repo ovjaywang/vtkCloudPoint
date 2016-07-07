@@ -74,7 +74,7 @@ namespace vtkPointCloud
         vtkCellArray truePointVertices = new vtkCellArray();//真值顶点
         vtkPolyVertex truePolyVertex = new vtkPolyVertex();
         vtkActor trueActor;//真值点actor
-        vtkPoints visualizeTruePointCloud = null;//为了可视化加入的旁侧真值点
+        //vtkPoints visualizeTruePointCloud = null;//为了可视化加入的旁侧真值点
         int clock = 0;
         int clock_x = 1, clock_y = 1;//x y轴正负
         int[] vtpc_Pid = new int[1];
@@ -694,11 +694,11 @@ namespace vtkPointCloud
         }
         void ICP()
         {
-            ren.RemoveAllViewProps();
+            //ren.RemoveAllViewProps();
             vtkControl.GetRenderWindow().Clean();
-            vtkControl.Refresh();
+            //vtkControl.Refresh();
             vtkPolyData SourcePolydata = Tools.ArrayList2PolyData(1, this.centers, this.trueScale, this.centroidScale,
-                this.scale, this.clock, this.clock_y, this.clock_x, this.visualizeTruePointCloud);//对center处理
+                this.scale, this.clock, this.clock_y, this.clock_x);//对center处理
             vtkPolyData TargetPolydata = new vtkPolyData(); ;//对真值处理
             TargetPolydata.SetPoints(truePointCloud); //把点导入的polydata中去
             TargetPolydata.SetVerts(truePointVertices);
@@ -722,7 +722,7 @@ namespace vtkPointCloud
 
             Console.WriteLine("刚性变换矩阵为：" + M);
             vtkPolyData showLocPolydata = Tools.ArrayList2PolyData(2, this.centers, this.trueScale, this.centroidScale,
-                this.scale, this.clock, this.clock_y, this.clock_x, this.visualizeTruePointCloud);
+                this.scale, this.clock, this.clock_y, this.clock_x);
             vtkTransformPolyDataFilter icpTransformFilter = new vtkTransformPolyDataFilter();
             icpTransformFilter.SetInput(SourcePolydata);
             icpTransformFilter.SetTransform(icp);
@@ -734,13 +734,6 @@ namespace vtkPointCloud
             sourceActor.SetMapper(sourceMapper);
             sourceActor.GetProperty().SetColor(1, 0, 0);
             sourceActor.GetProperty().SetPointSize(4);
-            //设置辅助质心点（每次变化）
-            //vtkPolyDataMapper showLocMapper = new vtkPolyDataMapper();
-            //showLocMapper.SetInputConnection(showLocPolydata.GetProducerPort());
-            //vtkActor showLocActor = new vtkActor();
-            //showLocActor.SetMapper(showLocMapper);
-            //showLocActor.GetProperty().SetColor(0, 0, 1);
-            //showLocActor.GetProperty().SetPointSize(4);
             //设置目标图形（真值点）
             vtkPolyDataMapper targetMapper = new vtkPolyDataMapper();
             targetMapper.SetInputConnection(TargetPolydata.GetProducerPort());
@@ -749,34 +742,24 @@ namespace vtkPointCloud
             targetActor.GetProperty().SetColor(0, 1, 0);
             targetActor.GetProperty().SetPointSize(4);
             //设置辅助显示真值点
-            //vtkPolyDataMapper showtrueMapper =new vtkPolyDataMapper();
-            //showtrueMapper.SetInputConnection(showtruePolydata.GetProducerPort());
-            //vtkActor showtrueActor =new vtkActor();
-            //showtrueActor.SetMapper(showtrueMapper);
-            //showtrueActor.GetProperty().SetColor(0, 1, 0);
-            //showtrueActor.GetProperty().SetPointSize(4);
-
             vtkPolyDataMapper solutionMapper = new vtkPolyDataMapper();
             solutionMapper.SetInputConnection(icpTransformFilter.GetOutputPort());
             vtkActor solutionActor = new vtkActor();
             solutionActor.SetMapper(solutionMapper);
             solutionActor.GetProperty().SetColor(0, 0, 1);
             solutionActor.GetProperty().SetPointSize(3);
-
+            //vtkControl.GetRenderWindow().RemoveRenderer(ren);
             ren = new vtkRenderer();
-
-            //ren.AddActor(sourceActor);
-            //ren.AddActor(showLocActor);
+            
             ren.AddActor(targetActor);
             ren.AddActor(solutionActor);
-            //ren.AddActor(showtrueActor);
             ren.SetBackground(0.3, 0.6, 0.3);
             // Render and interact
+
             vtkControl.GetRenderWindow().AddRenderer(ren);
             ren.Render();
             vtkControl.Refresh();
-            //   renderWindow.Render();
-            //  renderWindowInteractor.Start();
+              
 
             SourcePolydata.FastDelete();
             TargetPolydata.FastDelete();
@@ -1413,16 +1396,7 @@ namespace vtkPointCloud
                 scale[2] = (truePointCloud.GetBounds()[5] - truePointCloud.GetBounds()[4])
                         / (centroidPointCloud.GetBounds()[5] - centroidPointCloud.GetBounds()[4]);
             }
-            if (visualizeTruePointCloud == null)//辅助可视化真值点
-            {
-                visualizeTruePointCloud = new vtkPoints();
-                for (int i = 0; i < truePointCloud.GetNumberOfPoints(); i++)
-                {
-                    vtpc_Pid[0] = visualizeTruePointCloud.InsertNextPoint(truePointCloud.GetPoint(i)[0] / 2 + (trueScale[1] - trueScale[0]) * 1.01,
-                        (truePointCloud.GetPoint(i)[1] / 2 + (trueScale[3] - trueScale[2]) * 0.4), truePointCloud.GetPoint(i)[2]);
-                    vtpVertices.InsertNextCell(1, vtpc_Pid);
-                }
-            }
+           
             Console.WriteLine("质心计算范围比例x y z  " + scale[0] + "," + scale[1] + "," + scale[2]);
             //tmp是中间过渡坐标 若不进行中间转换 匹配效果奇差
 
@@ -1539,10 +1513,6 @@ namespace vtkPointCloud
                 centers.Clear();
             if (truePointCloud != null)
                 truePointCloud = null;
-            if (visualizeTruePointCloud != null)
-            {
-                visualizeTruePointCloud = null;
-            }
             pathList.Clear();
             truePointPid = new int[1];
             //grouping = null;
