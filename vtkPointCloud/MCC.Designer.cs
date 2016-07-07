@@ -68,7 +68,7 @@
             this.threshold_txtbox.Name = "threshold_txtbox";
             this.threshold_txtbox.Size = new System.Drawing.Size(142, 40);
             this.threshold_txtbox.TabIndex = 1;
-            this.threshold_txtbox.Text = "0.09";
+            this.threshold_txtbox.Text = "0.088";
             this.threshold_txtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2

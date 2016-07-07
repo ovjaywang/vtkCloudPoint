@@ -617,8 +617,5 @@ namespace vtkPointCloud
             bounds[3] = rawData.Max(m => m.Y);
             return bounds;
         }
-
-
-
     }
 }

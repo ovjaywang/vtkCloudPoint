@@ -64,6 +64,7 @@
             this.测试画矩形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试删除actorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试画双点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试清屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,11 +84,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.YAxisChangeBtn = new System.Windows.Forms.Button();
-            this.XAxisChangeBtn = new System.Windows.Forms.Button();
             this.SureAutoMatchBtn = new System.Windows.Forms.Button();
-            this.AntiClockWiseBtn = new System.Windows.Forms.Button();
-            this.ClockWiseBtn = new System.Windows.Forms.Button();
             this.SureMatchBtn = new System.Windows.Forms.Button();
             this.RecorrectMatch = new System.Windows.Forms.Button();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
@@ -112,7 +109,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
-            this.测试清屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -418,6 +414,13 @@
             this.测试画双点ToolStripMenuItem.Text = "测试画双点";
             this.测试画双点ToolStripMenuItem.Click += new System.EventHandler(this.测试画双点ToolStripMenuItem_Click);
             // 
+            // 测试清屏ToolStripMenuItem
+            // 
+            this.测试清屏ToolStripMenuItem.Name = "测试清屏ToolStripMenuItem";
+            this.测试清屏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试清屏ToolStripMenuItem.Text = "测试清屏";
+            this.测试清屏ToolStripMenuItem.Click += new System.EventHandler(this.测试清屏ToolStripMenuItem_Click);
+            // 
             // 配准ToolStripMenuItem
             // 
             this.配准ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -476,7 +479,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.CheckBoxes = true;
             this.treeView1.Location = new System.Drawing.Point(0, 71);
@@ -504,7 +507,7 @@
             // 
             // toolStripContainer1
             // 
-            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStripContainer1.BottomToolStripPanelVisible = false;
             // 
@@ -519,13 +522,7 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox2);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.YAxisChangeBtn);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.XAxisChangeBtn);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.SureAutoMatchBtn);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.AntiClockWiseBtn);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.ClockWiseBtn);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.SureMatchBtn);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.RecorrectMatch);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip2);
@@ -643,28 +640,6 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Visible = false;
             // 
-            // YAxisChangeBtn
-            // 
-            this.YAxisChangeBtn.Location = new System.Drawing.Point(989, 1);
-            this.YAxisChangeBtn.Name = "YAxisChangeBtn";
-            this.YAxisChangeBtn.Size = new System.Drawing.Size(125, 44);
-            this.YAxisChangeBtn.TabIndex = 13;
-            this.YAxisChangeBtn.Text = "绕y轴翻转";
-            this.YAxisChangeBtn.UseVisualStyleBackColor = true;
-            this.YAxisChangeBtn.Visible = false;
-            this.YAxisChangeBtn.Click += new System.EventHandler(this.YAxisChangeBtn_Click);
-            // 
-            // XAxisChangeBtn
-            // 
-            this.XAxisChangeBtn.Location = new System.Drawing.Point(864, 1);
-            this.XAxisChangeBtn.Name = "XAxisChangeBtn";
-            this.XAxisChangeBtn.Size = new System.Drawing.Size(129, 45);
-            this.XAxisChangeBtn.TabIndex = 12;
-            this.XAxisChangeBtn.Text = "绕x轴翻转";
-            this.XAxisChangeBtn.UseVisualStyleBackColor = true;
-            this.XAxisChangeBtn.Visible = false;
-            this.XAxisChangeBtn.Click += new System.EventHandler(this.XAxisChangeBtn_Click);
-            // 
             // SureAutoMatchBtn
             // 
             this.SureAutoMatchBtn.Location = new System.Drawing.Point(1110, 3);
@@ -676,32 +651,9 @@
             this.SureAutoMatchBtn.Visible = false;
             this.SureAutoMatchBtn.Click += new System.EventHandler(this.SureAutoMatchBtn_Click);
             // 
-            // AntiClockWiseBtn
-            // 
-            this.AntiClockWiseBtn.Location = new System.Drawing.Point(697, 1);
-            this.AntiClockWiseBtn.Name = "AntiClockWiseBtn";
-            this.AntiClockWiseBtn.Size = new System.Drawing.Size(172, 44);
-            this.AntiClockWiseBtn.TabIndex = 10;
-            this.AntiClockWiseBtn.Text = "逆时针旋转90°";
-            this.AntiClockWiseBtn.UseVisualStyleBackColor = true;
-            this.AntiClockWiseBtn.Visible = false;
-            this.AntiClockWiseBtn.Click += new System.EventHandler(this.AntiClockWiseBtn_Click);
-            // 
-            // ClockWiseBtn
-            // 
-            this.ClockWiseBtn.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ClockWiseBtn.Location = new System.Drawing.Point(544, 1);
-            this.ClockWiseBtn.Name = "ClockWiseBtn";
-            this.ClockWiseBtn.Size = new System.Drawing.Size(163, 44);
-            this.ClockWiseBtn.TabIndex = 9;
-            this.ClockWiseBtn.Text = "顺时针旋转90°";
-            this.ClockWiseBtn.UseVisualStyleBackColor = true;
-            this.ClockWiseBtn.Visible = false;
-            this.ClockWiseBtn.Click += new System.EventHandler(this.ClockWiseBtn_Click);
-            // 
             // SureMatchBtn
             // 
-            this.SureMatchBtn.Location = new System.Drawing.Point(544, 1);
+            this.SureMatchBtn.Location = new System.Drawing.Point(792, 210);
             this.SureMatchBtn.Name = "SureMatchBtn";
             this.SureMatchBtn.Size = new System.Drawing.Size(147, 45);
             this.SureMatchBtn.TabIndex = 7;
@@ -712,7 +664,7 @@
             // 
             // RecorrectMatch
             // 
-            this.RecorrectMatch.Location = new System.Drawing.Point(713, 1);
+            this.RecorrectMatch.Location = new System.Drawing.Point(631, 210);
             this.RecorrectMatch.Name = "RecorrectMatch";
             this.RecorrectMatch.Size = new System.Drawing.Size(134, 45);
             this.RecorrectMatch.TabIndex = 8;
@@ -987,13 +939,6 @@
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
-            // 测试清屏ToolStripMenuItem
-            // 
-            this.测试清屏ToolStripMenuItem.Name = "测试清屏ToolStripMenuItem";
-            this.测试清屏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试清屏ToolStripMenuItem.Text = "测试清屏";
-            this.测试清屏ToolStripMenuItem.Click += new System.EventHandler(this.测试清屏ToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1009,6 +954,8 @@
             this.Controls.Add(this.zoomRatioTxt);
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.RecorrectMatch);
+            this.Controls.Add(this.SureMatchBtn);
             this.Controls.Add(this.MoveStepTxt);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
@@ -1080,13 +1027,9 @@
         private System.Windows.Forms.ToolStripButton tsButton_ExportFixedPointAverageFile;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
-        private System.Windows.Forms.Button ClockWiseBtn;
         private System.Windows.Forms.Button SureMatchBtn;
         private System.Windows.Forms.Button RecorrectMatch;
         private System.Windows.Forms.Button SureAutoMatchBtn;
-        private System.Windows.Forms.Button AntiClockWiseBtn;
-        private System.Windows.Forms.Button XAxisChangeBtn;
-        private System.Windows.Forms.Button YAxisChangeBtn;
         private System.Windows.Forms.ToolStripMenuItem ScanClustringToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;

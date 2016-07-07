@@ -287,6 +287,9 @@
     <EmbeddedResource Include="MatchingParams.resx">
       <DependentUpon>MatchingParams.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MCC.resx">
+      <DependentUpon>MCC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
