@@ -1,4 +1,4 @@
-锘縰sing System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 namespace vtkPointCloud
 {
@@ -45,13 +45,13 @@ namespace vtkPointCloud
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("鍗庢枃浠垮畫", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Font = new System.Drawing.Font("华文仿宋", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox1.Location = new System.Drawing.Point(62, 41);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(179, 37);
             this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "姝ｅ湪杩涜璁＄畻......";
+            this.textBox1.Text = "正在进行计算......";
             // 
             // pictureBox1
             // 
@@ -73,7 +73,7 @@ namespace vtkPointCloud
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WaitingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "鎻愮ず";
+            this.Text = "提示";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
