@@ -223,6 +223,7 @@ namespace vtkPointCloud
                         {
                             foreach (Point3D p3d in rawData)
                                 ssw.WriteLine(p3d.motor_x.ToString("F" + bit) + "\t" + p3d.motor_y.ToString("F" + bit) + "\t" + p3d.Distance.ToString("F" + bit));
+                                //ssw.WriteLine(p3d.X.ToString("F" + bit) + "\t" + p3d.Y.ToString("F" + bit) + "\t" + p3d.Z.ToString("F" + bit));
                         }
                         catch
                         {

@@ -65,6 +65,7 @@
             this.测试删除actorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试画双点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试清屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试删除坐标ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,7 +107,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
-            this.测试删除坐标ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -419,6 +419,12 @@
             this.测试清屏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试清屏ToolStripMenuItem.Text = "测试清屏";
             this.测试清屏ToolStripMenuItem.Click += new System.EventHandler(this.测试清屏ToolStripMenuItem_Click);
+            // 
+            // 测试删除坐标ToolStripMenuItem
+            // 
+            this.测试删除坐标ToolStripMenuItem.Name = "测试删除坐标ToolStripMenuItem";
+            this.测试删除坐标ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试删除坐标ToolStripMenuItem.Text = "测试删除坐标";
             // 
             // 配准ToolStripMenuItem
             // 
@@ -904,12 +910,6 @@
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
-            // 测试删除坐标ToolStripMenuItem
-            // 
-            this.测试删除坐标ToolStripMenuItem.Name = "测试删除坐标ToolStripMenuItem";
-            this.测试删除坐标ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试删除坐标ToolStripMenuItem.Text = "测试删除坐标";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -980,7 +980,6 @@
         private System.Windows.Forms.ToolStripMenuItem 调用exeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportFixedPointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem FixedPointMatchingToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         public System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsButton_ImportScanData;
@@ -1043,6 +1042,7 @@
         private System.Windows.Forms.Button DoMatchBtn;
         private System.Windows.Forms.ToolStripMenuItem 测试清屏ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试删除坐标ToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem FixedPointMatchingToolStripMenuItem;
 
     }
 }

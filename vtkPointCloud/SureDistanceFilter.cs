@@ -105,12 +105,17 @@ namespace vtkPointCloud
 
         private void SureDistanceFilter_FormClosing(object sender, FormClosingEventArgs e)
         {
+            mf = (MainForm)this.Owner;
             if (e.CloseReason == CloseReason.UserClosing && isClose)
             {
                 DialogResult r = MessageBox.Show("确定不使用距离阈值过滤吗?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (r != DialogResult.OK)
                 {
                     e.Cancel = true;
+                }
+                else
+                {
+                    mf.FixedPointMatchingToolStripMenuItem.Enabled = true;
                 }
             }
         }

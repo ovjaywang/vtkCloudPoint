@@ -68,7 +68,7 @@ namespace vtkPointCloud
             this.threshold_txtbox.Name = "threshold_txtbox";
             this.threshold_txtbox.Size = new System.Drawing.Size(142, 40);
             this.threshold_txtbox.TabIndex = 1;
-            this.threshold_txtbox.Text = "0.09";
+            this.threshold_txtbox.Text = "0.088";
             this.threshold_txtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
@@ -256,7 +256,7 @@ namespace vtkPointCloud
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "MCC";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "¾ÛÀà°ë¾¶¹ýÂË";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -12,24 +12,26 @@ namespace vtkPointCloud
         public List<Point3D> li { get; set; }
         public int clusId{get;set;}
         public string clusName { get; set;}
+        public bool visible { get; set; }
         public int ptsCount;
-        public ClusObj(List<Point3D> l, int id)
-        {
-            this.clusId = id;
-            this.li = null;
-            this.li = l;
-            this.ptsCount = l.Count;
-        }
-        public ClusObj(List<Point3D> l) {
-            this.li = null;
-            this.li = l;
-            this.ptsCount = l.Count;
-        }
-        public ClusObj() { this.li = new List<Point3D>(); }
+        //public ClusObj(List<Point3D> l, int id)
+        //{
+        //    this.clusId = id;
+        //    this.li = null;
+        //    this.li = l;
+        //    this.ptsCount = l.Count;
+        //}
+        //public ClusObj(List<Point3D> l) {
+        //    this.li = null;
+        //    this.li = l;
+        //    this.ptsCount = l.Count;
+        //}
+        public ClusObj() { this.li = new List<Point3D>(); this.visible = true; }
         public ClusObj(String s)
         {
             this.clusName = s;
             this.li = new List<Point3D>();
+            this.visible = true;
         }
         public Object Clone() //深度拷贝  
         {
