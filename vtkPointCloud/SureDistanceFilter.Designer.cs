@@ -42,8 +42,12 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox_maxD = new System.Windows.Forms.TextBox();
             this.textBox_minD = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -70,7 +74,7 @@
             // Refilter
             // 
             this.Refilter.Font = new System.Drawing.Font("宋体", 18F);
-            this.Refilter.Location = new System.Drawing.Point(28, 209);
+            this.Refilter.Location = new System.Drawing.Point(32, 237);
             this.Refilter.Name = "Refilter";
             this.Refilter.Size = new System.Drawing.Size(165, 42);
             this.Refilter.TabIndex = 22;
@@ -120,7 +124,7 @@
             // 
             this.groupBox1.Controls.Add(this.OKBtn);
             this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Location = new System.Drawing.Point(28, 380);
+            this.groupBox1.Location = new System.Drawing.Point(28, 443);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(351, 106);
             this.groupBox1.TabIndex = 6;
@@ -129,15 +133,16 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.ThresholdMinTxtBox);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.ThresholdMaxTxtBox);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.Refilter);
-            this.groupBox2.Location = new System.Drawing.Point(23, 96);
+            this.groupBox2.Location = new System.Drawing.Point(23, 93);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 268);
+            this.groupBox2.Size = new System.Drawing.Size(356, 344);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "输入过滤阈值";
@@ -205,11 +210,43 @@
             this.textBox_minD.TabIndex = 11;
             this.textBox_minD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Location = new System.Drawing.Point(270, 158);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(80, 137);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 24);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(44, 19);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "3D";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 88);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(44, 19);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "2D";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // SureDistanceFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 496);
+            this.ClientSize = new System.Drawing.Size(403, 561);
             this.Controls.Add(this.textBox_minD);
             this.Controls.Add(this.textBox_maxD);
             this.Controls.Add(this.textBox4);
@@ -224,6 +261,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +284,8 @@
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.TextBox textBox_maxD;
         public System.Windows.Forms.TextBox textBox_minD;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
