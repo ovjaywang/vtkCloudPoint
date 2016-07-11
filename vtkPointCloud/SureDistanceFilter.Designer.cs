@@ -43,8 +43,8 @@
             this.textBox_maxD = new System.Windows.Forms.TextBox();
             this.textBox_minD = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rb_3d = new System.Windows.Forms.RadioButton();
+            this.rb_2d = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,10 +87,10 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("宋体", 18F);
-            this.checkBox1.Location = new System.Drawing.Point(26, 158);
+            this.checkBox1.Font = new System.Drawing.Font("宋体", 14F);
+            this.checkBox1.Location = new System.Drawing.Point(26, 182);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(215, 34);
+            this.checkBox1.Size = new System.Drawing.Size(176, 28);
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "显示被过滤点";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -212,35 +212,35 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Location = new System.Drawing.Point(270, 158);
+            this.groupBox3.Controls.Add(this.rb_2d);
+            this.groupBox3.Controls.Add(this.rb_3d);
+            this.groupBox3.Location = new System.Drawing.Point(250, 164);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(80, 137);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             // 
-            // radioButton1
+            // rb_3d
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(44, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "3D";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rb_3d.AutoSize = true;
+            this.rb_3d.Checked = true;
+            this.rb_3d.Location = new System.Drawing.Point(6, 24);
+            this.rb_3d.Name = "rb_3d";
+            this.rb_3d.Size = new System.Drawing.Size(44, 19);
+            this.rb_3d.TabIndex = 0;
+            this.rb_3d.TabStop = true;
+            this.rb_3d.Text = "3D";
+            this.rb_3d.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rb_2d
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 88);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(44, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "2D";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rb_2d.AutoSize = true;
+            this.rb_2d.Location = new System.Drawing.Point(6, 88);
+            this.rb_2d.Name = "rb_2d";
+            this.rb_2d.Size = new System.Drawing.Size(44, 19);
+            this.rb_2d.TabIndex = 1;
+            this.rb_2d.Text = "2D";
+            this.rb_2d.UseVisualStyleBackColor = true;
             // 
             // SureDistanceFilter
             // 
@@ -285,7 +285,7 @@
         public System.Windows.Forms.TextBox textBox_maxD;
         public System.Windows.Forms.TextBox textBox_minD;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rb_2d;
+        private System.Windows.Forms.RadioButton rb_3d;
     }
 }

@@ -93,7 +93,6 @@ namespace vtkPointCloud
         List<Point3D> showPts = null;
         //参数相关
         //public List<Point2D>[] hulls;//个数为聚类数 每个元素为某ID的所有点集
-        bool isFixed;
         public List<Point2D> circles;
         public List<int> filterID = new List<int>();//阈值过滤的ID
         double[] scale = new double[3];//比例尺 三个方向
@@ -483,17 +482,6 @@ namespace vtkPointCloud
             if (type == 1 || type ==6 || type ==7 ) {
                 showAxes();
             }
-            //vtkRenderWindowInteractor interactor = new vtkRenderWindowInteractor();
-            //interactor.SetRenderWindow(vtkControl.GetRenderWindow());
-
-            //widget.SetViewport(0, 0, 0.4, 0.4);
-            //widget.SetInteractor(interactor);
-            //widget.SetEnabled(1);
-            //widget.InteractiveOn();
-            //ren.ResetCamera();
-            //vtkControl.GetRenderWindow().Render();
-            //interactor.Start();
-            //vtkControl.Refresh();
             switch (type)
             {
                 case 1:
@@ -514,6 +502,81 @@ namespace vtkPointCloud
                 default:
                     break;
             }
+        }
+        /// <summary>
+        /// 显示2D情况下的点集
+        /// </summary>
+        /// <param name="type">显示类型 1.阈值过滤的2D</param>
+        /// /// <param name="isF">是否固定点</param>
+        public void Show2DPoints(int type) {
+            vtkControl.GetRenderWindow().Clean();
+            vtkPoints pts = new vtkPoints();
+            vtkPolyData pldata = new vtkPolyData();
+            vtkPolyDataMapper mapper = new vtkPolyDataMapper();
+            vtkDataSetMapper mapper2 = new vtkDataSetMapper();
+            vtkActor ac = new vtkActor();
+            vtkPolyVertex vertex = new vtkPolyVertex();
+            //vtkRegularPolygonSource source = new vtkRegularPolygonSource();
+            vtkRectangularButtonSource source = new vtkRectangularButtonSource();
+            //vtkPointSource source = new vtkPointSource();
+            //source.SetNumberOfPoints(1);
+            source.SetWidth(1.0f);
+            source.SetHeight(1.0f);
+            vtkUnstructuredGrid grid = new vtkUnstructuredGrid();
+            vtkGlyph2D glyph2D = new vtkGlyph2D(); ;
+            //vtkStructuredGrid grid = new vtkStructuredGrid();
+            if (type == 1) {
+                ren = new vtkRenderer();
+                int cout = 0;
+                foreach (Point3D p in rawData)
+                {
+                    if (!p.isFilterByDistance) {
+                        pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                        cout++;
+                    }
+                }
+                pldata.SetPoints(pts);
+                glyph2D.SetSourceConnection(source.GetOutputPort());
+                glyph2D.SetInput(pldata);
+                glyph2D.Update();
+                mapper.SetInputConnection(glyph2D.GetOutputPort());
+                mapper.Update();
+                mapper.ScalarVisibilityOff();
+                ac.SetMapper(mapper);
+                ac.GetProperty().SetPointSize(0.5f);
+                ren.AddActor(ac);
+                widget.SetEnabled(0);
+                vtkControl.GetRenderWindow().AddRenderer(ren);
+
+                vtkControl.Refresh();
+            }
+            else if(type ==2)
+            {
+                ren = new vtkRenderer();
+                int cout = 0;
+                foreach (Point3D p in rawData)
+                {
+                    if (!p.isFilterByDistance)
+                    {
+                        pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                        cout++;
+                    }
+                }
+                vertex.GetPointIds().SetNumberOfIds(cout);
+                for (int i = 0; i < cout; i++)
+                {
+                    vertex.GetPointIds().SetId(i, i);
+                }
+                grid.SetPoints(pts);
+                grid.InsertNextCell(vertex.GetCellType(),vertex.GetPointIds());
+                mapper2.SetInput(grid);
+                ac.SetMapper(mapper2);
+                ac.GetProperty().SetPointSize(1f);
+                ren.AddActor(ac);
+                vtkControl.GetRenderWindow().AddRenderer(ren);
+            }
+            
+            
         }
         /// <summary>
         /// 显示外接圆 白色是原始图案 黄色是超过阈值图案

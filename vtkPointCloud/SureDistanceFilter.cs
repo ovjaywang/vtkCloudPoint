@@ -42,9 +42,12 @@ namespace vtkPointCloud
                 return;
             }
             if (!isFix)
-            {//判断是否是固定点
+            {//如果是扫描点
                 Tools.FilterByDistance_ScanPoint(mf.rawData, this.distanceMax, this.distanceMin);
-                mf.ShowPointsFromFile(mf.rawData, 6+(this.checkBox1.Checked?0:1));
+                if (this.rb_3d.Checked)
+                    mf.ShowPointsFromFile(mf.rawData, 6 + (this.checkBox1.Checked ? 0 : 1));
+                else
+                    mf.Show2DPoints(1);
             }
             else
             { 
@@ -85,14 +88,12 @@ namespace vtkPointCloud
                 isClose = false;
                 this.DialogResult = DialogResult.OK;
                 this.Close();  
-
             }
             else {
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             mf = (MainForm)this.Owner;
