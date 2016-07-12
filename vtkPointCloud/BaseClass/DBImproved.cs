@@ -13,9 +13,9 @@ namespace vtkPointCloud
         public int cf = 0;
         public static double getDisP(Point3D p1, Point3D p2)
         {
-            double dx = p1.X - p2.X;
-            double dy = p1.Y - p2.Y;
-            double dz = p1.Z - p2.Z;
+            double dx = p1.motor_x - p2.motor_x;
+            double dy = p1.motor_y - p2.motor_y;
+            //double dz = p1.Z - p2.Z;
             iritatorNum++;
             //double rrrr = Math.Sqrt(dx * dx + dy * dy + dz * dz);
             double rrrr = Math.Abs(dx) + Math.Abs(dy);

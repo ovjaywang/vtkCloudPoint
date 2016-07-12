@@ -47,7 +47,7 @@ namespace vtkPointCloud
                 if (this.rb_3d.Checked)
                     mf.ShowPointsFromFile(mf.rawData, 6 + (this.checkBox1.Checked ? 0 : 1));
                 else
-                    mf.Show2DPoints(1);
+                    mf.Show2DPoints(this.checkBox1.Checked ?2:1);
             }
             else
             { 
@@ -96,12 +96,17 @@ namespace vtkPointCloud
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            if (isFirst) return;
             mf = (MainForm)this.Owner;
             if (!isFix)//不是固定点
-                mf.ShowPointsFromFile(mf.rawData, 6 + ((this.checkBox1.Checked) ? 0 : 1));
-            else {
+            {
+                if (this.rb_3d.Checked) mf.ShowPointsFromFile(mf.rawData, 6 + ((this.checkBox1.Checked) ? 0 : 1));
+                else mf.Show2DPoints(this.checkBox1.Checked ? 2 : 1);
+            }
+            else
+            {
                 mf.showFixPointData(2 + ((this.checkBox1.Checked) ? 0 : 2));
-            }    
+            }     
         }
 
         private void SureDistanceFilter_FormClosing(object sender, FormClosingEventArgs e)
@@ -119,6 +124,13 @@ namespace vtkPointCloud
                     mf.FixedPointMatchingToolStripMenuItem.Enabled = true;
                 }
             }
+        }
+
+        private void rb_3d_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isFirst) return;
+            if (this.rb_3d.Checked) mf.ShowPointsFromFile(mf.rawData, 6 + ((this.checkBox1.Checked) ? 0 : 1));
+            else mf.Show2DPoints(this.checkBox1.Checked ? 2 : 1);
         }
 
     }

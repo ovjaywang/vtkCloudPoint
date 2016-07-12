@@ -498,7 +498,10 @@ namespace vtkPointCloud
         static public List<Point3D> getListByScale(List<Point3D> rawData, double min_x, double min_y, double max_x, double max_y){
             return rawData.FindAll(delegate(Point3D p) { return (p.X > min_x) && (p.Y > min_y) && (p.X <= max_x) && (p.Y <= max_y);});
         }
-
+        static public List<Point3D> getListByScale2(List<Point3D> rawData, double min_x, double min_y, double max_x, double max_y)
+        {
+            return rawData.FindAll(delegate(Point3D p) { return (p.motor_x > min_x) && (p.motor_y > min_y) && (p.motor_x <= max_x) && (p.motor_y <= max_y); });
+        }
         /// <summary>
         /// 根据距离阈值更新聚类效果 融合接近聚类
         /// </summary>

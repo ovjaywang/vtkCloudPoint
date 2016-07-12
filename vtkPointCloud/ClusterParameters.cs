@@ -75,7 +75,8 @@ namespace vtkPointCloud
             }
             mf = (MainForm)this.Owner;
             this.Visible = false;
-            mf.getClusterFromList(threhold, point,ptsIncell); 
+            //mf.getClusterFromList(threhold, point,ptsIncell); 
+            mf.getClusterFromMotor(threhold, point, ptsIncell); 
             if (isFirst)
             {
                 isFirst = false;

@@ -506,64 +506,56 @@ namespace vtkPointCloud
         /// <summary>
         /// 显示2D情况下的点集
         /// </summary>
-        /// <param name="type">显示类型 1.阈值过滤的2D</param>
+        /// <param name="type">显示类型 1.阈值过滤-不显示过滤点 2.阈值过滤-显示过滤点</param>
         /// /// <param name="isF">是否固定点</param>
         public void Show2DPoints(int type) {
             vtkControl.GetRenderWindow().Clean();
             vtkPoints pts = new vtkPoints();
+            vtkPoints pts2 = new vtkPoints();
+            vtkPolyVertex vertex = new vtkPolyVertex();
+            vtkPolyVertex vertex2 = new vtkPolyVertex();
+            vtkDataSetMapper mapper2 = new vtkDataSetMapper();
+            vtkDataSetMapper mapper22 = new vtkDataSetMapper();
+            vtkUnstructuredGrid grid = new vtkUnstructuredGrid();
+            vtkUnstructuredGrid grid2 = new vtkUnstructuredGrid();
+            vtkActor ac = new vtkActor();
+            vtkActor ac2 = new vtkActor();
+
             vtkPolyData pldata = new vtkPolyData();
             vtkPolyDataMapper mapper = new vtkPolyDataMapper();
-            vtkDataSetMapper mapper2 = new vtkDataSetMapper();
-            vtkActor ac = new vtkActor();
-            vtkPolyVertex vertex = new vtkPolyVertex();
+            
+
             //vtkRegularPolygonSource source = new vtkRegularPolygonSource();
-            vtkRectangularButtonSource source = new vtkRectangularButtonSource();
+            //vtkRectangularButtonSource source = new vtkRectangularButtonSource();
+            //vtkButtonSource source = new vtkButtonSource();
+            vtkCubeSource source = new vtkCubeSource();
+            source.SetXLength(0.005);
+            source.SetYLength(0.005);
+            source.SetZLength(0.005);
             //vtkPointSource source = new vtkPointSource();
             //source.SetNumberOfPoints(1);
-            source.SetWidth(1.0f);
-            source.SetHeight(1.0f);
-            vtkUnstructuredGrid grid = new vtkUnstructuredGrid();
+            //source.SetWidth(1.0f);
+            //source.SetHeight(1.0f);
             vtkGlyph2D glyph2D = new vtkGlyph2D(); ;
-            //vtkStructuredGrid grid = new vtkStructuredGrid();
-            if (type == 1) {
-                ren = new vtkRenderer();
-                int cout = 0;
-                foreach (Point3D p in rawData)
-                {
-                    if (!p.isFilterByDistance) {
-                        pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
-                        cout++;
-                    }
-                }
-                pldata.SetPoints(pts);
-                glyph2D.SetSourceConnection(source.GetOutputPort());
-                glyph2D.SetInput(pldata);
-                glyph2D.Update();
-                mapper.SetInputConnection(glyph2D.GetOutputPort());
-                mapper.Update();
-                mapper.ScalarVisibilityOff();
-                ac.SetMapper(mapper);
-                ac.GetProperty().SetPointSize(0.5f);
-                ren.AddActor(ac);
-                widget.SetEnabled(0);
-                vtkControl.GetRenderWindow().AddRenderer(ren);
-
-                vtkControl.Refresh();
-            }
-            else if(type ==2)
+            int cout1 = 0, cout2 = 0; ;
+            if(type ==2 || type ==1)//1.只显示过滤后点 2.显示过滤和未过滤
             {
                 ren = new vtkRenderer();
-                int cout = 0;
+                
                 foreach (Point3D p in rawData)
                 {
                     if (!p.isFilterByDistance)
                     {
                         pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
-                        cout++;
+                        cout1++;
+                    }
+                    else if(type == 2) { 
+                        pts2.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                        cout2++;
                     }
                 }
-                vertex.GetPointIds().SetNumberOfIds(cout);
-                for (int i = 0; i < cout; i++)
+                vertex.GetPointIds().SetNumberOfIds(cout1);
+                for (int i = 0; i < cout1; i++)
                 {
                     vertex.GetPointIds().SetId(i, i);
                 }
@@ -571,12 +563,28 @@ namespace vtkPointCloud
                 grid.InsertNextCell(vertex.GetCellType(),vertex.GetPointIds());
                 mapper2.SetInput(grid);
                 ac.SetMapper(mapper2);
-                ac.GetProperty().SetPointSize(1f);
+                ac.GetProperty().SetPointSize(1.2f);
+                ac.GetProperty().SetColor(0, 1, 0);
+                
+                if(type ==2 ){
+                    vertex2.GetPointIds().SetNumberOfIds(cout2);
+                    for (int i = 0; i < cout2; i++)
+                    {
+                        vertex2.GetPointIds().SetId(i, i);
+                    }
+                    grid2.SetPoints(pts);
+                    grid2.InsertNextCell(vertex2.GetCellType(), vertex2.GetPointIds());
+                    mapper22.SetInput(grid2);
+                    ac2.SetMapper(mapper22);
+                    ac2.GetProperty().SetPointSize(3f);
+                    ac2.GetProperty().SetColor(1, 0, 0);
+                    ren.AddActor(ac2);
+                }
                 ren.AddActor(ac);
+                widget.SetEnabled(0);
                 vtkControl.GetRenderWindow().AddRenderer(ren);
+                vtkControl.Refresh();
             }
-            
-            
         }
         /// <summary>
         /// 显示外接圆 白色是原始图案 黄色是超过阈值图案
@@ -825,7 +833,7 @@ namespace vtkPointCloud
                         Console.WriteLine("浮点位数为:" + bit);
                     }
 
-                    double fangweijiao, yangjiao;
+                    double fangweijiao, yangjiao,tianidingjiao;
                     IRow row;
                     string[] tmpxyz;
                     for (int i = 1; i < line; i++)
@@ -864,12 +872,11 @@ namespace vtkPointCloud
                         }
                         yangjiao = (-2) * (point.motor_x - this.x_angle) / 180 * Math.PI;
                         fangweijiao = 2 * (point.motor_y - this.y_angle) / 180 * Math.PI;
-                        //yangjiao = (-2) * (point.motor_x - 45.439) / 180 * Math.PI;
-                        //fangweijiao = 2 * (point.motor_y - 35.452) / 180 * Math.PI;
 
+                        //if (yangjiao > 90) yangjiao = yangjiao - 90; else yangjiao = 90 - yangjiao;
+                        //if (fangweijiao > 180) fangweijiao = 360 - fangweijiao;
                         double tmpx = point.Distance * Math.Cos(yangjiao) * Math.Sin(fangweijiao);
-                        double tmpy = point.Distance * Math.Sin(yangjiao) * Math.Cos(fangweijiao);
-
+                        double tmpy = point.Distance * Math.Sin(yangjiao) * Math.Cos(fangweijiao); 
                         switch (xdir)
                         {
                             case 1:
@@ -967,6 +974,8 @@ namespace vtkPointCloud
                 {
                     sdf.textBox_maxD.Text = Tools.GetGroupingManOrMin(this.clusList, 1).ToString();
                     sdf.textBox_minD.Text = Tools.GetGroupingManOrMin(this.clusList, 2).ToString();
+                    sdf.rb_2d.Visible = false;
+                    sdf.rb_3d.Visible = false;
                 }
                 sdf.Show(this);
             }
@@ -1043,6 +1052,84 @@ namespace vtkPointCloud
                         }
                         else
                             cells[index++] = Tools.getListByScale(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
+            Console.WriteLine("\n\r总分块数：" + cells.Length + ",共 " + rows + " 行 " + cols + " 列.");
+            bkWorker3.RunWorkerAsync();
+            progressForm = new WaitingForm();
+            progressForm.progressBar1.Maximum = cells.Length;
+            progressForm.Show();
+        }
+        public void getClusterFromMotor(double tr, int pts, int ptsInCell)//执行dbscan聚类线程
+        {
+            MainForm.threhold = tr;
+            MainForm.pointsInthrehold = pts;
+            MainForm.ptsIncell = ptsInCell;
+            foreach (Point3D p in rawData)
+            {
+                p.clusterId = 0;
+                p.isClassed = false;
+            }
+            double x_Min = rawData.Min(m => m.motor_x);//计算x最小
+            double y_Min = rawData.Min(m => m.motor_y);//计算y最小
+            double x_Max = rawData.Max(m => m.motor_x);//计算x最大
+            double y_Max = rawData.Max(m => m.motor_y);//计算y最大
+            if (rawData == null || rawData.Count == 0) return;
+            rawData.Sort((x, y) =>//按照与最小值最近距离排序
+            {
+                int result;
+                double d1 = Math.Max(x.motor_x - x_Min, x.motor_y - y_Min);
+                double d2 = Math.Max(y.motor_x - x_Min, y.motor_y - y_Min);
+                if (d1 == d2)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    if (d1 > d2)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                return result;
+            }
+            );
+            Console.WriteLine("分块点数 = " + MainForm.ptsIncell);
+            List<Point3D> cell = rawData.Take(MainForm.ptsIncell).ToList();
+            //MessageBox.Show(rawData.Count+"");
+            double cell_x = cell.Max(m => m.motor_x) - x_Min;
+            double cell_y = cell.Max(m => m.motor_y) - y_Min;
+            int rows = (int)((y_Max - y_Min) / cell_y) + 1;
+            int cols = (int)((x_Max - x_Min) / cell_x) + 1;
+            cells = new List<Point3D>[rows * cols];
+            cells[0] = cell;
+            int index = 0;
+            for (int p = 0; p < rows; p++)
+            {
+                for (int q = 0; q < cols; q++)
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        if ((p == (rows - 1)) && (q != (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Max);
+                        }
+                        else if ((p != (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Min + (p + 1) * cell_y);
+                        }
+                        else if ((p == (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Max);
+                        }
+                        else
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
                     }
                 }
             }

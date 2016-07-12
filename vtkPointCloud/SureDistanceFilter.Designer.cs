@@ -36,15 +36,15 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rb_2d = new System.Windows.Forms.RadioButton();
+            this.rb_3d = new System.Windows.Forms.RadioButton();
             this.ThresholdMinTxtBox = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox_maxD = new System.Windows.Forms.TextBox();
             this.textBox_minD = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rb_3d = new System.Windows.Forms.RadioButton();
-            this.rb_2d = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -147,6 +147,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "输入过滤阈值";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.rb_2d);
+            this.groupBox3.Controls.Add(this.rb_3d);
+            this.groupBox3.Location = new System.Drawing.Point(250, 164);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(80, 137);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            // 
+            // rb_2d
+            // 
+            this.rb_2d.AutoSize = true;
+            this.rb_2d.Location = new System.Drawing.Point(6, 88);
+            this.rb_2d.Name = "rb_2d";
+            this.rb_2d.Size = new System.Drawing.Size(44, 19);
+            this.rb_2d.TabIndex = 1;
+            this.rb_2d.Text = "2D";
+            this.rb_2d.UseVisualStyleBackColor = true;
+            // 
+            // rb_3d
+            // 
+            this.rb_3d.AutoSize = true;
+            this.rb_3d.Checked = true;
+            this.rb_3d.Location = new System.Drawing.Point(6, 24);
+            this.rb_3d.Name = "rb_3d";
+            this.rb_3d.Size = new System.Drawing.Size(44, 19);
+            this.rb_3d.TabIndex = 0;
+            this.rb_3d.TabStop = true;
+            this.rb_3d.Text = "3D";
+            this.rb_3d.UseVisualStyleBackColor = true;
+            this.rb_3d.CheckedChanged += new System.EventHandler(this.rb_3d_CheckedChanged);
+            // 
             // ThresholdMinTxtBox
             // 
             this.ThresholdMinTxtBox.Font = new System.Drawing.Font("宋体", 12F);
@@ -210,38 +243,6 @@
             this.textBox_minD.TabIndex = 11;
             this.textBox_minD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.rb_2d);
-            this.groupBox3.Controls.Add(this.rb_3d);
-            this.groupBox3.Location = new System.Drawing.Point(250, 164);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(80, 137);
-            this.groupBox3.TabIndex = 12;
-            this.groupBox3.TabStop = false;
-            // 
-            // rb_3d
-            // 
-            this.rb_3d.AutoSize = true;
-            this.rb_3d.Checked = true;
-            this.rb_3d.Location = new System.Drawing.Point(6, 24);
-            this.rb_3d.Name = "rb_3d";
-            this.rb_3d.Size = new System.Drawing.Size(44, 19);
-            this.rb_3d.TabIndex = 0;
-            this.rb_3d.TabStop = true;
-            this.rb_3d.Text = "3D";
-            this.rb_3d.UseVisualStyleBackColor = true;
-            // 
-            // rb_2d
-            // 
-            this.rb_2d.AutoSize = true;
-            this.rb_2d.Location = new System.Drawing.Point(6, 88);
-            this.rb_2d.Name = "rb_2d";
-            this.rb_2d.Size = new System.Drawing.Size(44, 19);
-            this.rb_2d.TabIndex = 1;
-            this.rb_2d.Text = "2D";
-            this.rb_2d.UseVisualStyleBackColor = true;
-            // 
             // SureDistanceFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -285,7 +286,7 @@
         public System.Windows.Forms.TextBox textBox_maxD;
         public System.Windows.Forms.TextBox textBox_minD;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton rb_2d;
-        private System.Windows.Forms.RadioButton rb_3d;
+        public System.Windows.Forms.RadioButton rb_2d;
+        public System.Windows.Forms.RadioButton rb_3d;
     }
 }
