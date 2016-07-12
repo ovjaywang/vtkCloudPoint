@@ -39,7 +39,7 @@ namespace vtkPointCloud
         static int pointsInthrehold;//dbscan点数
         static int ptsIncell;//分块内点数
         public bool isSureClusterRs = false;
-        ClusterParameters cp;
+        Clustering cp;
         public Dictionary<int, int> dick;//融合分块聚类的ID映射
         static List<Point3D>[] cells;//分块聚类集合
         public List<Point3D> clusForMerge;//暂时聚类分布
@@ -51,6 +51,7 @@ namespace vtkPointCloud
         List<List<Point3D>> classedrawData = new List<List<Point3D>>();//源文件匹配相关
         ArrayList pathList = new ArrayList();//路径列表
         public List<Point3D> centers = null;//聚类质心
+        public List<Point3D> centers2D = null;
         public List<Point3D> trues = null;
         List<int> matchedID = new List<int>();//已匹配ID
         //多线程相关
@@ -75,10 +76,11 @@ namespace vtkPointCloud
         int clock = 0;
         int clock_x = 1, clock_y = 1;//x y轴正负
         //简单聚类相关
-        public static int clusterSum = 1;
+        public static int clusterSum = 0;
         int pointSum = 0;
         double simple_x_step, simple_y_step;
         vtkActor actorLine = new vtkActor(), actorLine2 = new vtkActor(), actorLine3 = new vtkActor(), actorLine4 = new vtkActor();//画线
+        public vtkActor actorA ,actorB,actorC;
         List<Point3D> sourceTrueList = null;
         //public double distanceFilterThrehold = 0.0;
         //源文件聚类相关
@@ -94,6 +96,7 @@ namespace vtkPointCloud
         //参数相关
         //public List<Point2D>[] hulls;//个数为聚类数 每个元素为某ID的所有点集
         public List<Point2D> circles;
+        public List<Point2D> circles2D;
         public List<int> filterID = new List<int>();//阈值过滤的ID
         double[] scale = new double[3];//比例尺 三个方向
         double[] trueScale = new double[6];//真值范围
@@ -421,22 +424,22 @@ namespace vtkPointCloud
 
                 vtkDataSetMapper map_1 = new vtkDataSetMapper();
                 map_1.SetInput(grid_1);
-                vtkActor actor_1 = new vtkActor();
-                actor_1.SetMapper(map_1);
+                actorA = new vtkActor();
+                actorA.SetMapper(map_1);
                 if (type == 1)
                 {
-                    actor_1.GetProperty().SetPointSize(1.2f);
+                    actorA.GetProperty().SetPointSize(1.2f);
                 }
                 else if (type == 3)
                 {
-                    actor_1.GetProperty().SetPointSize(4.5f);
-                    actor_1.GetProperty().SetColor(0.0, 0, 1.0);
+                    actorA.GetProperty().SetPointSize(4.5f);
+                    actorA.GetProperty().SetColor(0.0, 0, 1.0);
                 }
                 else if (type == 7)
                 {
-                    actor_1.GetProperty().SetColor(0.0, 1, 0);
+                    actorA.GetProperty().SetColor(0.0, 1, 0);
                 }
-                ren.AddActor(actor_1);
+                ren.AddActor(actorA);
             }
             else if (type == 2 || type == 6)
             {
@@ -464,20 +467,19 @@ namespace vtkPointCloud
                 map_2.SetInput(grid_2);
                 vtkDataSetMapper map_3 = new vtkDataSetMapper();
                 map_3.SetInput(grid_3);
-                vtkActor actor_2 = new vtkActor();
-                actor_2.SetMapper(map_2);
-                actor_2.GetProperty().SetPointSize(1.5f);
-                actor_2.GetProperty().SetColor(1.0, 0, 0);//红色
-                ren.AddActor(actor_2);
-                vtkActor actor_3 = new vtkActor();
-                actor_3.SetMapper(map_3);
-                actor_3.GetProperty().SetPointSize(1.2f);
-                actor_3.GetProperty().SetColor(0, 1, 0);//绿色
-                ren.AddActor(actor_3);
+                actorB = new vtkActor();
+                actorB.SetMapper(map_2);
+                actorB.GetProperty().SetPointSize(1.5f);
+                actorB.GetProperty().SetColor(1.0, 0, 0);//红色
+                ren.AddActor(actorB);
+                actorC = new vtkActor();
+                actorC.SetMapper(map_3);
+                actorC.GetProperty().SetPointSize(1.2f);
+                actorC.GetProperty().SetColor(0, 1, 0);//绿色
+                ren.AddActor(actorC);
             }
 
             vtkControl.GetRenderWindow().AddRenderer(ren);
-
 
             if (type == 1 || type ==6 || type ==7 ) {
                 showAxes();
@@ -503,13 +505,23 @@ namespace vtkPointCloud
                     break;
             }
         }
+
+        public void deleteActor(vtkActor ac) {
+            ren.RemoveActor(ac);
+            vtkControl.Refresh();
+        }
+        public void addActor(vtkActor ac) {
+            ren.AddActor(ac);
+            vtkControl.Refresh();
+        }
         /// <summary>
         /// 显示2D情况下的点集
         /// </summary>
-        /// <param name="type">显示类型 1.阈值过滤-不显示过滤点 2.阈值过滤-显示过滤点</param>
+        /// <param name="type">显示类型 1.阈值过滤-不显示过滤点 2.阈值过滤-显示过滤点 3.显示核心点和野点 4.显示质心</param>
         /// /// <param name="isF">是否固定点</param>
-        public void Show2DPoints(int type) {
+        public void Show2DPoints(List<Point3D> rd,int type) {
             vtkControl.GetRenderWindow().Clean();
+            widget.SetEnabled(0);
             vtkPoints pts = new vtkPoints();
             vtkPoints pts2 = new vtkPoints();
             vtkPolyVertex vertex = new vtkPolyVertex();
@@ -518,8 +530,8 @@ namespace vtkPointCloud
             vtkDataSetMapper mapper22 = new vtkDataSetMapper();
             vtkUnstructuredGrid grid = new vtkUnstructuredGrid();
             vtkUnstructuredGrid grid2 = new vtkUnstructuredGrid();
-            vtkActor ac = new vtkActor();
-            vtkActor ac2 = new vtkActor();
+            //vtkActor ac = new vtkActor();
+            //vtkActor ac2 = new vtkActor();
 
             vtkPolyData pldata = new vtkPolyData();
             vtkPolyDataMapper mapper = new vtkPolyDataMapper();
@@ -538,20 +550,37 @@ namespace vtkPointCloud
             //source.SetHeight(1.0f);
             vtkGlyph2D glyph2D = new vtkGlyph2D(); ;
             int cout1 = 0, cout2 = 0; ;
-            if(type ==2 || type ==1)//1.只显示过滤后点 2.显示过滤和未过滤
+            if(type ==2 || type ==1 || type==3)//1.只显示distance过滤后点 2.显示distance过滤和未过滤 3.显示核心点野点 4.质心
             {
                 ren = new vtkRenderer();
-                
-                foreach (Point3D p in rawData)
-                {
-                    if (!p.isFilterByDistance)
+                if (type == 1 || type == 2) {
+                    foreach (Point3D p in rd)
                     {
-                        pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
-                        cout1++;
+                        if (!p.isFilterByDistance)
+                        {
+                            pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout1++;
+                        }
+                        else if (type == 2)
+                        {
+                            pts2.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout2++;
+                        }
                     }
-                    else if(type == 2) { 
-                        pts2.InsertNextPoint(p.motor_x, p.motor_y, 0);
-                        cout2++;
+                }
+                else if (type==3)
+                {
+                    foreach (Point3D p in rd)
+                    {
+                        if (p.clusterId == 0) {
+                            pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout1++;
+                        }
+                        else
+                        {
+                            pts2.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout2++;
+                        }
                     }
                 }
                 vertex.GetPointIds().SetNumberOfIds(cout1);
@@ -560,29 +589,64 @@ namespace vtkPointCloud
                     vertex.GetPointIds().SetId(i, i);
                 }
                 grid.SetPoints(pts);
-                grid.InsertNextCell(vertex.GetCellType(),vertex.GetPointIds());
+                grid.InsertNextCell(vertex.GetCellType(), vertex.GetPointIds());
                 mapper2.SetInput(grid);
-                ac.SetMapper(mapper2);
-                ac.GetProperty().SetPointSize(1.2f);
-                ac.GetProperty().SetColor(0, 1, 0);
-                
-                if(type ==2 ){
+                actorB = new vtkActor();
+                actorB.SetMapper(mapper2);
+
+                if (type == 2 || type == 3)
+                {
                     vertex2.GetPointIds().SetNumberOfIds(cout2);
                     for (int i = 0; i < cout2; i++)
                     {
                         vertex2.GetPointIds().SetId(i, i);
                     }
-                    grid2.SetPoints(pts);
+                    grid2.SetPoints(pts2);
                     grid2.InsertNextCell(vertex2.GetCellType(), vertex2.GetPointIds());
                     mapper22.SetInput(grid2);
-                    ac2.SetMapper(mapper22);
-                    ac2.GetProperty().SetPointSize(3f);
-                    ac2.GetProperty().SetColor(1, 0, 0);
-                    ren.AddActor(ac2);
+                    actorC = new vtkActor();
+                    actorC.SetMapper(mapper22);
+                    if (type == 2) {
+                        actorC.GetProperty().SetPointSize(3f);
+                        actorC.GetProperty().SetColor(1, 0, 0);
+                    }
+                    else if (type==3)
+                    {
+                        actorB.GetProperty().SetPointSize(1.2f);
+                        actorB.GetProperty().SetColor(1,0, 0);
+                        actorC.GetProperty().SetPointSize(1.2f);
+                        actorC.GetProperty().SetColor(0, 1, 0);
+                    }
+                    ren.AddActor(actorC);
                 }
-                ren.AddActor(ac);
-                widget.SetEnabled(0);
+                if (type == 1) {
+                    actorB.GetProperty().SetPointSize(1.2f);
+                    actorB.GetProperty().SetColor(0, 1, 0);
+                }
+                ren.AddActor(actorB);
                 vtkControl.GetRenderWindow().AddRenderer(ren);
+                vtkControl.Refresh();
+            }
+            if (type == 4) {
+                foreach (Point3D p in rd)
+                {
+                    pts.InsertNextPoint(p.X, p.Y, 0);
+                    cout1++;
+                }
+                vertex.GetPointIds().SetNumberOfIds(cout1);
+                for (int i = 0; i < cout1; i++)
+                {
+                    vertex.GetPointIds().SetId(i, i);
+                }
+                grid.SetPoints(pts);
+                grid.InsertNextCell(vertex.GetCellType(), vertex.GetPointIds());
+                mapper2.SetInput(grid);
+                actorA = new vtkActor();
+                actorA.SetMapper(mapper2);
+                actorA.GetProperty().SetPointSize(3.4f);
+                actorA.GetProperty().SetColor(0, 0, 1);
+
+                ren.AddActor(actorA);
                 vtkControl.Refresh();
             }
         }
@@ -590,7 +654,7 @@ namespace vtkPointCloud
         /// 显示外接圆 白色是原始图案 黄色是超过阈值图案
         /// </summary>
         /// <param name="ls">圆心点集列表</param>
-        /// /// <param name="type">1.显示核心点和野点 2.显示过滤后的所有点  3.只显示半径过大的点集</param>
+        /// /// <param name="type">1.显示核心点和野点 +圆 2.显示剔除野点结果 + 圆 3.只显示半径过大的点集</param>
         public void showCircle(List<Point2D> ls, int type, List<Point3D> li, List<Point3D> cents)//显示圆形图案
         { //输入为各圆心的List
             ren = new vtkRenderer();
@@ -657,6 +721,32 @@ namespace vtkPointCloud
             }
             vtkControl.Refresh();
         }
+        public void showCircles2D(List<Point2D> cir, int type, List<Point3D> data, List<Point3D> ctr) {
+            Show2DPoints(data,3);
+            Show2DPoints(ctr,4);
+            vtkRegularPolygonSource polygonSource;
+            vtkPolyDataMapper mapper;
+            vtkActor actor;
+            for (int k = 0; k < cir.Count; k++)
+            {
+                polygonSource = new vtkRegularPolygonSource();
+                polygonSource.GeneratePolygonOff(); // Uncomment this line to generate only the outline of the circle
+                polygonSource.SetNumberOfSides(100);
+                polygonSource.SetRadius(cir[k].radius);
+                polygonSource.SetCenter(cir[k].x, cir[k].y, 0);
+                // Visualize
+                mapper = new vtkPolyDataMapper();
+                mapper.SetInputConnection(polygonSource.GetOutputPort()); ;
+                actor = new vtkActor();
+                actor.SetMapper(mapper);
+                actor.GetProperty().SetLineWidth(3);
+                actor.GetProperty().SetOpacity(0.6);
+                ren.AddActor(actor);
+            }
+            vtkControl.GetRenderWindow().AddRenderer(ren);
+            vtkControl.Refresh();
+        }
+
         private void showAxes() {
             vtkRenderWindowInteractor interactor = new vtkRenderWindowInteractor();
             interactor.SetRenderWindow(vtkControl.GetRenderWindow());
@@ -833,7 +923,7 @@ namespace vtkPointCloud
                         Console.WriteLine("浮点位数为:" + bit);
                     }
 
-                    double fangweijiao, yangjiao,tianidingjiao;
+                    double fangweijiao, yangjiao;
                     IRow row;
                     string[] tmpxyz;
                     for (int i = 1; i < line; i++)
@@ -1313,7 +1403,7 @@ namespace vtkPointCloud
             {
                 pp.isClassed = false;
             }
-            dbb.dbscan(zeroList, MainForm.threhold, pointsInthrehold);
+            dbb.dbscan(zeroList, MainForm.threhold, pointsInthrehold);//生怕某聚类被分割开没有聚类到 再聚一次
             foreach (Point3D p in zeroList)
             {
                 clusForMerge.Add(p);
@@ -1321,6 +1411,7 @@ namespace vtkPointCloud
             Console.WriteLine("\n分块聚类合理聚类数: " + (clusterSum - delSum) +
                 ",因过聚类小于3被删除的有" + delSum + "个,重新聚类后聚类数 :" + dbb.clusterAmount);
             centers = new List<Point3D>();
+            centers2D = new List<Point3D>();
             clusList = new List<ClusObj>();
             ClusObj obj;
             for (int j = 0; j < dbb.clusterAmount; j++)
@@ -1329,14 +1420,14 @@ namespace vtkPointCloud
                 obj.clusId = j + 1;
                 clusList.Add(obj);
             }
-            //Tools.getClusterCenter(dbb.clusterAmount, clusForMerge, centers, clusList, null);
-            Tools.GetClusList(clusForMerge, centers, clusList, null);
+            Tools.GetClusList(clusForMerge, centers,centers2D, clusList, null);
             foreach (ClusObj ob in clusList)
             {
                 Console.WriteLine(ob.clusId + "   " + ob.li.Count);
             }
             MainForm.clusterSum = dbb.clusterAmount;
-            this.circles = Tools.getCircles(this.clusList);//计算外接圆
+            this.circles = Tools.getCircles(this.clusList,true);//计算外接圆
+            this.circles2D = Tools.getCircles(this.clusList,false);//计算2D外接圆
             showCircle(this.circles, 1, clusForMerge, this.centers);
             isShowLegend(2);
             
@@ -2213,7 +2304,7 @@ namespace vtkPointCloud
                 MessageBox.Show("没有显示任何点，不可以聚类");
                 return;
             }
-            cp = new ClusterParameters();
+            cp = new Clustering();
             cp.Show(this);
             //调用显示
             //this.ExportClusterToolStripMenuItem.Enabled = true;
@@ -3050,12 +3141,12 @@ namespace vtkPointCloud
         private void 测试删除actorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.RemoveActor(actorLine);
-            ren.RemoveActor(actorLine2);
-            ren.RemoveViewProp(actorLine3);
-            ren.RemoveActor(actorLine4);
-            tmpAngle[0] = tmpAngle[0] + 2;
-            tmpAngle[1] = tmpAngle[1] + 2;
-            showBounds(tmpAngle);
+            //ren.RemoveActor(actorLine2);
+            //ren.RemoveViewProp(actorLine3);
+            //ren.RemoveActor(actorLine4);
+            //tmpAngle[0] = tmpAngle[0] + 2;
+            //tmpAngle[1] = tmpAngle[1] + 2;
+            //showBounds(tmpAngle);
             vtkControl.Refresh();
             //vtkControl.GetRenderWindow().Render();
         }
@@ -3370,6 +3461,12 @@ namespace vtkPointCloud
         private void 测试清屏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.RemoveAllViewProps();
+            vtkControl.Refresh();
+        }
+
+        private void 测试添加actorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ren.AddActor(actorLine);
             vtkControl.Refresh();
         }
     }

@@ -71,6 +71,11 @@ namespace vtkPointCloud
             this.x = xx;
             this.y = yy;
         }
+        public Point2D(double xx, double yy, int cluID) {
+            this.x = xx;
+            this.y = yy;
+            this.clusID = cluID;
+        }
         public Object Clone() //深度拷贝  
         {
             using (MemoryStream ms = new MemoryStream(1000))

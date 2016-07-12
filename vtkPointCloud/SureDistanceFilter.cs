@@ -47,7 +47,7 @@ namespace vtkPointCloud
                 if (this.rb_3d.Checked)
                     mf.ShowPointsFromFile(mf.rawData, 6 + (this.checkBox1.Checked ? 0 : 1));
                 else
-                    mf.Show2DPoints(this.checkBox1.Checked ?2:1);
+                    mf.Show2DPoints(mf.rawData,this.checkBox1.Checked ?2:1);
             }
             else
             { 
@@ -62,16 +62,6 @@ namespace vtkPointCloud
         private void OKBtn_Click(object sender, EventArgs e){
             if (!isFirst)
             {
-                //if (MessageBox.Show("确认不使用Distance的值过滤吗?", "消息", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                //{
-                //    this.DialogResult = DialogResult.Cancel;
-                //    this.isClose = false;
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    return;
-                //}
                 mf = (MainForm)this.Owner;
                 mf.isShowLegend(0);
                 if (!isFix)
@@ -101,7 +91,7 @@ namespace vtkPointCloud
             if (!isFix)//不是固定点
             {
                 if (this.rb_3d.Checked) mf.ShowPointsFromFile(mf.rawData, 6 + ((this.checkBox1.Checked) ? 0 : 1));
-                else mf.Show2DPoints(this.checkBox1.Checked ? 2 : 1);
+                else mf.Show2DPoints(mf.rawData,this.checkBox1.Checked ? 2 : 1);
             }
             else
             {
@@ -130,7 +120,7 @@ namespace vtkPointCloud
         {
             if (isFirst) return;
             if (this.rb_3d.Checked) mf.ShowPointsFromFile(mf.rawData, 6 + ((this.checkBox1.Checked) ? 0 : 1));
-            else mf.Show2DPoints(this.checkBox1.Checked ? 2 : 1);
+            else mf.Show2DPoints(mf.rawData,this.checkBox1.Checked ? 2 : 1);
         }
 
     }

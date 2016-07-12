@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace vtkPointCloud
 {
-    public partial class ClusterParameters : Form
+    public partial class Clustering : Form
     {
         public double threhold;
         public int point;
@@ -18,10 +18,13 @@ namespace vtkPointCloud
         public bool isFirst = true;
         public bool isMerge = false;
         public List<ClusObj> tmpClusList;
+
         public List<Point3D> tmpCenters;
+        public List<Point3D> tmpCenters2D;
         public List<Point2D> tmpCircles;
+        public List<Point2D> tmpCircles2D;
         MainForm mf;
-        public ClusterParameters()
+        public Clustering()
         {
             InitializeComponent();
         }
@@ -76,10 +79,30 @@ namespace vtkPointCloud
             mf = (MainForm)this.Owner;
             this.Visible = false;
             //mf.getClusterFromList(threhold, point,ptsIncell); 
-            mf.getClusterFromMotor(threhold, point, ptsIncell); 
+            mf.getClusterFromMotor(threhold, point, ptsIncell);
+            this.rb_3d.CheckedChanged -= new System.EventHandler(this.rb_3d_CheckedChanged);
+            this.cb_showcore.CheckedChanged -= new System.EventHandler(this.cb_showcore_CheckedChanged);
+            this.cb_showerror.CheckedChanged -= new System.EventHandler(this.cb_showerror_CheckedChanged);
+            this.cb_showcentroid.CheckedChanged -= new System.EventHandler(this.cb_showcentroid_CheckedChanged);
+
+            this.cb_showcentroid.Checked = true;
+            this.cb_showcore.Checked = true;
+            this.cb_showerror.Checked = true;
+            this.rb_3d.Checked = true;
+            this.rb_2d.Checked = false;
+            this.rb_3d.CheckedChanged += new System.EventHandler(this.rb_3d_CheckedChanged);
+            this.cb_showcore.CheckedChanged += new System.EventHandler(this.cb_showcore_CheckedChanged);
+            this.cb_showerror.CheckedChanged += new System.EventHandler(this.cb_showerror_CheckedChanged);
+            this.cb_showcentroid.CheckedChanged += new System.EventHandler(this.cb_showcentroid_CheckedChanged);
+
             if (isFirst)
             {
                 isFirst = false;
+                this.cb_showcentroid.Enabled = true;
+                this.cb_showcore.Enabled = true;
+                this.cb_showerror.Enabled = true;
+                this.rb_2d.Enabled = true;
+                this.rb_3d.Enabled = true;
             }
         }
         private void MergeBtn_Click(object sender, EventArgs e)
@@ -109,14 +132,17 @@ namespace vtkPointCloud
             Console.WriteLine("fff的值为" + fff);
             Dictionary<int,int> dick = Tools.IntegratingClusID(mf.centers, mergeThrehold);//计算需要融合的ID
             tmpCenters = null;
-            tmpCenters = Tools.refreshCensAndClusByDictionary(dick, tmpClusList);//重新分配ID号 计算分配后ID数
+            tmpCircles2D = null;
+            tmpCenters = Tools.refreshCensAndClusByDictionary(dick, tmpClusList ,this.rb_3d.Checked);//重新分配ID号 计算分配后ID数
+            tmpCenters2D = Tools.refreshCensAndClusByDictionary(dick, tmpClusList, this.rb_3d.Checked);
             fff = 0;
             //mf.centers = null;
             //mf.centers = tmpCenters;
             //重新洗牌！！
-            tmpCircles = null;
             tmpCircles = new List<Point2D>();
-            tmpCircles = Tools.getCircles(tmpClusList);//再次计算外接圆
+            tmpCircles2D = new List<Point2D>();
+            tmpCircles = Tools.getCircles(tmpClusList,true);//再次计算外接圆
+            tmpCircles2D = Tools.getCircles(tmpClusList,false);
             mf.showCircle(tmpCircles, 1, mf.clusForMerge, tmpCenters);
             //mf.showCircle(circles, 1, );//显示圆
         }
@@ -144,6 +170,63 @@ namespace vtkPointCloud
             mf.circles = new List<Point2D>();
             this.tmpCircles.ForEach(i => mf.circles.Add((Point2D)i.Clone()));//赋值当前外接圆
 
+        }
+
+        private void cb_showcore_CheckedChanged(object sender, EventArgs e)
+        {
+            mf = (MainForm)this.Owner;
+            if (this.cb_showcore.Checked)
+                mf.addActor(mf.actorC);
+            else
+                mf.deleteActor(mf.actorC);
+        }
+
+        private void cb_showerror_CheckedChanged(object sender, EventArgs e)
+        {
+            mf = (MainForm)this.Owner;
+            if (this.cb_showerror.Checked)
+                mf.addActor(mf.actorB);
+            else
+                mf.deleteActor(mf.actorB);
+        }
+
+        private void cb_showcentroid_CheckedChanged(object sender, EventArgs e)
+        {
+            mf = (MainForm)this.Owner;
+            if (this.cb_showcentroid.Checked)
+                mf.addActor(mf.actorA);
+            else
+                mf.deleteActor(mf.actorA);
+        }
+
+        private void rb_3d_CheckedChanged(object sender, EventArgs e)
+        {
+            mf = (MainForm)this.Owner;
+            if (!isMerge) {
+                if (rb_3d.Checked)
+                {
+                    mf.showCircle(mf.circles, 1, mf.clusForMerge, mf.centers);
+                }
+                else
+                {
+                    mf.showCircles2D(mf.circles2D, 1, mf.clusForMerge, mf.centers2D);
+                }
+            }
+            else
+            {
+                if (rb_3d.Checked)
+                {
+                    mf.showCircle(tmpCircles, 1, mf.clusForMerge, tmpCenters);
+                }
+                else
+                {
+                    mf.showCircles2D(tmpCircles2D, 1, mf.clusForMerge, tmpCenters2D);
+                }
+
+            }
+            if (!this.cb_showcentroid.Checked) mf.deleteActor(mf.actorA);
+            if (!this.cb_showerror.Checked) mf.deleteActor(mf.actorB);
+            if (!this.cb_showcore.Checked) mf.deleteActor(mf.actorC);
         }
     }
 }

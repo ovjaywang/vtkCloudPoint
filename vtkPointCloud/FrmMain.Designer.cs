@@ -268,9 +268,9 @@
             this.测试匹配ToolStripMenuItem,
             this.测试画矩形ToolStripMenuItem,
             this.测试删除actorToolStripMenuItem,
+            this.测试删除坐标ToolStripMenuItem,
             this.测试画双点ToolStripMenuItem,
-            this.测试清屏ToolStripMenuItem,
-            this.测试删除坐标ToolStripMenuItem});
+            this.测试清屏ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -424,7 +424,8 @@
             // 
             this.测试删除坐标ToolStripMenuItem.Name = "测试删除坐标ToolStripMenuItem";
             this.测试删除坐标ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试删除坐标ToolStripMenuItem.Text = "测试删除坐标";
+            this.测试删除坐标ToolStripMenuItem.Text = "测试添加actor";
+            this.测试删除坐标ToolStripMenuItem.Click += new System.EventHandler(this.测试添加actorToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
