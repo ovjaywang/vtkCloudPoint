@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace vtkPointCloud
 {
-    public partial class WaitingForm : Form
+    public partial class  WaitingForm : Form
     {
         public WaitingForm()
         {
@@ -20,10 +20,8 @@ namespace vtkPointCloud
         {
             this.progressBar1.Value = value;
             //this.textbox2.text = "progress :" + value.tostring() + "%";
-
-            // 这里关闭，比较好，呵呵！  
-            if (value == this.progressBar1.Maximum - 1) this.Close();
-        }
+            //if (value == this.progressBar1.Maximum - 1) this.Close();
+        }  
 
     }
 }

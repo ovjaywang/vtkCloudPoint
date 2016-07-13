@@ -27,10 +27,11 @@ namespace vtkPointCloud
         string fullFilePath;
         TreeNode root = null;//根目录
         string selPath;//自身路径
+        public bool isScaned;
         vtkFormsWindowControl vtkControl = null;
         List<double> xSet = new List<double>(), ySet = new List<double>(), zSet = new List<double>();//x,y,z坐标集合
         public double x_angle = 0.0, y_angle = 0.0;//x y灵位角度
-        static int sumClus = 0, sumPts = 0;//总点数 总聚类数
+        static int sumPts = 0;//总点数 总聚类数
         //dbscan相关
         //public DB dbb;//DB类对象
         public DBImproved dbb;
@@ -38,18 +39,19 @@ namespace vtkPointCloud
         static int pointsInthrehold;//dbscan点数
         static int ptsIncell;//分块内点数
         public bool isSureClusterRs = false;
-        ClusterParameters cp;
+        Clustering cp;
         public Dictionary<int, int> dick;//融合分块聚类的ID映射
-        List<Point3D>[] cells;//分块聚类集合
+        static List<Point3D>[] cells;//分块聚类集合
         public List<Point3D> clusForMerge;//暂时聚类分布
         System.Diagnostics.Stopwatch stwt;
         //点集相关
         public List<Point3D> rawData = new List<Point3D>();//raw是原始x y z值数据
-        bool isIgnoreDuplication = true;
+        bool isIgnoreDuplication = true;//是否忽略重复点
         public List<ClusObj> clusList = null;//依据聚类ID的分组List 每个ClusObj存一个聚类
         List<List<Point3D>> classedrawData = new List<List<Point3D>>();//源文件匹配相关
         ArrayList pathList = new ArrayList();//路径列表
         public List<Point3D> centers = null;//聚类质心
+        public List<Point3D> centers2D = null;
         public List<Point3D> trues = null;
         List<int> matchedID = new List<int>();//已匹配ID
         //多线程相关
@@ -57,35 +59,28 @@ namespace vtkPointCloud
         private delegate void funHandle(int nValue);//声明计算聚类的线程
         public delegate void CallBackDelegate(string message);
         private static WaitingForm progressForm = new WaitingForm();
-
         private ProgressBar psbar = progressForm.progressBar1;
         private delegate void UpdateStatusDelegate();
         private BackgroundWorker bkWorker = new BackgroundWorker();
-        private BackgroundWorker bkWorker2 = new BackgroundWorker();
         static private BackgroundWorker bkWorker3 = new BackgroundWorker();
-        private int percentValue = 0;
         //icp相关
         //vtkPoints truePoints;//用以顯示的真值點集
         bool isSureRegion = true;//判斷是否確
         List<Point3D> InRegionTrues;//范围内均值
         vtkMatrix4x4 M;//刚性变换矩阵
         vtkPoints truePointCloud = new vtkPoints();//真值点云
-        vtkPoints centroidPointCloud = null;//质心点云
         int[] truePointPid = new int[1];//真值点Id
         vtkCellArray truePointVertices = new vtkCellArray();//真值顶点
         vtkPolyVertex truePolyVertex = new vtkPolyVertex();
         vtkActor trueActor;//真值点actor
         int clock = 0;
         int clock_x = 1, clock_y = 1;//x y轴正负
-        int[] vtpc_Pid = new int[1];
-        int[] vcpc_Pid = new int[1];
-        vtkCellArray vtpVertices = new vtkCellArray();
-        vtkCellArray vcpVertices = new vtkCellArray();
         //简单聚类相关
-        public static int clusterSum = 1;
+        public static int clusterSum = 0;
         int pointSum = 0;
         double simple_x_step, simple_y_step;
         vtkActor actorLine = new vtkActor(), actorLine2 = new vtkActor(), actorLine3 = new vtkActor(), actorLine4 = new vtkActor();//画线
+        public vtkActor actorA ,actorB,actorC;
         List<Point3D> sourceTrueList = null;
         //public double distanceFilterThrehold = 0.0;
         //源文件聚类相关
@@ -101,13 +96,13 @@ namespace vtkPointCloud
         //参数相关
         //public List<Point2D>[] hulls;//个数为聚类数 每个元素为某ID的所有点集
         public List<Point2D> circles;
+        public List<Point2D> circles2D;
         public List<int> filterID = new List<int>();//阈值过滤的ID
         double[] scale = new double[3];//比例尺 三个方向
         double[] trueScale = new double[6];//真值范围
         double[] centroidScale;//质心范围
         vtkAxesActor axes = new vtkAxesActor();
         vtkOrientationMarkerWidget widget = new vtkOrientationMarkerWidget();
-
         public MainForm()
         {
             InitializeComponent();
@@ -120,13 +115,6 @@ namespace vtkPointCloud
             bkWorker.DoWork += new DoWorkEventHandler(DoWork);
             bkWorker.ProgressChanged += new ProgressChangedEventHandler(ProgessChanged);
             bkWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteWork);
-
-            bkWorker2.WorkerReportsProgress = true;
-            bkWorker2.WorkerSupportsCancellation = true;
-            bkWorker2.DoWork += new DoWorkEventHandler(DoWork2);
-            bkWorker2.ProgressChanged += new ProgressChangedEventHandler(ProgessChanged2);
-            bkWorker2.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteWork2);
-
             bkWorker3.WorkerReportsProgress = true;
             bkWorker3.WorkerSupportsCancellation = true;
             bkWorker3.DoWork += new DoWorkEventHandler(DoWork3);
@@ -158,8 +146,6 @@ namespace vtkPointCloud
             ir.SetInteractorStyle(sty);
             //加载图像
         }
-
-
         /// <summary>
         /// 在线程中更新线程池中的状态 当可用线程等于最大线程则退出
         /// </summary>
@@ -183,7 +169,6 @@ namespace vtkPointCloud
             }
             return x;
         }
-
         /// <summary>
         /// 查询TreeView下节点被checked的数目
         /// </summary>
@@ -439,22 +424,22 @@ namespace vtkPointCloud
 
                 vtkDataSetMapper map_1 = new vtkDataSetMapper();
                 map_1.SetInput(grid_1);
-                vtkActor actor_1 = new vtkActor();
-                actor_1.SetMapper(map_1);
+                actorA = new vtkActor();
+                actorA.SetMapper(map_1);
                 if (type == 1)
                 {
-                    actor_1.GetProperty().SetPointSize(1.2f);
+                    actorA.GetProperty().SetPointSize(1.2f);
                 }
                 else if (type == 3)
                 {
-                    actor_1.GetProperty().SetPointSize(4.5f);
-                    actor_1.GetProperty().SetColor(0.0, 0, 1.0);
+                    actorA.GetProperty().SetPointSize(4.5f);
+                    actorA.GetProperty().SetColor(0.0, 0, 1.0);
                 }
                 else if (type == 7)
                 {
-                    actor_1.GetProperty().SetColor(0.0, 1, 0);
+                    actorA.GetProperty().SetColor(0.0, 1, 0);
                 }
-                ren.AddActor(actor_1);
+                ren.AddActor(actorA);
             }
             else if (type == 2 || type == 6)
             {
@@ -482,35 +467,23 @@ namespace vtkPointCloud
                 map_2.SetInput(grid_2);
                 vtkDataSetMapper map_3 = new vtkDataSetMapper();
                 map_3.SetInput(grid_3);
-                vtkActor actor_2 = new vtkActor();
-                actor_2.SetMapper(map_2);
-                actor_2.GetProperty().SetPointSize(1.5f);
-                actor_2.GetProperty().SetColor(1.0, 0, 0);//红色
-                ren.AddActor(actor_2);
-                vtkActor actor_3 = new vtkActor();
-                actor_3.SetMapper(map_3);
-                actor_3.GetProperty().SetPointSize(1.2f);
-                actor_3.GetProperty().SetColor(0, 1, 0);//绿色
-                ren.AddActor(actor_3);
+                actorB = new vtkActor();
+                actorB.SetMapper(map_2);
+                actorB.GetProperty().SetPointSize(1.5f);
+                actorB.GetProperty().SetColor(1.0, 0, 0);//红色
+                ren.AddActor(actorB);
+                actorC = new vtkActor();
+                actorC.SetMapper(map_3);
+                actorC.GetProperty().SetPointSize(1.2f);
+                actorC.GetProperty().SetColor(0, 1, 0);//绿色
+                ren.AddActor(actorC);
             }
 
             vtkControl.GetRenderWindow().AddRenderer(ren);
 
-
             if (type == 1 || type ==6 || type ==7 ) {
                 showAxes();
             }
-            //vtkRenderWindowInteractor interactor = new vtkRenderWindowInteractor();
-            //interactor.SetRenderWindow(vtkControl.GetRenderWindow());
-
-            //widget.SetViewport(0, 0, 0.4, 0.4);
-            //widget.SetInteractor(interactor);
-            //widget.SetEnabled(1);
-            //widget.InteractiveOn();
-            //ren.ResetCamera();
-            //vtkControl.GetRenderWindow().Render();
-            //interactor.Start();
-            //vtkControl.Refresh();
             switch (type)
             {
                 case 1:
@@ -532,11 +505,158 @@ namespace vtkPointCloud
                     break;
             }
         }
+
+        public void deleteActor(vtkActor ac) {
+            ren.RemoveActor(ac);
+            vtkControl.Refresh();
+        }
+        public void addActor(vtkActor ac) {
+            ren.AddActor(ac);
+            vtkControl.Refresh();
+        }
+        /// <summary>
+        /// 显示2D情况下的点集
+        /// </summary>
+        /// <param name="type">显示类型 1.阈值过滤-不显示过滤点 2.阈值过滤-显示过滤点 3.显示核心点和野点 4.显示质心</param>
+        /// /// <param name="isF">是否固定点</param>
+        public void Show2DPoints(List<Point3D> rd,int type) {
+            vtkControl.GetRenderWindow().Clean();
+            widget.SetEnabled(0);
+            vtkPoints pts = new vtkPoints();
+            vtkPoints pts2 = new vtkPoints();
+            vtkPolyVertex vertex = new vtkPolyVertex();
+            vtkPolyVertex vertex2 = new vtkPolyVertex();
+            vtkDataSetMapper mapper2 = new vtkDataSetMapper();
+            vtkDataSetMapper mapper22 = new vtkDataSetMapper();
+            vtkUnstructuredGrid grid = new vtkUnstructuredGrid();
+            vtkUnstructuredGrid grid2 = new vtkUnstructuredGrid();
+            //vtkActor ac = new vtkActor();
+            //vtkActor ac2 = new vtkActor();
+
+            vtkPolyData pldata = new vtkPolyData();
+            vtkPolyDataMapper mapper = new vtkPolyDataMapper();
+            
+
+            //vtkRegularPolygonSource source = new vtkRegularPolygonSource();
+            //vtkRectangularButtonSource source = new vtkRectangularButtonSource();
+            //vtkButtonSource source = new vtkButtonSource();
+            vtkCubeSource source = new vtkCubeSource();
+            source.SetXLength(0.005);
+            source.SetYLength(0.005);
+            source.SetZLength(0.005);
+            //vtkPointSource source = new vtkPointSource();
+            //source.SetNumberOfPoints(1);
+            //source.SetWidth(1.0f);
+            //source.SetHeight(1.0f);
+            vtkGlyph2D glyph2D = new vtkGlyph2D(); ;
+            int cout1 = 0, cout2 = 0; ;
+            if(type ==2 || type ==1 || type==3)//1.只显示distance过滤后点 2.显示distance过滤和未过滤 3.显示核心点野点 4.质心
+            {
+                ren = new vtkRenderer();
+                if (type == 1 || type == 2) {
+                    foreach (Point3D p in rd)
+                    {
+                        if (!p.isFilterByDistance)
+                        {
+                            pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout1++;
+                        }
+                        else if (type == 2)
+                        {
+                            pts2.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout2++;
+                        }
+                    }
+                }
+                else if (type==3)
+                {
+                    foreach (Point3D p in rd)
+                    {
+                        if (p.clusterId == 0) {
+                            pts.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout1++;
+                        }
+                        else
+                        {
+                            pts2.InsertNextPoint(p.motor_x, p.motor_y, 0);
+                            cout2++;
+                        }
+                    }
+                }
+                vertex.GetPointIds().SetNumberOfIds(cout1);
+                for (int i = 0; i < cout1; i++)
+                {
+                    vertex.GetPointIds().SetId(i, i);
+                }
+                grid.SetPoints(pts);
+                grid.InsertNextCell(vertex.GetCellType(), vertex.GetPointIds());
+                mapper2.SetInput(grid);
+                actorB = new vtkActor();
+                actorB.SetMapper(mapper2);
+
+                if (type == 2 || type == 3)
+                {
+                    vertex2.GetPointIds().SetNumberOfIds(cout2);
+                    for (int i = 0; i < cout2; i++)
+                    {
+                        vertex2.GetPointIds().SetId(i, i);
+                    }
+                    grid2.SetPoints(pts2);
+                    grid2.InsertNextCell(vertex2.GetCellType(), vertex2.GetPointIds());
+                    mapper22.SetInput(grid2);
+                    actorC = new vtkActor();
+                    actorC.SetMapper(mapper22);
+                    if (type == 2) {
+                        actorB.GetProperty().SetPointSize(1.2f);
+                        actorB.GetProperty().SetColor(0, 1, 0);
+                        actorC.GetProperty().SetPointSize(3f);
+                        actorC.GetProperty().SetColor(1, 0, 0);
+                    }
+                    else if (type==3)
+                    {
+                        actorB.GetProperty().SetPointSize(1.5f);
+                        actorB.GetProperty().SetColor(1,0, 0);
+                        actorC.GetProperty().SetPointSize(1.2f);
+                        actorC.GetProperty().SetColor(0, 1, 0);
+                    }
+                    ren.AddActor(actorC);
+                }
+                if (type == 1) {
+                    actorB.GetProperty().SetPointSize(1.2f);
+                    actorB.GetProperty().SetColor(0, 1, 0);
+                }
+                ren.AddActor(actorB);
+                vtkControl.GetRenderWindow().AddRenderer(ren);
+                vtkControl.Refresh();
+            }
+            if (type == 4) {
+                foreach (Point3D p in rd)
+                {
+                    pts.InsertNextPoint(p.X, p.Y, 0);
+                    cout1++;
+                }
+                vertex.GetPointIds().SetNumberOfIds(cout1);
+                for (int i = 0; i < cout1; i++)
+                {
+                    vertex.GetPointIds().SetId(i, i);
+                }
+                grid.SetPoints(pts);
+                grid.InsertNextCell(vertex.GetCellType(), vertex.GetPointIds());
+                mapper2.SetInput(grid);
+                actorA = new vtkActor();
+                actorA.SetMapper(mapper2);
+                actorA.GetProperty().SetPointSize(3.4f);
+                actorA.GetProperty().SetColor(0, 0, 1);
+
+                ren.AddActor(actorA);
+                vtkControl.Refresh();
+            }
+        }
         /// <summary>
         /// 显示外接圆 白色是原始图案 黄色是超过阈值图案
         /// </summary>
         /// <param name="ls">圆心点集列表</param>
-        /// /// <param name="type">1.显示核心点和野点 2.显示过滤后的所有点  3.只显示半径过大的点集</param>
+        /// /// <param name="type">1.显示核心点和野点 +圆 2.显示剔除野点结果 + 圆 3.只显示半径过大的点集</param>
         public void showCircle(List<Point2D> ls, int type, List<Point3D> li, List<Point3D> cents)//显示圆形图案
         { //输入为各圆心的List
             ren = new vtkRenderer();
@@ -603,6 +723,32 @@ namespace vtkPointCloud
             }
             vtkControl.Refresh();
         }
+        public void showCircles2D(List<Point2D> cir, int type, List<Point3D> data, List<Point3D> ctr) {
+            Show2DPoints(data,3);
+            Show2DPoints(ctr,4);
+            vtkRegularPolygonSource polygonSource;
+            vtkPolyDataMapper mapper;
+            vtkActor actor;
+            for (int k = 0; k < cir.Count; k++)
+            {
+                polygonSource = new vtkRegularPolygonSource();
+                polygonSource.GeneratePolygonOff(); // Uncomment this line to generate only the outline of the circle
+                polygonSource.SetNumberOfSides(100);
+                polygonSource.SetRadius(cir[k].radius);
+                polygonSource.SetCenter(cir[k].x, cir[k].y, 0);
+                // Visualize
+                mapper = new vtkPolyDataMapper();
+                mapper.SetInputConnection(polygonSource.GetOutputPort()); ;
+                actor = new vtkActor();
+                actor.SetMapper(mapper);
+                actor.GetProperty().SetLineWidth(3);
+                actor.GetProperty().SetOpacity(0.6);
+                ren.AddActor(actor);
+            }
+            vtkControl.GetRenderWindow().AddRenderer(ren);
+            vtkControl.Refresh();
+        }
+
         private void showAxes() {
             vtkRenderWindowInteractor interactor = new vtkRenderWindowInteractor();
             interactor.SetRenderWindow(vtkControl.GetRenderWindow());
@@ -713,7 +859,7 @@ namespace vtkPointCloud
         /// <param name="ptsPath">文件夹路径</param>
         /// <param name="xdir">扫描点x方向 1上2右3下4左</param>
         /// <param name="ydir">扫描点y方向 1上2右3下4左</param>
-        /// <param name="typpe">1剔野+txt 2剔野+xls 3不剔野+txt 4不剔野+xls</param>
+        /// <param name="typpe">1剔野+txt 2剔野+xls 3固定点+清除 4固定点+不清除</param>
         /// <param name="isXLS">是否是xls文件</param>
         private void AddFolder(String ptsPath, int xdir, int ydir, int typpe, bool isXLS)//添加数据
         {
@@ -745,10 +891,14 @@ namespace vtkPointCloud
                 foreach (string file in files)
                 {
                     txtName = file.Substring(ptsPath.Length + 1);
-                    if (typpe == 3 || typpe == 4)
-                        clusList.Add(new ClusObj(txtName.Substring(0, txtName.IndexOf('.'))));
+                    if (typpe == 3 || typpe == 4) {
+                        clusList.Add(new ClusObj(txtName.Substring(0, txtName.IndexOf('.'))));//不剔野
+                        isScaned = false;
+                    }
                     else
-                        clusList.Add(new ClusObj());
+                    {
+                        isScaned = true;
+                    }
                     Console.WriteLine(file);
                     //treeDir.Nodes.Add(Path.GetFileName(file));
                     treeDir.Nodes.Add(txtName);
@@ -762,26 +912,20 @@ namespace vtkPointCloud
                         HSSFWorkbook wk = new HSSFWorkbook(fs);   //把xls文件中的数据写入wk中
                         sheet = wk.GetSheetAt(0);
                         line = sheet.LastRowNum + 1;
-                    }
-                    else
-                    {
-                        pointsList = fileMap.ReadFile(file);
-                        line = pointsList.Count;
-                    }
-
-                    double fangweijiao, yangjiao;
-                    if (isXLS)
-                    {
                         String s = sheet.GetRow(1).GetCell(0).ToString();
                         bit = s.Length - s.LastIndexOf("-1") - 1;
                         Console.WriteLine("浮点位数为:" + bit);
                     }
                     else
                     {
+                        pointsList = fileMap.ReadFile(file);
+                        line = pointsList.Count;
                         String ssss = pointsList[0].Split('\t')[0];
                         bit = ssss.Length - ssss.LastIndexOf(".") - 1;
                         Console.WriteLine("浮点位数为:" + bit);
                     }
+
+                    double fangweijiao, yangjiao;
                     IRow row;
                     string[] tmpxyz;
                     for (int i = 1; i < line; i++)
@@ -820,12 +964,11 @@ namespace vtkPointCloud
                         }
                         yangjiao = (-2) * (point.motor_x - this.x_angle) / 180 * Math.PI;
                         fangweijiao = 2 * (point.motor_y - this.y_angle) / 180 * Math.PI;
-                        //yangjiao = (-2) * (point.motor_x - 45.439) / 180 * Math.PI;
-                        //fangweijiao = 2 * (point.motor_y - 35.452) / 180 * Math.PI;
 
+                        //if (yangjiao > 90) yangjiao = yangjiao - 90; else yangjiao = 90 - yangjiao;
+                        //if (fangweijiao > 180) fangweijiao = 360 - fangweijiao;
                         double tmpx = point.Distance * Math.Cos(yangjiao) * Math.Sin(fangweijiao);
-                        double tmpy = point.Distance * Math.Sin(yangjiao) * Math.Cos(fangweijiao);
-
+                        double tmpy = point.Distance * Math.Sin(yangjiao) * Math.Cos(fangweijiao); 
                         switch (xdir)
                         {
                             case 1:
@@ -871,14 +1014,12 @@ namespace vtkPointCloud
                             if (clusList[pathList.Count].li.FindAll(delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); }).Count == 0)
                             {
                                 point.ptsCount = 1;
-                                //grouping[pathList.Count].Add(point);
                                 clusList[pathList.Count].li.Add(point);
                                 pts++;
                             }
 
                             else
                             {
-                                //grouping[pathList.Count][grouping[pathList.Count].FindIndex(0, grouping[pathList.Count].Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
                                 clusList[pathList.Count].li[clusList[pathList.Count].li.FindIndex(0, clusList[pathList.Count].li.Count, delegate(Point3D p) { return (p.X == tmpx) && (p.Y == tmpy) && (p.Z == tmpz); })].ptsCount += 1;
                                 if (typpe == 3) duplicatNum++;
                                 else pts++;
@@ -890,7 +1031,6 @@ namespace vtkPointCloud
                         }
                     }
                     pathList.Add(file);//文件名加入文件名List
-                    //MessageBox.Show(pathList.Count + "   " + pathList[pathList.Count-1].ToString());
                 };
                 setChildNodeCheckedState(treeDir, true);
                 root.Checked = true;
@@ -926,6 +1066,8 @@ namespace vtkPointCloud
                 {
                     sdf.textBox_maxD.Text = Tools.GetGroupingManOrMin(this.clusList, 1).ToString();
                     sdf.textBox_minD.Text = Tools.GetGroupingManOrMin(this.clusList, 2).ToString();
+                    sdf.rb_2d.Visible = false;
+                    sdf.rb_3d.Visible = false;
                 }
                 sdf.Show(this);
             }
@@ -948,7 +1090,7 @@ namespace vtkPointCloud
             double x_Max = rawData.Max(m => m.X);//计算x最大
             double y_Max = rawData.Max(m => m.Y);//计算y最大
             if (rawData == null || rawData.Count == 0) return;
-            rawData.Sort((x, y) =>
+            rawData.Sort((x, y) =>//按照与最小值最近距离排序
             {
                 int result;
                 double d1 = Math.Max(x.X - x_Min, x.Y - y_Min);
@@ -1011,6 +1153,84 @@ namespace vtkPointCloud
             progressForm.progressBar1.Maximum = cells.Length;
             progressForm.Show();
         }
+        public void getClusterFromMotor(double tr, int pts, int ptsInCell)//执行dbscan聚类线程
+        {
+            MainForm.threhold = tr;
+            MainForm.pointsInthrehold = pts;
+            MainForm.ptsIncell = ptsInCell;
+            foreach (Point3D p in rawData)
+            {
+                p.clusterId = 0;
+                p.isClassed = false;
+            }
+            double x_Min = rawData.Min(m => m.motor_x);//计算x最小
+            double y_Min = rawData.Min(m => m.motor_y);//计算y最小
+            double x_Max = rawData.Max(m => m.motor_x);//计算x最大
+            double y_Max = rawData.Max(m => m.motor_y);//计算y最大
+            if (rawData == null || rawData.Count == 0) return;
+            rawData.Sort((x, y) =>//按照与最小值最近距离排序
+            {
+                int result;
+                double d1 = Math.Max(x.motor_x - x_Min, x.motor_y - y_Min);
+                double d2 = Math.Max(y.motor_x - x_Min, y.motor_y - y_Min);
+                if (d1 == d2)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    if (d1 > d2)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                return result;
+            }
+            );
+            Console.WriteLine("分块点数 = " + MainForm.ptsIncell);
+            List<Point3D> cell = rawData.Take(MainForm.ptsIncell).ToList();
+            //MessageBox.Show(rawData.Count+"");
+            double cell_x = cell.Max(m => m.motor_x) - x_Min;
+            double cell_y = cell.Max(m => m.motor_y) - y_Min;
+            int rows = (int)((y_Max - y_Min) / cell_y) + 1;
+            int cols = (int)((x_Max - x_Min) / cell_x) + 1;
+            cells = new List<Point3D>[rows * cols];
+            cells[0] = cell;
+            int index = 0;
+            for (int p = 0; p < rows; p++)
+            {
+                for (int q = 0; q < cols; q++)
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        if ((p == (rows - 1)) && (q != (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Max);
+                        }
+                        else if ((p != (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Min + (p + 1) * cell_y);
+                        }
+                        else if ((p == (rows - 1)) && (q == (cols - 1)))
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Max);
+                        }
+                        else
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
+            Console.WriteLine("\n\r总分块数：" + cells.Length + ",共 " + rows + " 行 " + cols + " 列.");
+            bkWorker3.RunWorkerAsync();
+            progressForm = new WaitingForm();
+            progressForm.progressBar1.Maximum = cells.Length;
+            progressForm.Show();
+        }
         public void DoWork(object sender, DoWorkEventArgs e)
         {
             ICP();
@@ -1058,60 +1278,19 @@ namespace vtkPointCloud
             }
             return -1;
         }
-        // 真正后台执行ICP算法
-        public void DoWork2(object sender, DoWorkEventArgs e)
-        {
-            // 事件处理，指定处理函数
-            ICP();
-            this.BeginInvoke(new UpdateStatusDelegate(UpdateStatus2), new object[] { });
-            e.Result = ProcessProgress2(bkWorker2, e);
-        }
-        private void UpdateStatus2()
-        {
-            vtkControl.Refresh();
-            vtkControl.GetRenderWindow().Render();
-            vtkControl.GetRenderWindow().Start();
-        }
-        public void ProgessChanged2(object sender, ProgressChangedEventArgs e)
-        {
-            // bkWorker.ReportProgress 会调用到这里，此处可以进行自定义报告方式  
-            //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
-        }
-        private int ProcessProgress2(object sender, DoWorkEventArgs e)
-        {
-            for (int i = 0; i <= 1000; i++)
-            {
-                if (bkWorker2.CancellationPending)
-                {
-                    e.Cancel = true;
-                    return -1;
-                }
-                else
-                {
-                    // 状态报告  
-                    bkWorker2.ReportProgress(i / 10);
-                    // 等待，用于UI刷新界面，很重要  
-                    System.Threading.Thread.Sleep(1);
-                }
-            }
-            return -1;
-        }
-        public void CompleteWork2(object sender, RunWorkerCompletedEventArgs e)
-        {
-            progressForm.Close();
-            MessageBox.Show("处理完毕,效果如图");
-        }
+
         public void DoWork3(object sender, DoWorkEventArgs e)
         {
             stwt = new System.Diagnostics.Stopwatch();
             stwt.Start();
+            sumPts = 0;
+            clusterSum = 1;
+            threadCount = 0;
             for (int i = 0; i < cells.Length; i++)
             {
                 ThreadPool.QueueUserWorkItem(StartCode, cells[i]);//将每个分块加入线程池分别计算聚类
             }
-            this.BeginInvoke(new UpdateStatusDelegate(UpdateStatus3), new object[] { });
-            bkWorker3.ReportProgress(clusterSum);
-            //e.Result = ProcessProgress3(bkWorker3, e);
+            this.BeginInvoke(new UpdateStatusDelegate(UpdateStatus3), new object[] { }); 
         }
         private void UpdateStatus3()
         {
@@ -1139,13 +1318,18 @@ namespace vtkPointCloud
         public void ProgessChanged3(object sender, ProgressChangedEventArgs e)
         {
             //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
-            System.Threading.Thread.Sleep(1);
+            //System.Threading.Thread.Sleep(1);
             progressForm.setprogressvalue(e.ProgressPercentage);
         }
         public void CompleteWork3(object sender, RunWorkerCompletedEventArgs e)
         {
             progressForm.Close();
-            MessageBox.Show("聚类运行时间：" + stwt.Elapsed.ToString() + "\n总聚类数：" + sumClus + "  聚类数据：" + sumPts + "个");
+            MessageBox.Show("聚类运行时间：" + stwt.Elapsed.ToString() + "\n总聚类数：" + clusterSum + "  聚类数据：" + sumPts + "个");
+            this.cp.Visible = true;
+            this.cp.DoClusteringBtn.Text = "重新聚类";
+            this.cp.MergeBtn.Enabled = true;
+            this.cp.SureMergeBtn.Enabled = true;
+            this.cp.Left = 0;
             //System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\" + MainForm.ptsIncell + ".txt", false);//把cells分别按照聚类输出 ID需要合并 
             int idLast = cells[0][0].clusterId;//上一个ID是多少
             int idNow = 0, id, clusLen = 0;//当前聚类累加ID、当前cell内部ID以及当前聚类长度
@@ -1221,7 +1405,7 @@ namespace vtkPointCloud
             {
                 pp.isClassed = false;
             }
-            dbb.dbscan(zeroList, MainForm.threhold, pointsInthrehold);
+            dbb.dbscan(zeroList, MainForm.threhold, pointsInthrehold);//生怕某聚类被分割开没有聚类到 再聚一次
             foreach (Point3D p in zeroList)
             {
                 clusForMerge.Add(p);
@@ -1229,6 +1413,7 @@ namespace vtkPointCloud
             Console.WriteLine("\n分块聚类合理聚类数: " + (clusterSum - delSum) +
                 ",因过聚类小于3被删除的有" + delSum + "个,重新聚类后聚类数 :" + dbb.clusterAmount);
             centers = new List<Point3D>();
+            centers2D = new List<Point3D>();
             clusList = new List<ClusObj>();
             ClusObj obj;
             for (int j = 0; j < dbb.clusterAmount; j++)
@@ -1237,166 +1422,18 @@ namespace vtkPointCloud
                 obj.clusId = j + 1;
                 clusList.Add(obj);
             }
-            //Tools.getClusterCenter(dbb.clusterAmount, clusForMerge, centers, clusList, null);
-            Tools.GetClusList(clusForMerge, centers, clusList, null);
+            Tools.GetClusList(clusForMerge, centers,centers2D, clusList, null);
             foreach (ClusObj ob in clusList)
             {
                 Console.WriteLine(ob.clusId + "   " + ob.li.Count);
             }
             MainForm.clusterSum = dbb.clusterAmount;
-            this.circles = Tools.getCircles(this.clusList);//计算外接圆
+            this.circles = Tools.getCircles(this.clusList,true);//计算外接圆
+            this.circles2D = Tools.getCircles(this.clusList,false);//计算2D外接圆
             showCircle(this.circles, 1, clusForMerge, this.centers);
             isShowLegend(2);
-            this.cp.Visible = true;
-            this.cp.DoClusteringBtn.Text = "重新聚类";
-            this.cp.MergeBtn.Enabled = true;
-            this.cp.SureMergeBtn.Enabled = true;
-            this.cp.Left = 0;
-        }
-        private int ProcessProgress3(object sender, DoWorkEventArgs e)
-        {
-            for (int i = 0; i <= cells.Length; i++)
-            {
-                if (bkWorker3.CancellationPending)
-                {
-                    e.Cancel = true;
-                    return -1;
-                }
-                else
-                {
-                    // 状态报告  
-                    bkWorker3.ReportProgress(i);
-                    // 等待，用于UI刷新界面，很重要  
-                    System.Threading.Thread.Sleep(1);
-                }
-            }
-            return -1;
-        }
-        /// <summary>
-        /// 选择真值文件与聚类质心聚类
-        /// </summary>
-        /// <param name="transType"></param>
-        void matchingPointCloud(int transType)//真值文件与质心文件聚类
-        {
-            if (truePointCloud == null)
-            {
-                truePointCloud = new vtkPoints();
-                OpenFileDialog openFile = new OpenFileDialog();
-                openFile.Filter += "点云数据(*.txt)|*.txt";
-                openFile.Title = "打开文件";
-                if (openFile.ShowDialog() == DialogResult.OK)
-                {
-                    //trueLocArrayList = new ArrayList();
-                    fullFilePath = openFile.FileName;
-                    //获得文件路径 
-                    int index = fullFilePath.LastIndexOf("\\");
-                    string filePath = fullFilePath.Substring(0, index);
-
-                    //获得文件名称
-                    string fileName = fullFilePath.Substring(index + 1);
-
-                    FileMap fileMap = new FileMap();
-                    List<string> pointsList = fileMap.ReadFile(fullFilePath);
-                    truePolyVertex.GetPointIds().SetNumberOfIds(pointsList.Count);
-                    for (int i = 0; i < pointsList.Count; i++)
-                    {
-                        string[] tmpxyz = pointsList[i].Split('\t');
-                        double pX, pY, pZ;
-                        if (!double.TryParse(tmpxyz[0], out pX))
-                        {
-                            MessageBox.Show("输入的文件格式有误，请重新输入");
-                            return;
-                        }
-                        if (!double.TryParse(tmpxyz[1], out pY))
-                        {
-                            MessageBox.Show("输入的文件格式有误，请重新输入");
-                            return;
-                        }
-                        if (!double.TryParse(tmpxyz[2], out pZ))
-                        {
-                            MessageBox.Show("输入的文件格式有误，请重新输入");
-                            return;
-                        }
-                        //truePointPid[0] = truePointCloud.InsertNextPoint(pX, pY, pZ);
-                        truePointPid[0] = truePointCloud.InsertNextPoint(pX, pY, pZ);
-                        truePointVertices.InsertNextCell(1, truePointPid);
-                        //truePolyVertex.GetPointIds().SetId(i, i);
-                    }
-                    trueScale = truePointCloud.GetBounds();
-                }
-                /* 标准形式，基本完全匹配*/
-            }
-            if (centroidPointCloud == null)
-            {
-                centroidPointCloud = new vtkPoints();
-                for (int i = 0; i < centers.Count; i++)
-                {
-                    centroidPointCloud.InsertPoint(i, centers[i].X, centers[i].Y, centers[i].Z);
-                }
-                centroidScale = centroidPointCloud.GetBounds();
-                scale[0] = (truePointCloud.GetBounds()[1] - truePointCloud.GetBounds()[0])
-                        / (centroidPointCloud.GetBounds()[1] - centroidPointCloud.GetBounds()[0]);
-                scale[1] = (truePointCloud.GetBounds()[3] - truePointCloud.GetBounds()[2])
-                        / (centroidPointCloud.GetBounds()[3] - centroidPointCloud.GetBounds()[2]);
-                scale[2] = (truePointCloud.GetBounds()[5] - truePointCloud.GetBounds()[4])
-                        / (centroidPointCloud.GetBounds()[5] - centroidPointCloud.GetBounds()[4]);
-            }
-           
-            Console.WriteLine("质心计算范围比例x y z  " + scale[0] + "," + scale[1] + "," + scale[2]);
-            //tmp是中间过渡坐标 若不进行中间转换 匹配效果奇差
-
-            if (transType == 1)
-            {//默认 只变换比例
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    centers[j].tmp_X = (centers[j].X + trueScale[0] - centroidScale[0]) * scale[0];
-                    centers[j].tmp_Y = (centers[j].Y + trueScale[2] - centroidScale[2]) * scale[1];//* 0.98
-                    centers[j].tmp_Z = (centers[j].Z + trueScale[4] - centroidScale[4]) * scale[2];
-                }
-            }
-            else if (transType == 2)
-            {//逆时针
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    double tmpx = centers[j].tmp_X;
-                    double tmpy = centers[j].tmp_Y;
-                    centers[j].tmp_X = -tmpy;//* 1.02
-                    centers[j].tmp_Y = tmpx;
-                }
-            }
-            else if (transType == 3)
-            {//顺时针
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    double tmpx = centers[j].tmp_X;
-                    double tmpy = centers[j].tmp_Y;
-                    centers[j].tmp_X = tmpy;//* 1.02
-                    centers[j].tmp_Y = -tmpx;
-                }
-            }
-            else if (transType == 4)
-            {//x镜面翻转
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    double tmpx = centers[j].tmp_X;
-                    centers[j].tmp_X = -tmpx;
-                }
-            }
-            else if (transType == 5)
-            {//y镜面翻转
-                for (int j = 0; j < centers.Count; j++)
-                {
-                    double tmpy = centers[j].tmp_Y;
-                    centers[j].tmp_Y = -tmpy;
-                }
-            }
-
-            progressForm = new WaitingForm();
-            progressForm.TopMost = false;
-            progressForm.StartPosition = FormStartPosition.CenterParent;
-            bkWorker2.RunWorkerAsync();
-            progressForm.ShowDialog();
-        }
+            
+        }       
         /// <summary>
         /// 导出匹配文件 仰角 方位角 距离 质心x y z
         /// </summary>
@@ -1475,31 +1512,23 @@ namespace vtkPointCloud
             vtkControl.Refresh();
             vtkControl.Update();
         }
-
         /// <summary>
-        /// 初步聚类中清除聚类过小的 合并距离相近的
+        /// 使用第三列对点进行过滤
         /// </summary>
-        void clearError_combineClusters_FromScanList()//清楚野点 合并聚类接近点
+        /// <param name="isEx">是否输出过滤后文件</param>
+        public void ExcludePtsByDistance(bool isOutPut)
         {
-            for (int i = 0; i < clusList.Count; i++)//第一层 遍历所有聚类ID
-            {
-                Console.WriteLine(clusList[i].li.Count);
-                for (int j = 0; j < clusList[i].li.Count; j++)//第二层
-                {
-                    int c = 0;
-                    for (int k = 0; k < clusList[i].li.Count; k++)
-                    {
-                        if (DB.getDisP(clusList[i].li[j], clusList[i].li[k]) < 0.06) /////两个聚类之间距离过小 该数数值需要更改
-                        {
-                            c++;
-                        }
-                    }
-                    if (c < 9)//聚类过小 设为野点
-                    {
-                        clusList[i].li[j].clusterId = 0;
-                    }
-                }
-            }
+            Tools.cleanDataByDistance(isOutPut, this.rawData, this.bit);
+            this.ScanClustringToolStripMenuItem.Enabled = true;
+            this.SourceClusteringToolStripMenuItem.Enabled = true;
+            this.ExplainClusteringToolStripMenuItem.Enabled = true;
+            ShowPointsFromFile(rawData, 1);
+        }
+        public void RejectPtsByDistanceFromFixed(bool isOutPut)
+        {
+            Tools.cleanDataByDistance2(isOutPut, this.clusList, this.bit);
+            this.FixedPointMatchingToolStripMenuItem.Enabled = true;
+
         }
         /// <summary>
         /// 显示固定点数据
@@ -1530,27 +1559,29 @@ namespace vtkPointCloud
             {
                 for (int j = 0; j < clusList[i].li.Count; j++)
                 {
-                    if (type == 1 || type == 3)
-                    {
-                        pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
-                        count_1++;
-                    }
-                    else if ((type == 4) && (!clusList[i].li[j].isFilterByDistance))
-                    {
-                        pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
-                        count_1++;
-                    }
-                    else if (type == 2)
-                    {
-                        if (clusList[i].li[j].isFilterByDistance)
+                    if (clusList[i].li[j].ifShown) {
+                        if (type == 1 || type == 3)
                         {
                             pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
                             count_1++;
                         }
-                        else
+                        else if ((type == 4) && (!clusList[i].li[j].isFilterByDistance))
                         {
-                            pointCloud_2.InsertPoint(count_2, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
-                            count_2++;
+                            pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
+                            count_1++;
+                        }
+                        else if (type == 2)
+                        {
+                            if (clusList[i].li[j].isFilterByDistance)
+                            {
+                                pointCloud_1.InsertPoint(count_1, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
+                                count_1++;
+                            }
+                            else
+                            {
+                                pointCloud_2.InsertPoint(count_2, clusList[i].li[j].X, clusList[i].li[j].Y, clusList[i].li[j].Z);
+                                count_2++;
+                            }
                         }
                     }
 
@@ -1631,7 +1662,7 @@ namespace vtkPointCloud
         public void dealwithMCCandMCE()//处理外接圆和外接矩形
         {
             MCC mcc = new MCC();
-            mcc.Left = 0;
+            mcc.Left = 10;
             mcc.Show(this);
             this.toolStripStatusLabelCurrentPointCount.Text = String.Format("当前点云数：{0}，当前聚类数： {1}", pointSum, clusterSum);
         }
@@ -2275,7 +2306,7 @@ namespace vtkPointCloud
                 MessageBox.Show("没有显示任何点，不可以聚类");
                 return;
             }
-            cp = new ClusterParameters();
+            cp = new Clustering();
             cp.Show(this);
             //调用显示
             //this.ExportClusterToolStripMenuItem.Enabled = true;
@@ -2402,15 +2433,14 @@ namespace vtkPointCloud
         /// <param name="e"></param>
         private void ImportTxtFixedPtsToolStripMenuItem_Click(object sender, EventArgs e)//导入固定点txt文件夹
         {
-            this.treeView1.Enabled = false;//暂时不可用
-            //this.FixedPointClustringToolStripMenuItem.Enabled = true;
+            //this.treeView1.Enabled = false;//暂时不可用
             ImportPts ip = new ImportPts();
             DialogResult rs = ip.ShowDialog();
             if (rs == DialogResult.OK)
             {
                 this.isIgnoreDuplication = ip.isIgnoreDuplication;//是否忽略重复点
                 this.selPath = ip.selPath;
-                this.AddFolder(selPath, ip.xdir, ip.ydir, 2 + ((this.isIgnoreDuplication) ? 1 : 2), false);
+                this.AddFolder(selPath, ip.xdir, ip.ydir, 2 + ((this.isIgnoreDuplication) ? 1 : 2), false);//3剔除重复 4不剔除重复
             }
             else if (rs == DialogResult.Cancel)
             {
@@ -2517,14 +2547,17 @@ namespace vtkPointCloud
                 {
                     foreach (ClusObj obj in clusList)
                     {
-                        Point3D tmpPoint = FixedPtsTrueValueList.Find(m => m.pointName == obj.clusName);
-                        if (tmpPoint == null) continue;
-                        matchCount++;
-                        foreach (Point3D p in obj.li)
+                        if (obj.visible)
                         {
-                            xita = (-2) * (p.motor_x - this.x_angle) / 180 * Math.PI;
-                            alpha = 2 * (p.motor_y - this.y_angle) / 180 * Math.PI;
-                            sw.WriteLine(obj.clusName + "\t" + xita + "\t" + alpha + "\t" + p.Distance + "\t" + tmpPoint.X + "\t" + tmpPoint.Y + "\t" + tmpPoint.Z);
+                            Point3D tmpPoint = FixedPtsTrueValueList.Find(m => m.pointName == obj.clusName);
+                            if (tmpPoint == null) continue;
+                            matchCount++;
+                            foreach (Point3D p in obj.li)
+                            {
+                                xita = (-2) * (p.motor_x - this.x_angle) / 180 * Math.PI;
+                                alpha = 2 * (p.motor_y - this.y_angle) / 180 * Math.PI;
+                                sw.WriteLine(obj.clusName + "\t" + xita + "\t" + alpha + "\t" + p.Distance + "\t" + tmpPoint.X + "\t" + tmpPoint.Y + "\t" + tmpPoint.Z);
+                            }
                         }
                     }
                     MessageBox.Show("读入真值点" + FixedPtsTrueValueList.Count + "个，匹配了" + matchCount + "个固定点扫描文件。\n匹配文件储存在" + fpme.pathOut + "下。");
@@ -2540,24 +2573,7 @@ namespace vtkPointCloud
             }
 
         }
-        /// <summary>
-        /// 使用第三列对点进行过滤
-        /// </summary>
-        /// <param name="isEx">是否输出过滤后文件</param>
-        public void ExcludePtsByDistance(bool isOutPut)
-        {
-            Tools.cleanDataByDistance(isOutPut, this.rawData, this.bit);
-            this.ScanClustringToolStripMenuItem.Enabled = true;
-            this.SourceClusteringToolStripMenuItem.Enabled = true;
-            this.ExplainClusteringToolStripMenuItem.Enabled = true;
-            ShowPointsFromFile(rawData, 1);
-        }
-        public void RejectPtsByDistanceFromFixed(bool isOutPut)
-        {
-            Tools.cleanDataByDistance2(isOutPut, this.clusList, this.bit);
-            this.FixedPointMatchingToolStripMenuItem.Enabled = true;
 
-        }
         //////快捷按钮单击事件
         /// <summary>
         /// 加载固定点文件
@@ -2713,19 +2729,52 @@ namespace vtkPointCloud
                         tmp_pathId++;
                     }
                 }
-
-                for (int p = 0; p < rawData.Count; p++)
+                foreach (int jb in pathIdChecked)
                 {
-                    if (pathIdChecked.Contains(rawData[p].pathId))
-                    {
-                        rawData[p].ifShown = true;
-                    }
-                    else
-                    {
-                        rawData[p].ifShown = false;
-                    }
+                    Console.WriteLine("PathId = " + jb);
                 }
-                ShowPointsFromFile(rawData, 1);
+                if (isScaned)
+                {
+                    for (int p = 0; p < rawData.Count; p++)
+                    {
+                        if (!pathIdChecked.Contains(rawData[p].pathId))
+                        {
+                            rawData[p].ifShown = false;
+                        }
+                        else
+                        {
+                            rawData[p].ifShown = true;
+                        }
+                    }
+                    ShowPointsFromFile(rawData, 1);
+                }
+                else
+                {
+                    
+                    foreach (ClusObj ob in clusList)
+                    {
+                        if (!pathIdChecked.Contains(ob.li[0].pathId))
+                        {
+                            ob.visible = false;
+                        }
+                        else
+                        {
+                            ob.visible = true;
+                        }
+                        foreach (Point3D p in ob.li)
+                        {
+                            if (!pathIdChecked.Contains(p.pathId)) {
+                                p.ifShown = false;
+                            }
+                            else
+                            {
+                                p.ifShown = true;
+                            }
+                        }
+                    }
+                    showFixPointData(1);
+                }
+                
             }
             //root.ExpandAll();            
         }
@@ -2915,12 +2964,13 @@ namespace vtkPointCloud
             List<Point3D> cell = i as List<Point3D>;
             DBImproved ThreadDB = new DBImproved();
             ThreadDB.dbscan(cell, MainForm.threhold, pointsInthrehold);
-            sumClus += ThreadDB.clusterAmount;
             sumPts += cell.Count;
             threadCount++;
             clusterSum += ThreadDB.clusterAmount;
             Console.WriteLine("完成第[" + threadCount + "]个线程，包含[" + cell.Count + "]个数据点，共["
                 + ThreadDB.clusterAmount + "]个聚类，当前已聚类[" + clusterSum + "]个。");
+            progressForm.setprogressvalue(threadCount);
+            System.Windows.Forms.Application.DoEvents();  
         }
         private void 测试野点回调ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3093,12 +3143,12 @@ namespace vtkPointCloud
         private void 测试删除actorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.RemoveActor(actorLine);
-            ren.RemoveActor(actorLine2);
-            ren.RemoveViewProp(actorLine3);
-            ren.RemoveActor(actorLine4);
-            tmpAngle[0] = tmpAngle[0] + 2;
-            tmpAngle[1] = tmpAngle[1] + 2;
-            showBounds(tmpAngle);
+            //ren.RemoveActor(actorLine2);
+            //ren.RemoveViewProp(actorLine3);
+            //ren.RemoveActor(actorLine4);
+            //tmpAngle[0] = tmpAngle[0] + 2;
+            //tmpAngle[1] = tmpAngle[1] + 2;
+            //showBounds(tmpAngle);
             vtkControl.Refresh();
             //vtkControl.GetRenderWindow().Render();
         }
@@ -3413,6 +3463,12 @@ namespace vtkPointCloud
         private void 测试清屏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.RemoveAllViewProps();
+            vtkControl.Refresh();
+        }
+
+        private void 测试添加actorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ren.AddActor(actorLine);
             vtkControl.Refresh();
         }
     }

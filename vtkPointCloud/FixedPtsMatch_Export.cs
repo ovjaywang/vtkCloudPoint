@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,58 +20,58 @@ namespace vtkPointCloud
         private void pathSelbtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter += "ç‚¹äº‘æ•°æ®(*.txt)|*.txt";
-            openFile.Title = "æ‰“å¼€å›ºå®šç‚¹çœŸå€¼æ–‡ä»¶";
+            openFile.Filter += "µãÔÆÊı¾İ(*.txt)|*.txt";
+            openFile.Title = "´ò¿ª¹Ì¶¨µãÕæÖµÎÄ¼ş";
             String fullFilePath;
             if (openFile.ShowDialog() == DialogResult.OK && openFile.FileName.Length > 1)
             {
-
+               
                 FixedPtsTrueValueList = new List<Point3D>();
                 fullFilePath = openFile.FileName;
                 this.PathSeltxt.Text = fullFilePath;
-                //è·å¾—æ–‡ä»¶è·¯å¾„
+                //»ñµÃÎÄ¼şÂ·¾¶
                 int index = fullFilePath.LastIndexOf("\\");
                 string filePath = fullFilePath.Substring(0, index);
-                //è·å¾—æ–‡ä»¶åç§°
+                //»ñµÃÎÄ¼şÃû³Æ
                 string fileName = fullFilePath.Substring(index + 1);
 
                 FileMap fileMap = new FileMap();
                 try
                 {
                     List<string> pointsList = fileMap.ReadFile(fullFilePath);
-                    Point3D ppp;
-                    double pX, pY, pZ;
-                    for (int i = 0; i < pointsList.Count; i++)
+                Point3D ppp;
+                double pX, pY, pZ;
+                for (int i = 0; i < pointsList.Count; i++)
+                {
+                    if ((pointsList[i] == null) || (pointsList[i] == "")) continue;
+                    string[] tmpxyz = pointsList[i].Split(',');
+                    if (!double.TryParse(tmpxyz[1], out pX))
                     {
-                        if ((pointsList[i] == null) || (pointsList[i] == "")) continue;
-                        string[] tmpxyz = pointsList[i].Split(',');
-                        if (!double.TryParse(tmpxyz[1], out pX))
-                        {
-                            MessageBox.Show("è¾“å…¥çš„æ–‡ä»¶æ ¼å¼æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥");
-                            return;
-                        }
-                        if (!double.TryParse(tmpxyz[2], out pY))
-                        {
-                            MessageBox.Show("è¾“å…¥çš„æ–‡ä»¶æ ¼å¼æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥");
-                            return;
-                        }
-                        if (!double.TryParse(tmpxyz[3], out pZ))
-                        {
-                            MessageBox.Show("è¾“å…¥çš„æ–‡ä»¶æ ¼å¼æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥");
-                            return;
-                        }
-                        ppp = new Point3D();
-                        ppp.pointName = tmpxyz[0];
-                        ppp.X = pX;
-                        ppp.Y = pY;
-                        ppp.Z = pZ;
-                        ppp.ifShown = true;
-                        FixedPtsTrueValueList.Add(ppp);
+                        MessageBox.Show("ÊäÈëµÄÎÄ¼ş¸ñÊ½ÓĞÎó£¬ÇëÖØĞÂÊäÈë");
+                        return;
                     }
+                    if (!double.TryParse(tmpxyz[2], out pY))
+                    {
+                        MessageBox.Show("ÊäÈëµÄÎÄ¼ş¸ñÊ½ÓĞÎó£¬ÇëÖØĞÂÊäÈë");
+                        return;
+                    }
+                    if (!double.TryParse(tmpxyz[3], out pZ))
+                    {
+                        MessageBox.Show("ÊäÈëµÄÎÄ¼ş¸ñÊ½ÓĞÎó£¬ÇëÖØĞÂÊäÈë");
+                        return;
+                    }
+                    ppp = new Point3D();
+                    ppp.pointName = tmpxyz[0];
+                    ppp.X = pX;
+                    ppp.Y = pY;
+                    ppp.Z = pZ;
+                    ppp.ifShown = true;
+                    FixedPtsTrueValueList.Add(ppp);
+                }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("è¯»å–çœŸå€¼æ–‡ä»¶å‡ºé”™");
+                    MessageBox.Show("¶ÁÈ¡ÕæÖµÎÄ¼ş³ö´í");
                     throw;
                 }
             }
@@ -79,7 +79,7 @@ namespace vtkPointCloud
         private void pathSel2Btn_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFile1 = new SaveFileDialog();
-            saveFile1.Filter = "æ–‡æœ¬æ–‡ä»¶(.txt)|*.txt";
+            saveFile1.Filter = "ÎÄ±¾ÎÄ¼ş(.txt)|*.txt";
             saveFile1.FilterIndex = 1;
             if (saveFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFile1.FileName.Length > 0)
             {
@@ -88,13 +88,13 @@ namespace vtkPointCloud
         }
         private void SureBtn_Click(object sender, EventArgs e)
         {
-            if (this.PathSeltxt.Text.Equals("æœªé€‰æ‹©è·¯å¾„"))
+            if (this.PathSeltxt.Text.Equals("Î´Ñ¡ÔñÂ·¾¶"))
             {
-                MessageBox.Show("æœªè¾“å…¥çœŸå€¼æ–‡ä»¶è·¯å¾„");
+                MessageBox.Show("Î´ÊäÈëÕæÖµÎÄ¼şÂ·¾¶");
                 return;
-            } if (this.PathSeltxt2.Text.Equals("æœªé€‰æ‹©è·¯å¾„"))
+            } if (this.PathSeltxt2.Text.Equals("Î´Ñ¡ÔñÂ·¾¶"))
             {
-                MessageBox.Show("æœªè¾“å…¥åŒ¹é…æ–‡ä»¶ä¿å­˜è·¯å¾„");
+                MessageBox.Show("Î´ÊäÈëÆ¥ÅäÎÄ¼ş±£´æÂ·¾¶");
                 return;
             }
             this.pathOut = this.PathSeltxt2.Text;

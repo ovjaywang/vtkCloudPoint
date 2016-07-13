@@ -1,4 +1,4 @@
-ï»¿namespace vtkPointCloud
+namespace vtkPointCloud
 {
     partial class MCC
     {
@@ -63,7 +63,7 @@
             // 
             // threshold_txtbox
             // 
-            this.threshold_txtbox.Font = new System.Drawing.Font("å®‹ä½“", 17F);
+            this.threshold_txtbox.Font = new System.Drawing.Font("ËÎÌå", 17F);
             this.threshold_txtbox.Location = new System.Drawing.Point(273, 11);
             this.threshold_txtbox.Name = "threshold_txtbox";
             this.threshold_txtbox.Size = new System.Drawing.Size(142, 40);
@@ -73,44 +73,44 @@
             // 
             // textBox2
             // 
-            this.textBox2.Font = new System.Drawing.Font("å®‹ä½“", 15F);
+            this.textBox2.Font = new System.Drawing.Font("ËÎÌå", 15F);
             this.textBox2.Location = new System.Drawing.Point(14, 15);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(200, 36);
             this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "è¾“å…¥é˜ˆå€¼åŠå¾„";
+            this.textBox2.Text = "ÊäÈëãĞÖµ°ë¾¶";
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("å®‹ä½“", 15F);
+            this.button1.Font = new System.Drawing.Font("ËÎÌå", 15F);
             this.button1.Location = new System.Drawing.Point(94, 440);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 55);
             this.button1.TabIndex = 6;
-            this.button1.Text = "ç¡®è®¤";
+            this.button1.Text = "È·ÈÏ";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("å®‹ä½“", 15F);
+            this.button2.Font = new System.Drawing.Font("ËÎÌå", 15F);
             this.button2.Location = new System.Drawing.Point(414, 440);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(114, 55);
             this.button2.TabIndex = 7;
-            this.button2.Text = "å–æ¶ˆ";
+            this.button2.Text = "È¡Ïû";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.button3.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.button3.Location = new System.Drawing.Point(526, 11);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(112, 45);
             this.button3.TabIndex = 8;
-            this.button3.Text = "é‡æ–°è¿‡æ»¤";
+            this.button3.Text = "ÖØĞÂ¹ıÂË";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -119,68 +119,68 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.checkBox1.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.checkBox1.Location = new System.Drawing.Point(23, 12);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(151, 24);
             this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "è¾“å‡ºèšç±»æ–‡ä»¶";
+            this.checkBox1.Text = "Êä³ö¾ÛÀàÎÄ¼ş";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // out1btn
             // 
-            this.out1btn.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.out1btn.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.out1btn.Location = new System.Drawing.Point(299, 3);
             this.out1btn.Name = "out1btn";
             this.out1btn.Size = new System.Drawing.Size(114, 40);
             this.out1btn.TabIndex = 11;
-            this.out1btn.Text = "é€‰æ‹©è·¯å¾„";
+            this.out1btn.Text = "Ñ¡ÔñÂ·¾¶";
             this.out1btn.UseVisualStyleBackColor = true;
             this.out1btn.Click += new System.EventHandler(this.out1btn_Click);
             // 
             // outpath1txt
             // 
-            this.outpath1txt.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.outpath1txt.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.outpath1txt.Location = new System.Drawing.Point(7, 49);
             this.outpath1txt.Name = "outpath1txt";
             this.outpath1txt.ReadOnly = true;
             this.outpath1txt.Size = new System.Drawing.Size(640, 30);
             this.outpath1txt.TabIndex = 10;
-            this.outpath1txt.Text = "æœªé€‰æ‹©è·¯å¾„";
+            this.outpath1txt.Text = "Î´Ñ¡ÔñÂ·¾¶";
             // 
             // out2btn
             // 
-            this.out2btn.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.out2btn.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.out2btn.Location = new System.Drawing.Point(299, 3);
             this.out2btn.Name = "out2btn";
             this.out2btn.Size = new System.Drawing.Size(114, 43);
             this.out2btn.TabIndex = 14;
-            this.out2btn.Text = "é€‰æ‹©è·¯å¾„";
+            this.out2btn.Text = "Ñ¡ÔñÂ·¾¶";
             this.out2btn.UseVisualStyleBackColor = true;
             this.out2btn.Click += new System.EventHandler(this.out2btn_Click);
             // 
             // outpath2txt
             // 
-            this.outpath2txt.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.outpath2txt.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.outpath2txt.Location = new System.Drawing.Point(7, 52);
             this.outpath2txt.Name = "outpath2txt";
             this.outpath2txt.ReadOnly = true;
             this.outpath2txt.Size = new System.Drawing.Size(640, 30);
             this.outpath2txt.TabIndex = 13;
-            this.outpath2txt.Text = "æœªé€‰æ‹©è·¯å¾„";
+            this.outpath2txt.Text = "Î´Ñ¡ÔñÂ·¾¶";
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Font = new System.Drawing.Font("å®‹ä½“", 12F);
+            this.checkBox2.Font = new System.Drawing.Font("ËÎÌå", 12F);
             this.checkBox2.Location = new System.Drawing.Point(23, 22);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(151, 24);
             this.checkBox2.TabIndex = 12;
-            this.checkBox2.Text = "è¾“å‡ºè´¨å¿ƒæ–‡ä»¶";
+            this.checkBox2.Text = "Êä³öÖÊĞÄÎÄ¼ş";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -222,7 +222,7 @@
             this.groupBox1.Size = new System.Drawing.Size(669, 100);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "èšç±»åŠå¾„è¿‡æ»¤";
+            this.groupBox1.Text = "¾ÛÀà°ë¾¶¹ıÂË";
             // 
             // groupBox2
             // 
@@ -232,7 +232,7 @@
             this.groupBox2.Size = new System.Drawing.Size(670, 138);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "è¾“å‡ºèšç±»ç»“æœ";
+            this.groupBox2.Text = "Êä³ö¾ÛÀà½á¹û";
             // 
             // groupBox3
             // 
@@ -242,7 +242,7 @@
             this.groupBox3.Size = new System.Drawing.Size(670, 142);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "è¾“å‡ºèšç±»è´¨å¿ƒ";
+            this.groupBox3.Text = "Êä³ö¾ÛÀàÖÊĞÄ";
             // 
             // MCC
             // 
@@ -256,8 +256,8 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "MCC";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "èšç±»åŠå¾„è¿‡æ»¤";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "¾ÛÀà°ë¾¶¹ıÂË";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,15 +24,13 @@ namespace vtkPointCloud
         private void button1_Click(object sender, EventArgs e)
         {
             mf = (MainForm)this.Owner;
-            if (isFirstIn)
-            {
+            if (isFirstIn) {
                 if (MessageBox.Show("确认不使用半径过滤吗?", "消息", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     this.DialogResult = DialogResult.Cancel;
                     this.Close();
                 }
-                else
-                {
+                else {
                     return;
                 }
             }
@@ -79,7 +77,7 @@ namespace vtkPointCloud
             {
                 mf.isShowLegend(4);
                 isFirstIn = false;
-            }
+            }   
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -93,12 +91,11 @@ namespace vtkPointCloud
         }
         private void out1btn_Click(object sender, EventArgs e)
         {
-
+            
             saveFile1.Filter = "文本文件(.txt)|*.txt";
             saveFile1.Title = "输出聚类文件";
             saveFile1.FilterIndex = 1;
-            if (saveFile1.ShowDialog() == DialogResult.OK)
-            {
+            if (saveFile1.ShowDialog() == DialogResult.OK) {
                 this.outpath1txt.Text = saveFile1.FileName;
             }
         }

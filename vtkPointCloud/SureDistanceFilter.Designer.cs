@@ -36,6 +36,9 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rb_2d = new System.Windows.Forms.RadioButton();
+            this.rb_3d = new System.Windows.Forms.RadioButton();
             this.ThresholdMinTxtBox = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -44,6 +47,7 @@
             this.textBox_minD = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -70,7 +74,7 @@
             // Refilter
             // 
             this.Refilter.Font = new System.Drawing.Font("宋体", 18F);
-            this.Refilter.Location = new System.Drawing.Point(28, 209);
+            this.Refilter.Location = new System.Drawing.Point(32, 237);
             this.Refilter.Name = "Refilter";
             this.Refilter.Size = new System.Drawing.Size(165, 42);
             this.Refilter.TabIndex = 22;
@@ -83,10 +87,10 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("宋体", 18F);
-            this.checkBox1.Location = new System.Drawing.Point(26, 158);
+            this.checkBox1.Font = new System.Drawing.Font("宋体", 14F);
+            this.checkBox1.Location = new System.Drawing.Point(26, 182);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(215, 34);
+            this.checkBox1.Size = new System.Drawing.Size(176, 28);
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "显示被过滤点";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -120,7 +124,7 @@
             // 
             this.groupBox1.Controls.Add(this.OKBtn);
             this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Location = new System.Drawing.Point(28, 380);
+            this.groupBox1.Location = new System.Drawing.Point(28, 443);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(351, 106);
             this.groupBox1.TabIndex = 6;
@@ -129,18 +133,52 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.ThresholdMinTxtBox);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.ThresholdMaxTxtBox);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.Refilter);
-            this.groupBox2.Location = new System.Drawing.Point(23, 96);
+            this.groupBox2.Location = new System.Drawing.Point(23, 93);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 268);
+            this.groupBox2.Size = new System.Drawing.Size(356, 344);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "输入过滤阈值";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.rb_2d);
+            this.groupBox3.Controls.Add(this.rb_3d);
+            this.groupBox3.Location = new System.Drawing.Point(250, 164);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(80, 137);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            // 
+            // rb_2d
+            // 
+            this.rb_2d.AutoSize = true;
+            this.rb_2d.Location = new System.Drawing.Point(6, 88);
+            this.rb_2d.Name = "rb_2d";
+            this.rb_2d.Size = new System.Drawing.Size(44, 19);
+            this.rb_2d.TabIndex = 1;
+            this.rb_2d.Text = "2D";
+            this.rb_2d.UseVisualStyleBackColor = true;
+            // 
+            // rb_3d
+            // 
+            this.rb_3d.AutoSize = true;
+            this.rb_3d.Checked = true;
+            this.rb_3d.Location = new System.Drawing.Point(6, 24);
+            this.rb_3d.Name = "rb_3d";
+            this.rb_3d.Size = new System.Drawing.Size(44, 19);
+            this.rb_3d.TabIndex = 0;
+            this.rb_3d.TabStop = true;
+            this.rb_3d.Text = "3D";
+            this.rb_3d.UseVisualStyleBackColor = true;
+            this.rb_3d.CheckedChanged += new System.EventHandler(this.rb_3d_CheckedChanged);
             // 
             // ThresholdMinTxtBox
             // 
@@ -209,7 +247,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 496);
+            this.ClientSize = new System.Drawing.Size(403, 561);
             this.Controls.Add(this.textBox_minD);
             this.Controls.Add(this.textBox_maxD);
             this.Controls.Add(this.textBox4);
@@ -224,6 +262,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +285,8 @@
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.TextBox textBox_maxD;
         public System.Windows.Forms.TextBox textBox_minD;
+        private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.RadioButton rb_2d;
+        public System.Windows.Forms.RadioButton rb_3d;
     }
 }

@@ -190,23 +190,17 @@
     <Compile Include="BaseClass\Polygon.cs" />
     <Compile Include="BaseClass\Tools.cs" />
     <Compile Include="BaseClass\Triangle.cs" />
-    <Compile Include="ClusterParameters.cs">
+    <Compile Include="Clustering.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClusterParameters.Designer.cs">
-      <DependentUpon>ClusterParameters.cs</DependentUpon>
+    <Compile Include="Clustering.Designer.cs">
+      <DependentUpon>Clustering.cs</DependentUpon>
     </Compile>
     <Compile Include="FixedPtsMatch_Export.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FixedPtsMatch_Export.Designer.cs">
       <DependentUpon>FixedPtsMatch_Export.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MCC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MCC.Designer.cs">
-      <DependentUpon>MCC.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -238,6 +232,12 @@
     <Compile Include="MatchingParams.Designer.cs">
       <DependentUpon>MatchingParams.cs</DependentUpon>
     </Compile>
+    <Compile Include="MCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MCC.Designer.cs">
+      <DependentUpon>MCC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowSourceClustering.cs">
@@ -267,8 +267,8 @@
     <EmbeddedResource Include="AboutFrm.resx">
       <DependentUpon>AboutFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClusterParameters.resx">
-      <DependentUpon>ClusterParameters.cs</DependentUpon>
+    <EmbeddedResource Include="Clustering.resx">
+      <DependentUpon>Clustering.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
@@ -308,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SureSourceFrm.resx">
       <DependentUpon>SureSourceFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingForm.resx">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

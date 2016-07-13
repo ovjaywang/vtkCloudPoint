@@ -1,4 +1,4 @@
-ï»¿namespace vtkPointCloud
+namespace vtkPointCloud
 {
     partial class FixedPtsMatch_Export
     {
@@ -38,65 +38,65 @@
             // 
             // pathSelbtn
             // 
-            this.pathSelbtn.Font = new System.Drawing.Font("å®‹ä½“", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pathSelbtn.Font = new System.Drawing.Font("ËÎÌå", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.pathSelbtn.Location = new System.Drawing.Point(30, 46);
             this.pathSelbtn.Name = "pathSelbtn";
             this.pathSelbtn.Size = new System.Drawing.Size(397, 42);
             this.pathSelbtn.TabIndex = 4;
-            this.pathSelbtn.Text = "é€‰æ‹©ä¸å›ºå®šç‚¹å¯¹åº”çœŸå€¼ç‚¹æ–‡ä»¶è·¯å¾„";
+            this.pathSelbtn.Text = "Ñ¡ÔñÓë¹Ì¶¨µã¶ÔÓ¦ÕæÖµµãÎÄ¼şÂ·¾¶";
             this.pathSelbtn.UseVisualStyleBackColor = true;
             this.pathSelbtn.Click += new System.EventHandler(this.pathSelbtn_Click);
             // 
             // PathSeltxt
             // 
-            this.PathSeltxt.Font = new System.Drawing.Font("å®‹ä½“", 16F);
+            this.PathSeltxt.Font = new System.Drawing.Font("ËÎÌå", 16F);
             this.PathSeltxt.Location = new System.Drawing.Point(445, 50);
             this.PathSeltxt.Name = "PathSeltxt";
             this.PathSeltxt.ReadOnly = true;
             this.PathSeltxt.Size = new System.Drawing.Size(726, 38);
             this.PathSeltxt.TabIndex = 3;
-            this.PathSeltxt.Text = "æœªé€‰æ‹©è·¯å¾„";
+            this.PathSeltxt.Text = "Î´Ñ¡ÔñÂ·¾¶";
             // 
             // pathSel2Btn
             // 
-            this.pathSel2Btn.Font = new System.Drawing.Font("å®‹ä½“", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pathSel2Btn.Font = new System.Drawing.Font("ËÎÌå", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.pathSel2Btn.Location = new System.Drawing.Point(30, 142);
             this.pathSel2Btn.Name = "pathSel2Btn";
             this.pathSel2Btn.Size = new System.Drawing.Size(397, 42);
             this.pathSel2Btn.TabIndex = 6;
-            this.pathSel2Btn.Text = "é€‰æ‹©å›ºå®šç‚¹ç‚¹ååŒ¹é…è¾“å‡ºè·¯å¾„";
+            this.pathSel2Btn.Text = "Ñ¡Ôñ¹Ì¶¨µãµãÃûÆ¥ÅäÊä³öÂ·¾¶";
             this.pathSel2Btn.UseVisualStyleBackColor = true;
             this.pathSel2Btn.Click += new System.EventHandler(this.pathSel2Btn_Click);
             // 
             // PathSeltxt2
             // 
-            this.PathSeltxt2.Font = new System.Drawing.Font("å®‹ä½“", 16F);
+            this.PathSeltxt2.Font = new System.Drawing.Font("ËÎÌå", 16F);
             this.PathSeltxt2.Location = new System.Drawing.Point(445, 142);
             this.PathSeltxt2.Name = "PathSeltxt2";
             this.PathSeltxt2.ReadOnly = true;
             this.PathSeltxt2.Size = new System.Drawing.Size(726, 38);
             this.PathSeltxt2.TabIndex = 5;
-            this.PathSeltxt2.Text = "æœªé€‰æ‹©è·¯å¾„";
+            this.PathSeltxt2.Text = "Î´Ñ¡ÔñÂ·¾¶";
             // 
             // CancelBtn
             // 
-            this.CancelBtn.Font = new System.Drawing.Font("å®‹ä½“", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CancelBtn.Font = new System.Drawing.Font("ËÎÌå", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CancelBtn.Location = new System.Drawing.Point(702, 222);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(132, 42);
             this.CancelBtn.TabIndex = 7;
-            this.CancelBtn.Text = "å–æ¶ˆ";
+            this.CancelBtn.Text = "È¡Ïû";
             this.CancelBtn.UseVisualStyleBackColor = true;
             this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // SureBtn
             // 
-            this.SureBtn.Font = new System.Drawing.Font("å®‹ä½“", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SureBtn.Font = new System.Drawing.Font("ËÎÌå", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SureBtn.Location = new System.Drawing.Point(239, 222);
             this.SureBtn.Name = "SureBtn";
             this.SureBtn.Size = new System.Drawing.Size(132, 42);
             this.SureBtn.TabIndex = 8;
-            this.SureBtn.Text = "ç¡®è®¤";
+            this.SureBtn.Text = "È·ÈÏ";
             this.SureBtn.UseVisualStyleBackColor = true;
             this.SureBtn.Click += new System.EventHandler(this.SureBtn_Click);
             // 
@@ -114,7 +114,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FixedPtsMatch_Export";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "å¯¼å…¥çœŸå€¼å¹¶è¾“å‡ºåŒ¹é…";
+            this.Text = "µ¼ÈëÕæÖµ²¢Êä³öÆ¥Åä";
             this.Load += new System.EventHandler(this.FixedPtsMatch_Export_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
