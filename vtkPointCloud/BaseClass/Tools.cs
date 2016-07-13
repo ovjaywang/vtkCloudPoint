@@ -513,12 +513,11 @@ namespace vtkPointCloud
         /// <param name="dic">ID映射列表</param>
         /// <param name="clusList"></param>
         /// <returns></returns>
-        static public List<Point3D> refreshCensAndClusByDictionary(Dictionary<int, int> dic,List<ClusObj> clusList,bool is3D)
+        static public void refreshCensAndClusByDictionary(Dictionary<int, int> dic,List<ClusObj> clusList,ref List<Point3D> centers,ref List<Point3D> centers2D)
         {
             //dic存放 对应的clusID而非Index 按照value（ID）排序（讲道理，ID = index + 1）
             //grouping 序列对应ID
             List<int> keys =dic.Keys.ToList();
-
             foreach (ClusObj ob in clusList)
             {
                 if (keys.Contains(ob.clusId)) {
@@ -529,14 +528,13 @@ namespace vtkPointCloud
                 }
             }
             clusList.RemoveAll((delegate(ClusObj p) { return (keys.Contains(p.clusId)); }));
-            List<Point3D> centers = new List<Point3D>();
+            //List<Point3D> centers = new List<Point3D>();
             foreach (ClusObj obj in clusList)
             {
-                if (is3D) centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
-                else centers.Add(new Point3D(obj.li.Average(m => m.motor_x), obj.li.Average(m => m.motor_y), 0, obj.clusId, true));//计算质心
+                centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
+                centers2D.Add(new Point3D(obj.li.Average(m => m.motor_x), obj.li.Average(m => m.motor_y), 0, obj.clusId, true));//计算质心
             }
             Console.WriteLine("keys中包含"+keys.Count+"质心有"+centers.Count);
-            return centers;
         }
         /// <summary>
         /// 将小于阈值范围的质心点集置入Dictionary 遍历之 融合之

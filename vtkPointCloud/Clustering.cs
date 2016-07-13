@@ -90,6 +90,7 @@ namespace vtkPointCloud
             this.cb_showerror.Checked = true;
             this.rb_3d.Checked = true;
             this.rb_2d.Checked = false;
+
             this.rb_3d.CheckedChanged += new System.EventHandler(this.rb_3d_CheckedChanged);
             this.cb_showcore.CheckedChanged += new System.EventHandler(this.cb_showcore_CheckedChanged);
             this.cb_showerror.CheckedChanged += new System.EventHandler(this.cb_showerror_CheckedChanged);
@@ -121,30 +122,39 @@ namespace vtkPointCloud
             {
                 p.isTraversal = false;
             }
-            tmpClusList = new List<ClusObj>();
+            tmpClusList = new List<ClusObj>();//重新建立分组List
             //a.ForEach(i => b.Add((Point3D)i.Clone()));
-            mf.clusList.ForEach(i => tmpClusList.Add((ClusObj)i.Clone()));
-            int fff = 0;
-            foreach (ClusObj oo in mf.clusList)//clusList被改写了 fuck
-            {
-                fff += oo.li.Count;
-            }
-            Console.WriteLine("fff的值为" + fff);
-            Dictionary<int,int> dick = Tools.IntegratingClusID(mf.centers, mergeThrehold);//计算需要融合的ID
-            tmpCenters = null;
-            tmpCircles2D = null;
-            tmpCenters = Tools.refreshCensAndClusByDictionary(dick, tmpClusList ,this.rb_3d.Checked);//重新分配ID号 计算分配后ID数
-            tmpCenters2D = Tools.refreshCensAndClusByDictionary(dick, tmpClusList, this.rb_3d.Checked);
-            fff = 0;
-            //mf.centers = null;
-            //mf.centers = tmpCenters;
+            mf.clusList.ForEach(i => tmpClusList.Add((ClusObj)i.Clone()));//把聚类后的初始分组copy过来
+            Dictionary<int,int> dick = Tools.IntegratingClusID(mf.centers, mergeThrehold);//根据聚类后初始质心和阈值threhold计算需要融合的ID
+            tmpCenters = new List<Point3D>();//缓存质心初始化
+            tmpCenters2D = new List<Point3D>();
+            Tools.refreshCensAndClusByDictionary(dick, tmpClusList ,ref tmpCenters,ref tmpCenters2D);//重新分配ID号 计算分配后ID数 计算两组质心
             //重新洗牌！！
             tmpCircles = new List<Point2D>();
             tmpCircles2D = new List<Point2D>();
             tmpCircles = Tools.getCircles(tmpClusList,true);//再次计算外接圆
-            tmpCircles2D = Tools.getCircles(tmpClusList,false);
-            mf.showCircle(tmpCircles, 1, mf.clusForMerge, tmpCenters);
-            //mf.showCircle(circles, 1, );//显示圆
+            tmpCircles2D = Tools.getCircles(tmpClusList,false);//再次计算
+            //取消事件注册
+            this.cb_showcore.CheckedChanged -= new System.EventHandler(this.cb_showcore_CheckedChanged);
+            this.cb_showerror.CheckedChanged -= new System.EventHandler(this.cb_showerror_CheckedChanged);
+            this.cb_showcentroid.CheckedChanged -= new System.EventHandler(this.cb_showcentroid_CheckedChanged);
+
+            this.cb_showcentroid.Checked = true;
+            this.cb_showcore.Checked = true;
+            this.cb_showerror.Checked = true;
+            //添加事件注册
+            this.cb_showcore.CheckedChanged += new System.EventHandler(this.cb_showcore_CheckedChanged);
+            this.cb_showerror.CheckedChanged += new System.EventHandler(this.cb_showerror_CheckedChanged);
+            this.cb_showcentroid.CheckedChanged += new System.EventHandler(this.cb_showcentroid_CheckedChanged);
+            //mf.showCircle(this.rb_3d.Checked?(tmpCircles):(tmpCircles2D), 1, mf.clusForMerge, this.rb_3d.Checked?(tmpCenters):(tmpCenters2D));
+            if (rb_3d.Checked)
+            {
+                mf.showCircle(tmpCircles, 1, mf.clusForMerge, tmpCenters);
+            }
+            else
+            {
+                mf.showCircles2D(tmpCircles2D, 1, mf.clusForMerge, tmpCenters2D);
+            }
         }
 
         private void SureMergeBtn_Click(object sender, EventArgs e)

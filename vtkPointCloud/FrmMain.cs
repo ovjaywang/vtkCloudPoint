@@ -607,12 +607,14 @@ namespace vtkPointCloud
                     actorC = new vtkActor();
                     actorC.SetMapper(mapper22);
                     if (type == 2) {
+                        actorB.GetProperty().SetPointSize(1.2f);
+                        actorB.GetProperty().SetColor(0, 1, 0);
                         actorC.GetProperty().SetPointSize(3f);
                         actorC.GetProperty().SetColor(1, 0, 0);
                     }
                     else if (type==3)
                     {
-                        actorB.GetProperty().SetPointSize(1.2f);
+                        actorB.GetProperty().SetPointSize(1.5f);
                         actorB.GetProperty().SetColor(1,0, 0);
                         actorC.GetProperty().SetPointSize(1.2f);
                         actorC.GetProperty().SetColor(0, 1, 0);
