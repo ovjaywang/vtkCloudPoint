@@ -1,4 +1,4 @@
-﻿namespace vtkPointCloud
+namespace vtkPointCloud
 {
     partial class Clustering
     {
