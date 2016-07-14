@@ -918,7 +918,15 @@ namespace vtkPointCloud
                     }
                     else
                     {
-                        pointsList = fileMap.ReadFile(file);
+                        try
+                        {
+                            pointsList = fileMap.ReadFile(file);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("文件很可能正在被使用！", "提示");
+                            return;
+                        }
                         line = pointsList.Count;
                         String ssss = pointsList[0].Split('\t')[0];
                         bit = ssss.Length - ssss.LastIndexOf(".") - 1;
@@ -965,8 +973,6 @@ namespace vtkPointCloud
                         yangjiao = (-2) * (point.motor_x - this.x_angle) / 180 * Math.PI;
                         fangweijiao = 2 * (point.motor_y - this.y_angle) / 180 * Math.PI;
 
-                        //if (yangjiao > 90) yangjiao = yangjiao - 90; else yangjiao = 90 - yangjiao;
-                        //if (fangweijiao > 180) fangweijiao = 360 - fangweijiao;
                         double tmpx = point.Distance * Math.Cos(yangjiao) * Math.Sin(fangweijiao);
                         double tmpy = point.Distance * Math.Sin(yangjiao) * Math.Cos(fangweijiao); 
                         switch (xdir)
