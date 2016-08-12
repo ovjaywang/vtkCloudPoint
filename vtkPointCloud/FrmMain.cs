@@ -2097,7 +2097,7 @@ namespace vtkPointCloud
             {//显示白色外接圆图例
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\white_circle.png");
                 label1.Text = "聚类外接圆";
-                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width - 5, this.pictureBox1.Location.Y + 10);
+                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width , this.pictureBox1.Location.Y + 10);
             }
             else if (Visible == 4)
             {//显示超过半径阈值和小于半径阈值的圆的图例
@@ -2126,7 +2126,7 @@ namespace vtkPointCloud
                 label1.Text = "真值点";
                 label2.Text = "质心点";
                 label3.Text = "选择范围";
-                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 5, this.pictureBox3.Location.Y + 10);
+                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 17, this.pictureBox3.Location.Y + 10);
             }
             else if (Visible == 7) {
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\blue_point.png");
@@ -2880,7 +2880,7 @@ namespace vtkPointCloud
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(7);
+            isShowLegend(3);
         }
         public delegate void MessageBoxHand();
         private void 测试MessageBoxToolStripMenuItem_Click(object sender, EventArgs e)

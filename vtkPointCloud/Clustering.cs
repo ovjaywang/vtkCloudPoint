@@ -118,22 +118,29 @@ namespace vtkPointCloud
                 isMerge = true;
             }
 
-            foreach (Point3D p in mf.centers)
-            {
-                p.isTraversal = false;
-            }
+            //foreach (Point3D p in mf.centers)
+            //{
+            //    p.isTraversal = false;//将已遍历置否
+            //}
             tmpClusList = new List<ClusObj>();//重新建立分组List
-            //a.ForEach(i => b.Add((Point3D)i.Clone()));
             mf.clusList.ForEach(i => tmpClusList.Add((ClusObj)i.Clone()));//把聚类后的初始分组copy过来
-            Dictionary<int,int> dick = Tools.IntegratingClusID(mf.centers, mergeThrehold);//根据聚类后初始质心和阈值threhold计算需要融合的ID
+            tmpCenters = new List<Point3D>();//缓存质心初始化
+            mf.centers.ForEach(i => tmpCenters.Add((Point3D)i.Clone()));
+            //Dictionary<int,int> dick = Tools.IntegratingClusID(mf.centers, mergeThrehold);//根据聚类后初始质心和阈值threhold计算需要融合的ID
+            Dictionary<int, int> dicc = Tools.MergeIDByDistance(tmpCenters, mergeThrehold);//通过阈值计算那些质心（编号）需要更改合并
+            foreach (KeyValuePair<int,int> kvp in dicc)
+            {
+                Console.WriteLine(kvp.Key + " " + kvp.Value);
+            }
             tmpCenters = new List<Point3D>();//缓存质心初始化
             tmpCenters2D = new List<Point3D>();
-            Tools.refreshCensAndClusByDictionary(dick, tmpClusList ,ref tmpCenters,ref tmpCenters2D);//重新分配ID号 计算分配后ID数 计算两组质心
-            //重新洗牌！！
+            //重新分配ID号 计算分配后ID数 计算两组质心(2D 3D)
+            Tools.refreshCensAndClusByDictionary(dicc,tmpClusList, ref tmpCenters, ref tmpCenters2D);
+            ////重新洗牌！！
             tmpCircles = new List<Point2D>();
             tmpCircles2D = new List<Point2D>();
-            tmpCircles = Tools.getCircles(tmpClusList,true);//再次计算外接圆
-            tmpCircles2D = Tools.getCircles(tmpClusList,false);//再次计算
+            tmpCircles = Tools.getCircles(tmpClusList, true);//再次计算外接圆
+            tmpCircles2D = Tools.getCircles(tmpClusList, false);//再次计算
             //取消事件注册
             this.cb_showcore.CheckedChanged -= new System.EventHandler(this.cb_showcore_CheckedChanged);
             this.cb_showerror.CheckedChanged -= new System.EventHandler(this.cb_showerror_CheckedChanged);
