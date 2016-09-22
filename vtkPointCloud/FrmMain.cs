@@ -1288,10 +1288,19 @@ namespace vtkPointCloud
         public void DoWork3(object sender, DoWorkEventArgs e)
         {
             stwt = new System.Diagnostics.Stopwatch();
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\1cell.txt", false);
             stwt.Start();
             sumPts = 0;
             clusterSum = 1;
             threadCount = 0;
+            for (int i = 0; i < cells.Length; i++)
+            {
+                foreach (Point3D p3 in cells[i])
+                {
+                    sw.WriteLine(p3.X + " " + p3.Y);
+                }
+            }
+            sw.Close();
             for (int i = 0; i < cells.Length; i++)
             {
                 ThreadPool.QueueUserWorkItem(StartCode, cells[i]);//将每个分块加入线程池分别计算聚类
@@ -1676,7 +1685,7 @@ namespace vtkPointCloud
         /// 以外接圆半径过滤聚类点集-通过MCC调用
         /// </summary>
         /// <param name="radius"></param>
-        public void FilterClustersByRadius(double radius)
+        public void FilterClustersByRadius(double radius)//通过半径值过滤聚类
         {
             filterID.Clear();
             for (int j = 0; j < clusterSum; j++)
