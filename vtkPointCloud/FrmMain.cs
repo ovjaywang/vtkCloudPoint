@@ -14,6 +14,8 @@ using System.Linq;
 using System.Collections;
 using vtk;
 using System.Threading;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 //x是45.439，y 35.452
 namespace vtkPointCloud
 {
@@ -3485,6 +3487,37 @@ namespace vtkPointCloud
         {
             ren.AddActor(actorLine);
             vtkControl.Refresh();
+        }
+
+        private void 测试内嵌pythonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var engine = IronPython.Hosting.Python.CreateEngine();
+            engine.CreateScriptSourceFromString("print 'hello world!'").Execute();
+         }
+
+        private void 测试python文件调用ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var engine = IronPython.Hosting.Python.CreateEngine();
+            var scope = engine.CreateScope();
+            var source = engine.CreateScriptSourceFromFile("hello.py");
+            source.Execute(scope);
+
+            var say_hello = scope.GetVariable<Func<object>>("say_hello");
+            say_hello();
+
+            var syspath = scope.GetVariable<Func<object>>("getpath");
+            syspath();
+
+            var get_text = scope.GetVariable<Func<object>>("get_text");
+            var text = get_text().ToString();
+            Console.WriteLine(text);
+
+            var add = scope.GetVariable<Func<object, object, object>>("add");
+            var result1 = add(1, 2);
+            Console.WriteLine(result1);
+
+            var result2 = add("hello ", "world");
+            Console.WriteLine(result2);
         }
     }
 }

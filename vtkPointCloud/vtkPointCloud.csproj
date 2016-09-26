@@ -99,6 +99,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\x86\Release\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="IronPython, Version=2.7.6.3, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>E:\Program Files\VTK\bin\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\vtk\bin\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.1.21, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>E:\Program Files\VTK\bin\Microsoft.Scripting.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\vtk\bin\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualC" />
     <Reference Include="NPOI, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -340,6 +355,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\x86\Release\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hello.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
