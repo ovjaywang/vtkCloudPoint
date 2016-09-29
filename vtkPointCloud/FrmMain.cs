@@ -14,8 +14,8 @@ using System.Linq;
 using System.Collections;
 using vtk;
 using System.Threading;
-using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
+using MyClass;
+using MathWorks.MATLAB.NET.Arrays;
 //x是45.439，y 35.452
 namespace vtkPointCloud
 {
@@ -1290,7 +1290,7 @@ namespace vtkPointCloud
         public void DoWork3(object sender, DoWorkEventArgs e)
         {
             stwt = new System.Diagnostics.Stopwatch();
-            System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\1cell.txt", false);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\cell_one.txt", false);
             stwt.Start();
             sumPts = 0;
             clusterSum = 1;
@@ -3476,7 +3476,6 @@ namespace vtkPointCloud
             showMatchedLine(isShowUnmatchedCenterPts,isShowUnmatchedTruePts);
         }
 
-
         private void 测试清屏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.RemoveAllViewProps();
@@ -3489,36 +3488,17 @@ namespace vtkPointCloud
             vtkControl.Refresh();
         }
 
-        private void 测试内嵌pythonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 测试matlabToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var engine = IronPython.Hosting.Python.CreateEngine();
-            engine.CreateScriptSourceFromString("print 'hello world!'").Execute();
-         }
-
-        private void 测试python文件调用ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var engine = IronPython.Hosting.Python.CreateEngine();
-            var scope = engine.CreateScope();
-            var source = engine.CreateScriptSourceFromFile("hello.py");
-            source.Execute(scope);
-
-            var say_hello = scope.GetVariable<Func<object>>("say_hello");
-            say_hello();
-
-            var syspath = scope.GetVariable<Func<object>>("getpath");
-            syspath();
-
-            var get_text = scope.GetVariable<Func<object>>("get_text");
-            var text = get_text().ToString();
-            Console.WriteLine(text);
-
-            var add = scope.GetVariable<Func<object, object, object>>("add");
-            var result1 = add(1, 2);
-            Console.WriteLine(result1);
-
-            var result2 = add("hello ", "world");
-            Console.WriteLine(result2);
+            DateTime a = DateTime.Now;
+            MyClass.MyClass tc1 = new MyClass.MyClass();
+            MWArray z3 = tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 0.07, 7);
+            //MWArray z3 = (MWArray)tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 0.07, 7);
+            DateTime b = DateTime.Now;
+            Console.WriteLine((b - a).TotalMilliseconds);
         }
+
+      
     }
 }
 
