@@ -388,10 +388,11 @@ namespace vtkPointCloud
         static public List<Point2D> getCircles(List<ClusObj> clusList,bool is3D)
         {
             List<Point2D> circles = new List<Point2D>();
+            Point2D CircleCenter;//圆心点
             for (int j = 0; j < clusList.Count; j++)
             {
-                //else Console.WriteLine(clusList[j].li.Count);
-                Point2D CircleCenter;//圆心点
+                if (clusList[j].li.Count <= 3)
+                    continue;
                 double CircleRadius = -1;
                 if (is3D) Geometry.FindMinimalBoundingCircle(clusList[j].li, out CircleCenter, out CircleRadius,is3D);//依据外接定点计算外接圆
                 else Geometry.FindMinimalBoundingCircle(clusList[j].li, out CircleCenter, out CircleRadius, is3D);//依据外接定点计算外接圆

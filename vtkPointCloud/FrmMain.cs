@@ -46,6 +46,7 @@ namespace vtkPointCloud
         static List<Point3D>[] cells;//分块聚类集合
         public List<Point3D> clusForMerge;//暂时聚类分布
         System.Diagnostics.Stopwatch stwt;
+        static Data2Cluster.DoDbscan tc1 = new Data2Cluster.DoDbscan();
         //点集相关
         public List<Point3D> rawData = new List<Point3D>();//raw是原始x y z值数据
         bool isIgnoreDuplication = true;//是否忽略重复点
@@ -65,6 +66,7 @@ namespace vtkPointCloud
         private delegate void UpdateStatusDelegate();
         private BackgroundWorker bkWorker = new BackgroundWorker();
         static private BackgroundWorker bkWorker3 = new BackgroundWorker();
+        static private BackgroundWorker matlabWork = new BackgroundWorker();
         //icp相关
         //vtkPoints truePoints;//用以顯示的真值點集
         bool isSureRegion = true;//判斷是否確
@@ -111,17 +113,24 @@ namespace vtkPointCloud
             string str = System.Environment.CurrentDirectory;
             Console.Write(str);
             CheckForIllegalCrossThreadCalls = false;
-
+            //icp的后台线程
             bkWorker.WorkerReportsProgress = true;
             bkWorker.WorkerSupportsCancellation = true;
             bkWorker.DoWork += new DoWorkEventHandler(DoWork);
             bkWorker.ProgressChanged += new ProgressChangedEventHandler(ProgessChanged);
             bkWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteWork);
+            //聚类的后台线程
             bkWorker3.WorkerReportsProgress = true;
             bkWorker3.WorkerSupportsCancellation = true;
             bkWorker3.DoWork += new DoWorkEventHandler(DoWork3);
             bkWorker3.ProgressChanged += new ProgressChangedEventHandler(ProgessChanged3);
             bkWorker3.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteWork3);
+
+            matlabWork.WorkerReportsProgress = true;
+            matlabWork.WorkerSupportsCancellation = true;
+            matlabWork.DoWork += new DoWorkEventHandler(DoMatLabWork);
+            matlabWork.ProgressChanged += new ProgressChangedEventHandler(MatLabWorkChanged);
+            matlabWork.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompleteMatlab);
             if (vtkControl == null)
             {
                 vtkControl = new vtkFormsWindowControl();
@@ -1299,7 +1308,7 @@ namespace vtkPointCloud
             {
                 foreach (Point3D p3 in cells[i])
                 {
-                    sw.WriteLine(p3.X + " " + p3.Y);
+                    sw.WriteLine(p3.motor_x + " " + p3.motor_y);
                 }
             }
             sw.Close();
@@ -1309,6 +1318,22 @@ namespace vtkPointCloud
             }
             this.BeginInvoke(new UpdateStatusDelegate(UpdateStatus3), new object[] { }); 
         }
+        //MatLab分区间任务
+        public void DoMatLabWork(object sender, DoWorkEventArgs e)
+        {
+            stwt = new System.Diagnostics.Stopwatch();
+            stwt.Start();
+            sumPts = 0;
+            clusterSum = 0;
+            threadCount = 0;
+            for (int i = 0; i < cells.Length; i++)
+            {
+                //ThreadPool.QueueUserWorkItem(StartCode, cells[i]);//将每个分块加入线程池分别计算聚类
+                ThreadPool.QueueUserWorkItem(StartMatLab, cells[i]);
+            }
+            this.BeginInvoke(new UpdateStatusDelegate(UpdateMatLabStatus), new object[] { }); 
+        }
+
         private void UpdateStatus3()
         {
             var mainAutoResetEvent = new AutoResetEvent(false);
@@ -1332,10 +1357,38 @@ namespace vtkPointCloud
             Console.WriteLine("主线程继续执行");
             treeView1.Enabled = false;
         }
+        //监督线程状态。完成提醒主线程
+        private void UpdateMatLabStatus()
+        {
+            var mainAutoResetEvent = new AutoResetEvent(false);
+            registeredWaitHandle = ThreadPool.RegisterWaitForSingleObject(new AutoResetEvent(false), new WaitOrTimerCallback(delegate(object obj, bool timeout)
+            {
+                int workerThreads = 0;
+                int maxWordThreads = 0;
+                int compleThreads = 0;
+                ThreadPool.GetAvailableThreads(out workerThreads, out compleThreads);
+                ThreadPool.GetMaxThreads(out maxWordThreads, out compleThreads);
+                if (workerThreads == maxWordThreads)
+                {
+                    Console.WriteLine("线程池里的线程都执行完了");
+                    mainAutoResetEvent.Set();
+                    registeredWaitHandle.Unregister(null);
+                }
+            }), null, 1000, false);
+            Console.WriteLine("主线程进入等待");
+            mainAutoResetEvent.WaitOne();
+            Console.WriteLine("主线程继续执行");
+            treeView1.Enabled = false;
+        }
+
         public void ProgessChanged3(object sender, ProgressChangedEventArgs e)
         {
             //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
             //System.Threading.Thread.Sleep(1);
+            progressForm.setprogressvalue(e.ProgressPercentage);
+        }
+        public void MatLabWorkChanged(object sender, ProgressChangedEventArgs e)
+        {
             progressForm.setprogressvalue(e.ProgressPercentage);
         }
         public void CompleteWork3(object sender, RunWorkerCompletedEventArgs e)
@@ -1450,7 +1503,132 @@ namespace vtkPointCloud
             showCircle(this.circles, 1, clusForMerge, this.centers);
             isShowLegend(2);
             
-        }       
+        }
+        //处理matlab工作完成
+        public void CompleteMatlab(object sender, RunWorkerCompletedEventArgs e)
+        {
+            progressForm.Close();
+            MessageBox.Show("聚类运行时间：" + stwt.Elapsed.ToString() + "\n总聚类数：" + clusterSum + "  聚类数据：" + sumPts + "个");
+            //this.cp.Visible = true;
+            //this.cp.DoClusteringBtn.Text = "重新聚类";
+            //this.cp.MergeBtn.Enabled = true;
+            //this.cp.SureMergeBtn.Enabled = true;
+            //this.cp.Left = 0;
+            //System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\" + MainForm.ptsIncell + ".txt", false);//把cells分别按照聚类输出 ID需要合并 
+            int idLast;//记录每个聚类上一个ID是多少  = cells[0][0].clusterId
+            int idNow = 0, id, clusLen = 0;//当前聚类累加ID、当前cell内部ID以及当前聚类长度
+            int delSum = 0;
+            clusForMerge = new List<Point3D>();
+            for (int i = 0; i < cells.Length; i++)
+            {
+                if (cells[i].Count == 0) continue;
+                cells[i].Sort((x, y) =>//按照ID排序
+                {
+                    int result;
+                    if (x.clusterId == y.clusterId) result = 0;
+                    else
+                    {
+                        if (x.clusterId > y.clusterId) result = 1;
+                        else result = -1;
+                    }
+                    return result;
+                });
+                idLast = cells[i][0].clusterId;
+                if (idLast != 0)
+                {
+                    idNow++;
+                    clusLen = 1;
+                }
+                else
+                {
+                    clusLen = 0;
+                }
+                for (int j = 0; j < cells[i].Count; j++)
+                {
+                    id = cells[i][j].clusterId;
+                    if (id == 0)
+                    {
+                        clusForMerge.Add(cells[i][j]);//若ID为0 则ID就是0
+                    }
+                    else
+                    {
+                        if ((id != idLast))
+                        {
+                            if ((clusLen <= 3) && (idLast != 0))//目前设为小于3个非正常聚类
+                            {//如果聚类过小 1.把该聚类的ID设为0 2.ID值不自增
+                                Console.WriteLine("聚类过小！" + idNow);
+                                delSum++;
+                                for (int k = 0; k < clusLen; k++)
+                                {
+                                    clusForMerge[clusForMerge.Count - 1 - k].clusterId = 0;//回溯之前的结果 把ID设为0
+                                }
+                            }
+                            else
+                            {
+                                idNow++;
+                            }
+                            clusLen = 1;
+                        }
+                        else
+                        {
+                            clusLen++;
+                        }
+                        cells[i][j].clusterId = idNow;
+                        clusForMerge.Add(cells[i][j]);
+                        idLast = id;
+                    }
+                }
+            }
+            Console.WriteLine("已完成聚类：" + clusterSum);
+            List<Point3D> zeroList = clusForMerge.FindAll(delegate(Point3D p) { return (p.clusterId == 0); });
+            clusForMerge.RemoveAll((delegate(Point3D p) { return (p.clusterId == 0); }));
+            double[,] m_data = new double[zeroList.Count, 2];
+            for (int f = 0; f < zeroList.Count; f++)
+            {
+                m_data[f, 0] = zeroList[f].motor_x;
+                m_data[f, 1] = zeroList[f].motor_y;
+            }
+            double[,] rs = (double[,])tc1.dbscan(new MWNumericArray(m_data), pointsInthrehold, threhold).ToArray();
+            int id_zero,maxID=-1;
+            for (int j = 0; j < zeroList.Count; j++)
+            {
+                id_zero = (int)rs[0, j];
+                if (id_zero == -1)
+                {
+                    zeroList[j].clusterId = 0;
+                }
+                else {
+                    if (maxID < id_zero)
+                        maxID = id_zero;
+                    zeroList[j].clusterId = id_zero + clusterSum;
+                }
+                clusForMerge.Add(zeroList[j]);
+            }
+            Console.WriteLine("\n分块聚类合理聚类数: " + (clusterSum - delSum) +
+               ",因过聚类小于3被删除的有" + delSum + "个,重新聚类后聚类数 :" +(maxID+ clusterSum));
+            centers = new List<Point3D>();
+            centers2D = new List<Point3D>();
+            clusList = new List<ClusObj>();
+            ClusObj obj;
+            for (int j = 0; j < (maxID + clusterSum); j++)
+            {
+                obj = new ClusObj();
+                obj.clusId = j + 1;
+                clusList.Add(obj);
+            }
+            Tools.GetClusList(clusForMerge, centers, centers2D, clusList, null);
+            foreach (ClusObj ob in clusList)
+            {
+                Console.WriteLine(ob.clusId + "   " + ob.li.Count);
+            }
+            //MainForm.clusterSum = dbb.clusterAmount;
+            this.circles = Tools.getCircles(this.clusList, true);//计算外接圆
+            this.circles2D = Tools.getCircles(this.clusList, false);//计算2D外接圆
+            showCircle(this.circles, 1, clusForMerge, this.centers);
+            isShowLegend(2);
+
+        }      
+
         /// <summary>
         /// 导出匹配文件 仰角 方位角 距离 质心x y z
         /// </summary>
@@ -2990,6 +3168,41 @@ namespace vtkPointCloud
             progressForm.setprogressvalue(threadCount);
             System.Windows.Forms.Application.DoEvents();  
         }
+        //独立的每个子聚类线程
+        private static void StartMatLab(object i)
+        {
+            List<Point3D> cell = i as List<Point3D>;
+            //ThreadDB.dbscan(cell, MainForm.threhold, pointsInthrehold);
+            double[,] m_data = new double[cell.Count, 2];
+            for (int f = 0; f < cell.Count; f++)
+            {
+                m_data[f, 0] = cell[f].motor_x;
+                m_data[f, 1] = cell[f].motor_y;
+            }
+            double[,] rs = (double[,])tc1.dbscan(new MWNumericArray(m_data), pointsInthrehold, threhold).ToArray();
+            int id, maxId = -1;
+            for (int j = 0; j < cell.Count; j++)
+            {
+                id = (int)rs[0,j];
+                if (id == -1)
+                {
+                    cell[j].clusterId = 0;
+                }
+                else {
+                    if (id > maxId)
+                        maxId = id;
+                    cell[j].clusterId = id;
+                }
+            }
+            sumPts += cell.Count;
+            threadCount++;
+            clusterSum += (maxId!=-1)?maxId:0;
+            Console.WriteLine("完成第[" + threadCount + "]个线程，包含[" + cell.Count + "]个数据点，共["
+                + ((maxId!=-1)?maxId:0) + "]个聚类，当前已聚类[" + clusterSum + "]个。");
+            progressForm.setprogressvalue(threadCount);
+            System.Windows.Forms.Application.DoEvents();
+        }
+
         private void 测试野点回调ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //MergeCellData(200, 250);
@@ -3491,7 +3704,7 @@ namespace vtkPointCloud
         private void 测试matlabToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime a = DateTime.Now;
-            Data2Cluster.DoDbscan tc1 = new Data2Cluster.DoDbscan();
+            
             double[,] m_data = new double[rawData.Count, 2];
             for (int f = 0; f < rawData.Count; f++)
             {
@@ -3502,18 +3715,98 @@ namespace vtkPointCloud
             MWNumericArray dataArray = new MWNumericArray(m_data);
             MWArray z3 = tc1.dbscan(dataArray, 7, 0.07);
             ////MWNumericArray z3 = (MWNumericArray)tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 7, 0.07);
-            double[,] rs = (double[,])z3.ToArray();
+            double[,,] rs = (double[,,])z3.ToArray();
             Console.WriteLine("数据列数" + rs.GetLength(0));
             Console.WriteLine("数据行数" + rs.GetLength(1));
-            //int count_YE = 0;
-            //for (int i = 0; i < rs.GetLength(1); i++) {
-            //    if (rs[0, i] == -1) {
-            //        count_YE++;
-            //    }
+            //int id;
+            //for (int j = 0; j < rawData.Count; j++) {
+            //    id = (int)rs[0, j] ;
+            //    if (id==-1) {
+            //        rawData[j].clusterId = 0;
+            //    }else
+            //        rawData[j].clusterId = id;
+                
             //}
-            //Console.WriteLine("野点数： " + count_YE + "  核心点数：" + (rawData.Count - count_YE));
+            //ShowPointsFromFile(rawData, 2);
             DateTime b = DateTime.Now;
             Console.WriteLine((b - a).TotalMilliseconds);
+        }
+        public void getClusterFromMotorByMatlab(double tr, int pts, int ptsInCell)//执行dbscan聚类线程
+        {
+            MainForm.threhold = tr;
+            MainForm.pointsInthrehold = pts;
+            MainForm.ptsIncell = ptsInCell;
+            double x_Min = rawData.Min(m => m.motor_x);//计算x最小
+            double y_Min = rawData.Min(m => m.motor_y);//计算y最小
+            double x_Max = rawData.Max(m => m.motor_x);//计算x最大
+            double y_Max = rawData.Max(m => m.motor_y);//计算y最大
+            if (rawData == null || rawData.Count == 0) return;
+            rawData.Sort((x, y) =>//按照与最小值最近距离排序
+            {
+                int result;
+                double d1 = Math.Max(x.motor_x - x_Min, x.motor_y - y_Min);
+                double d2 = Math.Max(y.motor_x - x_Min, y.motor_y - y_Min);
+                if (d1 == d2)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    if (d1 > d2)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                return result;
+            }
+            );
+            Console.WriteLine("分块点数 = " + MainForm.ptsIncell);
+            List<Point3D> cell = rawData.Take(MainForm.ptsIncell).ToList();
+            //MessageBox.Show(rawData.Count+"");
+            double cell_x = cell.Max(m => m.motor_x) - x_Min;
+            double cell_y = cell.Max(m => m.motor_y) - y_Min;
+            int rows = (int)((y_Max - y_Min) / cell_y) + 1;
+            int cols = (int)((x_Max - x_Min) / cell_x) + 1;
+            cells = new List<Point3D>[rows * cols];
+            cells[0] = cell;
+            int index = 0;
+            for (int p = 0; p < rows; p++)//外层为行
+            {
+                for (int q = 0; q < cols; q++)//里层为列 即逐行添加
+                {
+                    if (index == 0) { index++; }
+                    else
+                    {
+                        if ((p == (rows - 1)) && (q != (cols - 1)))//最大行
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Max);
+                        }
+                        else if ((p != (rows - 1)) && (q == (cols - 1)))//最大列
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Min + (p + 1) * cell_y);
+                        }
+                        else if ((p == (rows - 1)) && (q == (cols - 1)))//右上角顶格
+                        {
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Max, y_Max);
+                        }
+                        else//区间内格子
+                            cells[index++] = Tools.getListByScale2(this.rawData, x_Min + q * cell_x, y_Min + p * cell_y, x_Min + (q + 1) * cell_x, y_Min + (p + 1) * cell_y);
+                    }
+                }
+            }
+            Console.WriteLine("\n\r总分块数：" + cells.Length + ",共 " + rows + " 行 " + cols + " 列.");
+            matlabWork.RunWorkerAsync();
+            progressForm = new WaitingForm();
+            progressForm.progressBar1.Maximum = cells.Length;
+            progressForm.Show();
+        }
+        private void 测试matlab多线程ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getClusterFromMotorByMatlab(0.06,9,200);
         }
     }
 }
