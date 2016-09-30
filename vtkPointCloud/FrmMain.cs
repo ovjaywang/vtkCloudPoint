@@ -14,7 +14,7 @@ using System.Linq;
 using System.Collections;
 using vtk;
 using System.Threading;
-using MyClass;
+using Data2Cluster;
 using MathWorks.MATLAB.NET.Arrays;
 //x是45.439，y 35.452
 namespace vtkPointCloud
@@ -2507,7 +2507,8 @@ namespace vtkPointCloud
         /// 截取当前屏幕信息
         /// </summary>
         private void GetScreen_Click(object sender, EventArgs e)//截屏
-        {   //Bitmap bit1 = new Bitmap(this.Width, this.Height);
+        {   
+            //Bitmap bit1 = new Bitmap(this.Width, this.Height);
             //this.DrawToBitmap(bit1, new Rectangle(0, 0, this.Width, this.Height));
             //int border = (this.Width - this.ClientSize.Width) / 2;//边框宽度
             //int caption = (this.Height - this.ClientSize.Height) - border;//标题栏高度
@@ -3481,7 +3482,6 @@ namespace vtkPointCloud
             ren.RemoveAllViewProps();
             vtkControl.Refresh();
         }
-
         private void 测试添加actorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.AddActor(actorLine);
@@ -3491,14 +3491,30 @@ namespace vtkPointCloud
         private void 测试matlabToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime a = DateTime.Now;
-            MyClass.MyClass tc1 = new MyClass.MyClass();
-            MWArray z3 = tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 0.07, 7);
-            //MWArray z3 = (MWArray)tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 0.07, 7);
+            Data2Cluster.DoDbscan tc1 = new Data2Cluster.DoDbscan();
+            double[,] m_data = new double[rawData.Count, 2];
+            for (int f = 0; f < rawData.Count; f++)
+            {
+                m_data[f,0] = rawData[f].X;
+                m_data[f,1] = rawData[f].Y;
+            }
+            Console.WriteLine("m_data数据量 ：" + m_data.GetLength(0));
+            MWNumericArray dataArray = new MWNumericArray(m_data);
+            MWArray z3 = tc1.dbscan(dataArray, 7, 0.07);
+            ////MWNumericArray z3 = (MWNumericArray)tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 7, 0.07);
+            double[,] rs = (double[,])z3.ToArray();
+            Console.WriteLine("数据列数" + rs.GetLength(0));
+            Console.WriteLine("数据行数" + rs.GetLength(1));
+            //int count_YE = 0;
+            //for (int i = 0; i < rs.GetLength(1); i++) {
+            //    if (rs[0, i] == -1) {
+            //        count_YE++;
+            //    }
+            //}
+            //Console.WriteLine("野点数： " + count_YE + "  核心点数：" + (rawData.Count - count_YE));
             DateTime b = DateTime.Now;
             Console.WriteLine((b - a).TotalMilliseconds);
         }
-
-      
     }
 }
 
