@@ -6,6 +6,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 namespace vtkPointCloud
 {
+    public class mergeGroup {
+        public int MergeId{get;set;}
+        public int OriginId { get; set; }
+    }
     [Serializable] 
     public class ClusObj : ICloneable
     {
@@ -111,8 +115,9 @@ namespace vtkPointCloud
             this.Z = zz;
             this.clusterId = clusterId;
             this.ifShown = isShown;
-            this.isTraversal = false;
+            //this.isTraversal = false;
         }
+        public int IDBeforeMerge { get; set; }
         public double motor_x { get; set; }//点机x
         public double motor_y { get; set; }//点机y
         public double Distance { get; set; }//距离
@@ -121,7 +126,7 @@ namespace vtkPointCloud
         public double Z { get; set; }//三维z
         public int clusterId { get; set; }//聚类id
         public int pathId { get; set; }//路径id
-        public bool isTraversal { get; set; }
+        //public bool isTraversal { get; set; }//是否已遍历
         public Boolean ifShown { get; set; }//是否显示
         //public Boolean isFilter { get; set; }//是否过滤
         public int ptsCount { get; set; }
@@ -136,7 +141,7 @@ namespace vtkPointCloud
         public double matched_X { get; set; }//匹配坐标x
         public double matched_Y { get; set; }//匹配坐标y
         public double matched_Z { get; set; }//匹配坐标z
-        public Boolean isFilterByDistance { get; set; }
+        public Boolean isFilterByDistance { get; set; }//是否被距离阈值过滤
         public Object Clone() //深度拷贝  
         {
             using (MemoryStream ms = new MemoryStream(1000))

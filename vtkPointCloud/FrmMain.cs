@@ -14,6 +14,8 @@ using System.Linq;
 using System.Collections;
 using vtk;
 using System.Threading;
+using Data2Cluster;
+using MathWorks.MATLAB.NET.Arrays;
 //x是45.439，y 35.452
 namespace vtkPointCloud
 {
@@ -918,7 +920,15 @@ namespace vtkPointCloud
                     }
                     else
                     {
-                        pointsList = fileMap.ReadFile(file);
+                        try
+                        {
+                            pointsList = fileMap.ReadFile(file);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("文件很可能正在被使用！", "提示");
+                            return;
+                        }
                         line = pointsList.Count;
                         String ssss = pointsList[0].Split('\t')[0];
                         bit = ssss.Length - ssss.LastIndexOf(".") - 1;
@@ -965,8 +975,6 @@ namespace vtkPointCloud
                         yangjiao = (-2) * (point.motor_x - this.x_angle) / 180 * Math.PI;
                         fangweijiao = 2 * (point.motor_y - this.y_angle) / 180 * Math.PI;
 
-                        //if (yangjiao > 90) yangjiao = yangjiao - 90; else yangjiao = 90 - yangjiao;
-                        //if (fangweijiao > 180) fangweijiao = 360 - fangweijiao;
                         double tmpx = point.Distance * Math.Cos(yangjiao) * Math.Sin(fangweijiao);
                         double tmpy = point.Distance * Math.Sin(yangjiao) * Math.Cos(fangweijiao); 
                         switch (xdir)
@@ -1282,10 +1290,19 @@ namespace vtkPointCloud
         public void DoWork3(object sender, DoWorkEventArgs e)
         {
             stwt = new System.Diagnostics.Stopwatch();
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\cell_one.txt", false);
             stwt.Start();
             sumPts = 0;
             clusterSum = 1;
             threadCount = 0;
+            for (int i = 0; i < cells.Length; i++)
+            {
+                foreach (Point3D p3 in cells[i])
+                {
+                    sw.WriteLine(p3.X + " " + p3.Y);
+                }
+            }
+            sw.Close();
             for (int i = 0; i < cells.Length; i++)
             {
                 ThreadPool.QueueUserWorkItem(StartCode, cells[i]);//将每个分块加入线程池分别计算聚类
@@ -1670,7 +1687,7 @@ namespace vtkPointCloud
         /// 以外接圆半径过滤聚类点集-通过MCC调用
         /// </summary>
         /// <param name="radius"></param>
-        public void FilterClustersByRadius(double radius)
+        public void FilterClustersByRadius(double radius)//通过半径值过滤聚类
         {
             filterID.Clear();
             for (int j = 0; j < clusterSum; j++)
@@ -2091,7 +2108,7 @@ namespace vtkPointCloud
             {//显示白色外接圆图例
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\white_circle.png");
                 label1.Text = "聚类外接圆";
-                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width - 5, this.pictureBox1.Location.Y + 10);
+                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width , this.pictureBox1.Location.Y + 10);
             }
             else if (Visible == 4)
             {//显示超过半径阈值和小于半径阈值的圆的图例
@@ -2120,7 +2137,7 @@ namespace vtkPointCloud
                 label1.Text = "真值点";
                 label2.Text = "质心点";
                 label3.Text = "选择范围";
-                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 5, this.pictureBox3.Location.Y + 10);
+                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 17, this.pictureBox3.Location.Y + 10);
             }
             else if (Visible == 7) {
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\blue_point.png");
@@ -2490,7 +2507,8 @@ namespace vtkPointCloud
         /// 截取当前屏幕信息
         /// </summary>
         private void GetScreen_Click(object sender, EventArgs e)//截屏
-        {   //Bitmap bit1 = new Bitmap(this.Width, this.Height);
+        {   
+            //Bitmap bit1 = new Bitmap(this.Width, this.Height);
             //this.DrawToBitmap(bit1, new Rectangle(0, 0, this.Width, this.Height));
             //int border = (this.Width - this.ClientSize.Width) / 2;//边框宽度
             //int caption = (this.Height - this.ClientSize.Height) - border;//标题栏高度
@@ -2874,7 +2892,7 @@ namespace vtkPointCloud
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(7);
+            isShowLegend(3);
         }
         public delegate void MessageBoxHand();
         private void 测试MessageBoxToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3459,17 +3477,43 @@ namespace vtkPointCloud
             showMatchedLine(isShowUnmatchedCenterPts,isShowUnmatchedTruePts);
         }
 
-
         private void 测试清屏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.RemoveAllViewProps();
             vtkControl.Refresh();
         }
-
         private void 测试添加actorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ren.AddActor(actorLine);
             vtkControl.Refresh();
+        }
+
+        private void 测试matlabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateTime a = DateTime.Now;
+            Data2Cluster.DoDbscan tc1 = new Data2Cluster.DoDbscan();
+            double[,] m_data = new double[rawData.Count, 2];
+            for (int f = 0; f < rawData.Count; f++)
+            {
+                m_data[f,0] = rawData[f].X;
+                m_data[f,1] = rawData[f].Y;
+            }
+            Console.WriteLine("m_data数据量 ：" + m_data.GetLength(0));
+            MWNumericArray dataArray = new MWNumericArray(m_data);
+            MWArray z3 = tc1.dbscan(dataArray, 7, 0.07);
+            ////MWNumericArray z3 = (MWNumericArray)tc1.doMain("E:\\mfile\\DBSCAN Clustering\\cell_one.txt", 7, 0.07);
+            double[,] rs = (double[,])z3.ToArray();
+            Console.WriteLine("数据列数" + rs.GetLength(0));
+            Console.WriteLine("数据行数" + rs.GetLength(1));
+            //int count_YE = 0;
+            //for (int i = 0; i < rs.GetLength(1); i++) {
+            //    if (rs[0, i] == -1) {
+            //        count_YE++;
+            //    }
+            //}
+            //Console.WriteLine("野点数： " + count_YE + "  核心点数：" + (rawData.Count - count_YE));
+            DateTime b = DateTime.Now;
+            Console.WriteLine((b - a).TotalMilliseconds);
         }
     }
 }

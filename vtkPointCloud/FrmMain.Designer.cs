@@ -63,9 +63,9 @@
             this.测试匹配ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试画矩形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试删除actorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试删除坐标ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试画双点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试清屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.测试删除坐标ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +107,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
+            this.测试matlabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -270,7 +271,8 @@
             this.测试删除actorToolStripMenuItem,
             this.测试删除坐标ToolStripMenuItem,
             this.测试画双点ToolStripMenuItem,
-            this.测试清屏ToolStripMenuItem});
+            this.测试清屏ToolStripMenuItem,
+            this.测试matlabToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.ToolsToolStripMenuItem.Text = "工具";
@@ -406,6 +408,13 @@
             this.测试删除actorToolStripMenuItem.Text = "测试删除actor";
             this.测试删除actorToolStripMenuItem.Click += new System.EventHandler(this.测试删除actorToolStripMenuItem_Click);
             // 
+            // 测试删除坐标ToolStripMenuItem
+            // 
+            this.测试删除坐标ToolStripMenuItem.Name = "测试删除坐标ToolStripMenuItem";
+            this.测试删除坐标ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试删除坐标ToolStripMenuItem.Text = "测试添加actor";
+            this.测试删除坐标ToolStripMenuItem.Click += new System.EventHandler(this.测试添加actorToolStripMenuItem_Click);
+            // 
             // 测试画双点ToolStripMenuItem
             // 
             this.测试画双点ToolStripMenuItem.Name = "测试画双点ToolStripMenuItem";
@@ -419,13 +428,6 @@
             this.测试清屏ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试清屏ToolStripMenuItem.Text = "测试清屏";
             this.测试清屏ToolStripMenuItem.Click += new System.EventHandler(this.测试清屏ToolStripMenuItem_Click);
-            // 
-            // 测试删除坐标ToolStripMenuItem
-            // 
-            this.测试删除坐标ToolStripMenuItem.Name = "测试删除坐标ToolStripMenuItem";
-            this.测试删除坐标ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试删除坐标ToolStripMenuItem.Text = "测试添加actor";
-            this.测试删除坐标ToolStripMenuItem.Click += new System.EventHandler(this.测试添加actorToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -911,6 +913,13 @@
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
+            // 测试matlabToolStripMenuItem
+            // 
+            this.测试matlabToolStripMenuItem.Name = "测试matlabToolStripMenuItem";
+            this.测试matlabToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试matlabToolStripMenuItem.Text = "测试matlab";
+            this.测试matlabToolStripMenuItem.Click += new System.EventHandler(this.测试matlabToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1044,6 +1053,7 @@
         private System.Windows.Forms.ToolStripMenuItem 测试清屏ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试删除坐标ToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem FixedPointMatchingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 测试matlabToolStripMenuItem;
 
     }
 }

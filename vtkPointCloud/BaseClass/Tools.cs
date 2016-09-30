@@ -515,7 +515,6 @@ namespace vtkPointCloud
         /// <returns></returns>
         static public void refreshCensAndClusByDictionary(Dictionary<int, int> dic,List<ClusObj> clusList,ref List<Point3D> centers,ref List<Point3D> centers2D)
         {
-            //dic存放 对应的clusID而非Index 按照value（ID）排序（讲道理，ID = index + 1）
             //grouping 序列对应ID
             List<int> keys =dic.Keys.ToList();
             foreach (ClusObj ob in clusList)
@@ -536,55 +535,53 @@ namespace vtkPointCloud
             }
             Console.WriteLine("keys中包含"+keys.Count+"质心有"+centers.Count);
         }
-        /// <summary>
-        /// 将小于阈值范围的质心点集置入Dictionary 遍历之 融合之
-        /// </summary>
-        /// <param name="l">数据点集</param>
-        /// <param name="cts">质心点集</param>
-        /// <param name="thre">融合阈值</param>
-        /// <returns></returns>
-        static public Dictionary<int, int> IntegratingClusID( List<Point3D> centers, double thre)
-        {//按照ID排序好的Centroid
-            Dictionary<int, int> dic = new Dictionary<int, int>();
-            int mergeCount = 0;
-            for (int i = 0; i < centers.Count; i++)
+        static public Dictionary<int, int> MergeIDByDistance(List<Point3D> centers, double thre)
+        {
+            Dictionary<int, int> dick = new Dictionary<int, int>();
+            HashSet<int> set = new HashSet<int>();
+            foreach (Point3D pppp in centers)
             {
-                if (!centers[i].isTraversal)//若尚未遍历
-                {
-                    centers[i].isTraversal = true;
-                    //寻找与本质心小于阈值的点集
-                    List<Point3D> plist = centers.FindAll(delegate(Point3D p)
+                pppp.IDBeforeMerge = pppp.clusterId;
+                pppp.motor_x = pppp.X;
+                pppp.motor_y =  pppp.Y;
+                pppp.clusterId = 0;
+            }
+            DBImproved dbb = new DBImproved();
+            dbb.dbscan(centers, thre, 2);//生怕某聚类被分割开没有聚类到 再聚一次
+            int mergeCount = 0;//合并数目
+            foreach (Point3D p in centers)
+            {
+                if (p.clusterId != 0) {
+                    if (!set.Contains(p.IDBeforeMerge))
                     {
-                        return ((Math.Abs(p.X - centers[i].X) + (Math.Abs(p.Y - centers[i].Y))) < thre)
-                            && (!p.isTraversal);
-                    });
-                    if (plist.Count != 0)
-                    {
-                        mergeCount += plist.Count;
-                        //Console.Write("\t当前ID:" + centers[i].clusterId + "\t 阈值内ID:");
-                        foreach (Point3D p in plist)
+                        Console.WriteLine("该编号为聚类第一个 编号：" + p.IDBeforeMerge);
+                        set.Add(p.IDBeforeMerge);
+                        foreach (Point3D q in centers)
                         {
-                            //Console.Write("ID:" + p.clusterId + "__Index：");
-                            int index = centers.FindIndex(0, delegate(Point3D p22) { return (p22.clusterId == p.clusterId); });
-                            //Console.Write(index + "\t");
-                            dic.Add(p.clusterId, centers[i].clusterId);//明确加入的是聚类编号而不是Index
-                            centers[index].isTraversal = true;
-                        }
-                        //Console.WriteLine();
+                            if ((q.clusterId == p.clusterId)&&(q.IDBeforeMerge!=p.IDBeforeMerge))
+                            {
+                                set.Add(q.IDBeforeMerge);
+                                dick.Add(q.IDBeforeMerge,p.IDBeforeMerge);
+                                mergeCount++;
+                                Console.WriteLine("被合并的聚类编号" + q.IDBeforeMerge + ",合并为" + p.IDBeforeMerge);
+                            }
+                        }      
                     }
                 }
+                else
+                {
+                    set.Add(p.IDBeforeMerge);
+                    Console.WriteLine("该聚类没有邻居 编号：" + p.IDBeforeMerge);
+                }
             }
-            Console.WriteLine("被融合聚类 ： " + mergeCount);
-            foreach (KeyValuePair<int, int> k in dic)
-            {
-                Console.WriteLine("取消聚类:{0}, 扩大聚类:{1}", k.Key, k.Value);
-            }
-            return dic;
+            Console.WriteLine("合并聚类数目为 : " + mergeCount);
+            return dick;
         }
         static public vtkPolyData ArrayList2PolyData(int type,List<Point3D> centers,double[] trueScale, double[] centroidScale
             , double[] scale, int clock, int clock_y, int clock_x)//ArrayList转成可视化PolyData
         {
             vtkPolyData polydata = new vtkPolyData();
+
             vtkPoints SourcePoints = new vtkPoints();
             vtkCellArray SourceVertices = new vtkCellArray();
             int[] pid = new int[1];
