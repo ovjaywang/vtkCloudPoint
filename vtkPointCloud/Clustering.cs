@@ -60,7 +60,6 @@ namespace vtkPointCloud
             this.Close();
         }
         private void DoClusteringBtn_Click(object sender, EventArgs e) {
-
             if (!int.TryParse(this.textPoint.Text, out this.point))
             {
                 MessageBox.Show("输入的不是整数，请重新输入");
@@ -76,6 +75,7 @@ namespace vtkPointCloud
                 MessageBox.Show("输入的不是整数，请重新输入");
                 return;
             }
+            isMerge = false;
             mf = (MainForm)this.Owner;
             this.Visible = false;
             //mf.getClusterFromList(threhold, point,ptsIncell); 

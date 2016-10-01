@@ -67,6 +67,7 @@
             this.测试画双点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试清屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试matlabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试matlab多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配准ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.调用exeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +109,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
-            this.测试matlab多线程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.密度聚类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -178,7 +179,8 @@
             // 
             this.ScanClustringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SourceClusteringToolStripMenuItem,
-            this.ExplainClusteringToolStripMenuItem});
+            this.ExplainClusteringToolStripMenuItem,
+            this.密度聚类ToolStripMenuItem});
             this.ScanClustringToolStripMenuItem.Enabled = false;
             this.ScanClustringToolStripMenuItem.Name = "ScanClustringToolStripMenuItem";
             this.ScanClustringToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
@@ -437,6 +439,13 @@
             this.测试matlabToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.测试matlabToolStripMenuItem.Text = "测试matlab";
             this.测试matlabToolStripMenuItem.Click += new System.EventHandler(this.测试matlabToolStripMenuItem_Click);
+            // 
+            // 测试matlab多线程ToolStripMenuItem
+            // 
+            this.测试matlab多线程ToolStripMenuItem.Name = "测试matlab多线程ToolStripMenuItem";
+            this.测试matlab多线程ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.测试matlab多线程ToolStripMenuItem.Text = "测试matlab多线程";
+            this.测试matlab多线程ToolStripMenuItem.Click += new System.EventHandler(this.测试matlab多线程ToolStripMenuItem_Click);
             // 
             // 配准ToolStripMenuItem
             // 
@@ -922,12 +931,12 @@
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
-            // 测试matlab多线程ToolStripMenuItem
+            // 密度聚类ToolStripMenuItem
             // 
-            this.测试matlab多线程ToolStripMenuItem.Name = "测试matlab多线程ToolStripMenuItem";
-            this.测试matlab多线程ToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.测试matlab多线程ToolStripMenuItem.Text = "测试matlab多线程";
-            this.测试matlab多线程ToolStripMenuItem.Click += new System.EventHandler(this.测试matlab多线程ToolStripMenuItem_Click);
+            this.密度聚类ToolStripMenuItem.Name = "密度聚类ToolStripMenuItem";
+            this.密度聚类ToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
+            this.密度聚类ToolStripMenuItem.Text = "密度聚类";
+            this.密度聚类ToolStripMenuItem.Click += new System.EventHandler(this.密度聚类ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1064,6 +1073,7 @@
         public System.Windows.Forms.ToolStripMenuItem FixedPointMatchingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试matlabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试matlab多线程ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 密度聚类ToolStripMenuItem;
 
     }
 }

@@ -152,6 +152,12 @@ namespace vtkPointCloud
                 centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
             }
         }
+        /// <summary>
+        /// 从标记好类别的点集合获取各自二维中心、三维中心、分组集合、id集合
+        /// </summary>
+        /// <param name="clus">聚类数</param>
+        /// <param name="rawData">所有点</param>
+        /// <returns></returns>
         public static void GetClusList(List<Point3D> rawData, List<Point3D> centers, 
             List<Point3D> centers2D, List<ClusObj> clusList, List<int> idList)
         {
@@ -182,9 +188,8 @@ namespace vtkPointCloud
             {
                 //obj.clusId = dd++;
                 if (obj.li.Count == 0) continue;
-                //obj.clusId = obj.li[0].clusterId;
-                centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
-                centers2D.Add(new Point3D(obj.li.Average(m => m.motor_x), obj.li.Average(m => m.motor_y), 0, obj.clusId, true));//计算质心
+                centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算三维质心
+                centers2D.Add(new Point3D(obj.li.Average(m => m.motor_x), obj.li.Average(m => m.motor_y), 0, obj.clusId, true));//计算二维质心
             }
         }
         /// <summary>

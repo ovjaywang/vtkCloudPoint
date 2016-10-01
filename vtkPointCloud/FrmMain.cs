@@ -42,6 +42,7 @@ namespace vtkPointCloud
         static int ptsIncell;//分块内点数
         public bool isSureClusterRs = false;
         Clustering cp;
+        ClusterByMatlab cbm;
         public Dictionary<int, int> dick;//融合分块聚类的ID映射
         static List<Point3D>[] cells;//分块聚类集合
         public List<Point3D> clusForMerge;//暂时聚类分布
@@ -1328,7 +1329,6 @@ namespace vtkPointCloud
             threadCount = 0;
             for (int i = 0; i < cells.Length; i++)
             {
-                //ThreadPool.QueueUserWorkItem(StartCode, cells[i]);//将每个分块加入线程池分别计算聚类
                 ThreadPool.QueueUserWorkItem(StartMatLab, cells[i]);
             }
             this.BeginInvoke(new UpdateStatusDelegate(UpdateMatLabStatus), new object[] { }); 
@@ -1383,8 +1383,6 @@ namespace vtkPointCloud
 
         public void ProgessChanged3(object sender, ProgressChangedEventArgs e)
         {
-            //progressForm.SetNotifyInfo(e.ProgressPercentage, "处理进度:" + Convert.ToString(e.ProgressPercentage) + "%");  
-            //System.Threading.Thread.Sleep(1);
             progressForm.setprogressvalue(e.ProgressPercentage);
         }
         public void MatLabWorkChanged(object sender, ProgressChangedEventArgs e)
@@ -1509,11 +1507,11 @@ namespace vtkPointCloud
         {
             progressForm.Close();
             MessageBox.Show("聚类运行时间：" + stwt.Elapsed.ToString() + "\n总聚类数：" + clusterSum + "  聚类数据：" + sumPts + "个");
-            //this.cp.Visible = true;
-            //this.cp.DoClusteringBtn.Text = "重新聚类";
-            //this.cp.MergeBtn.Enabled = true;
-            //this.cp.SureMergeBtn.Enabled = true;
-            //this.cp.Left = 0;
+            cbm.Visible = true;
+            cbm.DoClusteringBtn.Text = "重新聚类";
+            cbm.MergeBtn.Enabled = true;
+            cbm.SureMergeBtn.Enabled = true;
+            cbm.Left = 0;
             //System.IO.StreamWriter sw = new System.IO.StreamWriter("G:\\" + MainForm.ptsIncell + ".txt", false);//把cells分别按照聚类输出 ID需要合并 
             int idLast;//记录每个聚类上一个ID是多少  = cells[0][0].clusterId
             int idNow = 0, id, clusLen = 0;//当前聚类累加ID、当前cell内部ID以及当前聚类长度
@@ -3807,6 +3805,22 @@ namespace vtkPointCloud
         private void 测试matlab多线程ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             getClusterFromMotorByMatlab(0.06,9,200);
+        }
+
+        private void 密度聚类ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rawData.Count == 0)
+            {
+                MessageBox.Show("没有数据,不可以聚类");
+                return;
+            }
+            if (GetTreeViewNodeChecked(treeView1) == 0)
+            {
+                MessageBox.Show("没有显示任何点，不可以聚类");
+                return;
+            }
+            cbm = new ClusterByMatlab();
+            cbm.Show(this);
         }
     }
 }
