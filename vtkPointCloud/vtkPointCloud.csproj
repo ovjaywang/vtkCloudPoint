@@ -204,6 +204,12 @@
     <Compile Include="BaseClass\Polygon.cs" />
     <Compile Include="BaseClass\Tools.cs" />
     <Compile Include="BaseClass\Triangle.cs" />
+    <Compile Include="ClusterByMatlab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClusterByMatlab.Designer.cs">
+      <DependentUpon>ClusterByMatlab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clustering.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </Compile>
     <EmbeddedResource Include="AboutFrm.resx">
       <DependentUpon>AboutFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClusterByMatlab.resx">
+      <DependentUpon>ClusterByMatlab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Clustering.resx">
       <DependentUpon>Clustering.cs</DependentUpon>
