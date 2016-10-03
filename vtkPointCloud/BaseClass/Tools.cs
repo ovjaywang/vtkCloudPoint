@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using vtk;
+using MathWorks.MATLAB.NET.Arrays;
 namespace vtkPointCloud
 {
     class Tools
@@ -66,7 +67,7 @@ namespace vtkPointCloud
         /// </summary>
         /// <param name="dataSet">需要过滤的点集</param>
         /// <param name="filterID">需要过滤的编号集合</param>
-        static public void removeFilterPointFromClustering(List<Point3D> dataSet, List<int> filterID)
+        static public void removeFilterPointFromClustering(ref List<Point3D> dataSet, List<int> filterID)
         {
             if (filterID.Count == 0) return;
             dataSet.RemoveAll((delegate(Point3D p) { return (filterID.Contains(p.clusterId)); }));
@@ -399,8 +400,7 @@ namespace vtkPointCloud
                 if (clusList[j].li.Count <= 3)
                     continue;
                 double CircleRadius = -1;
-                if (is3D) Geometry.FindMinimalBoundingCircle(clusList[j].li, out CircleCenter, out CircleRadius,is3D);//依据外接定点计算外接圆
-                else Geometry.FindMinimalBoundingCircle(clusList[j].li, out CircleCenter, out CircleRadius, is3D);//依据外接定点计算外接圆
+                Geometry.FindMinimalBoundingCircle(clusList[j].li, out CircleCenter, out CircleRadius,is3D);//依据外接定点计算外接圆
                 CircleCenter.radius = CircleRadius;
                 CircleCenter.clusID = j+1;
                 circles.Add(CircleCenter);
@@ -512,13 +512,12 @@ namespace vtkPointCloud
             return rawData.FindAll(delegate(Point3D p) { return (p.motor_x > min_x) && (p.motor_y > min_y) && (p.motor_x <= max_x) && (p.motor_y <= max_y); });
         }
         /// <summary>
-        /// 根据距离阈值更新聚类效果 融合接近聚类
+        /// 给ID重新编号 计算ID数目 重新计算2D 3D半径和质心等数据
         /// </summary>
-        /// <param name="centers">质心点集</param>
-        /// <param name="tmpList">重新分配好ID的数据点集</param>
-        /// <param name="dic">ID映射列表</param>
-        /// <param name="clusList"></param>
-        /// <returns></returns>
+        /// <param name="dic">ID映射集合</param>
+        /// <param name="clusList">按ID分组的集合</param>
+        /// <param name="centers">质心集合</param>
+        /// <param name="centers2D">2D质心集合</param>
         static public void refreshCensAndClusByDictionary(Dictionary<int, int> dic,List<ClusObj> clusList,ref List<Point3D> centers,ref List<Point3D> centers2D)
         {
             //grouping 序列对应ID
@@ -532,15 +531,52 @@ namespace vtkPointCloud
                     }
                 }
             }
-            clusList.RemoveAll((delegate(ClusObj p) { return (keys.Contains(p.clusId)); }));
-            //List<Point3D> centers = new List<Point3D>();
-            foreach (ClusObj obj in clusList)
+            clusList.RemoveAll((delegate(ClusObj p) { return (keys.Contains(p.clusId)); }));//在映射集合keys里的全删光
+            clusList.Sort((x, y) =>
+            {
+                int result;
+                if (x.clusId == y.clusId)
+                {
+                    result = 0;
+                }
+                else
+                {
+                    if (x.clusId> y.clusId)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                return result;
+            }
+              );
+            int idForMerge = 0;
+            foreach (ClusObj ob in clusList)
+            {
+                idForMerge++;
+                ob.clusId = idForMerge;
+                foreach (Point3D pp in ob.li)
+                {
+                    pp.clusterId = idForMerge;
+                }
+            }
+            foreach (ClusObj obj in clusList)//重新计算各质心
             {
                 centers.Add(new Point3D(obj.li.Average(m => m.X), obj.li.Average(m => m.Y), obj.li.Average(m => m.Z), obj.clusId, true));//计算质心
                 centers2D.Add(new Point3D(obj.li.Average(m => m.motor_x), obj.li.Average(m => m.motor_y), 0, obj.clusId, true));//计算质心
             }
             Console.WriteLine("keys中包含"+keys.Count+"质心有"+centers.Count);
         }
+        /// <summary>
+        /// 根据阈值计算聚类映射dick
+        /// </summary>
+        /// <param name="centers">质心点集</param>
+        /// <param name="dic">ID映射列表</param>
+        /// <param name="clusList"></param>
+        /// <returns></returns>
         static public Dictionary<int, int> MergeIDByDistance(List<Point3D> centers, double thre)
         {
             Dictionary<int, int> dick = new Dictionary<int, int>();
@@ -583,6 +619,70 @@ namespace vtkPointCloud
             Console.WriteLine("合并聚类数目为 : " + mergeCount);
             return dick;
         }
+
+        static public Dictionary<int, int> GetCenterMergeDicByThre(List<Point3D> centers, double thre)
+        {
+            Dictionary<int, int> dick = new Dictionary<int, int>();
+            HashSet<int> set = new HashSet<int>();
+            double[,] m_data = new double[centers.Count, 2];
+            for (int f = 0; f < centers.Count; f++)
+            {
+                centers[f].IDBeforeMerge = centers[f].clusterId;
+                m_data[f, 0] = centers[f].X;
+                m_data[f, 1] = centers[f].Y;
+            }
+            Console.WriteLine("m_data数据量 ：" + m_data.GetLength(0));
+            Data2Cluster.DoDbscan tc1 = new Data2Cluster.DoDbscan();
+            double[,] rs = (double[ ,])tc1.dbscan(new MWNumericArray(m_data), 1, thre).ToArray();
+
+            int id_zero,countZero=0, maxID = -1;
+            for (int j = 0; j < centers.Count; j++)
+            {
+                id_zero = (int)rs[0, j];
+                if (id_zero == -1)
+                {
+                    centers[j].clusterId = 0;
+                    countZero++;
+                }
+                else
+                {
+                    if (maxID < id_zero)
+                        maxID = id_zero;
+                    centers[j].clusterId = id_zero;
+                }
+            }
+            Console.WriteLine("未融合聚类：" + countZero + "  整合聚类：" + maxID + " 共生成新聚类：" + (maxID + countZero));
+            int mergeCount = 0;//合并数目
+            foreach (Point3D p in centers)
+            {
+                if (p.clusterId != 0)//聚类ID由于重新聚类 发生变化
+                {
+                    if (!set.Contains(p.IDBeforeMerge))
+                    {
+                        Console.WriteLine("该编号为聚类第一个 编号：" + p.IDBeforeMerge);
+                        set.Add(p.IDBeforeMerge);
+                        foreach (Point3D q in centers)
+                        {
+                            if ((q.clusterId == p.clusterId) && (q.IDBeforeMerge != p.IDBeforeMerge))//原聚类不同 后来聚成同一个聚类
+                            {
+                                set.Add(q.IDBeforeMerge);
+                                dick.Add(q.IDBeforeMerge, p.IDBeforeMerge);
+                                mergeCount++;
+                                Console.WriteLine("被合并的聚类编号" + q.IDBeforeMerge + ",合并为" + p.IDBeforeMerge);
+                            }
+                        }
+                    }
+                }
+                else//聚类ID未变
+                {
+                    set.Add(p.IDBeforeMerge);
+                    Console.WriteLine("该聚类没有邻居 编号：" + p.IDBeforeMerge);
+                }
+            }
+            Console.WriteLine("合并聚类数目为 : " + mergeCount);
+            return dick;
+        }
+
         static public vtkPolyData ArrayList2PolyData(int type,List<Point3D> centers,double[] trueScale, double[] centroidScale
             , double[] scale, int clock, int clock_y, int clock_x)//ArrayList转成可视化PolyData
         {

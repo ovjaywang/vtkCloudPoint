@@ -124,7 +124,7 @@ namespace vtkPointCloud
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(151, 24);
             this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "输出聚类文件";
+            this.checkBox1.Text = "保存聚类文件";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -180,7 +180,7 @@ namespace vtkPointCloud
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(151, 24);
             this.checkBox2.TabIndex = 12;
-            this.checkBox2.Text = "输出质心文件";
+            this.checkBox2.Text = "保存质心文件";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 

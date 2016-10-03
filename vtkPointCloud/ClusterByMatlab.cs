@@ -37,10 +37,19 @@ namespace vtkPointCloud
             mf.rawData = new List<Point3D>();
             mf.clusForMerge.ForEach(i => mf.rawData.Add((Point3D)i.Clone()));
             MainForm.clusterSum = tmpClusList.Count;
-            Tools.removeErrorPointFromClustering(mf.rawData);
+            //Tools.removeErrorPointFromClustering(mf.rawData);
+            mf.rawData = new List<Point3D>();
+            foreach (ClusObj obj in mf.clusList)
+            {
+                foreach (Point3D p in obj.li) {
+                    mf.rawData.Add(p);
+                }
+            }
             mf.isShowLegend(0);
             mf.isShowLegend(4);
             mf.showCircle(mf.circles, 2, mf.rawData, mf.centers);
+
+            Console.WriteLine();
             mf.dealwithMCCandMCE();
             this.Visible = false;
             this.DialogResult = DialogResult.Yes;
@@ -120,19 +129,14 @@ namespace vtkPointCloud
             {
                 isMerge = true;
             }
-            tmpClusList = new List<ClusObj>();//重新建立分组List
+            tmpClusList = new List<ClusObj>();//重新备份分组List
             mf.clusList.ForEach(i => tmpClusList.Add((ClusObj)i.Clone()));//把聚类后的初始分组copy过来
-            tmpCenters = new List<Point3D>();//缓存质心初始化
-            mf.centers.ForEach(i => tmpCenters.Add((Point3D)i.Clone()));
-            //Dictionary<int,int> dick = Tools.IntegratingClusID(mf.centers, mergeThrehold);//根据聚类后初始质心和阈值threhold计算需要融合的ID
-            Dictionary<int, int> dicc = Tools.MergeIDByDistance(tmpCenters, mergeThrehold);//通过阈值计算那些质心（编号）需要更改合并
-            foreach (KeyValuePair<int, int> kvp in dicc)
-            {
-                Console.WriteLine(kvp.Key + " " + kvp.Value);
-            }
+            tmpCenters2D = new List<Point3D>();//缓存质心初始化
+            mf.centers2D.ForEach(i => tmpCenters2D.Add((Point3D)i.Clone()));
+            Dictionary<int, int> dicc = Tools.GetCenterMergeDicByThre(tmpCenters2D, mergeThrehold);//获取映射ID
             tmpCenters = new List<Point3D>();//缓存质心初始化
             tmpCenters2D = new List<Point3D>();
-            //重新分配ID号 计算分配后ID数 计算两组质心(2D 3D)
+            //重新分配ID号 计算分配后ID数目 重新计算两组质心(2D 3D)
             Tools.refreshCensAndClusByDictionary(dicc, tmpClusList, ref tmpCenters, ref tmpCenters2D);
             ////重新洗牌！！
             tmpCircles = new List<Point2D>();
