@@ -668,28 +668,28 @@ namespace vtkPointCloud
         /// 显示外接圆 白色是原始图案 黄色是超过阈值图案
         /// </summary>
         /// <param name="ls">圆心点集列表</param>
-        /// /// <param name="type">1.显示核心点和野点 +圆 2.显示剔除野点结果 + 圆 3.只显示半径过大的点集</param>
+        /// /// <param name="type">1.显示核心点和野点 +圆 2.超过阈值的以黄色显示 3.只显示半径过大的点集</param>
         public void showCircle(List<Point2D> ls, int type, List<Point3D> li, List<Point3D> cents)//显示圆形图案
         { //输入为各圆心的List
             ren = new vtkRenderer();
             if (type == 1) ShowPointsFromFile(li, 2);//不同颜色显示野点和核心点
             else if (type == 2) ShowPointsFromFile(li, 1);
-            else if (type == 3)
-            {
-                List<int> toobig = new List<int>();
-                foreach (Point2D p2 in ls)
-                {
-                    if (p2.radius > 0.2)
-                    {
-                        toobig.Add(p2.clusID);
-                        Console.WriteLine("聚类ID为 ：" + p2.clusID);
-                    }
-                }
-                li.RemoveAll((delegate(Point3D p) { return (!toobig.Contains(p.clusterId)); }));
-                ls.RemoveAll((delegate(Point2D p) { return (!toobig.Contains(p.clusID)); }));
-                centers.RemoveAll((delegate(Point3D p) { return (!toobig.Contains(p.clusterId)); }));
-                ShowPointsFromFile(li, 1);
-            }
+            //else if (type == 3)
+            //{
+            //    List<int> toobig = new List<int>();
+            //    foreach (Point2D p2 in ls)
+            //    {
+            //        if (p2.radius > 0.2)
+            //        {
+            //            toobig.Add(p2.clusID);
+            //            Console.WriteLine("聚类ID为 ：" + p2.clusID);
+            //        }
+            //    }
+            //    li.RemoveAll((delegate(Point3D p) { return (!toobig.Contains(p.clusterId)); }));
+            //    ls.RemoveAll((delegate(Point2D p) { return (!toobig.Contains(p.clusID)); }));
+            //    centers.RemoveAll((delegate(Point3D p) { return (!toobig.Contains(p.clusterId)); }));
+            //    ShowPointsFromFile(li, 1);
+            //}
             else if (type == 4)
             {
                 li.RemoveAll((delegate(Point3D p) { return ((!dick.Keys.ToList().Contains(p.clusterId)) && (!dick.Values.ToList().Contains(p.clusterId))); }));
@@ -703,10 +703,10 @@ namespace vtkPointCloud
             vtkActor actor;
             for (int k = 0; k < ls.Count; k++)
             {
-                if ((ls[k].radius < 0.2) && (type == 3))//
-                {
-                    continue;
-                }
+                //if (type == 3)//(&& ls[k].radius < 0.2) 
+                //{
+                //    continue;
+                //}
                 polygonSource = new vtkRegularPolygonSource();
                 polygonSource.GeneratePolygonOff(); // Uncomment this line to generate only the outline of the circle
                 polygonSource.SetNumberOfSides(100);
@@ -1871,9 +1871,11 @@ namespace vtkPointCloud
                 if (circles[j].radius > radius)
                 {
                     //circles[j].isFilter = true;
+                    Console.Write(circles[j].clusID+" ");
                     filterID.Add(circles[j].clusID);
                 }
             }
+            Console.WriteLine();
             this.toolStripStatusLabel2.Text = "超过阈值半径聚类数：" + filterID.Count; ;
             showCircle(circles, 2, rawData, centers);
         }
@@ -2289,11 +2291,11 @@ namespace vtkPointCloud
             else if (Visible == 4)
             {//显示超过半径阈值和小于半径阈值的圆的图例
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\white_circle.png");
-                label1.Text = "阈值半径" + "\n" + "内点集";
-                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width - 20, this.pictureBox1.Location.Y + 10);
+                label1.Text = "阈值范围" + "\n" + "内的点集";
+                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width - 10, this.pictureBox1.Location.Y + 10);
                 this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\yellow_circle.png");
-                this.pictureBox2.Location = new Point(this.label1.Location.X + this.label1.Width - 10, this.pictureBox1.Location.Y);
-                label2.Text = "阈值半径" + "\n" + "外点集";
+                this.pictureBox2.Location = new Point(this.label1.Location.X + this.label1.Width , this.pictureBox1.Location.Y);
+                label2.Text = "超过阈值" + "\n" + "的点集";
                 label2.Location = new Point(this.pictureBox2.Location.X + this.pictureBox2.Width - 20, this.pictureBox2.Location.Y + 10);
                 this.label2.Visible = true;
                 this.pictureBox2.Visible = true;
@@ -2310,10 +2312,11 @@ namespace vtkPointCloud
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\red_point.png");
                 this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\green_point.png");
                 this.pictureBox3.Image = Image.FromFile(Application.StartupPath + "\\white_rectangle.png");
+                this.pictureBox3.Location = new Point(this.label2.Location.X + this.label2.Width, this.pictureBox2.Location.Y);
                 label1.Text = "真值点";
                 label2.Text = "质心点";
                 label3.Text = "选择范围";
-                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width + 17, this.pictureBox3.Location.Y + 10);
+                label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox2.Width +5, this.pictureBox3.Location.Y + 10);
             }
             else if (Visible == 7) {
                 this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\blue_point.png");
@@ -3068,7 +3071,7 @@ namespace vtkPointCloud
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(3);
+            isShowLegend(6);
         }
         public delegate void MessageBoxHand();
         private void 测试MessageBoxToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3821,6 +3824,10 @@ namespace vtkPointCloud
             }
             cbm = new ClusterByMatlab();
             cbm.Show(this);
+        }
+        public void removePointByRadius(){
+            Tools.removeFilterPointFromClustering(ref rawData, filterID);//清除属于大半径的数据点
+            Tools.removeFilterPointFromClustering(ref centers, filterID);
         }
     }
 }

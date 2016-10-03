@@ -115,9 +115,9 @@
             this.checkBox2.Font = new System.Drawing.Font("宋体", 14F);
             this.checkBox2.Location = new System.Drawing.Point(6, 46);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(176, 28);
+            this.checkBox2.Size = new System.Drawing.Size(200, 28);
             this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "导出过滤文件";
+            this.checkBox2.Text = "保存过滤后数据";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // groupBox1
