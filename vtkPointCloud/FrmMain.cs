@@ -71,6 +71,7 @@ namespace vtkPointCloud
         //icp相关
         //vtkPoints truePoints;//用以顯示的真值點集
         bool isSureRegion = true;//判斷是否確
+        bool isSureSoure = true;
         List<Point3D> InRegionTrues;//范围内均值
         vtkMatrix4x4 M;//刚性变换矩阵
         vtkPoints truePointCloud = new vtkPoints();//真值点云
@@ -78,6 +79,7 @@ namespace vtkPointCloud
         vtkCellArray truePointVertices = new vtkCellArray();//真值顶点
         vtkPolyVertex truePolyVertex = new vtkPolyVertex();
         vtkActor trueActor;//真值点actor
+        vtkActor clusterActor;
         int clock = 0;
         int clock_x = 1, clock_y = 1;//x y轴正负
         //简单聚类相关
@@ -106,7 +108,9 @@ namespace vtkPointCloud
         double[] scale = new double[3];//比例尺 三个方向
         double[] trueScale = new double[6];//真值范围
         double[] centroidScale;//质心范围
+        double[] clusterScale;
         vtkAxesActor axes = new vtkAxesActor();
+        vtkAxisActor2D axes2D = new vtkAxisActor2D();
         vtkOrientationMarkerWidget widget = new vtkOrientationMarkerWidget();
         public MainForm()
         {
@@ -803,7 +807,7 @@ namespace vtkPointCloud
             vtkPolyData TargetPolydata = new vtkPolyData(); ;//对真值处理
             TargetPolydata.SetPoints(truePointCloud); //把点导入的polydata中去
             TargetPolydata.SetVerts(truePointVertices);
-            //vtkPolyData showtruePolydata = new vtkPolyData();
+            //vtkPolyData eePolydata = new vtkPolyData();
             //showtruePolydata.SetPoints(visualizeTruePointCloud);
             //showtruePolydata.SetVerts(vtpVertices);
 
@@ -2248,6 +2252,7 @@ namespace vtkPointCloud
         /// <param name="Visible">2.分块聚类后野点核心点+外接圆 3.白色外接圆</param>
         /// <param name="Visible">4.黄白显示不同半径外接圆 5.固定点及其质心</param>
         /// <param name="Visible">6.左右对比质心和真值 7.匹配后显示真值和质心</param>
+        /// <param name="Visible">8.显示已配对和未配对点 9.源文件聚类显示真值和测量数据</param>
         public void isShowLegend(int Visible)//是否显示图例
         {
             if (Visible == 0)
@@ -2337,9 +2342,18 @@ namespace vtkPointCloud
                 pictureBox3.Location = new Point(this.label2.Location.X + this.label2.Width -10, this.pictureBox2.Location.Y);
                 label3.Location = new Point(this.pictureBox3.Location.X + this.pictureBox3.Width - 30, this.pictureBox3.Location.Y + 10);
             }
+            else if (Visible == 9) {
+                this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\blue_point.png");
+                label1.Text = "真值数据";
+                label1.Location = new Point(this.pictureBox1.Location.X + this.pictureBox1.Width -20, this.pictureBox1.Location.Y+10);
+                this.pictureBox2.Image = Image.FromFile(Application.StartupPath + "\\green_point.png");
+                pictureBox2.Location = new Point(this.label1.Location.X + this.label1.Width , this.pictureBox1.Location.Y);
+                label2.Text = "测量数据";
+                label2.Location = new Point(this.pictureBox2.Location.X + this.pictureBox2.Width - 20, this.pictureBox2.Location.Y+10);
+            }
             this.label1.Visible = true;//默认显示一组
             this.pictureBox1.Visible = true;
-            if (Visible == 1 || Visible == 4 || Visible == 5 || Visible ==7)//显示两个
+            if (Visible == 1 || Visible == 4 || Visible == 5 || Visible ==7 || Visible==9)//显示两个
             {
                 this.label2.Visible = true;
                 this.pictureBox2.Visible = true;
@@ -2431,9 +2445,12 @@ namespace vtkPointCloud
                 //truePolyVertex.GetPointIds().SetId(i, i);
             }
         }
+        /// <summary>
+        /// 在同一场景打印真值和质心-导入真值与聚类质心匹配时做
+        /// </summary>
         private void DrawTruesAndCenters()
         {
-            isSureRegion = false;
+            isSureRegion = false;//使得按键生效
             showTruesAndCenters();//显示初步的真值点和质心点
             tmpAngle[0] = trueScale[0] - (trueScale[1] - trueScale[0]) / 20;//确定真值点初步四角
             tmpAngle[1] = trueScale[1] + (trueScale[1] - trueScale[0]) / 20;
@@ -2442,6 +2459,11 @@ namespace vtkPointCloud
             this.MoveStepTxt.Text = (int)((trueScale[1] - trueScale[0]) / 15) + "";
             showPtsInRegion();//显示范围内的点数
             showBounds(tmpAngle);//显示真值点初步边界
+        }
+
+        private void DrawTruesAndClusters() {
+            isSureSoure = false;
+            showTruesAndClusters();//显示初步的真值和数据点
         }
         //////菜单栏项目单击事件
 
@@ -2517,84 +2539,26 @@ namespace vtkPointCloud
                 MessageBox.Show("没有数据,不可以聚类");
                 return;
             }
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter += "点云数据(*.txt)|*.txt";
-            openFile.Title = "打开文件";
-            if (openFile.ShowDialog() == DialogResult.OK)
+            ImportTrueValuePoint trvp = new ImportTrueValuePoint();
+            DialogResult rs = trvp.ShowDialog();
+            if (rs == DialogResult.OK)
             {
-                sourceTrueList = new List<Point3D>();
-                fullFilePath = openFile.FileName;
-                //获得文件路径
-                int index = fullFilePath.LastIndexOf("\\");
-                string filePath = fullFilePath.Substring(0, index);
-
-                //获得文件名称
-                string fileName = fullFilePath.Substring(index + 1);
-
-                FileMap fileMap = new FileMap();
-                List<string> pointsList = fileMap.ReadFile(fullFilePath);
-                truePolyVertex.GetPointIds().SetNumberOfIds(pointsList.Count);
-                for (int i = 0; i < pointsList.Count; i++)
-                {
-                    string[] tmpxyz = pointsList[i].Split('\t');
-                    double pX, pY, pZ;
-                    if (!double.TryParse(tmpxyz[0], out pX))
-                    {
-                        MessageBox.Show("输入的文件格式有误，请重新输入");
-                        return;
-                    }
-                    if (!double.TryParse(tmpxyz[1], out pY))
-                    {
-                        MessageBox.Show("输入的文件格式有误，请重新输入");
-                        return;
-                    }
-                    if (!double.TryParse(tmpxyz[2], out pZ))
-                    {
-                        MessageBox.Show("输入的文件格式有误，请重新输入");
-                        return;
-                    }
-                    Point3D pu = new Point3D(pX, pY, pZ);
-                    pu.ifShown = true;
-                    sourceTrueList.Add(pu);
-                }
-                double[] trueScale = Tools.calBounds(sourceTrueList);
-                double[] rawScale = Tools.calBounds(rawData);
-
-                scale[0] = (trueScale[1] - trueScale[0]) / (rawScale[1] - rawScale[0]);
-                scale[1] = (trueScale[3] - trueScale[2]) / (rawScale[3] - rawScale[2]);
-                transPts = new List<Point3D>();
-                foreach (Point3D truePts in sourceTrueList)
-                {
-                    Point3D ps = new Point3D();
-                    ps.X = truePts.X / scale[0];
-                    ps.Y = truePts.Y / scale[1];
-                    transPts.Add(ps);
-                }
-                double[] trueTrans = Tools.calBounds(transPts);
-                double cx = (rawScale[0] - trueTrans[0]);
-                double cy = (rawScale[2] - trueTrans[2]);
-                foreach (Point3D truePts in transPts)
-                {
-                    truePts.ifShown = true;
-                    truePts.X = truePts.X + cx;
-                    truePts.Y = truePts.Y + cy;
-                    truePts.Z = rawData[0].Z;
-                }
-
-                ShowPointsFromFile(transPts, 3);
-                int showRs = showSourcePoint();
-
-                while (showRs == 2)
-                {
-                    showRs = showSourcePoint();
-                }
-                if (showRs == 3)
-                {
-                    ShowPointsFromFile(rawData, 1);
-                    return;
-                }
-                doingSourceClustring();
-                sureSourceClustringandExprot();
+                ImportTruePoint(trvp.selPath, trvp.xdir, trvp.ydir);
+                Console.WriteLine("trues的数量：" + trues.Count);
+                this.textBox1.Visible = true;
+                this.textBox2.Visible = true;
+                //this.textBox3.Visible = true;
+                this.MoveStepTxt.Visible = true;
+                this.zoomRatioTxt.Visible = true;
+                this.PtsInRegionTxt.ReadOnly = false;
+                this.PtsInRegionTxt.Visible = true;
+                this.SureRegionBtn.Text = "确认阈值";
+                this.SureRegionBtn.Location = new Point(this.PtsInRegionTxt.Location.X + this.PtsInRegionTxt.Width+5, this.PtsInRegionTxt.Location.Y);
+                this.SureRegionBtn.Visible = true;
+                this.DoMatchBtn.Text = "确认匹配";
+                this.DoMatchBtn.Visible = true;
+                isShowLegend(9);
+                DrawTruesAndClusters();
             }
         }
         /// <summary>
@@ -3071,7 +3035,7 @@ namespace vtkPointCloud
 
         private void 测试图例ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isShowLegend(6);
+            isShowLegend(9);
         }
         public delegate void MessageBoxHand();
         private void 测试MessageBoxToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3386,7 +3350,7 @@ namespace vtkPointCloud
         }
         /// <summary>
         /// 显示真值点和质心点 
-        /// 真值点初步【显示】采用文件输入的XY0 
+        /// 真值点初步【显示】采用文件输入的XY0
         /// 质心点【显示】采用平衡至真值比例尺 同时平移至相近位置的坐标 tmpX' tmoyY' 0
         /// 质心更新tmpX tmpY为真值相近坐标，用该坐标进行【匹配】
         /// </summary>
@@ -3429,7 +3393,7 @@ namespace vtkPointCloud
             foreach (Point3D p in centers)
             {
                 p.tmp_X = p.X * scale[0];//記錄改變比例尺后的坐標
-                p.tmp_Y = p.Y * scale[1];
+                p.tmp_Y = p.Y * scale[0];
             }
 
             double xmin = centers.Min(m => m.tmp_X);
@@ -3472,7 +3436,94 @@ namespace vtkPointCloud
             showAxes();
             vtkControl.Refresh();
         }
+        /// <summary>
+        /// 源文件聚类显示聚类和真值
+        /// 左侧显示真值-右侧显示导入的聚类 以测量值为基准 每次调节真值的位置
+        /// 【调整】真值的方位、尺度以匹配聚类的位置
+        /// 【适应】一个数据，范围内进行最近点聚类 范围外设为野点
+        /// </summary>
+        private void showTruesAndClusters() {
+            ren = new vtkRenderer();
+            vtkControl.GetRenderWindow().Clean();
 
+            vtkPolyData truePolydata = new vtkPolyData();//对真值处理
+            vtkPoints truePoints = new vtkPoints();
+            vtkCellArray trueCellArry = new vtkCellArray();
+
+            vtkPolyData clusterPolydata = new vtkPolyData();
+            vtkPoints clusterPoints = new vtkPoints();
+            vtkCellArray clusterCellArry = new vtkCellArray();
+
+            int[] match_Pid = new int[1];
+            clusterScale = new double[6];
+            trueScale[0] = trues.Min(m => m.X);
+            trueScale[1] = trues.Max(m => m.X);
+            trueScale[2] = trues.Min(m => m.Y);
+            trueScale[3] = trues.Max(m => m.Y);
+            for (int i = 0; i < rawData.Count; i++)
+            {
+                match_Pid[0] = clusterPoints.InsertNextPoint(rawData[i].motor_x, rawData[i].motor_y, 0);
+                clusterCellArry.InsertNextCell(1, match_Pid);
+            }
+            clusterScale = clusterPoints.GetBounds();
+            Console.WriteLine("Center的范围" + clusterScale[0] + "\t" + clusterScale[1] + "\t" + clusterScale[2] + "\t" + clusterScale[3]);
+            Console.WriteLine("真值的范围" + trueScale[0] + "\t" + trueScale[1] + "\t" + trueScale[2] + "\t" + trueScale[3]);
+
+            scale[0] =
+                    (clusterScale[1] - clusterScale[0]) / (trueScale[1] - trueScale[0]);//比例尺的比为 TRUE/MEASURE
+            scale[1] = (clusterScale[3] - clusterScale[2]) / (trueScale[3] - trueScale[2]);
+            Console.WriteLine("X轴和Y轴比例尺 ："+scale[0] + "\t" + scale[1]);
+
+            foreach (Point3D p in trues)
+            {
+                p.tmp_X = p.X * scale[0];//記錄改變比例尺后的坐標
+                p.tmp_Y = p.Y * scale[0];
+            }
+
+            double xmin = trues.Min(m => m.tmp_X);
+            double xmax = trues.Max(m => m.tmp_X);
+            double ymin = trues.Min(m => m.tmp_Y);
+            double ymax = trues.Max(m => m.tmp_Y);
+            //加入测量数据
+
+            //加入真值数据
+            for (int i = 0; i < trues.Count; i++)
+            {
+                // match_Pid[0] = centerPoints.InsertNextPoint(centers[i].tmp_X - (xmin - trueScale[0]) + (xmax - xmin) * 1.1,
+                //    centers[i].tmp_Y - (ymin - trueScale[2]), 0);//這裡是顯示坐標系 不寫入屬性中
+                match_Pid[0] = truePoints.InsertNextPoint(trues[i].tmp_X - (xmin - clusterScale[0]) - (xmax - xmin)*1.1,
+                    trues[i].tmp_Y - (ymin - clusterScale[2]), 0);
+                trueCellArry.InsertNextCell(1, match_Pid);
+            }
+
+            truePolydata.SetPoints(truePoints); //把点导入的polydata中去
+            truePolydata.SetVerts(trueCellArry);
+
+            clusterPolydata.SetPoints(clusterPoints);
+            clusterPolydata.SetVerts(clusterCellArry);
+
+            //Mapper
+            vtkPolyDataMapper TrueMapper = new vtkPolyDataMapper();
+            TrueMapper.SetInputConnection(truePolydata.GetProducerPort());
+            vtkPolyDataMapper CenterMapper = new vtkPolyDataMapper();
+            CenterMapper.SetInputConnection(clusterPolydata.GetProducerPort());
+
+            trueActor = new vtkActor();
+            clusterActor = new vtkActor();
+            trueActor.SetMapper(TrueMapper);
+            trueActor.GetProperty().SetColor(1, 0, 0);
+            trueActor.GetProperty().SetPointSize(5);
+            clusterActor.SetMapper(CenterMapper);
+            clusterActor.GetProperty().SetColor(0, 1, 0);
+            clusterActor.GetProperty().SetPointSize(1);
+
+            ren.AddActor(trueActor);
+            ren.AddActor(clusterActor);
+
+            vtkControl.GetRenderWindow().AddRenderer(ren);//将渲染加入控制controler 否则界面不会自动刷新
+            showAxes();
+            vtkControl.Refresh();
+        }
         private void 测试画双点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DrawTruesAndCenters();
@@ -3486,77 +3537,123 @@ namespace vtkPointCloud
         /// <returns></returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)//取消方向键对控件的焦点的控件，用自己自定义的函数处理各个方向键的处理函数
         {
-            if (isSureRegion) return base.ProcessCmdKey(ref msg, keyData);
+            if (isSureRegion && isSureSoure) return base.ProcessCmdKey(ref msg, keyData);
             double zoom = 0, ste = 0;
-            if ((keyData == Keys.Up) || (keyData == Keys.Down)
+            if (!isSureRegion) {//如果是选择区域触发
+                if ((keyData == Keys.Up) || (keyData == Keys.Down)
                 || (keyData == Keys.Left) || (keyData == Keys.Right)
                 || (keyData == Keys.PageUp) || (keyData == Keys.Next))
-            {
-                ren.RemoveActor(actorLine);
-                ren.RemoveActor(actorLine2);
-                ren.RemoveViewProp(actorLine3);
-                ren.RemoveActor(actorLine4);
-                if (!double.TryParse(this.MoveStepTxt.Text, out ste))
                 {
-                    MessageBox.Show("输入的文件格式有误，请重新输入");
-                    return true;
+                    if (!double.TryParse(this.MoveStepTxt.Text, out ste))
+                    {
+                        MessageBox.Show("输入的文件格式有误，请重新输入");
+                        return true;
+                    }
+                    if (!double.TryParse(this.zoomRatioTxt.Text, out zoom))
+                    {
+                        MessageBox.Show("输入的文件格式有误，请重新输入");
+                        return true;
+                    }
+                    ren.RemoveActor(actorLine);
+                    ren.RemoveActor(actorLine2);
+                    ren.RemoveViewProp(actorLine3);
+                    ren.RemoveActor(actorLine4);
                 }
-                if (!double.TryParse(this.zoomRatioTxt.Text, out zoom))
+                switch (keyData)
                 {
-                    MessageBox.Show("输入的文件格式有误，请重新输入");
-                    return true;
+                    case Keys.Up:
+                        tmpAngle[2] = tmpAngle[2] + Convert.ToDouble(ste);
+                        tmpAngle[3] = tmpAngle[3] + Convert.ToDouble(ste);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        vtkControl.Refresh();
+                        showPtsInRegion();
+                        return true;
+                    case Keys.Down:
+                        tmpAngle[2] = tmpAngle[2] - Convert.ToDouble(ste);
+                        tmpAngle[3] = tmpAngle[3] - Convert.ToDouble(ste);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        vtkControl.Refresh();
+                        showPtsInRegion();
+                        return true;
+                    case Keys.Left:
+                        tmpAngle[0] = tmpAngle[0] - Convert.ToDouble(ste);
+                        tmpAngle[1] = tmpAngle[1] - Convert.ToDouble(ste);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        showPtsInRegion();
+                        vtkControl.Refresh();
+                        return true;
+                    case Keys.Right:
+                        tmpAngle[0] = tmpAngle[0] + Convert.ToDouble(ste);
+                        tmpAngle[1] = tmpAngle[1] + Convert.ToDouble(ste);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        showPtsInRegion();
+                        vtkControl.Refresh();
+                        return true;
+                    case Keys.PageUp:
+                        tmpAngle[1] = tmpAngle[0] + (tmpAngle[1] - tmpAngle[0]) / Convert.ToDouble(zoom);
+                        tmpAngle[3] = tmpAngle[2] + (tmpAngle[3] - tmpAngle[2]) / Convert.ToDouble(zoom);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        showPtsInRegion();
+                        vtkControl.Refresh();
+                        return true;
+                    case Keys.Next:
+                        tmpAngle[1] = tmpAngle[0] + (tmpAngle[1] - tmpAngle[0]) * Convert.ToDouble(zoom);
+                        tmpAngle[3] = tmpAngle[2] + (tmpAngle[3] - tmpAngle[2]) * Convert.ToDouble(zoom);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        showPtsInRegion();
+                        vtkControl.Refresh();
+                        return true;
                 }
             }
-            switch (keyData)
-            {
-                case Keys.Up:
-                    tmpAngle[2] = tmpAngle[2] + Convert.ToDouble(ste);
-                    tmpAngle[3] = tmpAngle[3] + Convert.ToDouble(ste);
-                    Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                    showBounds(tmpAngle);
-                    vtkControl.Refresh();
-                    showPtsInRegion();
-                    return true;
-                case Keys.Down:
-                    tmpAngle[2] = tmpAngle[2] - Convert.ToDouble(ste);
-                    tmpAngle[3] = tmpAngle[3] - Convert.ToDouble(ste);
-                    Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                    showBounds(tmpAngle);
-                    vtkControl.Refresh();
-                    showPtsInRegion();
-                    return true;
-                case Keys.Left:
-                    tmpAngle[0] = tmpAngle[0] - Convert.ToDouble(ste);
-                    tmpAngle[1] = tmpAngle[1] - Convert.ToDouble(ste);
-                    Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                    showBounds(tmpAngle);
-                    showPtsInRegion();
-                    vtkControl.Refresh();
-                    return true;
-                case Keys.Right:
-                    tmpAngle[0] = tmpAngle[0] + Convert.ToDouble(ste);
-                    tmpAngle[1] = tmpAngle[1] + Convert.ToDouble(ste);
-                    Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                    showBounds(tmpAngle);
-                    showPtsInRegion();
-                    vtkControl.Refresh();
-                    return true;
-                case Keys.PageUp:
-                    tmpAngle[1] = tmpAngle[0] + (tmpAngle[1] - tmpAngle[0]) / Convert.ToDouble(zoom);
-                    tmpAngle[3] = tmpAngle[2] + (tmpAngle[3] - tmpAngle[2]) / Convert.ToDouble(zoom);
-                    Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                    showBounds(tmpAngle);
-                    showPtsInRegion();
-                    vtkControl.Refresh();
-                    return true;
-                case Keys.Next:
-                    tmpAngle[1] = tmpAngle[0] + (tmpAngle[1] - tmpAngle[0]) * Convert.ToDouble(zoom);
-                    tmpAngle[3] = tmpAngle[2] + (tmpAngle[3] - tmpAngle[2]) * Convert.ToDouble(zoom);
-                    Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                    showBounds(tmpAngle);
-                    showPtsInRegion();
-                    vtkControl.Refresh();
-                    return true;
+            else if (!isSureSoure) {//如果是源文件匹配触发
+                if ((keyData == Keys.Up) || (keyData == Keys.Down)
+                 || (keyData == Keys.Left) || (keyData == Keys.Right)
+                 || (keyData == Keys.PageUp) || (keyData == Keys.Next))
+                {
+                    if (!double.TryParse(this.MoveStepTxt.Text, out ste))
+                    {
+                        MessageBox.Show("输入的文件格式有误，请重新输入");
+                        return true;
+                    }
+                    if (!double.TryParse(this.zoomRatioTxt.Text, out zoom))
+                    {
+                        MessageBox.Show("输入的文件格式有误，请重新输入");
+                        return true;
+                    }
+                    ren.RemoveActor(trueActor);
+                }
+                switch (keyData)
+                {
+                    case Keys.Up:
+                        
+                        return true;
+                    case Keys.Down:
+                        
+                        return true;
+                    case Keys.Left:
+                        
+                        return true;
+                    case Keys.Right:
+                        
+                        return true;
+                    case Keys.PageUp:
+                        
+                        return true;
+                    case Keys.Next:
+                        tmpAngle[1] = tmpAngle[0] + (tmpAngle[1] - tmpAngle[0]) * Convert.ToDouble(zoom);
+                        tmpAngle[3] = tmpAngle[2] + (tmpAngle[3] - tmpAngle[2]) * Convert.ToDouble(zoom);
+                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
+                        showBounds(tmpAngle);
+                        showPtsInRegion();
+                        vtkControl.Refresh();
+                        return true;
+                }
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -3829,6 +3926,7 @@ namespace vtkPointCloud
             Tools.removeFilterPointFromClustering(ref rawData, filterID);//清除属于大半径的数据点
             Tools.removeFilterPointFromClustering(ref centers, filterID);
         }
+
     }
 }
 

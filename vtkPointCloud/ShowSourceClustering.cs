@@ -37,14 +37,12 @@ namespace vtkPointCloud
                 this.OriginalDirection.Checked = false;
             }
         }
-
         private void yaxialsymmetry_CheckedChanged(object sender, EventArgs e)
         {
             if (this.yaxialsymmetry.Checked) {
                 this.OriginalDirection.Checked = false;
             }
         }
-
         private void SureLocation_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

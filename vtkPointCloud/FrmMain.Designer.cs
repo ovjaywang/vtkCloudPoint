@@ -37,6 +37,7 @@
             this.ScanClustringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SourceClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExplainClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.密度聚类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.固定点数据操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportFixedPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +110,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
-            this.密度聚类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -138,7 +138,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1391, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -202,6 +202,13 @@
             this.ExplainClusteringToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
             this.ExplainClusteringToolStripMenuItem.Text = "拓展聚类（自动聚类+自动匹配）";
             this.ExplainClusteringToolStripMenuItem.Click += new System.EventHandler(this.ExplainClusteringToolStripMenuItem_Click);
+            // 
+            // 密度聚类ToolStripMenuItem
+            // 
+            this.密度聚类ToolStripMenuItem.Name = "密度聚类ToolStripMenuItem";
+            this.密度聚类ToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
+            this.密度聚类ToolStripMenuItem.Text = "密度聚类";
+            this.密度聚类ToolStripMenuItem.Click += new System.EventHandler(this.密度聚类ToolStripMenuItem_Click);
             // 
             // iCPToolStripMenuItem
             // 
@@ -493,7 +500,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 631);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1391, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1413, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -521,7 +528,7 @@
             this.toolStripStatusLabel2});
             this.statusStrip2.Location = new System.Drawing.Point(0, 606);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1391, 25);
+            this.statusStrip2.Size = new System.Drawing.Size(1413, 25);
             this.statusStrip2.TabIndex = 3;
             this.statusStrip2.Text = "选中节点数：0";
             // 
@@ -552,11 +559,11 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1398, 18);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1420, 18);
             this.toolStripContainer1.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 31);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1398, 43);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1420, 43);
             this.toolStripContainer1.TabIndex = 4;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -804,7 +811,7 @@
             this.tsButton_CLEANALL});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1398, 35);
+            this.toolStrip1.Size = new System.Drawing.Size(1420, 35);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -924,26 +931,19 @@
             this.DoMatchBtn.Font = new System.Drawing.Font("宋体", 15F);
             this.DoMatchBtn.Location = new System.Drawing.Point(1270, 80);
             this.DoMatchBtn.Name = "DoMatchBtn";
-            this.DoMatchBtn.Size = new System.Drawing.Size(109, 36);
+            this.DoMatchBtn.Size = new System.Drawing.Size(134, 36);
             this.DoMatchBtn.TabIndex = 27;
             this.DoMatchBtn.Text = "匹配";
             this.DoMatchBtn.UseVisualStyleBackColor = false;
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
-            // 密度聚类ToolStripMenuItem
-            // 
-            this.密度聚类ToolStripMenuItem.Name = "密度聚类ToolStripMenuItem";
-            this.密度聚类ToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
-            this.密度聚类ToolStripMenuItem.Text = "密度聚类";
-            this.密度聚类ToolStripMenuItem.Click += new System.EventHandler(this.密度聚类ToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1391, 656);
+            this.ClientSize = new System.Drawing.Size(1413, 656);
             this.Controls.Add(this.DoMatchBtn);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.PtsInRegionTxt);
