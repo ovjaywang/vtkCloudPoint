@@ -255,7 +255,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox PathSeltxt;
         private System.Windows.Forms.Button pathSelbtn;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -272,6 +271,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button Sure_button;
         private System.Windows.Forms.Button Cancel_button;
+        public System.Windows.Forms.TextBox PathSeltxt;
 
     }
 }

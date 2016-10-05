@@ -83,12 +83,14 @@ namespace vtkPointCloud
         int clock = 0;
         int clock_x = 1, clock_y = 1;//x y轴正负
         //简单聚类相关
+        public string truesPath = "";
         public static int clusterSum = 0;
         int pointSum = 0;
         double simple_x_step, simple_y_step;
         vtkActor actorLine = new vtkActor(), actorLine2 = new vtkActor(), actorLine3 = new vtkActor(), actorLine4 = new vtkActor();//画线
         public vtkActor actorA ,actorB,actorC;
         List<Point3D> sourceTrueList = null;
+        Boolean isStartDrawCircle = false;
         //public double distanceFilterThrehold = 0.0;
         //源文件聚类相关
         int true_rotationRb = 0;
@@ -2386,7 +2388,8 @@ namespace vtkPointCloud
             FileMap fileMap = new FileMap();
             List<string> pointsList = fileMap.ReadFile(TruePath);
             trues = new List<Point3D>();
-            //truePolyVertex.GetPointIds().SetNumberOfIds(pointsList.Count);
+            Point3D point;
+            int trueID = 0;
             for (int i = 0; i < pointsList.Count; i++)
             {
                 string[] tmpxyz = pointsList[i].Split('\t');
@@ -2406,7 +2409,7 @@ namespace vtkPointCloud
                     MessageBox.Show("输入的文件格式有误，请重新输入");
                     return;
                 }
-                Point3D point = new Point3D(); ;
+                point = new Point3D();
                 switch (x_d)
                 {
                     case 1:
@@ -2438,6 +2441,7 @@ namespace vtkPointCloud
                         break;
                 }
                 point.Z = pZ;
+                point.clusterId = ++trueID;
                 //truePointPid[0] = truePointCloud.InsertNextPoint(pX, pY, pZ);
                 //truePointPid[0] = truePointCloud.InsertNextPoint(pX, pY, 0);
                 trues.Add(point);
@@ -2540,17 +2544,22 @@ namespace vtkPointCloud
                 return;
             }
             ImportTrueValuePoint trvp = new ImportTrueValuePoint();
+            trvp.PathSeltxt.Text = this.truesPath;
             DialogResult rs = trvp.ShowDialog();
             if (rs == DialogResult.OK)
             {
+                this.truesPath = trvp.selPath;
                 ImportTruePoint(trvp.selPath, trvp.xdir, trvp.ydir);
                 Console.WriteLine("trues的数量：" + trues.Count);
                 this.textBox1.Visible = true;
                 this.textBox2.Visible = true;
-                //this.textBox3.Visible = true;
+                double x_min = rawData.Min(i => i.motor_x);
+                double x_max = rawData.Max(i => i.motor_x);
+                this.MoveStepTxt.Text = "" + (x_max - x_min) / 10;
                 this.MoveStepTxt.Visible = true;
                 this.zoomRatioTxt.Visible = true;
                 this.PtsInRegionTxt.ReadOnly = false;
+                this.PtsInRegionTxt.Text = "" + (x_max - x_min) / 20;
                 this.PtsInRegionTxt.Visible = true;
                 this.SureRegionBtn.Text = "确认阈值";
                 this.SureRegionBtn.Location = new Point(this.PtsInRegionTxt.Location.X + this.PtsInRegionTxt.Width+5, this.PtsInRegionTxt.Location.Y);
@@ -3489,13 +3498,11 @@ namespace vtkPointCloud
             //加入真值数据
             for (int i = 0; i < trues.Count; i++)
             {
-                // match_Pid[0] = centerPoints.InsertNextPoint(centers[i].tmp_X - (xmin - trueScale[0]) + (xmax - xmin) * 1.1,
-                //    centers[i].tmp_Y - (ymin - trueScale[2]), 0);//這裡是顯示坐標系 不寫入屬性中
-                match_Pid[0] = truePoints.InsertNextPoint(trues[i].tmp_X - (xmin - clusterScale[0]) - (xmax - xmin)*1.1,
-                    trues[i].tmp_Y - (ymin - clusterScale[2]), 0);
+                trues[i].tmp_X = trues[i].tmp_X - (xmin - clusterScale[0]) - (xmax - xmin)*1.1;
+                trues[i].tmp_Y = trues[i].tmp_Y - (ymin - clusterScale[2]);
+                match_Pid[0] = truePoints.InsertNextPoint(trues[i].tmp_X,trues[i].tmp_Y, 0);
                 trueCellArry.InsertNextCell(1, match_Pid);
             }
-
             truePolydata.SetPoints(truePoints); //把点导入的polydata中去
             truePolydata.SetVerts(trueCellArry);
 
@@ -3538,7 +3545,7 @@ namespace vtkPointCloud
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)//取消方向键对控件的焦点的控件，用自己自定义的函数处理各个方向键的处理函数
         {
             if (isSureRegion && isSureSoure) return base.ProcessCmdKey(ref msg, keyData);
-            double zoom = 0, ste = 0;
+            double zoom = 1, ste = 0;
             if (!isSureRegion) {//如果是选择区域触发
                 if ((keyData == Keys.Up) || (keyData == Keys.Down)
                 || (keyData == Keys.Left) || (keyData == Keys.Right)
@@ -3614,7 +3621,9 @@ namespace vtkPointCloud
             else if (!isSureSoure) {//如果是源文件匹配触发
                 if ((keyData == Keys.Up) || (keyData == Keys.Down)
                  || (keyData == Keys.Left) || (keyData == Keys.Right)
-                 || (keyData == Keys.PageUp) || (keyData == Keys.Next))
+                 || (keyData == Keys.PageUp) || (keyData == Keys.Next)
+                 ||(keyData == Keys.Add)|| (keyData == Keys.Subtract)||
+                    keyData == Keys.Home || keyData == Keys.End)
                 {
                     if (!double.TryParse(this.MoveStepTxt.Text, out ste))
                     {
@@ -3627,36 +3636,124 @@ namespace vtkPointCloud
                         return true;
                     }
                     ren.RemoveActor(trueActor);
-                }
+
+                double x_min = trues.Min(i => i.tmp_X);
+                double y_min = trues.Min(i => i.tmp_Y);
                 switch (keyData)
                 {
                     case Keys.Up:
-                        
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_Y += ste;
+                        }
+                        addTrues();
                         return true;
                     case Keys.Down:
-                        
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_Y -= ste;
+                        }
+                        addTrues();
                         return true;
                     case Keys.Left:
-                        
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_X -= ste;
+                        }
+                        addTrues();
                         return true;
                     case Keys.Right:
-                        
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_X += ste;
+                        }
+                        addTrues();
                         return true;
                     case Keys.PageUp:
-                        
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_X = (p.tmp_X - x_min) / zoom + x_min;
+                            p.tmp_Y = (p.tmp_Y - y_min) / zoom + y_min;
+                        }
+                        addTrues();
                         return true;
                     case Keys.Next:
-                        tmpAngle[1] = tmpAngle[0] + (tmpAngle[1] - tmpAngle[0]) * Convert.ToDouble(zoom);
-                        tmpAngle[3] = tmpAngle[2] + (tmpAngle[3] - tmpAngle[2]) * Convert.ToDouble(zoom);
-                        Console.WriteLine(tmpAngle[0] + "\t" + tmpAngle[1] + "\t" + tmpAngle[2] + "\t" + tmpAngle[3] + "\t");
-                        showBounds(tmpAngle);
-                        showPtsInRegion();
-                        vtkControl.Refresh();
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_X = (p.tmp_X - x_min) * zoom + x_min;
+                            p.tmp_Y = (p.tmp_Y - y_min) * zoom + y_min;
+                        }
+                        addTrues();
                         return true;
+                    case Keys.Home:
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_X = (p.tmp_X - x_min) / zoom + x_min;
+                        }
+                        addTrues();
+                        return true;
+                    case Keys.End:
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_X = (p.tmp_X - x_min) * zoom + x_min;
+                        }
+                        addTrues();
+                        return true;
+                    case Keys.Add:
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_Y = (p.tmp_Y - y_min) * zoom + y_min;
+                        }
+                        addTrues();
+                        return true;
+                    case Keys.Subtract:
+                        foreach (Point3D p in trues)
+                        {
+                            p.tmp_Y = (p.tmp_Y - y_min) / zoom + y_min;
+                        }
+                        addTrues();
+                        return true;
+                    }
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        private void addTrues(){
+
+            vtkPolyData truePolydata = new vtkPolyData();//对真值处理
+            vtkPoints truePoints = new vtkPoints();
+            vtkCellArray trueCellArry = new vtkCellArray();
+
+            int[] match_Pid = new int[1];
+
+            //加入测量数据
+
+            //加入真值数据
+            for (int i = 0; i < trues.Count; i++)
+            {
+                match_Pid[0] = truePoints.InsertNextPoint(trues[i].tmp_X, trues[i].tmp_Y, 0);
+                trueCellArry.InsertNextCell(1, match_Pid);
+            }
+            truePolydata.SetPoints(truePoints); //把点导入的polydata中去
+            truePolydata.SetVerts(trueCellArry);
+
+
+            //Mapper
+            vtkPolyDataMapper TrueMapper = new vtkPolyDataMapper();
+            TrueMapper.SetInputConnection(truePolydata.GetProducerPort());
+
+            trueActor = new vtkActor();  
+            trueActor.SetMapper(TrueMapper);
+            trueActor.GetProperty().SetColor(1, 0, 0);
+            trueActor.GetProperty().SetPointSize(5);
+
+            ren.AddActor(trueActor);
+
+            //vtkControl.GetRenderWindow().AddRenderer(ren);//将渲染加入控制controler 否则界面不会自动刷新
+            //showAxes();
+            vtkControl.Refresh();
+        }
+
         /// <summary>
         /// 显示所选范围内的点数
         /// </summary>
@@ -3674,53 +3771,90 @@ namespace vtkPointCloud
         }
         private void SureRegionBtn_Click(object sender, EventArgs e)
         {
-            isSureRegion = true;//確認了就不相應函數了
-            ren.RemoveActor(trueActor);
-            ren.RemoveActor(actorLine);
-            ren.RemoveActor(actorLine2);
-            ren.RemoveViewProp(actorLine3);
-            ren.RemoveActor(actorLine4);
-            vtkPolyData truePolydata = new vtkPolyData(); ;//对真值处理
-            truePointCloud = new vtkPoints();//刷新真值点云
-            //vtkCellArray trueCellArry = new vtkCellArray();
-
-            double x_tmp_min = InRegionTrues.Min(m => m.X);
-            double x_tmp_max = InRegionTrues.Max(m => m.X);
-            double y_tmp_min = InRegionTrues.Min(m => m.Y);
-            double y_tmp_max = InRegionTrues.Max(m => m.Y);
-
-            double scale_x = (trueScale[1] - trueScale[0]) / (x_tmp_max - x_tmp_min);
-            double scale_y = (trueScale[3] - trueScale[2]) / (y_tmp_max - y_tmp_min);
-            Console.WriteLine("" + scale_x + "\t" + scale_y);
-
-            int[] truePointPid = new int[1];
-            truePolyVertex.GetPointIds().SetNumberOfIds(InRegionTrues.Count);
-
-            foreach (Point3D p in InRegionTrues)
+            if (!isSureRegion)//如果是匹配選擇區域
             {
-                //centerPoints.InsertNextPoint(centers[i].tmp_X - (xmin - trueScale[0]) + (xmax - xmin) * 1.1,
-                //    centers[i].tmp_Y - (ymin - trueScale[2]), 0);
-                p.tmp_X = trueScale[0] + (p.X - x_tmp_min) * scale_x;//轉換比例尺 并計入屬性
-                p.tmp_Y = trueScale[2] + (p.Y - y_tmp_min) * scale_y;
-                truePointPid[0] = truePointCloud.InsertNextPoint(p.tmp_X, p.tmp_Y, 0);
-                truePointVertices.InsertNextCell(1, truePointPid);
+                isSureRegion = true;//確認了就不相應函數了
+                ren.RemoveActor(trueActor);
+                ren.RemoveActor(actorLine);
+                ren.RemoveActor(actorLine2);
+                ren.RemoveViewProp(actorLine3);
+                ren.RemoveActor(actorLine4);
+                vtkPolyData truePolydata = new vtkPolyData(); ;//对真值处理
+                truePointCloud = new vtkPoints();//刷新真值点云
+                //vtkCellArray trueCellArry = new vtkCellArray();
+
+                double x_tmp_min = InRegionTrues.Min(m => m.X);
+                double x_tmp_max = InRegionTrues.Max(m => m.X);
+                double y_tmp_min = InRegionTrues.Min(m => m.Y);
+                double y_tmp_max = InRegionTrues.Max(m => m.Y);
+
+                double scale_x = (trueScale[1] - trueScale[0]) / (x_tmp_max - x_tmp_min);
+                double scale_y = (trueScale[3] - trueScale[2]) / (y_tmp_max - y_tmp_min);
+                Console.WriteLine("" + scale_x + "\t" + scale_y);
+
+                int[] truePointPid = new int[1];
+                truePolyVertex.GetPointIds().SetNumberOfIds(InRegionTrues.Count);
+
+                foreach (Point3D p in InRegionTrues)
+                {
+                    p.tmp_X = trueScale[0] + (p.X - x_tmp_min) * scale_x;//轉換比例尺 并計入屬性
+                    p.tmp_Y = trueScale[2] + (p.Y - y_tmp_min) * scale_y;
+                    truePointPid[0] = truePointCloud.InsertNextPoint(p.tmp_X, p.tmp_Y, 0);
+                    truePointVertices.InsertNextCell(1, truePointPid);
+                }
+                trueScale = truePointCloud.GetBounds();
+
+                truePolydata.SetPoints(truePointCloud); //把点导入的polydata中去
+                truePolydata.SetVerts(truePointVertices);
+
+                //Mapper
+                vtkPolyDataMapper TrueMapper = new vtkPolyDataMapper();
+                TrueMapper.SetInputConnection(truePolydata.GetProducerPort());
+
+                trueActor = new vtkActor();
+                trueActor.SetMapper(TrueMapper);
+                trueActor.GetProperty().SetColor(1, 0, 0);
+                trueActor.GetProperty().SetPointSize(5);
+                ren.AddActor(trueActor);
+
+                vtkControl.Refresh();
             }
-            trueScale = truePointCloud.GetBounds();
-
-            truePolydata.SetPoints(truePointCloud); //把点导入的polydata中去
-            truePolydata.SetVerts(truePointVertices);
-
-            //Mapper
-            vtkPolyDataMapper TrueMapper = new vtkPolyDataMapper();
-            TrueMapper.SetInputConnection(truePolydata.GetProducerPort());
-
-            trueActor = new vtkActor();
-            trueActor.SetMapper(TrueMapper);
-            trueActor.GetProperty().SetColor(1, 0, 0);
-            trueActor.GetProperty().SetPointSize(5);
-            ren.AddActor(trueActor);
-
-            vtkControl.Refresh();
+            else if(!isSureSoure){
+                double clusterRadius;
+                if (!double.TryParse(this.PtsInRegionTxt.Text, out clusterRadius))
+                {
+                    MessageBox.Show("输入的文件格式有误，请重新输入");
+                    return ;
+                }
+                int yedian = 0;
+                clusList = new List<ClusObj>();
+                ClusObj oo;
+                for (int j = 0; j < trues.Count; j++)
+                {
+                    oo = new ClusObj();
+                    oo.clusId = j + 1;
+                    clusList.Add(oo);
+                }
+                isStartDrawCircle = true;
+                 foreach (Point3D item in rawData)
+                {
+                    int id = trues.Select(s => new
+                    {
+                        ID = s.clusterId,
+                        DISTANCE = Math.Sqrt((s.tmp_X - item.motor_x) * (s.tmp_X - item.motor_x) + (s.tmp_Y - item.motor_y) * (s.tmp_Y - item.motor_y))
+                    }).Where(s=>s.DISTANCE<clusterRadius).OrderByDescending(s => s.DISTANCE).Reverse().Select(s=>s.ID).FirstOrDefault();
+                    if (id != 0)
+                    {
+                        clusList[id - 1].li.Add(item);
+                    }
+                    else {
+                        yedian++;
+                    }
+                }
+                 Console.WriteLine("yedian:" + yedian);
+                 int count = clusList.Count(i => i.li.Count != 0);
+                 Console.WriteLine("聚類：" + count);
+            }
         }
 
         private void DoMatchBtn_Click(object sender, EventArgs e)
