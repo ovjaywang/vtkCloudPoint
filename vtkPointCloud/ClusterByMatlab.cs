@@ -34,8 +34,8 @@ namespace vtkPointCloud
                 return;
             mf = (MainForm)this.Owner;
 
-            mf.rawData = new List<Point3D>();
-            mf.clusForMerge.ForEach(i => mf.rawData.Add((Point3D)i.Clone()));
+            //mf.rawData = new List<Point3D>();
+            //mf.clusForMerge.ForEach(i => mf.rawData.Add((Point3D)i.Clone()));//更新rawData 主要是ID
             MainForm.clusterSum = tmpClusList.Count;
             //Tools.removeErrorPointFromClustering(mf.rawData);
             mf.rawData = new List<Point3D>();
@@ -60,7 +60,15 @@ namespace vtkPointCloud
             if (MessageBox.Show("确认聚类结果吗,确认将删除野点?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
                 return;
             mf = (MainForm)this.Owner;
-            Tools.removeErrorPointFromClustering(mf.rawData);
+            //Tools.removeErrorPointFromClustering(mf.rawData);
+            mf.rawData = new List<Point3D>();
+            foreach (ClusObj obj in mf.clusList)
+            {
+                foreach (Point3D p in obj.li)
+                {
+                    mf.rawData.Add(p);
+                }
+            }
             mf.isShowLegend(0);
             mf.isShowLegend(4);
             mf.showCircle(mf.circles, 2, mf.rawData, mf.centers);
@@ -162,7 +170,7 @@ namespace vtkPointCloud
             }
             else
             {
-                mf.showCircles2D(tmpCircles2D, 1, mf.clusForMerge, tmpCenters2D);
+                mf.showCircles2D(tmpCircles2D, mf.clusForMerge, tmpCenters2D);
             }
         }
 
@@ -230,7 +238,7 @@ namespace vtkPointCloud
                 }
                 else
                 {
-                    mf.showCircles2D(mf.circles2D, 1, mf.clusForMerge, mf.centers2D);
+                    mf.showCircles2D(mf.circles2D, mf.clusForMerge, mf.centers2D);
                 }
             }
             else
@@ -241,7 +249,7 @@ namespace vtkPointCloud
                 }
                 else
                 {
-                    mf.showCircles2D(tmpCircles2D, 1, mf.clusForMerge, tmpCenters2D);
+                    mf.showCircles2D(tmpCircles2D, mf.clusForMerge, tmpCenters2D);
                 }
 
             }

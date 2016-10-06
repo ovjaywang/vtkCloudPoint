@@ -55,13 +55,13 @@ namespace vtkPointCloud
         /// <summary>
         /// 将野点移除点集-确认聚类效果时做
         /// </summary>
-        static public void removeErrorPointFromClustering(List<Point3D> rawData)
-        {
-            int sum = rawData.Count;
-            if (rawData == null) return;
-            rawData.RemoveAll((delegate(Point3D p) { return p.clusterId == 0; }));
-            Console.WriteLine("剔除野点个数为 : "+ (rawData.Count-sum));
-        }
+        //static public void removeErrorPointFromClustering(List<Point3D> rawData)
+        //{
+        //    int sum = rawData.Count;
+        //    if (rawData == null) return;
+        //    rawData.RemoveAll((delegate(Point3D p) { return p.clusterId == 0; }));
+        //    Console.WriteLine("剔除野点个数为 : "+ (rawData.Count-sum));
+        //}
         /// <summary>
         /// 将过滤点从点集中删除
         /// </summary>
@@ -697,23 +697,15 @@ namespace vtkPointCloud
                 {
                     //if (!centers[i].isFilter)
                     //{
-                    pid[0] = SourcePoints.InsertNextPoint(centers[i].tmp_X, centers[i].tmp_Y, centers[i].tmp_Z);
-                    SourceVertices.InsertNextCell(1, pid);
+                    //pid[0] = SourcePoints.InsertNextPoint(centers[i].tmp_X, centers[i].tmp_Y, centers[i].tmp_Z);
+                        pid[0] = SourcePoints.InsertNextPoint(centers[i].tmp_X, centers[i].tmp_Y, 0);
+                        SourceVertices.InsertNextCell(1, pid);
                     //}
                 }
             }
             polydata.SetPoints(SourcePoints); //把点导入的polydata中去
             polydata.SetVerts(SourceVertices);
             return polydata;
-        }
-        static public double[] GetBoundsByPoint3D(List<Point3D> rawData) {
-            double[] bounds = { 0, 0, 0, 0 };
-            if (rawData == null || rawData.Count == 0) return bounds;
-            bounds[0] = rawData.Min(m => m.X);
-            bounds[1] = rawData.Max(m => m.X);
-            bounds[2] = rawData.Min(m => m.Y);
-            bounds[3] = rawData.Max(m => m.Y);
-            return bounds;
         }
     }
 }

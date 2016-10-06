@@ -257,7 +257,7 @@ namespace vtkPointCloud
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "MCC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "聚类半径过滤";
+            this.Text = "聚类过滤并输出";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

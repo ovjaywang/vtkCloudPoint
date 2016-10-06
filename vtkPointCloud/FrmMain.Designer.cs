@@ -34,11 +34,11 @@
             this.导入文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImporttxtFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportXLSFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScanClustringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SourceClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExplainClusteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.密度聚类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DensityClusterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ParamsInputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TruePointMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ParamsInput2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TrueFileClusterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.固定点数据操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportFixedPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportTxtFixedPtsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +110,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.PtsInRegionTxt = new System.Windows.Forms.TextBox();
             this.DoMatchBtn = new System.Windows.Forms.Button();
+            this.sureSourceResultBtn = new System.Windows.Forms.Button();
+            this.TipsForMoveLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
@@ -138,7 +140,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1607, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -146,8 +148,8 @@
             // 
             this.操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.导入文件ToolStripMenuItem,
-            this.ScanClustringToolStripMenuItem,
-            this.iCPToolStripMenuItem});
+            this.DensityClusterToolStripMenuItem,
+            this.TrueFileClusterToolStripMenuItem});
             this.操作ToolStripMenuItem.Name = "操作ToolStripMenuItem";
             this.操作ToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
             this.操作ToolStripMenuItem.Text = "扫描点数据预处理";
@@ -158,7 +160,7 @@
             this.ImporttxtFileToolStripMenuItem,
             this.ImportXLSFileToolStripMenuItem});
             this.导入文件ToolStripMenuItem.Name = "导入文件ToolStripMenuItem";
-            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.导入文件ToolStripMenuItem.Text = "导入文件";
             // 
             // ImporttxtFileToolStripMenuItem
@@ -175,47 +177,45 @@
             this.ImportXLSFileToolStripMenuItem.Text = "导入xls文件夹";
             this.ImportXLSFileToolStripMenuItem.Click += new System.EventHandler(this.ImportXLSFileToolStripMenuItem_Click);
             // 
-            // ScanClustringToolStripMenuItem
+            // DensityClusterToolStripMenuItem
             // 
-            this.ScanClustringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SourceClusteringToolStripMenuItem,
-            this.ExplainClusteringToolStripMenuItem,
-            this.密度聚类ToolStripMenuItem});
-            this.ScanClustringToolStripMenuItem.Enabled = false;
-            this.ScanClustringToolStripMenuItem.Name = "ScanClustringToolStripMenuItem";
-            this.ScanClustringToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
-            this.ScanClustringToolStripMenuItem.Text = "扫描点聚类";
-            this.ScanClustringToolStripMenuItem.EnabledChanged += new System.EventHandler(this.ScanClustringToolStripMenuItem_EnabledChanged);
+            this.DensityClusterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ParamsInputToolStripMenuItem,
+            this.TruePointMatchToolStripMenuItem,
+            this.ParamsInput2ToolStripMenuItem});
+            this.DensityClusterToolStripMenuItem.Enabled = false;
+            this.DensityClusterToolStripMenuItem.Name = "DensityClusterToolStripMenuItem";
+            this.DensityClusterToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.DensityClusterToolStripMenuItem.Text = "密度聚类";
             // 
-            // SourceClusteringToolStripMenuItem
+            // ParamsInputToolStripMenuItem
             // 
-            this.SourceClusteringToolStripMenuItem.Enabled = false;
-            this.SourceClusteringToolStripMenuItem.Name = "SourceClusteringToolStripMenuItem";
-            this.SourceClusteringToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
-            this.SourceClusteringToolStripMenuItem.Text = "源文件聚类（手动聚类+手动匹配）";
-            this.SourceClusteringToolStripMenuItem.Click += new System.EventHandler(this.SourceClusteringToolStripMenuItem_Click);
+            this.ParamsInputToolStripMenuItem.Name = "ParamsInputToolStripMenuItem";
+            this.ParamsInputToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.ParamsInputToolStripMenuItem.Text = "参数输入";
+            this.ParamsInputToolStripMenuItem.Click += new System.EventHandler(this.ParamsInputToolStripMenuItem_Click);
             // 
-            // ExplainClusteringToolStripMenuItem
+            // TruePointMatchToolStripMenuItem
             // 
-            this.ExplainClusteringToolStripMenuItem.Enabled = false;
-            this.ExplainClusteringToolStripMenuItem.Name = "ExplainClusteringToolStripMenuItem";
-            this.ExplainClusteringToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
-            this.ExplainClusteringToolStripMenuItem.Text = "拓展聚类（自动聚类+自动匹配）";
-            this.ExplainClusteringToolStripMenuItem.Click += new System.EventHandler(this.ExplainClusteringToolStripMenuItem_Click);
+            this.TruePointMatchToolStripMenuItem.Name = "TruePointMatchToolStripMenuItem";
+            this.TruePointMatchToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.TruePointMatchToolStripMenuItem.Text = "真值匹配";
+            this.TruePointMatchToolStripMenuItem.Click += new System.EventHandler(this.TruePointMatchToolStripMenuItem_Click);
             // 
-            // 密度聚类ToolStripMenuItem
+            // ParamsInput2ToolStripMenuItem
             // 
-            this.密度聚类ToolStripMenuItem.Name = "密度聚类ToolStripMenuItem";
-            this.密度聚类ToolStripMenuItem.Size = new System.Drawing.Size(314, 24);
-            this.密度聚类ToolStripMenuItem.Text = "密度聚类";
-            this.密度聚类ToolStripMenuItem.Click += new System.EventHandler(this.密度聚类ToolStripMenuItem_Click);
+            this.ParamsInput2ToolStripMenuItem.Name = "ParamsInput2ToolStripMenuItem";
+            this.ParamsInput2ToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.ParamsInput2ToolStripMenuItem.Text = "参数输入（2-慢）";
+            this.ParamsInput2ToolStripMenuItem.Click += new System.EventHandler(this.ParamsInput2ToolStripMenuItem_Click);
             // 
-            // iCPToolStripMenuItem
+            // TrueFileClusterToolStripMenuItem
             // 
-            this.iCPToolStripMenuItem.Name = "iCPToolStripMenuItem";
-            this.iCPToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
-            this.iCPToolStripMenuItem.Text = "真值均值识别匹配";
-            this.iCPToolStripMenuItem.Click += new System.EventHandler(this.iCPToolStripMenuItem_Click);
+            this.TrueFileClusterToolStripMenuItem.Enabled = false;
+            this.TrueFileClusterToolStripMenuItem.Name = "TrueFileClusterToolStripMenuItem";
+            this.TrueFileClusterToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.TrueFileClusterToolStripMenuItem.Text = "真值文件聚类";
+            this.TrueFileClusterToolStripMenuItem.Click += new System.EventHandler(this.TrueFileClusterToolStripMenuItem_Click);
             // 
             // 固定点数据操作ToolStripMenuItem
             // 
@@ -500,7 +500,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 631);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1413, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1607, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -528,7 +528,7 @@
             this.toolStripStatusLabel2});
             this.statusStrip2.Location = new System.Drawing.Point(0, 606);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1413, 25);
+            this.statusStrip2.Size = new System.Drawing.Size(1607, 25);
             this.statusStrip2.TabIndex = 3;
             this.statusStrip2.Text = "选中节点数：0";
             // 
@@ -559,11 +559,11 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1420, 18);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1614, 18);
             this.toolStripContainer1.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 31);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1420, 43);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1614, 43);
             this.toolStripContainer1.TabIndex = 4;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -811,7 +811,7 @@
             this.tsButton_CLEANALL});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1420, 35);
+            this.toolStrip1.Size = new System.Drawing.Size(1614, 35);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -890,7 +890,7 @@
             // 
             this.SureRegionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.SureRegionBtn.Font = new System.Drawing.Font("宋体", 15F);
-            this.SureRegionBtn.Location = new System.Drawing.Point(1130, 80);
+            this.SureRegionBtn.Location = new System.Drawing.Point(1114, 80);
             this.SureRegionBtn.Name = "SureRegionBtn";
             this.SureRegionBtn.Size = new System.Drawing.Size(134, 36);
             this.SureRegionBtn.TabIndex = 24;
@@ -929,7 +929,7 @@
             // 
             this.DoMatchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.DoMatchBtn.Font = new System.Drawing.Font("宋体", 15F);
-            this.DoMatchBtn.Location = new System.Drawing.Point(1270, 80);
+            this.DoMatchBtn.Location = new System.Drawing.Point(1254, 80);
             this.DoMatchBtn.Name = "DoMatchBtn";
             this.DoMatchBtn.Size = new System.Drawing.Size(134, 36);
             this.DoMatchBtn.TabIndex = 27;
@@ -938,12 +938,37 @@
             this.DoMatchBtn.Visible = false;
             this.DoMatchBtn.Click += new System.EventHandler(this.DoMatchBtn_Click);
             // 
+            // sureSourceResultBtn
+            // 
+            this.sureSourceResultBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sureSourceResultBtn.Font = new System.Drawing.Font("宋体", 15F);
+            this.sureSourceResultBtn.Location = new System.Drawing.Point(1394, 80);
+            this.sureSourceResultBtn.Name = "sureSourceResultBtn";
+            this.sureSourceResultBtn.Size = new System.Drawing.Size(176, 36);
+            this.sureSourceResultBtn.TabIndex = 28;
+            this.sureSourceResultBtn.Text = "确认并输出";
+            this.sureSourceResultBtn.UseVisualStyleBackColor = false;
+            this.sureSourceResultBtn.Visible = false;
+            this.sureSourceResultBtn.Click += new System.EventHandler(this.sureSourceResultBtn_Click);
+            // 
+            // TipsForMoveLabel
+            // 
+            this.TipsForMoveLabel.AutoSize = true;
+            this.TipsForMoveLabel.Font = new System.Drawing.Font("华文中宋", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TipsForMoveLabel.Location = new System.Drawing.Point(276, 119);
+            this.TipsForMoveLabel.Name = "TipsForMoveLabel";
+            this.TipsForMoveLabel.Size = new System.Drawing.Size(0, 23);
+            this.TipsForMoveLabel.TabIndex = 29;
+            this.TipsForMoveLabel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1413, 656);
+            this.ClientSize = new System.Drawing.Size(1607, 656);
+            this.Controls.Add(this.TipsForMoveLabel);
+            this.Controls.Add(this.sureSourceResultBtn);
             this.Controls.Add(this.DoMatchBtn);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.PtsInRegionTxt);
@@ -1002,7 +1027,6 @@
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem 操作ToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem iCPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 固定点数据操作ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 配准ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 调用exeToolStripMenuItem;
@@ -1023,12 +1047,9 @@
         private System.Windows.Forms.ToolStripButton tsButton_ExportFixedPointAverageFile;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
-        private System.Windows.Forms.ToolStripMenuItem ScanClustringToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem ExplainClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GuideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem SourceClusteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LookTruePointToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导入文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImporttxtFileToolStripMenuItem;
@@ -1073,7 +1094,13 @@
         public System.Windows.Forms.ToolStripMenuItem FixedPointMatchingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试matlabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试matlab多线程ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 密度聚类ToolStripMenuItem;
+        private System.Windows.Forms.Button sureSourceResultBtn;
+        private System.Windows.Forms.Label TipsForMoveLabel;
+        private System.Windows.Forms.ToolStripMenuItem DensityClusterToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ParamsInputToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem TruePointMatchToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem TrueFileClusterToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ParamsInput2ToolStripMenuItem;
 
     }
 }
